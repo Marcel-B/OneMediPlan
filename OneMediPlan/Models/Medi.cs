@@ -18,11 +18,10 @@ namespace OneMediPlan.Models
         Fluency = 2,
     }
 
-    public class Medi
+    public class Medi : Item
     {
         public Medi() { }
 
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public double Stock { get; set; }
         public double MinimumStock { get; set; }
@@ -34,8 +33,6 @@ namespace OneMediPlan.Models
         public DateTimeOffset NextDate { get; set; }
         public DateTimeOffset LastDate { get; set; }
         public DateTimeOffset LastRefill { get; set; }
-        public DateTimeOffset LastEdit { get; set; }
-        public DateTimeOffset Create { get; set; }
         public bool Confirmed { get; set; }
         public bool Scheduled { get; set; }
     }
