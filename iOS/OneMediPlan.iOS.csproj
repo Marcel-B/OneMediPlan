@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -146,6 +146,10 @@
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomCells\MeditableViewCell.cs" />
+    <Compile Include="CustomCells\MeditableViewCell.designer.cs">
+      <DependentUpon>MeditableViewCell.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewControllers\DetailViewControllers\BrowseItemDetailViewController.cs" />
     <Compile Include="ViewControllers\DetailViewControllers\BrowseItemDetailViewController.designer.cs">
       <DependentUpon>BrowseItemDetailViewController.cs</DependentUpon>
@@ -170,6 +174,7 @@
     <Compile Include="Main.cs" />
   </ItemGroup>
   <ItemGroup>
+    <InterfaceDefinition Include="CustomCells\MeditableViewCell.xib" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <None Include="packages.config" />

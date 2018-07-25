@@ -11,13 +11,12 @@ namespace OneMediPlan
         public Command LoadItemsCommand { get; set; }
         public Command AddItemCommand { get; set; }
 
-
         public MediViewModel()
         {
             Title = "One Mediplan";
             Medis = new ObservableCollection<Medi>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadMedisCommand());
-            AddItemCommand = new Command(async () => await ExecuteAddItemCommand());
+            AddItemCommand = new Command<Medi>(async (Medi item) => await AddItem(item));
         }
 
         async Task ExecuteLoadMedisCommand()
@@ -30,7 +29,7 @@ namespace OneMediPlan
             try
             {
                 Medis.Clear();
-                var medis = await DataStore.GetMedisAsync(true);
+                var medis = await DataStore.GetItemsAsync(true);
                 foreach (var medi in medis)
                 {
                     Medis.Add(medi);
@@ -52,50 +51,50 @@ namespace OneMediPlan
         }
 
     }
-    public class ItemsViewModel : BaseViewModel
-    {
-        public ObservableCollection<Item> Items { get; set; }
-        public Command LoadItemsCommand { get; set; }
-        public Command AddItemCommand { get; set; }
+    //public class ItemsViewModel : BaseViewModel
+    //{
+    //    public ObservableCollection<Item> Items { get; set; }
+    //    public Command LoadItemsCommand { get; set; }
+    //    public Command AddItemCommand { get; set; }
 
-        public ItemsViewModel()
-        {
-            Title = "Browse";
-            Items = new ObservableCollection<Item>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            AddItemCommand = new Command<Item>(async (Item item) => await AddItem(item));
-        }
+    //    public ItemsViewModel()
+    //    {
+    //        Title = "Browse";
+    //        Items = new ObservableCollection<Item>();
+    //        LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+    //        AddItemCommand = new Command<Item>(async (Item item) => await AddItem(item));
+    //    }
 
-        async Task ExecuteLoadItemsCommand()
-        {
-            if (IsBusy)
-                return;
+    //    async Task ExecuteLoadItemsCommand()
+    //    {
+    //        if (IsBusy)
+    //            return;
 
-            IsBusy = true;
+    //        IsBusy = true;
 
-            try
-            {
-                Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
-                {
-                    Items.Add(item);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
+    //        try
+    //        {
+    //            Items.Clear();
+    //            var items = await DataStore.GetItemsAsync(true);
+    //            foreach (var item in items)
+    //            {
+    //                Items.Add(item);
+    //            }
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            Debug.WriteLine(ex);
+    //        }
+    //        finally
+    //        {
+    //            IsBusy = false;
+    //        }
+    //    }
 
-        async Task AddItem(Item item)
-        {
-            Items.Add(item);
-            await DataStore.AddItemAsync(item);
-        }
-    }
+    //    async Task AddItem(Item item)
+    //    {
+    //        Items.Add(item);
+    //        await DataStore.AddItemAsync(item);
+    //    }
+    //}
 }

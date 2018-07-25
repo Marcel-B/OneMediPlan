@@ -16,22 +16,22 @@ namespace OneMediPlan.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel ItemDescriptionLabel { get; set; }
+        UIKit.UILabel ItemNameLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel ItemNameLabel { get; set; }
+        UIKit.UILabel ItemNextDatePanel { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (ItemDescriptionLabel != null) {
-                ItemDescriptionLabel.Dispose ();
-                ItemDescriptionLabel = null;
-            }
-
             if (ItemNameLabel != null) {
                 ItemNameLabel.Dispose ();
                 ItemNameLabel = null;
+            }
+
+            if (ItemNextDatePanel != null) {
+                ItemNextDatePanel.Dispose ();
+                ItemNextDatePanel = null;
             }
         }
     }

@@ -11,7 +11,7 @@ namespace OneMediPlan.iOS
     {
         UIRefreshControl refreshControl;
 
-        public ItemsViewModel Viewmodel { get; set; }
+        //public ItemsViewModel Viewmodel { get; set; }
         public MediViewModel ViewModel { get; set; }
 
 
@@ -121,30 +121,30 @@ namespace OneMediPlan.iOS
             => viewModel.Medis.Count;
     }
 
-    class ItemsDataSource : UITableViewSource
-    {
-        static readonly NSString CELL_IDENTIFIER = new NSString("ITEM_CELL");
+    //class ItemsDataSource : UITableViewSource
+    //{
+    //    static readonly NSString CELL_IDENTIFIER = new NSString("ITEM_CELL");
 
-        ItemsViewModel viewModel;
+    //    ItemsViewModel viewModel;
 
-        public ItemsDataSource(ItemsViewModel viewModel)
-        {
-            this.viewModel = viewModel;
-        }
+    //    public ItemsDataSource(ItemsViewModel viewModel)
+    //    {
+    //        this.viewModel = viewModel;
+    //    }
 
-        public override nint RowsInSection(UITableView tableview, nint section) => viewModel.Items.Count;
-        public override nint NumberOfSections(UITableView tableView) => 1;
+    //    public override nint RowsInSection(UITableView tableview, nint section) => viewModel.Items.Count;
+    //    public override nint NumberOfSections(UITableView tableView) => 1;
 
-        public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
-        {
-            var cell = tableView.DequeueReusableCell(CELL_IDENTIFIER, indexPath);
+    //    public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+    //    {
+    //        var cell = tableView.DequeueReusableCell(CELL_IDENTIFIER, indexPath);
 
-            var item = viewModel.Items[indexPath.Row];
-            cell.TextLabel.Text = item.Text;
-            cell.DetailTextLabel.Text = item.Description;
-            cell.LayoutMargins = UIEdgeInsets.Zero;
-            //cell.BackgroundColor = ChameleonColor.FlatMintColor;
-            return cell;
-        }
-    }
+    //        var item = viewModel.Items[indexPath.Row];
+    //        cell.TextLabel.Text = item.Text;
+    //        cell.DetailTextLabel.Text = item.Description;
+    //        cell.LayoutMargins = UIEdgeInsets.Zero;
+    //        //cell.BackgroundColor = ChameleonColor.FlatMintColor;
+    //        return cell;
+    //    }
+    //}
 }

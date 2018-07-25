@@ -23,7 +23,7 @@ namespace OneMediPlan.iOS
                 {
                     Name = txtTitle.Text,
                 };
-                ViewModel.AddMediCommand.Execute(item);
+                ViewModel.AddItemCommand.Execute(item);
                 NavigationController.PopToRootViewController(true);
             };
         }

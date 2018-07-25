@@ -5,7 +5,7 @@ namespace OneMediPlan.iOS
 {
     public partial class BrowseItemDetailViewController : UIViewController
     {
-        public ItemDetailViewModel ViewModel { get; set; }
+        public MediDetailViewModel ViewModel { get; set; }
         public BrowseItemDetailViewController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
@@ -13,8 +13,8 @@ namespace OneMediPlan.iOS
             base.ViewDidLoad();
 
             Title = ViewModel.Title;
-            ItemNameLabel.Text = ViewModel.Item.Text;
-            ItemDescriptionLabel.Text = ViewModel.Item.Description;
+            ItemNameLabel.Text = ViewModel.Medi.Name;
+            ItemNextDatePanel.Text = ViewModel.Medi.NextDate.ToString();
         }
     }
 }
