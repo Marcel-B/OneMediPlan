@@ -10,6 +10,9 @@ namespace OneMediPlan.iOS.CustomCells
         public static readonly NSString Key = new NSString("MeditableViewCell");
         public static readonly UINib Nib;
 
+        public string Name { get => LabelName.Text; set => LabelName.Text = value; }
+        public string Subtitle { get => LabelSubtitle.Text; set => LabelSubtitle.Text = value; }
+
         static MeditableViewCell()
         {
             Nib = UINib.FromName("MeditableViewCell", NSBundle.MainBundle);

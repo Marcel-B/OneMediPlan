@@ -9,9 +9,7 @@ namespace OneMediPlan.iOS
         //public ItemsViewModel ViewModel { get; set; }
         public MediViewModel ViewModel { get; set; }
 
-        public ItemNewViewController(IntPtr handle) : base(handle)
-        {
-        }
+        public ItemNewViewController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
         {

@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 //using ChameleonFramework;
 using Foundation;
 using UIKit;
+using OneMediPlan.iOS.CustomCells;
 
 namespace OneMediPlan.iOS
 {
@@ -17,20 +18,24 @@ namespace OneMediPlan.iOS
 
         public BrowseViewController(IntPtr handle) : base(handle)
         {
+
         }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            var nib = MeditableViewCell.Nib;
+            var key = MeditableViewCell.Key;
+            TableView.RegisterNibForCellReuse(nib, key);
+            TableView.RowHeight = 100;
 
-            //ViewModel = new ItemsViewModel();
+
             ViewModel = new MediViewModel();
 
             // Setup UITableView.
             refreshControl = new UIRefreshControl();
             refreshControl.ValueChanged += RefreshControl_ValueChanged;
             TableView.Add(refreshControl);
-            //TableView.Source = new ItemsDataSource(ViewModel);
             TableView.Source = new MedisDataSource(ViewModel);
 
             Title = ViewModel.Title;
@@ -103,48 +108,85 @@ namespace OneMediPlan.iOS
     class MedisDataSource : UITableViewSource
     {
         static readonly NSString CELL_IDENTIFIER = new NSString("ITEM_CELL");
+        //static readonly NSString CELL_IDENTIFIER = new NSString("ITEM_CELL");
         MediViewModel viewModel;
 
         public MedisDataSource(MediViewModel viewModel)
         {
             this.viewModel = viewModel;
         }
+
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var cell = tableView.DequeueReusableCell(CELL_IDENTIFIER, indexPath);
+            //var cell = tableView.DequeueReusableCell(CELL_IDENTIFIER, indexPath);
+            var cell = tableView.DequeueReusableCell(MeditableViewCell.Key, indexPath) as MeditableViewCell;
             var medi = viewModel.Medis[indexPath.Row];
-            cell.TextLabel.Text = medi.Name;
+            cell.Name = medi.Name;
+            cell.Subtitle = medi.Stock.ToString("F3");
+            cell.BackgroundColor = UIColor.LightTextColor;
             return cell;
         }
+
+
+        public UIContextualAction ContextualFlagAction(int row)
+        {
+            var action = UIContextualAction.FromContextualActionStyle
+                            (UIContextualActionStyle.Normal,
+                                "Fuck",
+                                (FlagAction, view, success) =>
+                                {
+                                    success(true);
+                                });
+
+            //action.Image = UIImage.FromFile("feedback.png");
+            action.BackgroundColor = UIColor.Blue;
+
+            return action;
+        }
+
+        public UIContextualAction ContextualDefinitionAction(int row)
+        {
+
+            var action = UIContextualAction.FromContextualActionStyle(UIContextualActionStyle.Normal,
+                "You",
+                (ReadLaterAction, view, success) =>
+                {
+                });
+            action.BackgroundColor = UIColor.Green;
+            return action;
+        }
+
+        public override void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath)
+        {
+            viewModel.Medis.RemoveAt(indexPath.Row);
+            //base.CommitEditingStyle(tableView, editingStyle, indexPath);
+        }
+        //public override string TitleForDeleteConfirmation(UITableView tableView, NSIndexPath indexPath)
+        //{   // Optional - default text is 'Delete'
+        //    return "Trash (" + tableItems[indexPath.Row].SubHeading + ")";
+        //}
+        public override bool CanEditRow(UITableView tableView, NSIndexPath indexPath)
+        {
+            return true;
+        }
+
+        public override UISwipeActionsConfiguration GetLeadingSwipeActionsConfiguration(UITableView tableView, NSIndexPath indexPath)
+        {
+            //UIContextualActions
+            var definitionAction = ContextualDefinitionAction(indexPath.Row);
+            var flagAction = ContextualFlagAction(indexPath.Row);
+
+            //UISwipeActionsConfiguration
+            var leadingSwipe = UISwipeActionsConfiguration.FromActions(new UIContextualAction[] { flagAction, definitionAction });
+
+            leadingSwipe.PerformsFirstActionWithFullSwipe = false;
+            return leadingSwipe;
+        }
+
+        public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
+            => tableView.DeselectRow(indexPath, true);
 
         public override nint RowsInSection(UITableView tableview, nint section)
             => viewModel.Medis.Count;
     }
-
-    //class ItemsDataSource : UITableViewSource
-    //{
-    //    static readonly NSString CELL_IDENTIFIER = new NSString("ITEM_CELL");
-
-    //    ItemsViewModel viewModel;
-
-    //    public ItemsDataSource(ItemsViewModel viewModel)
-    //    {
-    //        this.viewModel = viewModel;
-    //    }
-
-    //    public override nint RowsInSection(UITableView tableview, nint section) => viewModel.Items.Count;
-    //    public override nint NumberOfSections(UITableView tableView) => 1;
-
-    //    public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
-    //    {
-    //        var cell = tableView.DequeueReusableCell(CELL_IDENTIFIER, indexPath);
-
-    //        var item = viewModel.Items[indexPath.Row];
-    //        cell.TextLabel.Text = item.Text;
-    //        cell.DetailTextLabel.Text = item.Description;
-    //        cell.LayoutMargins = UIEdgeInsets.Zero;
-    //        //cell.BackgroundColor = ChameleonColor.FlatMintColor;
-    //        return cell;
-    //    }
-    //}
 }
