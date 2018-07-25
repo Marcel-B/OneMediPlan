@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 
+//using ChameleonFramework;
 using Foundation;
 using UIKit;
 
@@ -112,7 +113,7 @@ namespace OneMediPlan.iOS
             cell.TextLabel.Text = item.Text;
             cell.DetailTextLabel.Text = item.Description;
             cell.LayoutMargins = UIEdgeInsets.Zero;
-
+            //cell.BackgroundColor = ChameleonColor.FlatMintColor;
             return cell;
         }
     }
