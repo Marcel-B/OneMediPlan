@@ -11,7 +11,9 @@ namespace OneMediPlan.iOS
     {
         UIRefreshControl refreshControl;
 
-        public ItemsViewModel ViewModel { get; set; }
+        public ItemsViewModel Viewmodel { get; set; }
+        public MediViewModel ViewModel { get; set; }
+
 
         public BrowseViewController(IntPtr handle) : base(handle)
         {
@@ -21,25 +23,29 @@ namespace OneMediPlan.iOS
         {
             base.ViewDidLoad();
 
-            ViewModel = new ItemsViewModel();
+            //ViewModel = new ItemsViewModel();
+            ViewModel = new MediViewModel();
 
             // Setup UITableView.
             refreshControl = new UIRefreshControl();
             refreshControl.ValueChanged += RefreshControl_ValueChanged;
             TableView.Add(refreshControl);
-            TableView.Source = new ItemsDataSource(ViewModel);
+            //TableView.Source = new ItemsDataSource(ViewModel);
+            TableView.Source = new MedisDataSource(ViewModel);
 
             Title = ViewModel.Title;
 
             ViewModel.PropertyChanged += IsBusy_PropertyChanged;
-            ViewModel.Items.CollectionChanged += Items_CollectionChanged;
+            //ViewModel.Items.CollectionChanged += Items_CollectionChanged;
+            ViewModel.Medis.CollectionChanged += Items_CollectionChanged;
         }
 
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
 
-            if (ViewModel.Items.Count == 0)
+            //if (ViewModel.Items.Count == 0)
+            if (ViewModel.Medis.Count == 0)
                 ViewModel.LoadItemsCommand.Execute(null);
         }
 
@@ -49,14 +55,17 @@ namespace OneMediPlan.iOS
             {
                 var controller = segue.DestinationViewController as BrowseItemDetailViewController;
                 var indexPath = TableView.IndexPathForCell(sender as UITableViewCell);
-                var item = ViewModel.Items[indexPath.Row];
+                //var item = ViewModel.Items[indexPath.Row];
+                var item = ViewModel.Medis[indexPath.Row];
 
-                controller.ViewModel = new ItemDetailViewModel(item);
+                //controller.ViewModel = new ItemDetailViewModel(item);
+                controller.ViewModel = new MediDetailViewModel(item);
             }
             else
             {
                 var controller = segue.DestinationViewController as ItemNewViewController;
                 controller.ViewModel = ViewModel;
+                //controller.ViewModel = ViewModel;
             }
         }
 
@@ -89,6 +98,27 @@ namespace OneMediPlan.iOS
         {
             InvokeOnMainThread(() => TableView.ReloadData());
         }
+    }
+
+    class MedisDataSource : UITableViewSource
+    {
+        static readonly NSString CELL_IDENTIFIER = new NSString("ITEM_CELL");
+        MediViewModel viewModel;
+
+        public MedisDataSource(MediViewModel viewModel)
+        {
+            this.viewModel = viewModel;
+        }
+        public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+        {
+            var cell = tableView.DequeueReusableCell(CELL_IDENTIFIER, indexPath);
+            var medi = viewModel.Medis[indexPath.Row];
+            cell.TextLabel.Text = medi.Name;
+            return cell;
+        }
+
+        public override nint RowsInSection(UITableView tableview, nint section)
+            => viewModel.Medis.Count;
     }
 
     class ItemsDataSource : UITableViewSource

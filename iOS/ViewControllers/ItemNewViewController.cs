@@ -1,12 +1,13 @@
 ﻿using System;
-
+using OneMediPlan.Models;
 using UIKit;
 
 namespace OneMediPlan.iOS
 {
     public partial class ItemNewViewController : UIViewController
     {
-        public ItemsViewModel ViewModel { get; set; }
+        //public ItemsViewModel ViewModel { get; set; }
+        public MediViewModel ViewModel { get; set; }
 
         public ItemNewViewController(IntPtr handle) : base(handle)
         {
@@ -18,12 +19,11 @@ namespace OneMediPlan.iOS
 
             btnSaveItem.TouchUpInside += (sender, e) =>
             {
-                var item = new Item
+                var item = new Medi
                 {
-                    Text = txtTitle.Text,
-                    Description = txtDesc.Text
+                    Name = txtTitle.Text,
                 };
-                ViewModel.AddItemCommand.Execute(item);
+                ViewModel.AddMediCommand.Execute(item);
                 NavigationController.PopToRootViewController(true);
             };
         }

@@ -34,7 +34,7 @@ namespace OneMediPlan
             return items;
         }
 
-        public async Task<Item> GetItemAsync(string id)
+        public async Task<Item> GetItemAsync(Guid id)
         {
             if (id != null && CrossConnectivity.Current.IsConnected)
             {
@@ -71,9 +71,9 @@ namespace OneMediPlan
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteItemAsync(Guid id)
         {
-            if (string.IsNullOrEmpty(id) && !CrossConnectivity.Current.IsConnected)
+            if (string.IsNullOrEmpty(id.ToString()) && !CrossConnectivity.Current.IsConnected)
                 return false;
 
             var response = await client.DeleteAsync($"api/item/{id}");
