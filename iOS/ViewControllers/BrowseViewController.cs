@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Specialized;
+using OneMediPlan.iOS.CustomCells;
 
 //using ChameleonFramework;
 using Foundation;
 using UIKit;
-using OneMediPlan.iOS.CustomCells;
 
 namespace OneMediPlan.iOS
 {
     public partial class BrowseViewController : UITableViewController
     {
         UIRefreshControl refreshControl;
-        static readonly NSString CELL_IDENTIFIER = new NSString("ITEM_CELL");
 
         //public ItemsViewModel Viewmodel { get; set; }
         public MediViewModel ViewModel { get; set; }
@@ -38,10 +37,10 @@ namespace OneMediPlan.iOS
 
             Title = ViewModel.Title;
 
-            TableView.RowHeight = 100;
+            TableView.RowHeight = 400;
             var nib = MeditableViewCell.Nib;
             var key = MeditableViewCell.Key;
-            TableView.RegisterNibForCellReuse(UINib.FromName("MeditableViewCell", NSBundle.MainBundle), "fuckedUpCell");
+            TableView.RegisterNibForCellReuse(nib, MeditableViewCell.Key);
 
             ViewModel.PropertyChanged += IsBusy_PropertyChanged;
             //ViewModel.Items.CollectionChanged += Items_CollectionChanged;
@@ -110,7 +109,6 @@ namespace OneMediPlan.iOS
 
     class MedisDataSource : UITableViewSource
     {
-        static readonly NSString CELL_IDENTIFIER = new NSString("fuckedUpCell");
         MediViewModel viewModel;
 
         public MedisDataSource(MediViewModel viewModel)
@@ -121,7 +119,7 @@ namespace OneMediPlan.iOS
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             //var cell = tableView.DequeueReusableCell(CELL_IDENTIFIER, indexPath);
-            var cell = tableView.DequeueReusableCell(CELL_IDENTIFIER, indexPath) as MeditableViewCell;
+            var cell = tableView.DequeueReusableCell(MeditableViewCell.Key, indexPath) as MeditableViewCell;
             var medi = viewModel.Medis[indexPath.Row];
             cell.Name = medi.Name;
             cell.StockInfo = $"{medi.Stock.ToString("F1")} / {medi.MinimumStock.ToString("F2")}";
