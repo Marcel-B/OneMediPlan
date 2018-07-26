@@ -4,33 +4,108 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner">
+            <connections/>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" customClass="MeditableViewCell" id="cxk-wN-pdQ" rowHeight="140" reuseIdentifier="MeditableViewCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" customClass="MeditableViewCell" id="cxk-wN-pdQ" rowHeight="140" reuseIdentifier="fuckedUpCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxk-wN-pdQ" id="YTl-1W-gDM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="139"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enbrel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="173" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                        <rect key="frame" x="16" y="8" width="288" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="21" weight="ultraLight"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enbrel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="173" translatesAutoresizingMaskIntoConstraints="NO">
+                        <rect key="frame" x="16" y="8" width="202" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="22" weight="ultraLight"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <constraints>
+                            <constraint id="3233" firstItem="173" firstAttribute="height" constant="21"/>
+                        </constraints>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="558" translatesAutoresizingMaskIntoConstraints="NO" text="Dienstag" misplaced="YES">
+                        <rect key="frame" x="16" y="60" width="139" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="558" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                        <rect key="frame" x="16" y="60" width="288" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.05.2018" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="739" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                        <rect key="frame" x="163" y="60" width="141" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 / 2.5" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="789" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                        <rect key="frame" x="185" y="111" width="119" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <constraints>
+                            <constraint id="4776" firstItem="789" firstAttribute="width" constant="119"/>
+                        </constraints>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schmerz" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="888" translatesAutoresizingMaskIntoConstraints="NO">
+                        <rect key="frame" x="226" y="8" width="78" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <constraints>
+                            <constraint id="3633" firstItem="888" firstAttribute="width" constant="78"/>
+                            <constraint id="3882" firstItem="888" firstAttribute="height" constant="21"/>
+                        </constraints>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0 Einheit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1183" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                        <rect key="frame" x="16" y="111" width="130" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint id="2497" firstItem="173" firstAttribute="leading" secondItem="558" secondAttribute="leading"/>
+                    <constraint id="2547" firstItem="173" firstAttribute="top" secondItem="888" secondAttribute="top"/>
+                    <constraint id="2597" firstItem="1183" firstAttribute="leading" secondItem="558" secondAttribute="leading"/>
+                    <constraint id="2647" firstItem="1183" firstAttribute="bottom" secondItem="789" secondAttribute="bottom"/>
+                    <constraint id="2697" firstItem="789" firstAttribute="bottom" secondItem="1183" secondAttribute="bottom"/>
+                    <constraint id="2747" firstItem="789" firstAttribute="trailing" secondItem="739" secondAttribute="trailing"/>
+                    <constraint id="2797" firstItem="888" firstAttribute="trailing" secondItem="739" secondAttribute="trailing"/>
+                    <constraint id="2847" firstItem="888" firstAttribute="top" secondItem="173" secondAttribute="top"/>
+                    <constraint id="2897" firstItem="739" firstAttribute="trailing" secondItem="888" secondAttribute="trailing"/>
+                    <constraint id="2947" firstItem="558" firstAttribute="leading" secondItem="173" secondAttribute="leading"/>
+                    <constraint id="3283" firstItem="558" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY"/>
+                    <constraint id="3333" firstItem="739" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY"/>
+                    <constraint id="3383" firstItem="173" firstAttribute="leading" secondItem="558" secondAttribute="leading"/>
+                    <constraint id="3433" firstItem="558" firstAttribute="leading" secondItem="173" secondAttribute="leading"/>
+                    <constraint id="3483" firstItem="558" firstAttribute="height" secondItem="739" secondAttribute="height"/>
+                    <constraint id="3533" firstItem="1183" firstAttribute="height" secondItem="789" secondAttribute="height"/>
+                    <constraint id="3583" firstItem="789" firstAttribute="height" secondItem="739" secondAttribute="height"/>
+                    <constraint id="3683" firstItem="888" firstAttribute="leading" secondItem="173" secondAttribute="trailing" constant="74"/>
+                    <constraint id="3782" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="888" secondAttribute="trailing" constant="16"/>
+                    <constraint id="3832" firstItem="888" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="8"/>
+                    <constraint id="3932" firstItem="173" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="16"/>
+                    <constraint id="4081" firstItem="888" firstAttribute="leading" secondItem="173" secondAttribute="trailing" constant="8"/>
+                    <constraint id="4376" firstItem="739" firstAttribute="width" secondItem="558" secondAttribute="width"/>
+                    <constraint id="4426" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="739" secondAttribute="trailing" constant="16"/>
+                    <constraint id="4476" firstItem="558" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="16"/>
+                    <constraint id="4526" firstItem="YTl-1W-gDM" firstAttribute="centerX" secondItem="558" secondAttribute="centerX" constant="74"/>
+                    <constraint id="4576" firstItem="1183" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="16"/>
+                    <constraint id="4626" firstItem="YTl-1W-gDM" firstAttribute="bottom" secondItem="1183" secondAttribute="bottom" constant="7"/>
+                    <constraint id="4676" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="789" secondAttribute="trailing" constant="16"/>
+                    <constraint id="4726" firstItem="YTl-1W-gDM" firstAttribute="bottom" secondItem="789" secondAttribute="bottom" constant="7"/>
+                    <constraint id="4826" firstItem="789" firstAttribute="leading" secondItem="1183" secondAttribute="trailing" constant="39"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="LabelName" destination="173" id="name-outlet-173"/>
-                <outlet property="LabelSubtitle" destination="558" id="name-outlet-558"/>
+                <outlet property="LabelLast" destination="558" id="name-outlet-558"/>
+                <outlet property="LabelStock" destination="789" id="name-outlet-789"/>
+                <outlet property="LabelUnit" destination="1183" id="name-outlet-1183"/>
+                <outlet property="LabelShortInfo" destination="888" id="name-outlet-888"/>
+                <outlet property="LabelNext" destination="739" id="name-outlet-739"/>
             </connections>
         </tableViewCell>
+        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="1233"/>
+        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="1283"/>
     </objects>
 </document>

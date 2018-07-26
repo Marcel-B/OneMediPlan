@@ -11,6 +11,7 @@ namespace OneMediPlan.iOS
     public partial class BrowseViewController : UITableViewController
     {
         UIRefreshControl refreshControl;
+        static readonly NSString CELL_IDENTIFIER = new NSString("ITEM_CELL");
 
         //public ItemsViewModel Viewmodel { get; set; }
         public MediViewModel ViewModel { get; set; }
@@ -24,10 +25,7 @@ namespace OneMediPlan.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            var nib = MeditableViewCell.Nib;
-            var key = MeditableViewCell.Key;
-            TableView.RegisterNibForCellReuse(nib, key);
-            TableView.RowHeight = 100;
+       
 
 
             ViewModel = new MediViewModel();
@@ -39,6 +37,11 @@ namespace OneMediPlan.iOS
             TableView.Source = new MedisDataSource(ViewModel);
 
             Title = ViewModel.Title;
+
+            TableView.RowHeight = 100;
+            var nib = MeditableViewCell.Nib;
+            var key = MeditableViewCell.Key;
+            TableView.RegisterNibForCellReuse(UINib.FromName("MeditableViewCell", NSBundle.MainBundle), "fuckedUpCell");
 
             ViewModel.PropertyChanged += IsBusy_PropertyChanged;
             //ViewModel.Items.CollectionChanged += Items_CollectionChanged;
@@ -107,8 +110,7 @@ namespace OneMediPlan.iOS
 
     class MedisDataSource : UITableViewSource
     {
-        static readonly NSString CELL_IDENTIFIER = new NSString("ITEM_CELL");
-        //static readonly NSString CELL_IDENTIFIER = new NSString("ITEM_CELL");
+        static readonly NSString CELL_IDENTIFIER = new NSString("fuckedUpCell");
         MediViewModel viewModel;
 
         public MedisDataSource(MediViewModel viewModel)
@@ -119,10 +121,10 @@ namespace OneMediPlan.iOS
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             //var cell = tableView.DequeueReusableCell(CELL_IDENTIFIER, indexPath);
-            var cell = tableView.DequeueReusableCell(MeditableViewCell.Key, indexPath) as MeditableViewCell;
+            var cell = tableView.DequeueReusableCell(CELL_IDENTIFIER, indexPath) as MeditableViewCell;
             var medi = viewModel.Medis[indexPath.Row];
             cell.Name = medi.Name;
-            cell.Subtitle = medi.Stock.ToString("F3");
+            cell.StockInfo = $"{medi.Stock.ToString("F1")} / {medi.MinimumStock.ToString("F2")}";
             cell.BackgroundColor = UIColor.LightTextColor;
             return cell;
         }
@@ -166,9 +168,7 @@ namespace OneMediPlan.iOS
         //    return "Trash (" + tableItems[indexPath.Row].SubHeading + ")";
         //}
         public override bool CanEditRow(UITableView tableView, NSIndexPath indexPath)
-        {
-            return true;
-        }
+            => true;
 
         public override UISwipeActionsConfiguration GetLeadingSwipeActionsConfiguration(UITableView tableView, NSIndexPath indexPath)
         {
