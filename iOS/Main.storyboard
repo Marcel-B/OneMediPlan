@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
@@ -180,12 +180,12 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Items" id="104">
+                    <navigationItem key="navigationItem" title="Medis" id="104">
                         <barButtonItem key="rightBarButtonItem" id="2253">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2252">
                                 <rect key="frame" x="0.0" y="0.0" width="86" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add Item">
+                                <state key="normal" title="Add Medi">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -307,6 +307,13 @@
                         <outlet property="ButtonNext" destination="6739" id="name-outlet-6739"/>
                     </connections>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationItem title="Enter Name" id="16482" key="navigationItem">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="16483">
+                            <connections>
+                                <segue id="16538" destination="7323" kind="show"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2250" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -377,6 +384,13 @@
                             <constraint id="15379" firstItem="13146" firstAttribute="centerX" secondItem="10903" secondAttribute="trailing" constant="8"/>
                         </constraints>
                     </view>
+                    <navigationItem title="Enter Stock" id="16884" key="navigationItem">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="16886">
+                            <connections>
+                                <segue id="16938" destination="16030" kind="show"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7325" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -393,11 +407,297 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="16940" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="222" width="343" height="38"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="Intervall"/>
+                                <connections>
+                                    <segue id="17337" destination="16947" kind="show"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="16941" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="268" width="343" height="38"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="Abhängig"/>
+                                <connections>
+                                    <segue id="17376" destination="17342" kind="show"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="16942" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="314" width="343" height="38"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="Wochentage"/>
+                                <connections>
+                                    <segue id="17472" destination="17432" kind="show"/>
+                                </connections>
+                                <constraints>
+                                    <constraint id="17880" firstItem="16942" firstAttribute="height" constant="38"/>
+                                </constraints>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="16943" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="360" width="343" height="38"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="Bei Bedarf"/>
+                                <connections>
+                                    <segue id="17427" destination="17381" kind="show"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint id="17876" firstItem="16942" firstAttribute="centerX" secondItem="16031" secondAttribute="centerX"/>
+                            <constraint id="17877" firstItem="16942" firstAttribute="centerY" secondItem="16031" secondAttribute="centerY"/>
+                            <constraint id="17878" firstItem="16942" firstAttribute="leading" secondItem="16031" secondAttribute="leadingMargin"/>
+                            <constraint id="17879" firstItem="16942" firstAttribute="trailing" secondItem="16031" secondAttribute="trailingMargin"/>
+                            <constraint id="17881" firstItem="16943" firstAttribute="height" secondItem="16942" secondAttribute="height"/>
+                            <constraint id="17882" firstItem="16943" firstAttribute="width" secondItem="16942" secondAttribute="width"/>
+                            <constraint id="17888" firstItem="16943" firstAttribute="leading" secondItem="16942" secondAttribute="leading"/>
+                            <constraint id="17890" firstItem="16943" firstAttribute="top" secondItem="16942" secondAttribute="bottom" constant="8"/>
+                            <constraint id="17892" firstItem="16941" firstAttribute="centerX" secondItem="16031" secondAttribute="centerX"/>
+                            <constraint id="17893" firstItem="16941" firstAttribute="leading" secondItem="16031" secondAttribute="leadingMargin"/>
+                            <constraint id="17894" firstItem="16941" firstAttribute="width" secondItem="16942" secondAttribute="width"/>
+                            <constraint id="17895" firstItem="16941" firstAttribute="height" secondItem="16942" secondAttribute="height"/>
+                            <constraint id="17896" firstItem="16941" firstAttribute="leading" secondItem="16031" secondAttribute="leadingMargin"/>
+                            <constraint id="17897" firstItem="16942" firstAttribute="top" secondItem="16941" secondAttribute="bottom" constant="8"/>
+                            <constraint id="17899" firstItem="16940" firstAttribute="leading" secondItem="16031" secondAttribute="leadingMargin"/>
+                            <constraint id="17900" firstItem="16940" firstAttribute="width" secondItem="16942" secondAttribute="width"/>
+                            <constraint id="17901" firstItem="16940" firstAttribute="height" secondItem="16942" secondAttribute="height"/>
+                            <constraint id="17902" firstItem="16941" firstAttribute="top" secondItem="16940" secondAttribute="bottom" constant="8"/>
+                        </constraints>
                     </view>
+                    <navigationItem title="Intervall Type" id="17903" key="navigationItem"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16032" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3944" y="-1530"/>
+        </scene>
+        <scene sceneID="16946">
+            <objects>
+                <viewController id="16947" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="16944"/>
+                        <viewControllerLayoutGuide type="bottom" id="16945"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="16948">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" id="18618" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="16" y="222" width="320" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="18619" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="16" y="87" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Text" borderStyle="roundedRect" minimumFontSize="17" id="18620" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="16" y="144" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <navigationItem title="Intervall" id="17905" key="navigationItem">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="17915">
+                            <connections>
+                                <segue id="18021" destination="17910" kind="show"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="16949" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4443" y="-2350"/>
+        </scene>
+        <scene sceneID="17341">
+            <objects>
+                <viewController id="17342" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="17339"/>
+                        <viewControllerLayoutGuide type="bottom" id="17340"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="17343">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" id="17478" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="28" y="83" width="320" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="18622" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="250" y="298" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </view>
+                    <navigationItem title="Deepend" id="17906" key="navigationItem">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="17916">
+                            <connections>
+                                <segue id="18667" destination="16947" kind="show"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="17344" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4502" y="-719"/>
+        </scene>
+        <scene sceneID="17380">
+            <objects>
+                <viewController id="17381" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="17378"/>
+                        <viewControllerLayoutGuide type="bottom" id="17379"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="17382">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="18059" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="16" y="392" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save new Medi"/>
+                            </button>
+                        </subviews>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="17383" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5985" y="-1524"/>
+        </scene>
+        <scene sceneID="17431">
+            <objects>
+                <viewController id="17432" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="17429"/>
+                        <viewControllerLayoutGuide type="bottom" id="17430"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="17433">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="17474" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="179" y="209" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="17475" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="220" y="266" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="17476" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="208" y="328" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                        </subviews>
+                    </view>
+                    <navigationItem id="17904" key="navigationItem" title="Weekdays">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="17914">
+                            <connections>
+                                <segue id="17985" destination="17910" kind="show"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="17434" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4484" y="-1521"/>
+        </scene>
+        <scene sceneID="17909">
+            <objects>
+                <viewController id="17910" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="17907"/>
+                        <viewControllerLayoutGuide type="bottom" id="17908"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="17911">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="18060" translatesAutoresizingMaskIntoConstraints="NO" text="How much">
+                                <rect key="frame" x="16" y="72" width="343" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28" weight="thin"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="18071" translatesAutoresizingMaskIntoConstraints="NO" borderStyle="roundedRect">
+                                <rect key="frame" x="16" y="114" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint id="18061" firstItem="18060" firstAttribute="leading" secondItem="17911" secondAttribute="leadingMargin"/>
+                            <constraint id="18062" firstItem="18060" firstAttribute="trailing" secondItem="17911" secondAttribute="trailingMargin"/>
+                            <constraint id="18063" firstItem="18060" firstAttribute="centerX" secondItem="17911" secondAttribute="centerX"/>
+                            <constraint id="18067" firstItem="18060" firstAttribute="centerX" secondItem="17911" secondAttribute="centerX"/>
+                            <constraint id="18068" firstItem="18060" firstAttribute="leading" secondItem="17911" secondAttribute="leadingMargin"/>
+                            <constraint id="18069" firstItem="18060" firstAttribute="trailing" secondItem="17911" secondAttribute="trailingMargin"/>
+                            <constraint id="18070" firstItem="18060" firstAttribute="top" secondItem="17907" secondAttribute="bottom" constant="8"/>
+                            <constraint id="18072" firstItem="18071" firstAttribute="centerX" secondItem="17911" secondAttribute="centerX"/>
+                            <constraint id="18073" firstItem="18071" firstAttribute="width" secondItem="18060" secondAttribute="width"/>
+                            <constraint id="18074" firstItem="18071" firstAttribute="leading" secondItem="17911" secondAttribute="leadingMargin"/>
+                            <constraint id="18075" firstItem="18071" firstAttribute="leading" secondItem="17911" secondAttribute="leadingMargin"/>
+                            <constraint id="18076" firstItem="18071" firstAttribute="top" secondItem="18060" secondAttribute="bottom" constant="8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem title="Amount" id="18023" key="navigationItem">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="18024">
+                            <connections>
+                                <segue id="18575" destination="18545" kind="show"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="17912" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4996" y="-1520"/>
+        </scene>
+        <scene sceneID="18544">
+            <objects>
+                <viewController id="18545" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="18542"/>
+                        <viewControllerLayoutGuide type="bottom" id="18543"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="18546">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="18617" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="28" y="148" width="320" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="332704801.65417802">
+                                    <!--2011-07-18 18:00:01 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
+                    </view>
+                    <navigationItem title="Start" id="18577" key="navigationItem">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="18578">
+                            <connections>
+                                <segue id="18615" destination="17381" kind="show"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="18547" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5482" y="-1538"/>
         </scene>
     </scenes>
     <resources>
