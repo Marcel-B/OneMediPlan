@@ -172,12 +172,17 @@
     </Compile>
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="CustomCells\MyMediTableViewCell.cs" />
+    <Compile Include="CustomCells\MyMediTableViewCell.designer.cs">
+      <DependentUpon>MyMediTableViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="CustomCells\MeditableViewCell.xib" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <None Include="packages.config" />
+    <InterfaceDefinition Include="CustomCells\MyMediTableViewCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />

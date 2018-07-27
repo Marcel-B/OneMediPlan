@@ -10,27 +10,18 @@ using System.CodeDom.Compiler;
 
 namespace OneMediPlan.iOS.CustomCells
 {
-    [Register ("MeditableViewCell")]
-    partial class MeditableViewCell
+    [Register ("MyMediTableViewCell")]
+    partial class MyMediTableViewCell
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel LabelName { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel LabelShortInfo { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
             if (LabelName != null) {
                 LabelName.Dispose ();
                 LabelName = null;
-            }
-
-            if (LabelShortInfo != null) {
-                LabelShortInfo.Dispose ();
-                LabelShortInfo = null;
             }
         }
     }

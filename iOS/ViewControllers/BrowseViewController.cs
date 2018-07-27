@@ -19,16 +19,18 @@ namespace OneMediPlan.iOS
 
         public BrowseViewController(IntPtr handle) : base(handle)
         {
-
         }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
        
+            var nib = MyMediTableViewCell.Nib;
+            var key = MyMediTableViewCell.Key;
 
-
+            TableView.RegisterNibForCellReuse(nib, key);
             ViewModel = new MediViewModel();
+            TableView.RowHeight = 100;
 
             // Setup UITableView.
             refreshControl = new UIRefreshControl();
@@ -37,11 +39,6 @@ namespace OneMediPlan.iOS
             TableView.Source = new MedisDataSource(ViewModel);
 
             Title = ViewModel.Title;
-
-            TableView.RowHeight = 100;
-            var nib = MeditableViewCell.Nib;
-            var key = MeditableViewCell.Key;
-            TableView.RegisterNibForCellReuse(UINib.FromName("MeditableViewCell", NSBundle.MainBundle), "fuckedUpCell");
 
             ViewModel.PropertyChanged += IsBusy_PropertyChanged;
             //ViewModel.Items.CollectionChanged += Items_CollectionChanged;
@@ -110,7 +107,6 @@ namespace OneMediPlan.iOS
 
     class MedisDataSource : UITableViewSource
     {
-        static readonly NSString CELL_IDENTIFIER = new NSString("fuckedUpCell");
         MediViewModel viewModel;
 
         public MedisDataSource(MediViewModel viewModel)
@@ -120,11 +116,10 @@ namespace OneMediPlan.iOS
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            //var cell = tableView.DequeueReusableCell(CELL_IDENTIFIER, indexPath);
-            var cell = tableView.DequeueReusableCell(CELL_IDENTIFIER, indexPath) as MeditableViewCell;
+            var cell = tableView.DequeueReusableCell(MyMediTableViewCell.Key, indexPath) as MyMediTableViewCell;
             var medi = viewModel.Medis[indexPath.Row];
             cell.Name = medi.Name;
-            cell.StockInfo = $"{medi.Stock.ToString("F1")} / {medi.MinimumStock.ToString("F2")}";
+            //cell.StockInfo = $"{medi.Stock.ToString("F1")} / {medi.MinimumStock.ToString("F2")}";
             cell.BackgroundColor = UIColor.LightTextColor;
             return cell;
         }
@@ -134,7 +129,7 @@ namespace OneMediPlan.iOS
         {
             var action = UIContextualAction.FromContextualActionStyle
                             (UIContextualActionStyle.Normal,
-                                "Fuck",
+                                "Foo",
                                 (FlagAction, view, success) =>
                                 {
                                     success(true);
@@ -150,7 +145,7 @@ namespace OneMediPlan.iOS
         {
 
             var action = UIContextualAction.FromContextualActionStyle(UIContextualActionStyle.Normal,
-                "You",
+                "Bar",
                 (ReadLaterAction, view, success) =>
                 {
                 });
@@ -163,10 +158,12 @@ namespace OneMediPlan.iOS
             viewModel.Medis.RemoveAt(indexPath.Row);
             //base.CommitEditingStyle(tableView, editingStyle, indexPath);
         }
+
         //public override string TitleForDeleteConfirmation(UITableView tableView, NSIndexPath indexPath)
         //{   // Optional - default text is 'Delete'
         //    return "Trash (" + tableItems[indexPath.Row].SubHeading + ")";
         //}
+
         public override bool CanEditRow(UITableView tableView, NSIndexPath indexPath)
             => true;
 
