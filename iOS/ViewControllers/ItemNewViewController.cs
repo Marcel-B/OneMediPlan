@@ -1,6 +1,8 @@
 ﻿using System;
 using OneMediPlan.Models;
 using UIKit;
+using System.Runtime.Remoting.Channels;
+using Foundation;
 
 namespace OneMediPlan.iOS
 {
@@ -14,16 +16,21 @@ namespace OneMediPlan.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+        }
 
-            btnSaveItem.TouchUpInside += (sender, e) =>
+        public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
+            => !string.IsNullOrWhiteSpace(TextFieldName.Text);
+
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            if (segue.DestinationViewController is MediStockViewController mediStockViewController)
             {
-                var item = new Medi
+                mediStockViewController.CurrentMedi = new Medi
                 {
-                    Name = txtTitle.Text,
+                    Id = Guid.NewGuid(),
+                    Name = TextFieldName.Text
                 };
-                ViewModel.AddItemCommand.Execute(item);
-                NavigationController.PopToRootViewController(true);
-            };
+            }
         }
     }
 }

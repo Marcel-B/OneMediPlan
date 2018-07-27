@@ -16,31 +16,22 @@ namespace OneMediPlan.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton btnSaveItem { get; set; }
+        UIKit.UIButton ButtonNext { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextField txtDesc { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextField txtTitle { get; set; }
+        UIKit.UITextField TextFieldName { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (btnSaveItem != null) {
-                btnSaveItem.Dispose ();
-                btnSaveItem = null;
+            if (ButtonNext != null) {
+                ButtonNext.Dispose ();
+                ButtonNext = null;
             }
 
-            if (txtDesc != null) {
-                txtDesc.Dispose ();
-                txtDesc = null;
-            }
-
-            if (txtTitle != null) {
-                txtTitle.Dispose ();
-                txtTitle = null;
+            if (TextFieldName != null) {
+                TextFieldName.Dispose ();
+                TextFieldName = null;
             }
         }
     }

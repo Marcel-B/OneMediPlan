@@ -252,7 +252,7 @@
         <!--New Item-->
         <scene sceneID="2247">
             <objects>
-                <viewController title="New Item" id="2248" customClass="ItemNewViewController" sceneMemberID="viewController">
+                <viewController title="New Medi" id="2248" customClass="ItemNewViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2245"/>
                         <viewControllerLayoutGuide type="bottom" id="2246"/>
@@ -261,59 +261,143 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2329">
-                                <rect key="frame" x="28" y="102" width="430" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Medi name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2329">
+                                <rect key="frame" x="18" y="129" width="341" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2343">
-                                <rect key="frame" x="28" y="168" width="430" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2344">
-                                <rect key="frame" x="30" y="73" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2344" text="Enter a name">
+                                <rect key="frame" x="16" y="84" width="343" height="37"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28" weight="thin"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="4908" firstItem="2344" firstAttribute="height" constant="37"/>
+                                </constraints>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2345">
-                                <rect key="frame" x="30" y="147" width="190" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2352">
-                                <rect key="frame" x="30" y="220" width="325" height="30"/>
-                                <state key="normal" title="Save Item">
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6739" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="167" width="343" height="39"/>
+                                <constraints>
+                                    <constraint id="6994" firstItem="6739" firstAttribute="height" constant="39"/>
+                                </constraints>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <segue id="7520" destination="7323" kind="show"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="2329" firstAttribute="top" secondItem="2245" secondAttribute="bottom" constant="38" id="2383"/>
-                            <constraint firstItem="2329" firstAttribute="leading" secondItem="2249" secondAttribute="leading" constant="28" id="2384"/>
-                            <constraint firstAttribute="trailing" secondItem="2329" secondAttribute="trailing" constant="20" id="2385"/>
-                            <constraint firstItem="2343" firstAttribute="top" secondItem="2245" secondAttribute="bottom" constant="112" id="2393"/>
-                            <constraint firstItem="2343" firstAttribute="leading" secondItem="2249" secondAttribute="leading" constant="28" id="2394"/>
-                            <constraint firstAttribute="trailing" secondItem="2343" secondAttribute="trailing" constant="20" id="2395"/>
-                            <constraint firstItem="2352" firstAttribute="top" secondItem="2245" secondAttribute="bottom" constant="156" id="2440"/>
-                            <constraint firstItem="2352" firstAttribute="leading" secondItem="2249" secondAttribute="leading" constant="30" id="2441"/>
-                            <constraint firstAttribute="trailing" secondItem="2352" secondAttribute="trailing" constant="20" id="2442"/>
+                            <constraint id="4479" firstItem="2344" firstAttribute="trailing" secondItem="2249" secondAttribute="trailingMargin"/>
+                            <constraint id="4505" firstItem="2344" firstAttribute="trailing" secondItem="2249" secondAttribute="trailingMargin"/>
+                            <constraint id="4531" firstItem="2344" firstAttribute="leading" secondItem="2249" secondAttribute="leadingMargin"/>
+                            <constraint id="4757" firstItem="2344" firstAttribute="centerX" secondItem="2249" secondAttribute="centerX"/>
+                            <constraint id="4934" firstItem="2344" firstAttribute="top" secondItem="2245" secondAttribute="bottom" constant="20"/>
+                            <constraint id="5335" firstItem="2329" firstAttribute="width" secondItem="2344" secondAttribute="width" constant="-2"/>
+                            <constraint id="5361" firstItem="2329" firstAttribute="top" secondItem="2344" secondAttribute="bottom" constant="8"/>
+                            <constraint id="5387" firstItem="2329" firstAttribute="leading" secondItem="2249" secondAttribute="leadingMargin" constant="2"/>
+                            <constraint id="6890" firstItem="6739" firstAttribute="centerX" secondItem="2249" secondAttribute="centerX"/>
+                            <constraint id="6916" firstItem="6739" firstAttribute="leading" secondItem="2249" secondAttribute="leadingMargin"/>
+                            <constraint id="6942" firstItem="6739" firstAttribute="trailing" secondItem="2249" secondAttribute="trailingMargin"/>
+                            <constraint id="6968" firstItem="6739" firstAttribute="top" secondItem="2329" secondAttribute="bottom" constant="8"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btnSaveItem" destination="2352" id="name-outlet-2352"/>
-                        <outlet property="txtDesc" destination="2343" id="name-outlet-2343"/>
-                        <outlet property="txtTitle" destination="2329" id="name-outlet-2329"/>
+                        <outlet property="TextFieldName" destination="2329" id="name-outlet-2329"/>
+                        <outlet property="ButtonNext" destination="6739" id="name-outlet-6739"/>
                     </connections>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2250" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2906" y="-1534"/>
+        </scene>
+        <scene sceneID="7322">
+            <objects>
+                <viewController id="7323" sceneMemberID="viewController" customClass="MediStockViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7320"/>
+                        <viewControllerLayoutGuide type="bottom" id="7321"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7324">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stock" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="10847" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="72" width="343" height="37"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28" weight="thin"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="13824" firstItem="10847" firstAttribute="height" constant="37"/>
+                                </constraints>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="10903" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Current">
+                                <rect key="frame" x="16" y="117" width="163" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="10958" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Minimum">
+                                <rect key="frame" x="193" y="117" width="166" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <constraints>
+                                    <constraint id="14104" firstItem="10958" firstAttribute="height" constant="30"/>
+                                </constraints>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="13146" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="155" width="343" height="30"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <segue id="16103" destination="16030" kind="show"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint id="13686" firstItem="10847" firstAttribute="centerX" secondItem="7324" secondAttribute="centerX"/>
+                            <constraint id="13714" firstItem="10847" firstAttribute="leading" secondItem="7324" secondAttribute="leadingMargin"/>
+                            <constraint id="13742" firstItem="10847" firstAttribute="trailing" secondItem="7324" secondAttribute="trailingMargin"/>
+                            <constraint id="13852" firstItem="10847" firstAttribute="top" secondItem="7320" secondAttribute="bottom" constant="8"/>
+                            <constraint id="13880" firstItem="10903" firstAttribute="top" secondItem="10847" secondAttribute="bottom" constant="8"/>
+                            <constraint id="13908" firstItem="10958" firstAttribute="top" secondItem="10847" secondAttribute="bottom" constant="8"/>
+                            <constraint id="13936" firstItem="10903" firstAttribute="leading" secondItem="13146" secondAttribute="leading"/>
+                            <constraint id="13964" firstItem="10903" firstAttribute="width" secondItem="10958" secondAttribute="width" constant="-3"/>
+                            <constraint id="13992" firstItem="10903" firstAttribute="leading" secondItem="7324" secondAttribute="leadingMargin"/>
+                            <constraint id="14020" firstItem="10958" firstAttribute="trailing" secondItem="7324" secondAttribute="trailingMargin"/>
+                            <constraint id="14048" firstItem="10958" firstAttribute="top" secondItem="10847" secondAttribute="bottom" constant="8"/>
+                            <constraint id="14076" firstItem="10903" firstAttribute="height" secondItem="10958" secondAttribute="height"/>
+                            <constraint id="14132" firstItem="13146" firstAttribute="centerX" secondItem="10903" secondAttribute="trailing" constant="8"/>
+                            <constraint id="14651" firstItem="13146" firstAttribute="leading" secondItem="7324" secondAttribute="leadingMargin"/>
+                            <constraint id="14679" firstItem="13146" firstAttribute="top" secondItem="10903" secondAttribute="bottom" constant="8"/>
+                            <constraint id="14707" firstItem="13146" firstAttribute="trailing" secondItem="7324" secondAttribute="trailingMargin"/>
+                            <constraint id="14735" firstItem="13146" firstAttribute="centerX" secondItem="7324" secondAttribute="centerX"/>
+                            <constraint id="15379" firstItem="13146" firstAttribute="centerX" secondItem="10903" secondAttribute="trailing" constant="8"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7325" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3433" y="-1530"/>
+        </scene>
+        <scene sceneID="16029">
+            <objects>
+                <viewController id="16030" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="16027"/>
+                        <viewControllerLayoutGuide type="bottom" id="16028"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="16031">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="16032" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3944" y="-1530"/>
         </scene>
     </scenes>
     <resources>

@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
@@ -146,10 +145,6 @@
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomCells\MeditableViewCell.cs" />
-    <Compile Include="CustomCells\MeditableViewCell.designer.cs">
-      <DependentUpon>MeditableViewCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\DetailViewControllers\BrowseItemDetailViewController.cs" />
     <Compile Include="ViewControllers\DetailViewControllers\BrowseItemDetailViewController.designer.cs">
       <DependentUpon>BrowseItemDetailViewController.cs</DependentUpon>
@@ -176,9 +171,12 @@
     <Compile Include="CustomCells\MyMediTableViewCell.designer.cs">
       <DependentUpon>MyMediTableViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewControllers\MediStockViewController.cs" />
+    <Compile Include="ViewControllers\MediStockViewController.designer.cs">
+      <DependentUpon>MediStockViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="CustomCells\MeditableViewCell.xib" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <None Include="packages.config" />

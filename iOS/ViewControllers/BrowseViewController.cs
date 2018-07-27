@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using Foundation;
 using UIKit;
 using OneMediPlan.iOS.CustomCells;
+using OneMediPlan.Helpers;
 
 namespace OneMediPlan.iOS
 {
@@ -119,10 +120,10 @@ namespace OneMediPlan.iOS
             var cell = tableView.DequeueReusableCell(MyMediTableViewCell.Key, indexPath) as MyMediTableViewCell;
             var medi = viewModel.Medis[indexPath.Row];
             cell.Name = medi.Name;
-            cell.Next = medi.NextDate.ToString();
-            cell.Last = medi.LastDate.ToString();
-            cell.Stock = $"{medi.Stock.ToString("F1")} / {medi.MinimumStock.ToString("F1")}";
-            cell.Dosage = medi.Dosage.ToString("F1");
+            cell.Next = medi.GetNextDate();
+            cell.Last = medi.GetLastDate();
+            cell.Stock = medi.GetStockInfo();
+            cell.Dosage = medi.GetDosage();
             cell.BackgroundColor = UIColor.LightTextColor;
             return cell;
         }
