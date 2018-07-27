@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
+using OneMediPlan.iOS.CustomCells;
 
 //using ChameleonFramework;
 using Foundation;
@@ -12,7 +13,6 @@ namespace OneMediPlan.iOS
     public partial class BrowseViewController : UITableViewController
     {
         UIRefreshControl refreshControl;
-        static readonly NSString CELL_IDENTIFIER = new NSString("ITEM_CELL");
 
         //public ItemsViewModel Viewmodel { get; set; }
         public MediViewModel ViewModel { get; set; }
