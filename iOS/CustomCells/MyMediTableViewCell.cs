@@ -11,6 +11,11 @@ namespace OneMediPlan.iOS.CustomCells
         public static readonly UINib Nib;
 
         public string Name { get => LabelName.Text; set => LabelName.Text = value; }
+        public string Info { get => LabelInfo.Text; set => LabelInfo.Text = value; }
+        public string Next { get => LabelNext.Text; set => LabelNext.Text = value; }
+        public string Last { get => LabelLast.Text; set => LabelLast.Text = value; }
+        public string Stock { get => LabelStock.Text; set => LabelStock.Text = value; }
+        public string Dosage { get => LabelDosage.Text; set => LabelDosage.Text = value; }
 
 
         static MyMediTableViewCell()

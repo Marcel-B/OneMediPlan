@@ -15,8 +15,8 @@ namespace OneMediPlan
             medis = new List<Medi>();
             var _medis = new List<Medi>
             {
-                new Medi { Id = Guid.NewGuid(), Name = "Enbrel", NextDate = DateTimeOffset.Now.AddDays(1), LastDate = DateTimeOffset.Now.AddDays(-2), Stock = 5.5, MinimumStock = 1},
-                new Medi { Id = Guid.NewGuid(), Name = "MTX", NextDate = DateTimeOffset.Now.AddHours(5), LastDate = DateTimeOffset.Now},
+                new Medi { Id = Guid.NewGuid(), Name = "Enbrel", NextDate = DateTimeOffset.Now.AddDays(1), LastDate = DateTimeOffset.Now.AddDays(-2), Dosage = 1.5, Stock = 5.5, MinimumStock = 1},
+                new Medi { Id = Guid.NewGuid(), Name = "MTX", NextDate = DateTimeOffset.Now.AddHours(5), LastDate = DateTimeOffset.Now, Dosage = 1},
                 new Medi { Id = Guid.NewGuid(), Name = "Paracethamol"},
             };
 

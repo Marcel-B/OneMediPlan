@@ -119,7 +119,10 @@ namespace OneMediPlan.iOS
             var cell = tableView.DequeueReusableCell(MyMediTableViewCell.Key, indexPath) as MyMediTableViewCell;
             var medi = viewModel.Medis[indexPath.Row];
             cell.Name = medi.Name;
-            //cell.StockInfo = $"{medi.Stock.ToString("F1")} / {medi.MinimumStock.ToString("F2")}";
+            cell.Next = medi.NextDate.ToString();
+            cell.Last = medi.LastDate.ToString();
+            cell.Stock = $"{medi.Stock.ToString("F1")} / {medi.MinimumStock.ToString("F1")}";
+            cell.Dosage = medi.Dosage.ToString("F1");
             cell.BackgroundColor = UIColor.LightTextColor;
             return cell;
         }
