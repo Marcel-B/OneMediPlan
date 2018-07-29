@@ -536,7 +536,7 @@
         </scene>
         <scene sceneID="17341">
             <objects>
-                <viewController id="17342" sceneMemberID="viewController">
+                <viewController id="17342" sceneMemberID="viewController" customClass="SetDependencyViewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="17339"/>
                         <viewControllerLayoutGuide type="bottom" id="17340"/>
@@ -546,33 +546,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" id="17478" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="28" y="83" width="320" height="162"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <pickerView contentMode="scaleToFill" id="17478" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="129" width="343" height="162"/>
+                                <constraints>
+                                    <constraint id="29099" firstItem="17478" firstAttribute="height" constant="162"/>
+                                </constraints>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="18622" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="250" y="298" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label key="titleView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="19146" translatesAutoresizingMaskIntoConstraints="NO" text="wähle Medikament">
+                                <rect key="frame" x="16" y="84" width="343" height="37"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28" weight="thin"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
-                            </label>
-                            <label key="titleView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="19146" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="55" y="262" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="29093" firstItem="19146" firstAttribute="height" constant="37"/>
+                                </constraints>
                             </label>
                         </subviews>
+                        <constraints>
+                            <constraint id="29090" firstItem="19146" firstAttribute="centerX" secondItem="17343" secondAttribute="centerX"/>
+                            <constraint id="29091" firstItem="19146" firstAttribute="leading" secondItem="17343" secondAttribute="leadingMargin"/>
+                            <constraint id="29092" firstItem="19146" firstAttribute="top" secondItem="17339" secondAttribute="bottom" constant="20"/>
+                            <constraint id="29094" firstItem="19146" firstAttribute="trailing" secondItem="17343" secondAttribute="trailingMargin"/>
+                            <constraint id="29095" firstItem="17478" firstAttribute="centerX" secondItem="17343" secondAttribute="centerX"/>
+                            <constraint id="29096" firstItem="17478" firstAttribute="leading" secondItem="17343" secondAttribute="leadingMargin"/>
+                            <constraint id="29097" firstItem="17478" firstAttribute="trailing" secondItem="17343" secondAttribute="trailingMargin"/>
+                            <constraint id="29098" firstItem="17478" firstAttribute="top" secondItem="19146" secondAttribute="bottom" constant="8"/>
+                        </constraints>
                     </view>
                     <navigationItem title="Abhängig" id="17906" key="navigationItem">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="17916">
+                        <barButtonItem key="rightBarButtonItem" id="17916" title="Weiter">
                             <connections>
                                 <segue id="18667" destination="16947" kind="show"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="PickerDependency" destination="17478" id="name-outlet-17478"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17344" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

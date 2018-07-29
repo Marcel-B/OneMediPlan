@@ -187,6 +187,10 @@
     <Compile Include="ViewControllers\WeekdayViewController.designer.cs">
       <DependentUpon>WeekdayViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewControllers\SetDependencyViewController.cs" />
+    <Compile Include="ViewControllers\SetDependencyViewController.designer.cs">
+      <DependentUpon>SetDependencyViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />

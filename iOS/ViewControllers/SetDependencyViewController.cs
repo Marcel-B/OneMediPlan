@@ -1,53 +1,56 @@
+using OneMediPlan.Models;
 using System;
-using UIKit;
 using System.Collections.Generic;
-using System.Linq;
+using UIKit;
 
 namespace OneMediPlan.iOS
 {
-    public partial class SetIntervallViewController : UIViewController
+    public partial class SetDependencyViewController : UIViewController
     {
-        IEnumerable<string> IntervallTypes =
-            new[] { "Minute(n)", "Stunde(n)", "Tag(e)", "Woche(n)" };
-        public SetIntervallViewController(IntPtr handle) : base(handle) { }
-
-        public override void ViewDidLoad()
+        public IDataStore<Medi> DataStore => ServiceLocator.Instance.Get<IDataStore<Medi>>() ?? new MockDataStore();
+        public SetDependencyViewController(IntPtr handle) : base(handle)
         {
-            base.ViewDidLoad();
-            var pickerModle = new IntervallTypeDataModel();
-            pickerModle.Items.AddRange(IntervallTypes.ToList());
-            PickerIntervallType.Model = pickerModle;
         }
 
-        internal class IntervallTypeDataModel : UIPickerViewModel
+        async public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            var model = new DependencyTypeDataModel();
+            var medis = await DataStore.GetItemsAsync(true);
+            foreach (var medi in medis)
+                model.Medis.Add(medi);
+            PickerDependency.Model = model;
+        }
+
+        internal class DependencyTypeDataModel : UIPickerViewModel
         {
             public event EventHandler<EventArgs> ValueChanged;
 
             /// <summary>
             /// The items to show up in the picker
             /// </summary>
-            public List<string> Items { get; private set; }
+            public List<Medi> Medis { get; private set; }
 
             /// <summary>
             /// The current selected item
             /// </summary>
-            public string SelectedItem
+            public Medi SelectedItem
             {
-                get => Items[selectedIndex];
+                get => Medis[selectedIndex];
             }
 
             int selectedIndex = 0;
 
-            public IntervallTypeDataModel()
+            public DependencyTypeDataModel()
             {
-                Items = new List<string>();
+                Medis = new List<Medi>();
             }
 
             /// <summary>
             /// Called by the picker to determine how many rows are in a given spinner item
             /// </summary>
             public override nint GetRowsInComponent(UIPickerView pickerView, nint component)
-                => Items.Count;
+                `=> Medis.Count;
 
 
             /// <summary>
@@ -55,7 +58,7 @@ namespace OneMediPlan.iOS
             /// spinner item
             /// </summary>
             public override string GetTitle(UIPickerView pickerView, nint row, nint component)
-                => Items[(int)row];
+                => Medis[(int)row].Name;
 
             /// <summary>
             /// called by the picker to get the number of spinner items

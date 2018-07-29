@@ -1,7 +1,5 @@
-using Foundation;
 using System;
 using UIKit;
-using System.Collections.Generic;
 
 namespace OneMediPlan.iOS
 {
