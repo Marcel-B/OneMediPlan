@@ -16,6 +16,10 @@ namespace OneMediPlan.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel LabelDependencyInfo { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField LabelIntervallCount { get; set; }
 
         [Outlet]
@@ -24,6 +28,11 @@ namespace OneMediPlan.iOS
 
         void ReleaseDesignerOutlets ()
         {
+            if (LabelDependencyInfo != null) {
+                LabelDependencyInfo.Dispose ();
+                LabelDependencyInfo = null;
+            }
+
             if (LabelIntervallCount != null) {
                 LabelIntervallCount.Dispose ();
                 LabelIntervallCount = null;

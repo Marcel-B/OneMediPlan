@@ -2,11 +2,16 @@ using System;
 using UIKit;
 using System.Collections.Generic;
 using System.Linq;
+using OneMediPlan.Models;
 
 namespace OneMediPlan.iOS
 {
     public partial class SetIntervallViewController : UIViewController
     {
+        public bool IsDependencySet { get; set; }
+        public Medi CurrentMedi { get; set; }
+
+
         IEnumerable<string> IntervallTypes =
             new[] { "Minute(n)", "Stunde(n)", "Tag(e)", "Woche(n)" };
         public SetIntervallViewController(IntPtr handle) : base(handle) { }
@@ -17,6 +22,15 @@ namespace OneMediPlan.iOS
             var pickerModle = new IntervallTypeDataModel();
             pickerModle.Items.AddRange(IntervallTypes.ToList());
             PickerIntervallType.Model = pickerModle;
+            if (IsDependencySet)
+            {
+                LabelDependencyInfo.Hidden = false;
+                LabelDependencyInfo.Text = $"nach {CurrentMedi.Name}.";
+            }
+            else
+            {
+                LabelDependencyInfo.Hidden = true;
+            }
         }
 
         internal class IntervallTypeDataModel : UIPickerViewModel

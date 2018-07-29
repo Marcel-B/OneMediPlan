@@ -26,6 +26,7 @@ namespace OneMediPlan.Models
         public double Stock { get; set; }
         public double MinimumStock { get; set; }
         public double Dosage { get; set; }
+        public Guid DependsOn { get; set; }
         public MediType DosageType { get; set; }
         public IntervallType IntervallType { get; set; }
         public TimeSpan Intervall { get; set; }

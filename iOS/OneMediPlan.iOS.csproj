@@ -191,6 +191,10 @@
     <Compile Include="ViewControllers\SetDependencyViewController.designer.cs">
       <DependentUpon>SetDependencyViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewControllers\SetIntervallTypeViewController.cs" />
+    <Compile Include="ViewControllers\SetIntervallTypeViewController.designer.cs">
+      <DependentUpon>SetIntervallTypeViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />

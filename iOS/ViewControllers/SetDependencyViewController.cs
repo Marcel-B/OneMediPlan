@@ -1,3 +1,4 @@
+using Foundation;
 using OneMediPlan.Models;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,8 @@ namespace OneMediPlan.iOS
 {
     public partial class SetDependencyViewController : UIViewController
     {
+        public Medi CurrentMedi { get; set; }
+
         public IDataStore<Medi> DataStore => ServiceLocator.Instance.Get<IDataStore<Medi>>() ?? new MockDataStore();
         public SetDependencyViewController(IntPtr handle) : base(handle)
         {
@@ -15,13 +18,32 @@ namespace OneMediPlan.iOS
         async public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            if (CurrentMedi == null)
+                CurrentMedi = new Medi();
             var model = new DependencyTypeDataModel();
+            model.ValueChanged += (object sender, EventArgs e) =>
+            {
+                if (sender is DependencyTypeDataModel data)
+                {
+                    var item = data.SelectedItem;
+                    CurrentMedi.DependsOn = item.Id;
+                }
+            };
             var medis = await DataStore.GetItemsAsync(true);
             foreach (var medi in medis)
                 model.Medis.Add(medi);
             PickerDependency.Model = model;
+            PickerDependency.Select(0, 0, true);
         }
 
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            if (segue.DestinationViewController is SetIntervallViewController viewController)
+            {
+                viewController.CurrentMedi = CurrentMedi;
+                viewController.IsDependencySet = true;
+            }
+        }
         internal class DependencyTypeDataModel : UIPickerViewModel
         {
             public event EventHandler<EventArgs> ValueChanged;
@@ -50,7 +72,7 @@ namespace OneMediPlan.iOS
             /// Called by the picker to determine how many rows are in a given spinner item
             /// </summary>
             public override nint GetRowsInComponent(UIPickerView pickerView, nint component)
-                `=> Medis.Count;
+                => Medis.Count;
 
 
             /// <summary>

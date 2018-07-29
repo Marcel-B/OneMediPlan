@@ -14,8 +14,25 @@ namespace OneMediPlan.iOS
     [Register ("MediStockViewController")]
     partial class MediStockViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField LabelCurrentStock { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField LabelMinimumStock { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (LabelCurrentStock != null) {
+                LabelCurrentStock.Dispose ();
+                LabelCurrentStock = null;
+            }
+
+            if (LabelMinimumStock != null) {
+                LabelMinimumStock.Dispose ();
+                LabelMinimumStock = null;
+            }
         }
     }
 }
