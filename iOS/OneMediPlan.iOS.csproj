@@ -175,6 +175,10 @@
     <Compile Include="ViewControllers\MediStockViewController.designer.cs">
       <DependentUpon>MediStockViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewControllers\SetIntervallViewController.cs" />
+    <Compile Include="ViewControllers\SetIntervallViewController.designer.cs">
+      <DependentUpon>SetIntervallViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />

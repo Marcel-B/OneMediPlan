@@ -332,7 +332,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stock" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="10847" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="16" y="72" width="343" height="37"/>
+                                <rect key="frame" x="16" y="84" width="343" height="37"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28" weight="thin"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -341,13 +341,13 @@
                                 </constraints>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="10903" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Current">
-                                <rect key="frame" x="16" y="117" width="163" height="30"/>
+                                <rect key="frame" x="16" y="129" width="163" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="10958" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Minimum">
-                                <rect key="frame" x="193" y="117" width="166" height="30"/>
+                                <rect key="frame" x="193" y="129" width="166" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -356,7 +356,7 @@
                                 </constraints>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="13146" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="16" y="155" width="343" height="30"/>
+                                <rect key="frame" x="16" y="167" width="343" height="30"/>
                                 <state key="normal" title="Next"/>
                                 <connections>
                                     <segue id="16103" destination="16030" kind="show"/>
@@ -367,7 +367,6 @@
                             <constraint id="13686" firstItem="10847" firstAttribute="centerX" secondItem="7324" secondAttribute="centerX"/>
                             <constraint id="13714" firstItem="10847" firstAttribute="leading" secondItem="7324" secondAttribute="leadingMargin"/>
                             <constraint id="13742" firstItem="10847" firstAttribute="trailing" secondItem="7324" secondAttribute="trailingMargin"/>
-                            <constraint id="13852" firstItem="10847" firstAttribute="top" secondItem="7320" secondAttribute="bottom" constant="8"/>
                             <constraint id="13880" firstItem="10903" firstAttribute="top" secondItem="10847" secondAttribute="bottom" constant="8"/>
                             <constraint id="13908" firstItem="10958" firstAttribute="top" secondItem="10847" secondAttribute="bottom" constant="8"/>
                             <constraint id="13936" firstItem="10903" firstAttribute="leading" secondItem="13146" secondAttribute="leading"/>
@@ -382,6 +381,7 @@
                             <constraint id="14707" firstItem="13146" firstAttribute="trailing" secondItem="7324" secondAttribute="trailingMargin"/>
                             <constraint id="14735" firstItem="13146" firstAttribute="centerX" secondItem="7324" secondAttribute="centerX"/>
                             <constraint id="15379" firstItem="13146" firstAttribute="centerX" secondItem="10903" secondAttribute="trailing" constant="8"/>
+                            <constraint id="19154" firstItem="10847" firstAttribute="top" secondItem="7320" secondAttribute="bottom" constant="20"/>
                         </constraints>
                     </view>
                     <navigationItem title="Enter Stock" id="16884" key="navigationItem">
@@ -473,7 +473,7 @@
         </scene>
         <scene sceneID="16946">
             <objects>
-                <viewController id="16947" sceneMemberID="viewController">
+                <viewController id="16947" sceneMemberID="viewController" customClass="SetIntervallViewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="16944"/>
                         <viewControllerLayoutGuide type="bottom" id="16945"/>
@@ -483,25 +483,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" id="18618" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="16" y="222" width="320" height="162"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <pickerView contentMode="scaleToFill" id="18618" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="167" width="343" height="162"/>
+                                <constraints>
+                                    <constraint id="19167" firstItem="18618" firstAttribute="height" constant="162"/>
+                                </constraints>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="18619" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="16" y="87" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intervall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="18619" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="84" width="343" height="37"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28" weight="thin"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="19161" firstItem="18619" firstAttribute="height" constant="37"/>
+                                </constraints>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Text" borderStyle="roundedRect" minimumFontSize="17" id="18620" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="16" y="144" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="18620" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Anzahl">
+                                <rect key="frame" x="16" y="129" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
+                        <constraints>
+                            <constraint id="19157" firstItem="18619" firstAttribute="top" secondItem="16944" secondAttribute="bottom" constant="20"/>
+                            <constraint id="19158" firstItem="18619" firstAttribute="leading" secondItem="16948" secondAttribute="leadingMargin"/>
+                            <constraint id="19159" firstItem="18619" firstAttribute="trailing" secondItem="16948" secondAttribute="trailingMargin"/>
+                            <constraint id="19160" firstItem="18619" firstAttribute="centerX" secondItem="16948" secondAttribute="centerX"/>
+                            <constraint id="19162" firstItem="18620" firstAttribute="top" secondItem="18619" secondAttribute="bottom" constant="8"/>
+                            <constraint id="19163" firstItem="18620" firstAttribute="leading" secondItem="16948" secondAttribute="leadingMargin"/>
+                            <constraint id="19164" firstItem="18620" firstAttribute="width" secondItem="18619" secondAttribute="width"/>
+                            <constraint id="19165" firstItem="18618" firstAttribute="width" secondItem="18619" secondAttribute="width"/>
+                            <constraint id="19166" firstItem="18618" firstAttribute="leading" secondItem="16948" secondAttribute="leadingMargin"/>
+                            <constraint id="19168" firstItem="18618" firstAttribute="top" secondItem="18620" secondAttribute="bottom" constant="8"/>
+                        </constraints>
                     </view>
                     <navigationItem title="Intervall" id="17905" key="navigationItem">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="17915">
@@ -510,6 +525,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="PickerIntervallType" destination="18618" id="name-outlet-18618"/>
+                        <outlet property="LabelIntervallCount" destination="18620" id="name-outlet-18620"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16949" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -546,6 +565,13 @@
                                 <segue id="18667" destination="16947" kind="show"/>
                             </connections>
                         </barButtonItem>
+                        <label key="titleView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="19146" translatesAutoresizingMaskIntoConstraints="NO">
+                            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17344" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -589,17 +615,82 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="17474" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="179" y="209" width="51" height="31"/>
+                                <rect key="frame" x="86" y="201" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="17475" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="220" y="266" width="51" height="31"/>
+                                <rect key="frame" x="86" y="240" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="17476" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="208" y="328" width="51" height="31"/>
+                                <rect key="frame" x="86" y="318" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="19136" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="86" y="396" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="19143" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="86" y="435" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="19144" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="86" y="279" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="19145" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="86" y="357" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dienstag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="19147" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="166" y="250" width="90" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Montag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="19148" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="166" y="211" width="90" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sonntag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="19149" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="166" y="440" width="90" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Samstag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="19150" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="166" y="396" width="90" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="19151" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" text="Freitag">
+                                <rect key="frame" x="166" y="362" width="90" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Donnerstag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="19152" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="166" y="324" width="90" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mittwoch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="19153" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="166" y="284" width="90" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                     </view>
                     <navigationItem id="17904" key="navigationItem" title="Weekdays">
