@@ -179,6 +179,14 @@
     <Compile Include="ViewControllers\SetIntervallViewController.designer.cs">
       <DependentUpon>SetIntervallViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewControllers\SetStartViewController.cs" />
+    <Compile Include="ViewControllers\SetStartViewController.designer.cs">
+      <DependentUpon>SetStartViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\WeekdayViewController.cs" />
+    <Compile Include="ViewControllers\WeekdayViewController.designer.cs">
+      <DependentUpon>WeekdayViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />
