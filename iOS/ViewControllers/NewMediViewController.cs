@@ -3,20 +3,23 @@ using OneMediPlan.Models;
 using UIKit;
 using System.Runtime.Remoting.Channels;
 using Foundation;
+using OneMediPlan.ViewModels;
 
 namespace OneMediPlan.iOS
 {
-    public partial class ItemNewViewController : UIViewController
+    public partial class NewMediViewController : UIViewController
     {
-        //public ItemsViewModel ViewModel { get; set; }
-        public MediViewModel ViewModel { get; set; }
-
+        public NewMediViewModel ViewModel { get; set; }
         public Medi CurrentMedi { get; set; }
-        public ItemNewViewController(IntPtr handle) : base(handle) { }
+
+        public NewMediViewController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            ViewModel = new NewMediViewModel();
+
+            Title = ViewModel.Title;
         }
 
         public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)

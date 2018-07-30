@@ -7,6 +7,7 @@ using Foundation;
 using UIKit;
 using OneMediPlan.iOS.CustomCells;
 using OneMediPlan.Helpers;
+using OneMediPlan.ViewModels;
 
 namespace OneMediPlan.iOS
 {
@@ -67,8 +68,8 @@ namespace OneMediPlan.iOS
             }
             else
             {
-                var controller = segue.DestinationViewController as ItemNewViewController;
-                controller.ViewModel = ViewModel;
+                var controller = segue.DestinationViewController as NewMediViewController;
+                controller.ViewModel = new NewMediViewModel();
             }
         }
 

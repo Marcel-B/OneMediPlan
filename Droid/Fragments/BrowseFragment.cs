@@ -18,7 +18,7 @@ namespace OneMediPlan.Droid
         SwipeRefreshLayout refresher;
 
         ProgressBar progress;
-        public static ItemsViewModel ViewModel { get; set; }
+        public static MediViewModel ViewModel { get; set; }
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -29,7 +29,7 @@ namespace OneMediPlan.Droid
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            ViewModel = new ItemsViewModel();
+            ViewModel = new MediViewModel();
 
             View view = inflater.Inflate(Resource.Layout.fragment_browse, container, false);
             var recyclerView =
@@ -54,7 +54,7 @@ namespace OneMediPlan.Droid
             refresher.Refresh += Refresher_Refresh;
             adapter.ItemClick += Adapter_ItemClick;
 
-            if (ViewModel.Items.Count == 0)
+            if (ViewModel.Medis.Count == 0)
                 ViewModel.LoadItemsCommand.Execute(null);
         }
 
@@ -67,7 +67,7 @@ namespace OneMediPlan.Droid
 
         void Adapter_ItemClick(object sender, RecyclerClickEventArgs e)
         {
-            var item = ViewModel.Items[e.Position];
+            var item = ViewModel.Medis[e.Position];
             var intent = new Intent(Activity, typeof(BrowseItemDetailActivity));
 
             intent.PutExtra("data", Newtonsoft.Json.JsonConvert.SerializeObject(item));
@@ -88,15 +88,15 @@ namespace OneMediPlan.Droid
 
     class BrowseItemsAdapter : BaseRecycleViewAdapter
     {
-        ItemsViewModel viewModel;
+        MediViewModel viewModel;
         Activity activity;
 
-        public BrowseItemsAdapter(Activity activity, ItemsViewModel viewModel)
+        public BrowseItemsAdapter(Activity activity, MediViewModel viewModel)
         {
             this.viewModel = viewModel;
             this.activity = activity;
 
-            this.viewModel.Items.CollectionChanged += (sender, args) =>
+            this.viewModel.Medis.CollectionChanged += (sender, args) =>
             {
                 this.activity.RunOnUiThread(NotifyDataSetChanged);
             };
@@ -117,15 +117,15 @@ namespace OneMediPlan.Droid
         // Replace the contents of a view (invoked by the layout manager)
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            var item = viewModel.Items[position];
+            var item = viewModel.Medis[position];
 
             // Replace the contents of the view with that element
             var myHolder = holder as MyViewHolder;
-            myHolder.TextView.Text = item.Text;
+            myHolder.TextView.Text = item.Name;
             myHolder.DetailTextView.Text = item.Description;
         }
 
-        public override int ItemCount => viewModel.Items.Count;
+        public override int ItemCount => viewModel.Medis.Count;
     }
 
     public class MyViewHolder : RecyclerView.ViewHolder

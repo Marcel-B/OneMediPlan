@@ -9,8 +9,7 @@ namespace OneMediPlan
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Medi> DataStore = AppStore.GetInstance();
-        //public IDataStore<Medi> DataStore => ServiceLocator.Instance.Get<IDataStore<Medi>>() ?? new MockDataStore();
+        public IDataStore<Medi> DataStore => ServiceLocator.Instance.Get<IDataStore<Medi>>() ?? new MockDataStore();
 
         bool isBusy = false;
         public bool IsBusy

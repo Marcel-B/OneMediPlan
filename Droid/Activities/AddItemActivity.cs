@@ -4,6 +4,7 @@ using Android.App;
 using Android.OS;
 using Android.Widget;
 using Android.Support.Design.Widget;
+using OneMediPlan.Models;
 
 namespace OneMediPlan.Droid
 {
@@ -13,7 +14,7 @@ namespace OneMediPlan.Droid
         FloatingActionButton saveButton;
         EditText title, description;
 
-        public ItemsViewModel ViewModel { get; set; }
+        public MediViewModel ViewModel { get; set; }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -32,9 +33,9 @@ namespace OneMediPlan.Droid
 
         void SaveButton_Click(object sender, EventArgs e)
         {
-            var item = new Item
+            var item = new Medi
             {
-                Text = title.Text,
+                Name = title.Text,
                 Description = description.Text
             };
             ViewModel.AddItemCommand.Execute(item);

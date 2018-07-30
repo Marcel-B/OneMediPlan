@@ -6,7 +6,8 @@ using OneMediPlan.Models;
 
 namespace OneMediPlan
 {
-    public class MediViewModel : BaseViewModel{
+    public class MediViewModel : BaseViewModel
+    {
         public ObservableCollection<Medi> Medis { get; set; }
         public Command LoadItemsCommand { get; set; }
         public Command AddItemCommand { get; set; }
@@ -44,6 +45,7 @@ namespace OneMediPlan
                 IsBusy = false;
             }
         }
+
         async Task AddItem(Medi medi)
         {
             Medis.Add(medi);

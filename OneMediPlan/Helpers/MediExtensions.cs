@@ -1,6 +1,6 @@
 ﻿using System;
 using OneMediPlan.Models;
-using CoreText;
+
 namespace OneMediPlan.Helpers
 {
     public static class MediExtensions

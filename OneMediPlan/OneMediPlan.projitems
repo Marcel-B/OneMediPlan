@@ -23,5 +23,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Medi.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MediExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\AppStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewMediViewModel.cs" />
   </ItemGroup>
 </Project>

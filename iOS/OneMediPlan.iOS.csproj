@@ -157,9 +157,9 @@
     <Compile Include="ViewControllers\BrowseViewController.designer.cs">
       <DependentUpon>BrowseViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\ItemNewViewController.cs" />
+    <Compile Include="ViewControllers\NewMediViewController.cs" />
     <Compile Include="ViewControllers\ItemNewViewController.designer.cs">
-      <DependentUpon>ItemNewViewController.cs</DependentUpon>
+      <DependentUpon>NewMediViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewControllers\TabBarController.cs" />
     <Compile Include="ViewControllers\TabBarController.designer.cs">

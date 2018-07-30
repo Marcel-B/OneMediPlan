@@ -1,4 +1,5 @@
 ﻿using System;
+using OneMediPlan.Models;
 
 namespace OneMediPlan
 {
@@ -10,9 +11,9 @@ namespace OneMediPlan
         public static void Initialize()
         {
             if (UseMockDataStore)
-                ServiceLocator.Instance.Register<IDataStore<Item>, MockDataStore>();
+                ServiceLocator.Instance.Register<IDataStore<Medi>, MockDataStore>();
             else
-                ServiceLocator.Instance.Register<IDataStore<Item>, CloudDataStore>();
+                ServiceLocator.Instance.Register<IDataStore<Medi>, CloudDataStore>();
         }
     }
 }
