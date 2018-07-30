@@ -29,7 +29,8 @@ namespace OneMediPlan.iOS
                 mediStockViewController.CurrentMedi = new Medi
                 {
                     Id = Guid.NewGuid(),
-                    Name = TextFieldName.Text
+                    Name = TextFieldName.Text,
+                    Create = DateTimeOffset.Now
                 };
             }
         }

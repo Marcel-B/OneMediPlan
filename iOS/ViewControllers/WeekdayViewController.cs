@@ -1,6 +1,8 @@
 using System;
 using UIKit;
 using OneMediPlan.Models;
+using Foundation;
+using System.Linq;
 
 namespace OneMediPlan.iOS
 {
@@ -25,8 +27,23 @@ namespace OneMediPlan.iOS
             days[i] = sender.On;
         }
 
-        public WeekdayViewController(IntPtr handle) : base(handle)
+        public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
+            => days.Contains(true);
+
+        public WeekdayViewController(IntPtr handle) : base(handle) { }
+
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
+            if (segue.DestinationViewController is SetDosageViewController dosageViewController)
+            {
+                var weekdays = new Weekdays
+                {
+                    Id = Guid.NewGuid(),
+                    MediFk = CurrentMedi.Id,
+                    Days = days
+                };
+                dosageViewController.CurrentMedi = CurrentMedi;
+            }
         }
     }
 }

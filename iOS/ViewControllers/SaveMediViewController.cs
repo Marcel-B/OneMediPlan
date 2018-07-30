@@ -22,6 +22,11 @@ namespace OneMediPlan.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            //ButtonSave.TitleLabel.Text = $"{CurrentMedi.Name} speichern";
+        }
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
             ButtonSave.TitleLabel.Text = $"{CurrentMedi.Name} speichern";
         }
     }

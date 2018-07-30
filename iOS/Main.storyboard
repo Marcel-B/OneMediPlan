@@ -177,8 +177,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.44705882352941179" green="0.9882352941176471" blue="0.83529411764705885" alpha="1"/>
                             </tableViewCell>
                         </prototypes>
+                        <color key="separatorColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                        <color key="sectionIndexBackgroundColor" colorSpace="calibratedRGB" red="0.44705882352941179" green="0.9882352941176471" blue="0.83529411764705885" alpha="1"/>
                     </tableView>
                     <navigationItem key="navigationItem" title="Medis" id="104">
                         <barButtonItem key="rightBarButtonItem" id="2253">
@@ -622,6 +625,10 @@
                                 <connections>
                                     <action selector="UIButton18059_TouchUpInside:" destination="17381" id="30420" eventType="touchUpInside"/>
                                 </connections>
+                                <constraints>
+                                    <constraint id="31091" firstItem="18059" firstAttribute="height" constant="46"/>
+                                </constraints>
+                                <state key="normal" title="_"/>
                             </button>
                         </subviews>
                         <constraints>
@@ -630,6 +637,9 @@
                             <constraint id="24665" firstItem="18059" firstAttribute="trailing" secondItem="17382" secondAttribute="trailingMargin"/>
                             <constraint id="24667" firstItem="18059" firstAttribute="centerY" secondItem="17382" secondAttribute="centerY" constant="-0.5"/>
                             <constraint id="24668" firstItem="18059" firstAttribute="leading" secondItem="17382" secondAttribute="leadingMargin"/>
+                            <constraint id="31087" firstItem="18059" firstAttribute="leading" secondItem="17382" secondAttribute="leadingMargin"/>
+                            <constraint id="31088" firstItem="18059" firstAttribute="trailing" secondItem="17382" secondAttribute="trailingMargin"/>
+                            <constraint id="31089" firstItem="18059" firstAttribute="centerX" secondItem="17382" secondAttribute="centerX"/>
                         </constraints>
                     </view>
                     <connections>

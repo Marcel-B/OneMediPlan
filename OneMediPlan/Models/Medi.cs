@@ -18,6 +18,12 @@ namespace OneMediPlan.Models
         Fluency = 2,
     }
 
+    public class Weekdays{
+        public Guid Id { get; set; }
+        public Guid MediFk { get; set; }
+        public bool[] Days { get; set; }
+    }
+
     public class Medi : Item
     {
         public Medi() { }

@@ -83,6 +83,7 @@
                 <outlet property="LabelStock" destination="959" id="name-outlet-959"/>
                 <outlet property="LabelDosage" destination="1619" id="name-outlet-1619"/>
             </connections>
+            <color key="backgroundColor" colorSpace="calibratedRGB" red="0.44705882352941179" green="0.9882352941176471" blue="0.83529411764705885" alpha="1"/>
         </tableViewCell>
     </objects>
 </document>
