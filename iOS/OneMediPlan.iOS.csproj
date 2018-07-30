@@ -195,6 +195,14 @@
     <Compile Include="ViewControllers\SetIntervallTypeViewController.designer.cs">
       <DependentUpon>SetIntervallTypeViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewControllers\SaveMediViewController.cs" />
+    <Compile Include="ViewControllers\SaveMediViewController.designer.cs">
+      <DependentUpon>SaveMediViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\SetDosageViewController.cs" />
+    <Compile Include="ViewControllers\SetDosageViewController.designer.cs">
+      <DependentUpon>SetDosageViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />

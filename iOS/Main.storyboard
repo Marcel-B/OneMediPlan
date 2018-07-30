@@ -414,7 +414,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="16940" translatesAutoresizingMaskIntoConstraints="NO" tag="1">
                                 <rect key="frame" x="16" y="222" width="343" height="38"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28" weight="light"/>
                                 <state key="normal" title="Intervall"/>
                                 <connections>
                                     <segue id="17337" destination="16947" kind="show"/>
@@ -430,7 +430,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="16942" translatesAutoresizingMaskIntoConstraints="NO" tag="3">
                                 <rect key="frame" x="16" y="314" width="343" height="38"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28" weight="light"/>
                                 <state key="normal" title="Wochentage"/>
                                 <connections>
                                     <segue id="17472" destination="17432" kind="show"/>
@@ -508,7 +508,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="29748" translatesAutoresizingMaskIntoConstraints="NO">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="29748" translatesAutoresizingMaskIntoConstraints="NO">
                                 <rect key="frame" x="16" y="337" width="343" height="37"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28" weight="thin"/>
                                 <nil key="textColor"/>
@@ -606,7 +606,7 @@
         </scene>
         <scene sceneID="17380">
             <objects>
-                <viewController id="17381" sceneMemberID="viewController">
+                <viewController id="17381" sceneMemberID="viewController" customClass="SaveMediViewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="17378"/>
                         <viewControllerLayoutGuide type="bottom" id="17379"/>
@@ -619,9 +619,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="18059" translatesAutoresizingMaskIntoConstraints="NO">
                                 <rect key="frame" x="16" y="310" width="343" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28" weight="light"/>
-                                <state key="normal" title="Save new Medi"/>
                                 <connections>
-                                    <segue id="24700" destination="75" kind="show"/>
+                                    <action selector="UIButton18059_TouchUpInside:" destination="17381" id="30420" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -633,6 +632,9 @@
                             <constraint id="24668" firstItem="18059" firstAttribute="leading" secondItem="17382" secondAttribute="leadingMargin"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="ButtonSave" destination="18059" id="name-outlet-18059"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17383" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -798,7 +800,7 @@
         </scene>
         <scene sceneID="17909">
             <objects>
-                <viewController id="17910" sceneMemberID="viewController">
+                <viewController id="17910" sceneMemberID="viewController" customClass="SetDosageViewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="17907"/>
                         <viewControllerLayoutGuide type="bottom" id="17908"/>
@@ -849,6 +851,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="LabelDosage" destination="18071" id="name-outlet-18071"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17912" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -899,7 +904,7 @@
                     <navigationItem title="Start" id="18577" key="navigationItem">
                         <barButtonItem key="rightBarButtonItem" title="Weiter" id="18578">
                             <connections>
-                                <segue id="18615" destination="17381" kind="show"/>
+                                <segue id="18615" destination="17381" kind="show" identifier="ToSaveMediViewController"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

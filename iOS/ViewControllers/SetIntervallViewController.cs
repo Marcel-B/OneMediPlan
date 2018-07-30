@@ -3,29 +3,33 @@ using UIKit;
 using System.Collections.Generic;
 using System.Linq;
 using OneMediPlan.Models;
+using Foundation;
 
 namespace OneMediPlan.iOS
 {
     public partial class SetIntervallViewController : UIViewController
     {
-        public bool IsDependencySet { get; set; }
         public Medi CurrentMedi { get; set; }
+
+        public IDataStore<Medi> DataStore => ServiceLocator.Instance.Get<IDataStore<Medi>>() ?? new MockDataStore();
 
 
         IEnumerable<string> IntervallTypes =
             new[] { "Minute(n)", "Stunde(n)", "Tag(e)", "Woche(n)" };
+
         public SetIntervallViewController(IntPtr handle) : base(handle) { }
 
-        public override void ViewDidLoad()
+        async public override void ViewDidLoad()
         {
             base.ViewDidLoad();
             var pickerModle = new IntervallTypeDataModel();
             pickerModle.Items.AddRange(IntervallTypes.ToList());
             PickerIntervallType.Model = pickerModle;
-            if (IsDependencySet)
+            if (CurrentMedi.DependsOn != Guid.Empty)
             {
+                var m = await DataStore.GetItemAsync(CurrentMedi.DependsOn);
                 LabelDependencyInfo.Hidden = false;
-                LabelDependencyInfo.Text = $"nach {CurrentMedi.Name}.";
+                LabelDependencyInfo.Text = $"nach {m.Name}.";
             }
             else
             {
@@ -33,6 +37,13 @@ namespace OneMediPlan.iOS
             }
         }
 
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            if (segue.DestinationViewController is SetDosageViewController setDosageViewController)
+            {
+                setDosageViewController.CurrentMedi = CurrentMedi;
+            }
+        }
         internal class IntervallTypeDataModel : UIPickerViewModel
         {
             public event EventHandler<EventArgs> ValueChanged;

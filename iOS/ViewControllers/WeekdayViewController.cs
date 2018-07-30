@@ -1,10 +1,13 @@
 using System;
 using UIKit;
+using OneMediPlan.Models;
 
 namespace OneMediPlan.iOS
 {
     public partial class WeekdayViewController : UIViewController
     {
+        public Medi CurrentMedi { get; set; }
+
         bool[] days = new[]{
             false,
             false,

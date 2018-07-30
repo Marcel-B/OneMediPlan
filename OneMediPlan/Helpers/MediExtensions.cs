@@ -14,6 +14,8 @@ namespace OneMediPlan.Helpers
         {
             if (medi.IntervallType == IntervallType.IfNedded)
                 return "-";
+            if (medi.NextDate == DateTimeOffset.MinValue)
+                return "-";
             return medi.NextDate.ToString("dd.MM.y");
         }
 

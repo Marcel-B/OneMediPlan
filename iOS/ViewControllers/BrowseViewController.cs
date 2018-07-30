@@ -25,7 +25,7 @@ namespace OneMediPlan.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-       
+
             var nib = MyMediTableViewCell.Nib;
             var key = MyMediTableViewCell.Key;
 
@@ -49,10 +49,9 @@ namespace OneMediPlan.iOS
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
-
-            //if (ViewModel.Items.Count == 0)
-            if (ViewModel.Medis.Count == 0)
-                ViewModel.LoadItemsCommand.Execute(null);
+            var rows = TableView.NumberOfRowsInSection(0);
+            //if (ViewModel.Medis.Count == 0)
+            ViewModel.LoadItemsCommand.Execute(null);
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
@@ -64,14 +63,12 @@ namespace OneMediPlan.iOS
                 //var item = ViewModel.Items[indexPath.Row];
                 var item = ViewModel.Medis[indexPath.Row];
 
-                //controller.ViewModel = new ItemDetailViewModel(item);
                 controller.ViewModel = new MediDetailViewModel(item);
             }
             else
             {
                 var controller = segue.DestinationViewController as ItemNewViewController;
                 controller.ViewModel = ViewModel;
-                //controller.ViewModel = ViewModel;
             }
         }
 
@@ -127,7 +124,6 @@ namespace OneMediPlan.iOS
             cell.BackgroundColor = UIColor.LightTextColor;
             return cell;
         }
-
 
         public UIContextualAction ContextualFlagAction(int row)
         {

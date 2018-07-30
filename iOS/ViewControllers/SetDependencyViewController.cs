@@ -3,45 +3,44 @@ using OneMediPlan.Models;
 using System;
 using System.Collections.Generic;
 using UIKit;
+using System.Linq;
 
 namespace OneMediPlan.iOS
 {
     public partial class SetDependencyViewController : UIViewController
     {
         public Medi CurrentMedi { get; set; }
+        public Medi SelectedMedi { get; set; }
 
-        public IDataStore<Medi> DataStore => ServiceLocator.Instance.Get<IDataStore<Medi>>() ?? new MockDataStore();
-        public SetDependencyViewController(IntPtr handle) : base(handle)
-        {
-        }
+        public IDataStore<Medi> DataStore => ServiceLocator. Instance.Get<IDataStore<Medi>>() ?? new MockDataStore();
+        public SetDependencyViewController(IntPtr handle) : base(handle) { }
 
         async public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            if (CurrentMedi == null)
-                CurrentMedi = new Medi();
             var model = new DependencyTypeDataModel();
             model.ValueChanged += (object sender, EventArgs e) =>
             {
                 if (sender is DependencyTypeDataModel data)
                 {
-                    var item = data.SelectedItem;
-                    CurrentMedi.DependsOn = item.Id;
+                    SelectedMedi = data.SelectedItem;
                 }
             };
-            var medis = await DataStore.GetItemsAsync(true);
+            var tmp = await DataStore.GetItemsAsync(true);
+            var medis = tmp.ToList();
             foreach (var medi in medis)
                 model.Medis.Add(medi);
             PickerDependency.Model = model;
             PickerDependency.Select(0, 0, true);
+            SelectedMedi = medis[0];
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
             if (segue.DestinationViewController is SetIntervallViewController viewController)
             {
+                CurrentMedi.DependsOn = SelectedMedi.Id;
                 viewController.CurrentMedi = CurrentMedi;
-                viewController.IsDependencySet = true;
             }
         }
         internal class DependencyTypeDataModel : UIPickerViewModel
