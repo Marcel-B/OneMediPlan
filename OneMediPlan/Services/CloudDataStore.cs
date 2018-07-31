@@ -6,46 +6,47 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Newtonsoft.Json;
+using OneMediPlan.Models;
 using Plugin.Connectivity;
 
 namespace OneMediPlan
 {
-    public class CloudDataStore : IDataStore<Item>
+    public class CloudDataStore : IDataStore<Medi>
     {
         HttpClient client;
-        IEnumerable<Item> items;
+        IEnumerable<Medi> medis;
 
         public CloudDataStore()
         {
             client = new HttpClient();
             client.BaseAddress = new Uri($"{App.BackendUrl}/");
 
-            items = new List<Item>();
+            medis = new List<Medi>();
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Medi>> GetItemsAsync(bool forceRefresh = false)
         {
             if (forceRefresh && CrossConnectivity.Current.IsConnected)
             {
                 var json = await client.GetStringAsync($"api/item");
-                items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<Item>>(json));
+                medis = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<Medi>>(json));
             }
 
-            return items;
+            return medis;
         }
 
-        public async Task<Item> GetItemAsync(Guid id)
+        public async Task<Medi> GetItemAsync(Guid id)
         {
             if (id != null && CrossConnectivity.Current.IsConnected)
             {
                 var json = await client.GetStringAsync($"api/item/{id}");
-                return await Task.Run(() => JsonConvert.DeserializeObject<Item>(json));
+                return await Task.Run(() => JsonConvert.DeserializeObject<Medi>(json));
             }
 
             return null;
         }
 
-        public async Task<bool> AddItemAsync(Item item)
+        public async Task<bool> AddItemAsync(Medi item)
         {
             if (item == null || !CrossConnectivity.Current.IsConnected)
                 return false;
@@ -57,7 +58,7 @@ namespace OneMediPlan
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> UpdateItemAsync(Item item)
+        public async Task<bool> UpdateItemAsync(Medi item)
         {
             if (item == null || item.Id == null || !CrossConnectivity.Current.IsConnected)
                 return false;

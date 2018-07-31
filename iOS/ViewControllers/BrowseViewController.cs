@@ -8,42 +8,35 @@ using UIKit;
 using OneMediPlan.iOS.CustomCells;
 using OneMediPlan.Helpers;
 using OneMediPlan.ViewModels;
+using OneMediPlan.Models;
+using Ninject;
 
 namespace OneMediPlan.iOS
 {
     public partial class BrowseViewController : UITableViewController
     {
         UIRefreshControl refreshControl;
-
-        //public ItemsViewModel Viewmodel { get; set; }
         public MediViewModel ViewModel { get; set; }
 
-
-        public BrowseViewController(IntPtr handle) : base(handle)
-        {
-        }
+        public BrowseViewController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            TableView.RegisterNibForCellReuse(MyMediTableViewCell.Nib, MyMediTableViewCell.Key);
+            ViewModel = App.Container.Get<MediViewModel>();
 
-            var nib = MyMediTableViewCell.Nib;
-            var key = MyMediTableViewCell.Key;
-
-            TableView.RegisterNibForCellReuse(nib, key);
-            ViewModel = new MediViewModel();
             TableView.RowHeight = 100;
 
             // Setup UITableView.
             refreshControl = new UIRefreshControl();
             refreshControl.ValueChanged += RefreshControl_ValueChanged;
             TableView.Add(refreshControl);
-            TableView.Source = new MedisDataSource(ViewModel);
+            TableView.Source = App.Container.Get<MedisDataSource>();
 
             Title = ViewModel.Title;
 
             ViewModel.PropertyChanged += IsBusy_PropertyChanged;
-            //ViewModel.Items.CollectionChanged += Items_CollectionChanged;
             ViewModel.Medis.CollectionChanged += Items_CollectionChanged;
         }
 
@@ -61,9 +54,7 @@ namespace OneMediPlan.iOS
             {
                 var controller = segue.DestinationViewController as BrowseItemDetailViewController;
                 var indexPath = TableView.IndexPathForCell(sender as UITableViewCell);
-                //var item = ViewModel.Items[indexPath.Row];
                 var item = ViewModel.Medis[indexPath.Row];
-
                 controller.ViewModel = new MediDetailViewModel(item);
             }
             else

@@ -1,5 +1,8 @@
 ﻿using Foundation;
 using UIKit;
+using OneMediPlan;
+using OneMediPlan.Models;
+using Ninject;
 
 namespace OneMediPlan.iOS
 {
@@ -9,7 +12,6 @@ namespace OneMediPlan.iOS
     public class AppDelegate : UIApplicationDelegate
     {
         // class-level declarations
-
         public override UIWindow Window
         {
             get;
@@ -19,8 +21,7 @@ namespace OneMediPlan.iOS
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             App.Initialize();
-
-
+            App.Container.Bind<MedisDataSource>().ToSelf();
 
             return true;
         }

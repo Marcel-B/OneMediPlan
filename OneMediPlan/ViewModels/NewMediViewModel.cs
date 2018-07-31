@@ -1,5 +1,4 @@
-﻿using System;
-using OneMediPlan.Models;
+﻿using OneMediPlan.Models;
 
 namespace OneMediPlan.ViewModels
 {
@@ -9,8 +8,6 @@ namespace OneMediPlan.ViewModels
         {
             Title = "Name";
         }
-
         public Medi CurrentMedi { get; set; }
-
     }
 }
