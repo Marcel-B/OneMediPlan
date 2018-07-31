@@ -1,5 +1,6 @@
 ﻿using OneMediPlan.Models;
 using Ninject;
+using OneMediPlan.ViewModels;
 
 namespace OneMediPlan
 {
@@ -13,6 +14,9 @@ namespace OneMediPlan
         {
             Container = new Ninject.StandardKernel();
             Container.Bind<MediViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<MediDetailViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<NewMediViewModel>().ToSelf().InSingletonScope();
+
             if (UseMockDataStore)
                 Container.Bind<IDataStore<Medi>>().To<MockDataStore>().InSingletonScope();
             else

@@ -3,8 +3,9 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using OneMediPlan.Models;
+using Ninject;
 
-namespace OneMediPlan
+namespace OneMediPlan.ViewModels
 {
     public class MediViewModel : BaseViewModel
     {
@@ -22,6 +23,7 @@ namespace OneMediPlan
 
         async Task ExecuteLoadMedisCommand()
         {
+            var dataStore = App.Container.Get<IDataStore<Medi>>();
             if (IsBusy)
                 return;
 
@@ -30,7 +32,7 @@ namespace OneMediPlan
             try
             {
                 Medis.Clear();
-                var medis = await DataStore.GetItemsAsync(true);
+                var medis = await dataStore.GetItemsAsync(true);
                 foreach (var medi in medis)
                 {
                     Medis.Add(medi);

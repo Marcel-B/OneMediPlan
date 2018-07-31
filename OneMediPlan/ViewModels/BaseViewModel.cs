@@ -4,12 +4,13 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using OneMediPlan.Models;
 using OneMediPlan.Helpers;
+using Ninject;
 
 namespace OneMediPlan
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Medi> DataStore => ServiceLocator.Instance.Get<IDataStore<Medi>>() ?? new MockDataStore();
+        public IDataStore<Medi> DataStore => App.Container.Get<IDataStore<Medi>>();
 
         bool isBusy = false;
         public bool IsBusy

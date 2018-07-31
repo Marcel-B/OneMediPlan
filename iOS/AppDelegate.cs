@@ -20,9 +20,6 @@ namespace OneMediPlan.iOS
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
-            App.Initialize();
-            App.Container.Bind<MedisDataSource>().ToSelf();
-
             return true;
         }
 

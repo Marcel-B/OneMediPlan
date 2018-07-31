@@ -5,11 +5,10 @@ using OneMediPlan.iOS.CustomCells;
 //using ChameleonFramework;
 using Foundation;
 using UIKit;
-using OneMediPlan.iOS.CustomCells;
 using OneMediPlan.Helpers;
 using OneMediPlan.ViewModels;
-using OneMediPlan.Models;
 using Ninject;
+using Ninject.Parameters;
 
 namespace OneMediPlan.iOS
 {
@@ -18,13 +17,17 @@ namespace OneMediPlan.iOS
         UIRefreshControl refreshControl;
         public MediViewModel ViewModel { get; set; }
 
-        public BrowseViewController(IntPtr handle) : base(handle) { }
+        public BrowseViewController(IntPtr handle) : base(handle)
+        {
+            ViewModel = App.Container.Get<MediViewModel>();
+            ViewModel.PropertyChanged += IsBusy_PropertyChanged;
+            ViewModel.Medis.CollectionChanged += Items_CollectionChanged;
+        }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
             TableView.RegisterNibForCellReuse(MyMediTableViewCell.Nib, MyMediTableViewCell.Key);
-            ViewModel = App.Container.Get<MediViewModel>();
 
             TableView.RowHeight = 100;
 
@@ -36,14 +39,14 @@ namespace OneMediPlan.iOS
 
             Title = ViewModel.Title;
 
-            ViewModel.PropertyChanged += IsBusy_PropertyChanged;
-            ViewModel.Medis.CollectionChanged += Items_CollectionChanged;
+            //ViewModel.PropertyChanged += IsBusy_PropertyChanged;
+            //ViewModel.Medis.CollectionChanged += Items_CollectionChanged;
         }
 
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
-            var rows = TableView.NumberOfRowsInSection(0);
+            //var rows = TableView.NumberOfRowsInSection(0);
             //if (ViewModel.Medis.Count == 0)
             ViewModel.LoadItemsCommand.Execute(null);
         }
@@ -55,7 +58,7 @@ namespace OneMediPlan.iOS
                 var controller = segue.DestinationViewController as BrowseItemDetailViewController;
                 var indexPath = TableView.IndexPathForCell(sender as UITableViewCell);
                 var item = ViewModel.Medis[indexPath.Row];
-                controller.ViewModel = new MediDetailViewModel(item);
+                controller.ViewModel = App.Container.Get<MediDetailViewModel>(new ConstructorArgument("item", item));
             }
             else
             {
@@ -95,7 +98,7 @@ namespace OneMediPlan.iOS
         }
     }
 
-    class MedisDataSource : UITableViewSource
+    internal class MedisDataSource : UITableViewSource
     {
         MediViewModel viewModel;
 

@@ -3,6 +3,8 @@ using System;
 using UIKit;
 using OneMediPlan.Models;
 using OneMediPlan.Helpers;
+using Ninject;
+using OneMediPlan.ViewModels;
 
 namespace OneMediPlan.iOS
 {
@@ -10,8 +12,8 @@ namespace OneMediPlan.iOS
     {
         async partial void UIButton18059_TouchUpInside(UIButton sender)
         {
-            var DataStore = AppStore.GetInstance();
-            await DataStore.AddItemAsync(CurrentMedi);
+            var dataStore = App.Container.Get<IDataStore<Medi>>();
+            await dataStore.AddItemAsync(CurrentMedi);
             NavigationController.PopToRootViewController(true);
         }
 
