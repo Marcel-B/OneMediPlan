@@ -9,6 +9,7 @@ using OneMediPlan.Helpers;
 using OneMediPlan.ViewModels;
 using Ninject;
 using Ninject.Parameters;
+using System.Runtime.CompilerServices;
 
 namespace OneMediPlan.iOS
 {
@@ -96,6 +97,8 @@ namespace OneMediPlan.iOS
         {
             InvokeOnMainThread(() => TableView.ReloadData());
         }
+
+
     }
 
     internal class MedisDataSource : UITableViewSource
@@ -117,6 +120,28 @@ namespace OneMediPlan.iOS
             cell.Stock = medi.GetStockInfo();
             cell.Dosage = medi.GetDosage();
             cell.BackgroundColor = UIColor.LightTextColor;
+            switch (medi.IntervallType)
+            {
+                case Models.IntervallType.Depend:
+                    var foo = medi.GetDependend().GetAwaiter().GetResult();
+                    cell.Info = foo.Name;
+                    break;
+                case Models.IntervallType.IfNedded:
+                    cell.Info = "need";
+                    break;
+                case Models.IntervallType.Intervall:
+                    cell.Info = "intv";
+                    break;
+                case Models.IntervallType.Nothing:
+                    cell.Info = "ERR";
+                    break;
+                case Models.IntervallType.Weekdays:
+                    cell.Info = "week";
+                    break;
+                default:
+                    cell.Info = "Info";
+                    break;
+            }
             return cell;
         }
 
@@ -176,7 +201,13 @@ namespace OneMediPlan.iOS
         }
 
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
-            => tableView.DeselectRow(indexPath, true);
+        {
+            tableView.DeselectRow(indexPath, true);
+            var medi = viewModel.Medis[indexPath.Row];
+            medi.NextDate = medi.LastDate.AddMinutes(medi.IntervallInMinutes);
+            medi.LastDate = DateTimeOffset.Now;
+            medi.Stock--;
+        }
 
         public override nint RowsInSection(UITableView tableview, nint section)
             => viewModel.Medis.Count;

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Ninject;
 using OneMediPlan.Models;
 
 namespace OneMediPlan.Helpers
@@ -8,6 +10,13 @@ namespace OneMediPlan.Helpers
         public static string GetStockInfo(this Medi medi)
         {
             return $"{medi.Stock.ToString("F1")}/{medi.MinimumStock.ToString("F1")}";
+        }
+
+        async public static Task<Medi> GetDependend(this Medi medi){
+            var target = medi.DependsOn;
+            var storage = App.Container.Get<IDataStore<Medi>>();
+            var med = await storage.GetItemAsync(target);
+            return med;
         }
 
         public static string GetNextDate(this Medi medi)

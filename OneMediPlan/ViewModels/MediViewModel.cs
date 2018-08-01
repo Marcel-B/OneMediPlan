@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using OneMediPlan.Models;
 using Ninject;
+using System.Linq;
 
 namespace OneMediPlan.ViewModels
 {
@@ -32,7 +33,9 @@ namespace OneMediPlan.ViewModels
             try
             {
                 Medis.Clear();
-                var medis = await dataStore.GetItemsAsync(true);
+                var meds = await dataStore.GetItemsAsync(true);
+                var medis = meds.ToList();
+                medis.Sort();
                 foreach (var medi in medis)
                 {
                     Medis.Add(medi);

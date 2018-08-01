@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using OneMediPlan.Models;
-using OneMediPlan.Helpers;
 using Ninject;
 
 namespace OneMediPlan

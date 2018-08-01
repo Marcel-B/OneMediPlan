@@ -18,13 +18,14 @@ namespace OneMediPlan.Models
         Fluency = 2,
     }
 
-    public class Weekdays{
+    public class Weekdays
+    {
         public Guid Id { get; set; }
         public Guid MediFk { get; set; }
         public bool[] Days { get; set; }
     }
 
-    public class Medi : Item
+    public class Medi : Item, IComparable
     {
         public Medi() { }
 
@@ -42,5 +43,18 @@ namespace OneMediPlan.Models
         public DateTimeOffset LastRefill { get; set; }
         public bool Confirmed { get; set; }
         public bool Scheduled { get; set; }
+
+        public int CompareTo(Object obj)
+        {
+            if (obj is Medi med)
+            {
+                if (this.NextDate == DateTimeOffset.MinValue) return 1;
+                if (med.NextDate == DateTimeOffset.MinValue) return -1;
+                if (this.NextDate < med.NextDate) return -1;
+                if (this.NextDate > med.NextDate) return 1;
+                return 0;
+            }
+            throw new ArgumentException();
+        }
     }
 }

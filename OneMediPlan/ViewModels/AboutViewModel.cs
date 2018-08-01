@@ -8,7 +8,7 @@ namespace OneMediPlan
         {
             Title = "About";
 
-            OpenWebCommand = new Command(() => Plugin.Share.CrossShare.Current.OpenBrowser("https://xamarin.com/platform"));
+            //OpenWebCommand = new Command(() => Plugin.Share.CrossShare.Current.OpenBrowser("https://xamarin.com/platform"));
         }
 
         public ICommand OpenWebCommand { get; }

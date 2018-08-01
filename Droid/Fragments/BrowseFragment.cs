@@ -6,6 +6,7 @@ using Android.Widget;
 using Android.Support.V4.Widget;
 using Android.App;
 using Android.Content;
+using OneMediPlan.ViewModels;
 
 namespace OneMediPlan.Droid
 {
