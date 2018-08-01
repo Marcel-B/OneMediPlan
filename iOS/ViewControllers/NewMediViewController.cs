@@ -4,6 +4,7 @@ using UIKit;
 using System.Runtime.Remoting.Channels;
 using Foundation;
 using OneMediPlan.ViewModels;
+using Ninject;
 
 namespace OneMediPlan.iOS
 {
@@ -12,13 +13,13 @@ namespace OneMediPlan.iOS
         public NewMediViewModel ViewModel { get; set; }
         public Medi CurrentMedi { get; set; }
 
-        public NewMediViewController(IntPtr handle) : base(handle) { }
+        public NewMediViewController(IntPtr handle) : base(handle) {
+            ViewModel = App.Container.Get<NewMediViewModel>();
+        }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            ViewModel = new NewMediViewModel();
-
             Title = ViewModel.Title;
         }
 

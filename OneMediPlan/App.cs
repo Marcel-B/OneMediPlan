@@ -18,9 +18,15 @@ namespace OneMediPlan
             Container.Bind<NewMediViewModel>().ToSelf().InSingletonScope();
 
             if (UseMockDataStore)
+            {
                 Container.Bind<IDataStore<Medi>>().To<MockDataStore>().InSingletonScope();
+                Container.Bind<IDataStore<Weekdays>>().To<WeekdayDataStoreMock>().InSingletonScope();
+            }
             else
+            {
                 Container.Bind<IDataStore<Medi>>().To<CloudDataStore>().InSingletonScope();
+                Container.Bind<IDataStore<Weekdays>>().ToSelf().InSingletonScope();
+            }
 
         }
     }

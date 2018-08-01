@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Ninject;
 using OneMediPlan.Models;
+using System.Linq;
 
 namespace OneMediPlan.Helpers
 {
@@ -12,11 +13,19 @@ namespace OneMediPlan.Helpers
             return $"{medi.Stock.ToString("F1")}/{medi.MinimumStock.ToString("F1")}";
         }
 
-        async public static Task<Medi> GetDependend(this Medi medi){
+        async public static Task<Medi> GetDependend(this Medi medi)
+        {
             var target = medi.DependsOn;
             var storage = App.Container.Get<IDataStore<Medi>>();
             var med = await storage.GetItemAsync(target);
             return med;
+        }
+
+        async public static Task<Weekdays> GetWeekdaysAsync(this Medi medi)
+        {
+            var store = App.Container.Get<IDataStore<Weekdays>>();
+            var days = await store.GetItemsAsync();
+            return days.SingleOrDefault(x => x.MediFk == medi.Id);
         }
 
         public static string GetNextDate(this Medi medi)
@@ -38,12 +47,13 @@ namespace OneMediPlan.Helpers
             return medi.LastDate.ToString("dd.MM.y");
         }
 
-        public static string GetDosage(this Medi medi){
+        public static string GetDosage(this Medi medi)
+        {
             var type = "";
             switch (medi.DosageType)
             {
                 case MediType.Fluency:
-                   type =  "ml";
+                    type = "ml";
                     break;
                 case MediType.Injection:
                     type = "Spritze(n)";

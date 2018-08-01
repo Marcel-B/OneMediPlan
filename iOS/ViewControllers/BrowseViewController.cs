@@ -61,11 +61,11 @@ namespace OneMediPlan.iOS
                 var item = ViewModel.Medis[indexPath.Row];
                 controller.ViewModel = App.Container.Get<MediDetailViewModel>(new ConstructorArgument("item", item));
             }
-            else
-            {
-                var controller = segue.DestinationViewController as NewMediViewController;
-                controller.ViewModel = new NewMediViewModel();
-            }
+            //else
+            //{
+            //    var controller = segue.DestinationViewController as NewMediViewController;
+            //    controller.ViewModel = new NewMediViewModel();
+            //}
         }
 
         void RefreshControl_ValueChanged(object sender, EventArgs e)

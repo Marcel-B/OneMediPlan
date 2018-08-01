@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using OneMediPlan;
 using Ninject;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace com.b_velop.OneMediPlan.Tests
 {
@@ -34,7 +35,7 @@ namespace com.b_velop.OneMediPlan.Tests
         }
 
         [TestMethod]
-        public void MediTests_Sort_MediWithSmallestNextDateWhichIsNotMinValueIsFirstInList()
+        public void Medi_Sort_MediWithSmallestNextDateWhichIsNotMinValueIsFirstInList()
         {
             // Arrange
             var list = GetMedis();
@@ -50,7 +51,7 @@ namespace com.b_velop.OneMediPlan.Tests
         }
 
         [TestMethod]
-        public void MediTests_Sort_MediWithMinValueIsLastInList()
+        public void Medi_Sort_MediWithMinValueIsLastInList()
         {
             // Arrange
             var list = GetMedis();
@@ -79,6 +80,25 @@ namespace com.b_velop.OneMediPlan.Tests
             var actual = mediDepend.Id;
 
             // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public async Task Medi_GetWeekdaysAsync_ReturnsTheWeekays()
+        {
+            // Arrange
+            var expected = Guid.Parse("f4282afe-5b1b-450a-ab14-e211301c30a6");
+            App.Initialize();
+            var daysMock = App.Container.Get<WeekdayDataStoreMock>();
+            var store = App.Container.Get<MockDataStore>();
+            var medis = await store.GetItemsAsync();
+            var medi = medis.SingleOrDefault(m => m.IntervallType == IntervallType.Weekdays);
+
+            // Act
+            var day = await medi.GetWeekdaysAsync();
+
+            // Assert
+            var actual = day.Id;
             Assert.AreEqual(expected, actual);
         }
     }

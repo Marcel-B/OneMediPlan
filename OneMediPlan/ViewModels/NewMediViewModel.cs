@@ -6,7 +6,7 @@ namespace OneMediPlan.ViewModels
     {
         public NewMediViewModel()
         {
-            Title = "Name";
+            Title = "Set Name";
         }
         public Medi CurrentMedi { get; set; }
     }
