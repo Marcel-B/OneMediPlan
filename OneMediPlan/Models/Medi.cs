@@ -2,28 +2,6 @@
 
 namespace OneMediPlan.Models
 {
-    public enum IntervallType
-    {
-        Nothing = -1,
-        Intervall = 0,
-        Weekdays = 1,
-        Depend = 2,
-        IfNedded = 3,
-    }
-
-    public enum MediType
-    {
-        Tablet = 0,
-        Injection = 1,
-        Fluency = 2,
-    }
-
-    public class Weekdays
-    {
-        public Guid Id { get; set; }
-        public Guid MediFk { get; set; }
-        public bool[] Days { get; set; }
-    }
 
     public class Medi : Item, IComparable
     {

@@ -25,5 +25,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\AppStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewMediViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SomeLogic.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\MediType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Weekdays.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\IntervallType.cs" />
   </ItemGroup>
 </Project>

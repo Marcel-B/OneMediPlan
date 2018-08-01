@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 using OneMediPlan.Models;
-//using Plugin.Connectivity;
+using Plugin.Connectivity;
 
 namespace OneMediPlan
 {
@@ -26,30 +26,30 @@ namespace OneMediPlan
 
         public async Task<IEnumerable<Medi>> GetItemsAsync(bool forceRefresh = false)
         {
-            //if (forceRefresh && CrossConnectivity.Current.IsConnected)
-            //{
+            if (forceRefresh && CrossConnectivity.Current.IsConnected)
+            {
                 var json = await client.GetStringAsync($"api/item");
                 medis = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<Medi>>(json));
-            //}
+            }
 
             return medis;
         }
 
         public async Task<Medi> GetItemAsync(Guid id)
         {
-            //if (id != null && CrossConnectivity.Current.IsConnected)
-            //{
+            if (id != null && CrossConnectivity.Current.IsConnected)
+            {
                 var json = await client.GetStringAsync($"api/item/{id}");
                 return await Task.Run(() => JsonConvert.DeserializeObject<Medi>(json));
-            //}
+            }
 
-            //return null;
+            return null;
         }
 
         public async Task<bool> AddItemAsync(Medi item)
         {
-            //if (item == null || !CrossConnectivity.Current.IsConnected)
-                //return false;
+            if (item == null || !CrossConnectivity.Current.IsConnected)
+                return false;
 
             var serializedItem = JsonConvert.SerializeObject(item);
 
@@ -60,8 +60,8 @@ namespace OneMediPlan
 
         public async Task<bool> UpdateItemAsync(Medi item)
         {
-            //if (item == null || item.Id == null || !CrossConnectivity.Current.IsConnected)
-                //return false;
+            if (item == null || item.Id == null || !CrossConnectivity.Current.IsConnected)
+                return false;
 
             var serializedItem = JsonConvert.SerializeObject(item);
             var buffer = Encoding.UTF8.GetBytes(serializedItem);
@@ -74,8 +74,8 @@ namespace OneMediPlan
 
         public async Task<bool> DeleteItemAsync(Guid id)
         {
-            //if (string.IsNullOrEmpty(id.ToString()) && !CrossConnectivity.Current.IsConnected)
-                //return false;
+            if (string.IsNullOrEmpty(id.ToString()) && !CrossConnectivity.Current.IsConnected)
+                return false;
 
             var response = await client.DeleteAsync($"api/item/{id}");
 
