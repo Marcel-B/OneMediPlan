@@ -28,12 +28,62 @@ namespace OneMediPlan.Helpers
             return days.SingleOrDefault(x => x.MediFk == medi.Id);
         }
 
+        public async static Task CalculateNewWeekdayIntervall(this Medi medi)
+        {
+            var weekdays = await medi.GetWeekdaysAsync();
+            var days = weekdays.Days;
+            var now = DateTimeOffset.Now;
+            var today = (int)now.DayOfWeek;
+            int diffDay = 0;
+            for (var i = today + 1; i < days.Length; i++)
+            {
+                if (days[i])
+                {
+                    diffDay = i - today;
+                    break;
+                }
+            }
+            if (diffDay == 0)
+            {
+                for (var i = 0; i < today; i++)
+                {
+                    if (days[i])
+                    {
+                        diffDay = i - today + 7;
+                        break;
+                    }
+                }
+            }
+            if (diffDay == 0)
+            {
+                diffDay = 7;
+            }
+            medi.PureIntervall = diffDay;
+        }
+
         public static string GetNextDate(this Medi medi)
         {
             if (medi.IntervallType == IntervallType.IfNedded)
                 return "-";
             if (medi.NextDate == DateTimeOffset.MinValue)
                 return "-";
+            var span = medi.NextDate - DateTimeOffset.Now;
+            if (span.Days == 0)
+            {
+                if (medi.IntervallInMinutes <= 1440)
+                {
+                    return $"Heue um {medi.NextDate.ToString("HH:mm")}";
+                }
+                else
+                {
+                    return "Heute";
+                }
+            }
+
+            if (span.Days < 7 && span.Days > 0)// Diese Woche
+            {
+                return medi.NextDate.ToString("dddd");
+            }
             return medi.NextDate.ToString("dd.MM.y");
         }
 
@@ -64,7 +114,7 @@ namespace OneMediPlan.Helpers
                 default:
                     break;
             }
-            return $"{medi.Dosage.ToString("F1")} {type}";
+            return medi.Dosage.ToString("F1");// $"{medi.Dosage.ToString("F1")} {type}";
         }
     }
 }

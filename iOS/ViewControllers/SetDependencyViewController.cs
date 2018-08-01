@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using UIKit;
 using System.Linq;
+using Ninject;
 
 namespace OneMediPlan.iOS
 {
@@ -12,7 +13,8 @@ namespace OneMediPlan.iOS
         public Medi CurrentMedi { get; set; }
         public Medi SelectedMedi { get; set; }
 
-        public IDataStore<Medi> DataStore => ServiceLocator. Instance.Get<IDataStore<Medi>>() ?? new MockDataStore();
+        public IDataStore<Medi> DataStore => App.Container.Get<IDataStore<Medi>>();
+
         public SetDependencyViewController(IntPtr handle) : base(handle) { }
 
         async public override void ViewDidLoad()

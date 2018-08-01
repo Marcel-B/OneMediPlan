@@ -4,16 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using OneMediPlan.Models;
 using Foundation;
+using Ninject;
 
 namespace OneMediPlan.iOS
 {
     public partial class SetIntervallViewController : UIViewController
     {
         public Medi CurrentMedi { get; set; }
-        private double _intervall;
+        private int _intervall;
         private int _intervallFactor;
+        private IntervallTime _intervallTime;
 
-        public IDataStore<Medi> DataStore => ServiceLocator.Instance.Get<IDataStore<Medi>>() ?? new MockDataStore();
+        public IDataStore<Medi> DataStore => App.Container.Get<IDataStore<Medi>>();
 
         IEnumerable<string> IntervallTypes =
             new[] { "Minute(n)", "Stunde(n)", "Tag(e)", "Woche(n)" };
@@ -44,6 +46,7 @@ namespace OneMediPlan.iOS
                 {
                     var item = intervallTypeDataModel.SelectedItem;
                     var idx =intervallTypeDataModel.SelectedIndex;
+                    _intervallTime = (IntervallTime)idx;
                     switch(idx){
                         case 0: // Minuten
                             _intervallFactor = 1;
@@ -69,13 +72,32 @@ namespace OneMediPlan.iOS
         }
 
         public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
-            => double.TryParse(LabelIntervallCount.Text, out _intervall);
+            => int.TryParse(LabelIntervallCount.Text, out _intervall);
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
             if (segue.DestinationViewController is SetDosageViewController setDosageViewController)
             {
-                CurrentMedi.IntervallInMinutes = (int)(_intervall * _intervallFactor);
+                CurrentMedi.IntervallTime = _intervallTime;
+                CurrentMedi.PureIntervall = _intervall;
+                switch (_intervallTime)
+                {
+                    case IntervallTime.Minute:
+                        CurrentMedi.Intervall = new TimeSpan(0, _intervall, 0);
+                        break;
+                    case IntervallTime.Hour:
+                        CurrentMedi.Intervall = new TimeSpan(_intervall, 0, 0);
+                        break;
+                    case IntervallTime.Week:
+                        CurrentMedi.Intervall = new TimeSpan(24 * 7, 0, 0);
+                        break;
+                    case IntervallTime.Month:
+                        CurrentMedi.Intervall = new TimeSpan(24 * 30, 0, 0);
+                        break;
+                    default:
+                        break;
+                }
+                CurrentMedi.IntervallInMinutes = (_intervall * _intervallFactor);
                 setDosageViewController.CurrentMedi = CurrentMedi;
             }
         }

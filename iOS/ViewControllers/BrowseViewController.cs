@@ -15,13 +15,13 @@ namespace OneMediPlan.iOS
 {
     public partial class BrowseViewController : UITableViewController
     {
-        UIRefreshControl refreshControl;
+        //UIRefreshControl refreshControl;
         public MediViewModel ViewModel { get; set; }
 
         public BrowseViewController(IntPtr handle) : base(handle)
         {
             ViewModel = App.Container.Get<MediViewModel>();
-            ViewModel.PropertyChanged += IsBusy_PropertyChanged;
+            //ViewModel.PropertyChanged += IsBusy_PropertyChanged;
             ViewModel.Medis.CollectionChanged += Items_CollectionChanged;
         }
 
@@ -33,9 +33,9 @@ namespace OneMediPlan.iOS
             TableView.RowHeight = 100;
 
             // Setup UITableView.
-            refreshControl = new UIRefreshControl();
-            refreshControl.ValueChanged += RefreshControl_ValueChanged;
-            TableView.Add(refreshControl);
+            //refreshControl = new UIRefreshControl();
+            //refreshControl.ValueChanged += RefreshControl_ValueChanged;
+            //TableView.Add(refreshControl);
             TableView.Source = App.Container.Get<MedisDataSource>();
 
             Title = ViewModel.Title;
@@ -68,30 +68,30 @@ namespace OneMediPlan.iOS
             //}
         }
 
-        void RefreshControl_ValueChanged(object sender, EventArgs e)
-        {
-            if (!ViewModel.IsBusy && refreshControl.Refreshing)
-                ViewModel.LoadItemsCommand.Execute(null);
-        }
+        //void RefreshControl_ValueChanged(object sender, EventArgs e)
+        //{
+        //    if (!ViewModel.IsBusy && refreshControl.Refreshing)
+        //        ViewModel.LoadItemsCommand.Execute(null);
+        //}
 
-        void IsBusy_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            var propertyName = e.PropertyName;
-            switch (propertyName)
-            {
-                case nameof(ViewModel.IsBusy):
-                    {
-                        InvokeOnMainThread(() =>
-                        {
-                            if (ViewModel.IsBusy && !refreshControl.Refreshing)
-                                refreshControl.BeginRefreshing();
-                            else if (!ViewModel.IsBusy)
-                                refreshControl.EndRefreshing();
-                        });
-                    }
-                    break;
-            }
-        }
+        //void IsBusy_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        //{
+        //    var propertyName = e.PropertyName;
+        //    switch (propertyName)
+        //    {
+        //        case nameof(ViewModel.IsBusy):
+        //            {
+        //                InvokeOnMainThread(() =>
+        //                {
+        //                    if (ViewModel.IsBusy && !refreshControl.Refreshing)
+        //                        refreshControl.BeginRefreshing();
+        //                    else if (!ViewModel.IsBusy)
+        //                        refreshControl.EndRefreshing();
+        //                });
+        //            }
+        //            break;
+        //    }
+        //}
 
         void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -137,6 +137,9 @@ namespace OneMediPlan.iOS
                     break;
                 case Models.IntervallType.Weekdays:
                     cell.Info = "week";
+                    break;
+                case    Models.IntervallType.DailyAppointment:
+                    cell.Info = "app";
                     break;
                 default:
                     cell.Info = "Info";
@@ -200,13 +203,13 @@ namespace OneMediPlan.iOS
             return leadingSwipe;
         }
 
-        public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
+        public async override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             tableView.DeselectRow(indexPath, true);
             var medi = viewModel.Medis[indexPath.Row];
-            medi.NextDate = medi.LastDate.AddMinutes(medi.IntervallInMinutes);
-            medi.LastDate = DateTimeOffset.Now;
-            medi.Stock--;
+            var s = App.Container.Get<SomeLogic>();
+            await s.HandleIntoke(medi);
+            viewModel.LoadItemsCommand.Execute(null);
         }
 
         public override nint RowsInSection(UITableView tableview, nint section)

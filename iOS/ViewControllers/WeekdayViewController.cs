@@ -11,19 +11,19 @@ namespace OneMediPlan.iOS
         public Medi CurrentMedi { get; set; }
 
         bool[] days = new[]{
+            false, // Sonntag
             false,
             false,
+            false, // Mittwoch
             false,
             false,
-            false,
-            false,
-            false
+            false  // Samstag
         };
 
         partial void WeekdayValueChanged(UISwitch sender)
         {
             if (sender == null) return;
-            var i = sender.Tag - 1;
+            var i = sender.Tag == 7 ? 0 : sender.Tag;
             days[i] = sender.On;
         }
 

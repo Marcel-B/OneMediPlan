@@ -7,5 +7,6 @@
         Weekdays = 1,
         Depend = 2,
         IfNedded = 3,
+        DailyAppointment = 4,
     }
 }

@@ -16,14 +16,18 @@ namespace com.b_velop.OneMediPlan.Tests
         public async Task SomeLogic_Foo_Bar()
         {
             App.Initialize();
-            var sut = new SomeLogic();
+            var sut = App.Container.Get<SomeLogic>();
             var store = App.Container.Get<MockDataStore>();
-            var meds = await store.GetItemsAsync();
-            var medis = meds.ToList();
+
             var medi = await store.GetItemAsync(Guid.Parse("c2a6321c-bd83-48fa-a3df-4369834b3782"));
 
-            sut.HandleIntoke(medi, medis);
-            medis.Sort();
+            await sut.HandleIntoke(medi);
+            var ustore = App.Container.Get<MockDataStore>();
+
+            var meds = await ustore.GetItemsAsync();
+            var medis = meds.ToList();
+
+            await medi.CalculateNewWeekdayIntervall();
         }
     }
 }
