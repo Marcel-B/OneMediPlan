@@ -12,6 +12,8 @@
     <PackageReference Include="MSTest.TestAdapter" Version="1.2.1" />
     <PackageReference Include="MSTest.TestFramework" Version="1.2.1" />
     <PackageReference Include="Portable.Ninject" Version="3.3.1" />
+    <PackageReference Include="Plugin.Share" Version="7.1.1" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
   </ItemGroup>
 
   <Import Project="..\OneMediPlan\OneMediPlan.projitems" Label="Shared" Condition="Exists('..\OneMediPlan\OneMediPlan.projitems')" />
