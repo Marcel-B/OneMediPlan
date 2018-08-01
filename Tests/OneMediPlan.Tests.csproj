@@ -16,5 +16,8 @@
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="SomeLogicTests.proj" />
+  </ItemGroup>
   <Import Project="..\OneMediPlan\OneMediPlan.projitems" Label="Shared" Condition="Exists('..\OneMediPlan\OneMediPlan.projitems')" />
 </Project>
