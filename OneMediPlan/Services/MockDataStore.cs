@@ -80,19 +80,51 @@ namespace OneMediPlan
                     Dosage = 1.5,
                     Stock = 5.5,
                     MinimumStock = 1,
-                    DosageType = MediType.Injection},
-                new Medi { 
-                    Id = Guid.Parse("c2a6321c-bd83-48fa-a3df-4369834b3782"), 
-                    Name = "MTX", 
-                    IntervallType = IntervallType.Weekdays, 
-                    NextDate = DateTimeOffset.Now, 
-                    Dosage = 1, 
-                    DosageType = MediType.Fluency, 
-                    MinimumStock = 2, 
-                    Stock = 22},
-                new Medi { Id = Guid.Parse("7be98ea0-fe14-4ea2-805f-db919ff0c0dc"), Name = "Folsäure", IntervallType = IntervallType.Depend, DependsOn = Guid.Parse("c2a6321c-bd83-48fa-a3df-4369834b3782"), NextDate = DateTimeOffset.MinValue, Dosage = 2, DosageType = MediType.Fluency, IntervallInMinutes = 2 * 24 * 60},
-                new Medi { Id = Guid.Parse("be09d674-85fe-4d2a-9e94-65ece36b4d0e"), Name = "Paracethamol", IntervallType = IntervallType.IfNedded, LastDate = DateTimeOffset.MinValue, DosageType = MediType.Tablet},
-                new Medi { Id = Guid.Parse("be09d674-85fe-4d2a-9e94-65ec3f3b4d0e"), Name = "Daily Medi", IntervallType = IntervallType.DailyAppointment, DailyAppointments = tpls, LastDate = DateTimeOffset.MinValue, NextDate = new DateTimeOffset(t), DosageType = MediType.Tablet},
+                    DosageType = MediType.Injection
+                },
+                new Medi {
+                    Id = Guid.Parse("c2a6321c-bd83-48fa-a3df-4369834b3782"),
+                    Name = "MTX",
+                    IntervallType = IntervallType.Weekdays,
+                    NextDate = DateTimeOffset.Now,
+                    Dosage = 1,
+                    DosageType = MediType.Fluency,
+                    MinimumStock = 2,
+                    Stock = 22
+                },
+                new Medi {
+                    Id = Guid.Parse("7be98ea0-fe14-4ea2-805f-db919ff0c0dc"),
+                    Name = "Folsäure",
+                    IntervallType = IntervallType.Depend,
+                    DependsOn = Guid.Parse("c2a6321c-bd83-48fa-a3df-4369834b3782"),
+                    NextDate = DateTimeOffset.MinValue,
+                    Dosage = 2,
+                    DosageType = MediType.Fluency,
+                    IntervallInMinutes = 2 * 24 * 60,
+                    Stock = 20,
+                    MinimumStock = 3
+                },
+                new Medi {
+                    Id = Guid.Parse("be09d674-85fe-4d2a-9e94-65ece36b4d0e"),
+                    Name = "Paracethamol",
+                    IntervallType = IntervallType.IfNedded,
+                    LastDate = DateTimeOffset.MinValue,
+                    DosageType = MediType.Tablet,
+                    Stock = 50,
+                    MinimumStock = 5
+                },
+                new Medi {
+                    Id = Guid.Parse("be09d674-85fe-4d2a-9e94-65ec3f3b4d0e"),
+                    Name = "Daily Medi",
+                    IntervallType = IntervallType.DailyAppointment,
+                    DailyAppointments = tpls,
+                    LastDate = DateTimeOffset.MinValue,
+                    NextDate = new DateTimeOffset(t),
+                    DosageType = MediType.Tablet,
+                    Dosage = 1,
+                    Stock = 10,
+                    MinimumStock = 1
+                },
             };
         }
 

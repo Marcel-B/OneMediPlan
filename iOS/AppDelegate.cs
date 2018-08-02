@@ -2,7 +2,8 @@
 using UIKit;
 using OneMediPlan;
 using OneMediPlan.Models;
-using Ninject;
+using OneMediPlan.iOS.Helper;
+using System;
 
 namespace OneMediPlan.iOS
 {
@@ -18,8 +19,28 @@ namespace OneMediPlan.iOS
             set;
         }
 
+
+
+        public static void SetNotification(Medi medi)
+        {
+            var newTime = medi.NextDate.DateTime.DateTimeToNSDate();
+
+            var notification = new UILocalNotification();
+            notification.FireDate = newTime;
+            //notification.FireDate = NSDate.FromTimeIntervalSinceNow(15);
+            notification.AlertTitle = $"{medi.Name}"; // required for Apple Watch notifications
+            notification.AlertAction = $"View Alert for {medi.Name}";
+            notification.AlertBody = $"Zeit für {medi.Dosage} Einheiten!";
+            notification.SoundName = UILocalNotification.DefaultSoundName;
+
+            UIApplication.SharedApplication.ScheduleLocalNotification(notification);
+        }
+
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
+            var notificationSettings =
+                UIUserNotificationSettings.GetSettingsForTypes(UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null);
+            application.RegisterUserNotificationSettings(notificationSettings);
             return true;
         }
 

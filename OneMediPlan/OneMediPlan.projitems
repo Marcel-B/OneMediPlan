@@ -26,5 +26,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\MediType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Weekdays.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\IntervallType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ISomeLogic.cs" />
   </ItemGroup>
 </Project>

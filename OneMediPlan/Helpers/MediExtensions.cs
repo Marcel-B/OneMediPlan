@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Ninject;
 using OneMediPlan.Models;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace OneMediPlan.Helpers
 {
@@ -80,7 +81,7 @@ namespace OneMediPlan.Helpers
                 }
             }
 
-            if (span.Days < 7 && span.Days > 0)// Diese Woche
+            if (span.Days < 6 && span.Days > 0)// Diese Woche
             {
                 return medi.NextDate.ToString("dddd");
             }
@@ -91,30 +92,19 @@ namespace OneMediPlan.Helpers
         {
             if (medi.LastDate == DateTimeOffset.MinValue)
                 return "n/a";
-            var now = DateTimeOffset.Now - medi.LastDate;
-            if (now.Days == 0)
+
+            var now = DateTimeOffset.Now;
+            var latest = medi.LastDate;
+            var diffDay = now - latest;
+
+            if (now.DayOfWeek == latest.DayOfWeek && diffDay.Days <= 1) // Heute
                 return medi.LastDate.ToString("HH:mm");
+            
             return medi.LastDate.ToString("dd.MM.y");
         }
 
         public static string GetDosage(this Medi medi)
-        {
-            var type = "";
-            switch (medi.DosageType)
-            {
-                case MediType.Fluency:
-                    type = "ml";
-                    break;
-                case MediType.Injection:
-                    type = "Spritze(n)";
-                    break;
-                case MediType.Tablet:
-                    type = "Tablette(n)";
-                    break;
-                default:
-                    break;
-            }
-            return medi.Dosage.ToString("F1");// $"{medi.Dosage.ToString("F1")} {type}";
-        }
+            => medi.IntervallType == IntervallType.IfNedded ? "-" : medi.Dosage.ToString("F1");
+
     }
 }

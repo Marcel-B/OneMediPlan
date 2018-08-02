@@ -1,5 +1,8 @@
 ﻿using UIKit;
 using Ninject;
+using System;
+using OneMediPlan.Models;
+using OneMediPlan.Helpers;
 
 namespace OneMediPlan.iOS
 {
@@ -10,6 +13,8 @@ namespace OneMediPlan.iOS
         {
             App.Initialize();
             App.Container.Bind<MedisDataSource>().ToSelf();
+            //App.Container.Bind<ISomeLogic>().To<SomeLogic>().;
+            App.Container.Bind<Action<Medi>>().ToMethod(context => AppDelegate.SetNotification).InSingletonScope();
             // if you want to use a different Application Delegate class from "AppDelegate"
             // you can specify it here.
             UIApplication.Main(args, null, "AppDelegate");

@@ -10,10 +10,10 @@ namespace OneMediPlan.Helpers
     {
         private IDataStore<Medi> _store;
         private readonly Action<Medi> _setNotification;
-        public SomeLogic(IDataStore<Medi> store)
+        public SomeLogic(IDataStore<Medi> store, Action<Medi> setNotification)
         {
             _store = store;
-            //_setNotification = setNotification;
+            _setNotification = setNotification;
         }
 
         public async Task HandleIntoke(Medi medi)

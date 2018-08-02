@@ -125,21 +125,27 @@ namespace OneMediPlan.iOS
                 case Models.IntervallType.Depend:
                     var foo = medi.GetDependend().GetAwaiter().GetResult();
                     cell.Info = foo.Name;
+                    cell.InfoColor = UIColor.Red;
                     break;
                 case Models.IntervallType.IfNedded:
-                    cell.Info = "need";
+                    cell.InfoColor = UIColor.Yellow;
+                    cell.Info = "       ";
                     break;
                 case Models.IntervallType.Intervall:
-                    cell.Info = "intv";
+                    cell.InfoColor = UIColor.Brown;
+                    cell.Info = "       ";
                     break;
                 case Models.IntervallType.Nothing:
-                    cell.Info = "ERR";
+                    cell.InfoColor = UIColor.DarkGray;
+                    cell.Info = "       ";
                     break;
                 case Models.IntervallType.Weekdays:
-                    cell.Info = "week";
+                    cell.InfoColor = UIColor.Blue;
+                    cell.Info = "       ";
                     break;
                 case    Models.IntervallType.DailyAppointment:
-                    cell.Info = "app";
+                    cell.InfoColor = UIColor.Magenta;
+                    cell.Info = "       ";
                     break;
                 default:
                     cell.Info = "Info";
