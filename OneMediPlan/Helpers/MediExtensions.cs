@@ -10,9 +10,7 @@ namespace OneMediPlan.Helpers
     public static class MediExtensions
     {
         public static string GetStockInfo(this Medi medi)
-        {
-            return $"{medi.Stock.ToString("F1")}/{medi.MinimumStock.ToString("F1")}";
-        }
+            => $"{medi.Stock.ToString("F1")}/{medi.MinimumStock.ToString("F1")}";
 
         async public static Task<Medi> GetDependend(this Medi medi)
         {
@@ -56,9 +54,8 @@ namespace OneMediPlan.Helpers
                 }
             }
             if (diffDay == 0)
-            {
                 diffDay = 7;
-            }
+            
             medi.PureIntervall = diffDay;
         }
 
@@ -68,23 +65,24 @@ namespace OneMediPlan.Helpers
                 return "-";
             if (medi.NextDate == DateTimeOffset.MinValue)
                 return "-";
+            
             var span = medi.NextDate - DateTimeOffset.Now;
-            if (span.Days == 0)
+            var today = DateTimeOffset.Now.DayOfWeek;
+            var next = medi.NextDate.DayOfWeek;
+
+            if (span.Days == 0 && today == next)
             {
                 if (medi.IntervallInMinutes <= 1440)
-                {
-                    return $"Heue um {medi.NextDate.ToString("HH:mm")}";
-                }
+                    return $"Heue - {medi.NextDate.ToString("HH:mm")}";
                 else
-                {
                     return "Heute";
-                }
             }
 
-            if (span.Days < 6 && span.Days > 0)// Diese Woche
+            if (span.Days < 6 && today != next)// Diese Woche
             {
                 return medi.NextDate.ToString("dddd");
             }
+
             return medi.NextDate.ToString("dd.MM.y");
         }
 

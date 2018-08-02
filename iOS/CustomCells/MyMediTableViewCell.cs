@@ -11,8 +11,9 @@ namespace OneMediPlan.iOS.CustomCells
         public static readonly UINib Nib;
 
         public string Name { get => LabelName.Text; set => LabelName.Text = value; }
-        public string Info { get => LabelInfo.Text; set => LabelInfo.Text = value; }
-        public UIColor InfoColor { get => LabelInfo.BackgroundColor; set => LabelInfo.BackgroundColor = value; }
+        public UIColor ImageColor { get => Img.BackgroundColor; set => Img.BackgroundColor = value; }
+        public UIColor Background { get => ContentView.BackgroundColor; set => ContentView.BackgroundColor = value; }
+
         public string Next { get => LabelNext.Text; set => LabelNext.Text = value; }
         public string Last { get => LabelLast.Text; set => LabelLast.Text = value; }
         public string Stock { get => LabelStock.Text; set => LabelStock.Text = value; }

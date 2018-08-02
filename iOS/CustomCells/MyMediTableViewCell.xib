@@ -14,19 +14,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="303" translatesAutoresizingMaskIntoConstraints="NO">
-                        <rect key="frame" x="16" y="8" width="265" height="29"/>
+                        <rect key="frame" x="16" y="8" width="316" height="29"/>
                         <fontDescription key="fontDescription" type="system" pointSize="24" weight="ultraLight"/>
-                        <nil key="textColor"/>
                         <constraints>
                             <constraint id="495" firstItem="303" firstAttribute="height" constant="29"/>
-                        </constraints>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="489" translatesAutoresizingMaskIntoConstraints="NO">
-                        <rect key="frame" x="289" y="8" width="80" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <constraints>
-                            <constraint id="1280" firstItem="489" firstAttribute="width" constant="80"/>
                         </constraints>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="644" translatesAutoresizingMaskIntoConstraints="NO">
@@ -41,49 +32,56 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 / 2,3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="959" translatesAutoresizingMaskIntoConstraints="NO">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 / 2,3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="959" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
                         <rect key="frame" x="289" y="73.5" width="80" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1619" translatesAutoresizingMaskIntoConstraints="NO" text="2,5">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1619" translatesAutoresizingMaskIntoConstraints="NO" text="2,5" misplaced="YES">
                         <rect key="frame" x="289" y="44" width="80" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="3988" translatesAutoresizingMaskIntoConstraints="NO" highlightedImage="First">
+                        <rect key="frame" x="340" y="8" width="29" height="29"/>
+                        <constraints>
+                            <constraint id="3989" firstItem="3988" firstAttribute="height" constant="29"/>
+                            <constraint id="3990" firstItem="3988" firstAttribute="width" constant="29"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint id="491" firstItem="303" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="16"/>
                     <constraint id="492" firstItem="303" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="8"/>
-                    <constraint id="498" firstItem="489" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="8"/>
                     <constraint id="647" firstItem="644" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="16"/>
                     <constraint id="648" firstItem="644" firstAttribute="top" secondItem="303" secondAttribute="bottom" constant="8"/>
                     <constraint id="952" firstItem="650" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="16"/>
                     <constraint id="953" firstItem="650" firstAttribute="top" secondItem="644" secondAttribute="bottom" constant="9"/>
-                    <constraint id="957" firstItem="644" firstAttribute="width" secondItem="303" secondAttribute="width"/>
+                    <constraint id="957" firstItem="644" firstAttribute="width" secondItem="303" secondAttribute="width" constant="-51"/>
                     <constraint id="958" firstItem="650" firstAttribute="width" secondItem="644" secondAttribute="width"/>
                     <constraint id="960" firstItem="959" firstAttribute="centerY" secondItem="650" secondAttribute="centerY"/>
-                    <constraint id="1281" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="489" secondAttribute="trailing" constant="16"/>
-                    <constraint id="1284" firstItem="489" firstAttribute="leading" secondItem="303" secondAttribute="trailing" constant="8"/>
-                    <constraint id="1285" firstItem="959" firstAttribute="width" secondItem="489" secondAttribute="width"/>
                     <constraint id="1288" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="959" secondAttribute="trailing" constant="16"/>
                     <constraint id="1620" firstItem="1619" firstAttribute="centerY" secondItem="644" secondAttribute="centerY" constant="-0.5"/>
-                    <constraint id="1621" firstItem="1619" firstAttribute="width" secondItem="489" secondAttribute="width"/>
                     <constraint id="1622" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="1619" secondAttribute="trailing" constant="16"/>
+                    <constraint id="3992" firstItem="3988" firstAttribute="leading" secondItem="303" secondAttribute="trailing" constant="8"/>
+                    <constraint id="3993" firstItem="3988" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="8"/>
+                    <constraint id="3994" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="3988" secondAttribute="trailing" constant="16"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="-122" y="-173"/>
+            <point key="canvasLocation" x="-31.50302" y="-148.7012"/>
             <connections>
                 <outlet property="LabelName" destination="303" id="name-outlet-303"/>
-                <outlet property="LabelInfo" destination="489" id="name-outlet-489"/>
                 <outlet property="LabelNext" destination="644" id="name-outlet-644"/>
                 <outlet property="LabelLast" destination="650" id="name-outlet-650"/>
                 <outlet property="LabelStock" destination="959" id="name-outlet-959"/>
                 <outlet property="LabelDosage" destination="1619" id="name-outlet-1619"/>
+                <outlet property="Img" destination="3988" id="name-outlet-3988"/>
             </connections>
-            <color key="backgroundColor" colorSpace="calibratedRGB" red="0.44705882352941179" green="0.9882352941176471" blue="0.83529411764705885" alpha="1"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="First" width="32" height="30"/>
+    </resources>
 </document>

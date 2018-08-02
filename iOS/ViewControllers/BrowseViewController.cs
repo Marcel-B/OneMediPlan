@@ -10,6 +10,8 @@ using OneMediPlan.ViewModels;
 using Ninject;
 using Ninject.Parameters;
 using System.Runtime.CompilerServices;
+using OneMediPlan.Models;
+using System.Threading.Tasks;
 
 namespace OneMediPlan.iOS
 {
@@ -36,9 +38,11 @@ namespace OneMediPlan.iOS
             //refreshControl = new UIRefreshControl();
             //refreshControl.ValueChanged += RefreshControl_ValueChanged;
             //TableView.Add(refreshControl);
-            TableView.Source = App.Container.Get<MedisDataSource>();
-
+            var source = App.Container.Get<MedisDataSource>();
+            source.parent = this;
+            TableView.Source = source;
             Title = ViewModel.Title;
+
 
             //ViewModel.PropertyChanged += IsBusy_PropertyChanged;
             //ViewModel.Medis.CollectionChanged += Items_CollectionChanged;
@@ -104,6 +108,7 @@ namespace OneMediPlan.iOS
     internal class MedisDataSource : UITableViewSource
     {
         MediViewModel viewModel;
+        public BrowseViewController parent;
 
         public MedisDataSource(MediViewModel viewModel)
         {
@@ -114,6 +119,7 @@ namespace OneMediPlan.iOS
         {
             var cell = tableView.DequeueReusableCell(MyMediTableViewCell.Key, indexPath) as MyMediTableViewCell;
             var medi = viewModel.Medis[indexPath.Row];
+            cell.Background = UIColor.FromRGB(223, 249, 251);
             cell.Name = medi.Name;
             cell.Next = medi.GetNextDate();
             cell.Last = medi.GetLastDate();
@@ -123,34 +129,28 @@ namespace OneMediPlan.iOS
             switch (medi.IntervallType)
             {
                 case Models.IntervallType.Depend:
-                    var foo = medi.GetDependend().GetAwaiter().GetResult();
-                    cell.Info = foo.Name;
-                    cell.InfoColor = UIColor.Red;
+                    cell.ImageColor = UIColor.FromRGB(248, 194, 145);
                     break;
                 case Models.IntervallType.IfNedded:
-                    cell.InfoColor = UIColor.Yellow;
-                    cell.Info = "       ";
+                    cell.ImageColor = UIColor.FromRGB(184, 233, 148);
                     break;
                 case Models.IntervallType.Intervall:
-                    cell.InfoColor = UIColor.Brown;
-                    cell.Info = "       ";
+                    cell.ImageColor = UIColor.FromRGB(229, 142, 38);
                     break;
                 case Models.IntervallType.Nothing:
-                    cell.InfoColor = UIColor.DarkGray;
-                    cell.Info = "       ";
+                    cell.ImageColor = UIColor.FromRGB(235, 47, 6);
                     break;
                 case Models.IntervallType.Weekdays:
-                    cell.InfoColor = UIColor.Blue;
-                    cell.Info = "       ";
+                    cell.ImageColor = UIColor.FromRGB(7, 153, 146);
                     break;
-                case    Models.IntervallType.DailyAppointment:
-                    cell.InfoColor = UIColor.Magenta;
-                    cell.Info = "       ";
+                case Models.IntervallType.DailyAppointment:
+                    cell.ImageColor = UIColor.FromRGB(30, 55, 153);
                     break;
                 default:
-                    cell.Info = "Info";
                     break;
             }
+            if (medi.Stock <= medi.MinimumStock)
+                cell.ImageColor = UIColor.FromRGB(235, 47, 6);
             return cell;
         }
 
@@ -213,9 +213,46 @@ namespace OneMediPlan.iOS
         {
             tableView.DeselectRow(indexPath, true);
             var medi = viewModel.Medis[indexPath.Row];
+
+            if (medi.Stock <= 0)
+            {
+                //Create Alert
+                var okAlertController = UIAlertController.Create("Waring", $"No '{medi.Name}' left.", UIAlertControllerStyle.Alert);
+
+                //Add Action
+                okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+
+                // Present Alert
+                parent.PresentViewController(okAlertController, true, null);
+                return;
+            }
+            else if (medi.Stock - medi.Dosage < 0)
+            {
+                // TODO - Fire warn message
+                //Create Alert
+                var okCancelAlertController = UIAlertController.Create("Waring", $"Not enough '{medi.Name}' left.", UIAlertControllerStyle.Alert);
+
+                //Add Actions
+                okCancelAlertController.AddAction(UIAlertAction.Create($"Take last {medi.Stock} unit(s)", UIAlertActionStyle.Default, async alert =>
+                {
+                    await UpdateList(medi);
+                }));
+
+                okCancelAlertController.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null));
+
+                // Present Alert
+                parent.PresentViewController(okCancelAlertController, true, null);
+                return;
+            }
+            await UpdateList(medi);
+        }
+
+        public async Task UpdateList(Medi medi)
+        {
             var s = App.Container.Get<SomeLogic>();
             await s.HandleIntoke(medi);
             viewModel.LoadItemsCommand.Execute(null);
+            return;
         }
 
         public override nint RowsInSection(UITableView tableview, nint section)

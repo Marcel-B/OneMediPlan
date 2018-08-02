@@ -15,11 +15,11 @@ namespace OneMediPlan.iOS.CustomCells
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel LabelDosage { get; set; }
+        UIKit.UIImageView Img { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel LabelInfo { get; set; }
+        UIKit.UILabel LabelDosage { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -39,14 +39,14 @@ namespace OneMediPlan.iOS.CustomCells
 
         void ReleaseDesignerOutlets ()
         {
+            if (Img != null) {
+                Img.Dispose ();
+                Img = null;
+            }
+
             if (LabelDosage != null) {
                 LabelDosage.Dispose ();
                 LabelDosage = null;
-            }
-
-            if (LabelInfo != null) {
-                LabelInfo.Dispose ();
-                LabelInfo = null;
             }
 
             if (LabelLast != null) {

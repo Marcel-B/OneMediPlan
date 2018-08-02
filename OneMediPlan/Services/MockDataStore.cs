@@ -78,8 +78,8 @@ namespace OneMediPlan
                     NextDate = DateTimeOffset.Now.AddDays(2),
                     LastDate = DateTimeOffset.Now.AddDays(-2),
                     Dosage = 1.5,
-                    Stock = 5.5,
-                    MinimumStock = 1,
+                    Stock = 5,
+                    MinimumStock = 2,
                     DosageType = MediType.Injection
                 },
                 new Medi {
@@ -121,6 +121,19 @@ namespace OneMediPlan
                     LastDate = DateTimeOffset.MinValue,
                     NextDate = new DateTimeOffset(t),
                     DosageType = MediType.Tablet,
+                    Dosage = 1,
+                    Stock = 10,
+                    MinimumStock = 1
+                },
+                new Medi {
+                    Id = Guid.Parse("be10d674-85fe-4d2a-9e94-65ec3f3b4d0e"),
+                    Name = "In 1 Minute",
+                    IntervallType = IntervallType.Intervall,
+                    LastDate = DateTimeOffset.MinValue,
+                    NextDate = new DateTimeOffset(t),
+                    DosageType = MediType.Tablet,
+                    PureIntervall = 1,
+                    IntervallTime = IntervallTime.Minute,
                     Dosage = 1,
                     Stock = 10,
                     MinimumStock = 1

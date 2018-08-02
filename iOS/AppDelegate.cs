@@ -13,13 +13,7 @@ namespace OneMediPlan.iOS
     public class AppDelegate : UIApplicationDelegate
     {
         // class-level declarations
-        public override UIWindow Window
-        {
-            get;
-            set;
-        }
-
-
+        public override UIWindow Window { get; set; }
 
         public static void SetNotification(Medi medi)
         {
@@ -30,7 +24,7 @@ namespace OneMediPlan.iOS
             //notification.FireDate = NSDate.FromTimeIntervalSinceNow(15);
             notification.AlertTitle = $"{medi.Name}"; // required for Apple Watch notifications
             notification.AlertAction = $"View Alert for {medi.Name}";
-            notification.AlertBody = $"Zeit für {medi.Dosage} Einheiten!";
+            notification.AlertBody = $"Zeit für {medi.Dosage} Einheit(en)!";
             notification.SoundName = UILocalNotification.DefaultSoundName;
 
             UIApplication.SharedApplication.ScheduleLocalNotification(notification);
@@ -39,7 +33,8 @@ namespace OneMediPlan.iOS
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             var notificationSettings =
-                UIUserNotificationSettings.GetSettingsForTypes(UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null);
+                UIUserNotificationSettings
+                    .GetSettingsForTypes(UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null);
             application.RegisterUserNotificationSettings(notificationSettings);
             return true;
         }
