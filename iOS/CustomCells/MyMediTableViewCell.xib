@@ -15,33 +15,37 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="303" translatesAutoresizingMaskIntoConstraints="NO">
                         <rect key="frame" x="16" y="8" width="316" height="29"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="24" weight="ultraLight"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="24" weight="thin"/>
                         <constraints>
                             <constraint id="495" firstItem="303" firstAttribute="height" constant="29"/>
                         </constraints>
+                        <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="644" translatesAutoresizingMaskIntoConstraints="NO">
-                        <rect key="frame" x="16" y="45" width="265" height="20"/>
+                        <rect key="frame" x="16" y="45" width="188" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                         <nil key="highlightedColor"/>
+                        <constraints>
+                            <constraint id="5912" firstItem="644" firstAttribute="width" constant="188"/>
+                        </constraints>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="650" translatesAutoresizingMaskIntoConstraints="NO">
-                        <rect key="frame" x="16" y="74" width="265" height="18"/>
+                        <rect key="frame" x="16" y="74" width="188" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15" weight="light"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" colorSpace="calibratedRGB" red="0.58431372549019611" green="0.68627450980392157" blue="0.75294117647058822" alpha="1"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 / 2,3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="959" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
-                        <rect key="frame" x="289" y="73.5" width="80" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 / 2,3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="959" translatesAutoresizingMaskIntoConstraints="NO">
+                        <rect key="frame" x="212" y="74" width="157" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" colorSpace="calibratedRGB" red="0.58431372549019611" green="0.68627450980392157" blue="0.75294117647058822" alpha="1"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1619" translatesAutoresizingMaskIntoConstraints="NO" text="2,5" misplaced="YES">
-                        <rect key="frame" x="289" y="44" width="80" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1619" translatesAutoresizingMaskIntoConstraints="NO" text="2,5">
+                        <rect key="frame" x="212" y="44" width="157" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="3988" translatesAutoresizingMaskIntoConstraints="NO" highlightedImage="First">
@@ -59,8 +63,6 @@
                     <constraint id="648" firstItem="644" firstAttribute="top" secondItem="303" secondAttribute="bottom" constant="8"/>
                     <constraint id="952" firstItem="650" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="16"/>
                     <constraint id="953" firstItem="650" firstAttribute="top" secondItem="644" secondAttribute="bottom" constant="9"/>
-                    <constraint id="957" firstItem="644" firstAttribute="width" secondItem="303" secondAttribute="width" constant="-51"/>
-                    <constraint id="958" firstItem="650" firstAttribute="width" secondItem="644" secondAttribute="width"/>
                     <constraint id="960" firstItem="959" firstAttribute="centerY" secondItem="650" secondAttribute="centerY"/>
                     <constraint id="1288" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="959" secondAttribute="trailing" constant="16"/>
                     <constraint id="1620" firstItem="1619" firstAttribute="centerY" secondItem="644" secondAttribute="centerY" constant="-0.5"/>
@@ -68,6 +70,12 @@
                     <constraint id="3992" firstItem="3988" firstAttribute="leading" secondItem="303" secondAttribute="trailing" constant="8"/>
                     <constraint id="3993" firstItem="3988" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="8"/>
                     <constraint id="3994" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="3988" secondAttribute="trailing" constant="16"/>
+                    <constraint id="6131" firstItem="650" firstAttribute="width" secondItem="644" secondAttribute="width"/>
+                    <constraint id="6786" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="1619" secondAttribute="trailing" constant="16"/>
+                    <constraint id="7005" firstItem="959" firstAttribute="width" secondItem="1619" secondAttribute="width"/>
+                    <constraint id="7224" firstItem="644" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="16"/>
+                    <constraint id="7443" firstItem="1619" firstAttribute="top" secondItem="303" secondAttribute="bottom" constant="7"/>
+                    <constraint id="7662" firstItem="1619" firstAttribute="leading" secondItem="644" secondAttribute="trailing" constant="8"/>
                 </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="-31.50302" y="-148.7012"/>

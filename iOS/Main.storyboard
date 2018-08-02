@@ -98,6 +98,7 @@
                         <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" colorSpace="calibratedRGB" red="0.49411764705882355" green="0.83921568627450982" blue="0.87450980392156863" alpha="1"/>
                     </tabBar>
                     <connections>
                         <segue destination="IVu-6x-Ha6" kind="relationship" relationship="viewControllers" id="1947"/>
@@ -114,13 +115,18 @@
                 <navigationController title="Browse" automaticallyAdjustsScrollViewInsets="NO" id="IVu-6x-Ha6" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="First" id="acW-dT-cKf"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="U58-7W-wiN">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="U58-7W-wiN" largeTitles="YES">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" red="0.11372549019607843" green="0.50196078431372548" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" customColorSpace="sRGB" colorSpace="calibratedRGB" red="0.13333333333333333" green="0.65098039215686276" blue="0.70196078431372544" alpha="1"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" customColorSpace="sRGB" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="19" weight="ultraLight"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" pointSize="36" weight="ultraLight"/>
+                            <color key="textColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -182,12 +188,12 @@
                         <color key="separatorColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                         <color key="sectionIndexBackgroundColor" colorSpace="calibratedRGB" red="0.44705882352941179" green="0.9882352941176471" blue="0.83529411764705885" alpha="1"/>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Medis" id="104">
+                    <navigationItem key="navigationItem" title="One MediPlan" id="104">
                         <barButtonItem key="rightBarButtonItem" id="2253">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2252">
-                                <rect key="frame" x="0.0" y="0.0" width="86" height="30"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2252">
+                                <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add Medi">
+                                <state key="normal">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -264,31 +270,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Medi name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2329">
-                                <rect key="frame" x="18" y="129" width="341" height="30"/>
+                                <rect key="frame" x="18" y="181" width="341" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2344" text="Gib einen Namen ein">
-                                <rect key="frame" x="16" y="84" width="343" height="37"/>
+                                <rect key="frame" x="16" y="136" width="343" height="37"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28" weight="thin"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
+                                <color key="highlightedColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                                 <constraints>
                                     <constraint id="4908" firstItem="2344" firstAttribute="height" constant="37"/>
                                 </constraints>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6739" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="16" y="167" width="343" height="39"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6739" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="219" width="343" height="39"/>
                                 <constraints>
                                     <constraint id="6994" firstItem="6739" firstAttribute="height" constant="39"/>
                                 </constraints>
-                                <state key="normal" title="Next"/>
+                                <state key="normal" title="Weiter">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                </state>
                                 <connections>
                                     <segue id="7520" destination="7323" kind="show"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" customColorSpace="sRGB" colorSpace="calibratedRGB" red="0.87450980392156863" green="0.97647058823529409" blue="0.984313725490196" alpha="1"/>
                         <constraints>
                             <constraint id="4479" firstItem="2344" firstAttribute="trailing" secondItem="2249" secondAttribute="trailingMargin"/>
                             <constraint id="4505" firstItem="2344" firstAttribute="trailing" secondItem="2249" secondAttribute="trailingMargin"/>
@@ -309,13 +317,7 @@
                         <outlet property="ButtonNext" destination="6739" id="name-outlet-6739"/>
                     </connections>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationItem title="Name" id="16482" key="navigationItem">
-                        <barButtonItem key="rightBarButtonItem" title="Weiter" id="16483">
-                            <connections>
-                                <segue id="16538" destination="7323" kind="show"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem title="Name" id="16482" key="navigationItem"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2250" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -331,25 +333,25 @@
                     <view key="view" contentMode="scaleToFill" id="7324">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.87450980392156863" green="0.97647058823529409" blue="0.984313725490196" alpha="1"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vorrat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="10847" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="16" y="84" width="343" height="37"/>
+                                <rect key="frame" x="16" y="136" width="343" height="37"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28" weight="thin"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
+                                <color key="highlightedColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                                 <constraints>
                                     <constraint id="13824" firstItem="10847" firstAttribute="height" constant="37"/>
                                 </constraints>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="10903" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Current">
-                                <rect key="frame" x="16" y="129" width="163" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="10903" translatesAutoresizingMaskIntoConstraints="NO" placeholder="momentan">
+                                <rect key="frame" x="16" y="181" width="163.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="10958" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Minimum">
-                                <rect key="frame" x="193" y="129" width="166" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="10958" translatesAutoresizingMaskIntoConstraints="NO" placeholder="minimum">
+                                <rect key="frame" x="192.5" y="181" width="166.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -357,9 +359,11 @@
                                     <constraint id="14104" firstItem="10958" firstAttribute="height" constant="30"/>
                                 </constraints>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="13146" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="16" y="167" width="343" height="30"/>
-                                <state key="normal" title="Next"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="13146" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="219" width="343" height="30"/>
+                                <state key="normal" title="Weiter">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                </state>
                                 <connections>
                                     <segue id="16103" destination="16030" kind="show"/>
                                 </connections>
@@ -386,13 +390,7 @@
                             <constraint id="19154" firstItem="10847" firstAttribute="top" secondItem="7320" secondAttribute="bottom" constant="20"/>
                         </constraints>
                     </view>
-                    <navigationItem title="Vorrat" id="16884" key="navigationItem">
-                        <barButtonItem key="rightBarButtonItem" title="Weiter" id="16886">
-                            <connections>
-                                <segue id="16938" destination="16030" kind="show"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem title="Vorrat" id="16884" key="navigationItem"/>
                     <connections>
                         <outlet property="LabelCurrentStock" destination="10903" id="name-outlet-10903"/>
                         <outlet property="LabelMinimumStock" destination="10958" id="name-outlet-10958"/>
@@ -412,20 +410,24 @@
                     <view key="view" contentMode="scaleToFill" id="16031">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.87450980392156863" green="0.97647058823529409" blue="0.984313725490196" alpha="1"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="16940" translatesAutoresizingMaskIntoConstraints="NO" tag="1">
                                 <rect key="frame" x="16" y="222" width="343" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28" weight="light"/>
-                                <state key="normal" title="Intervall"/>
+                                <state key="normal" title="Intervall">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                </state>
                                 <connections>
                                     <segue id="17337" destination="16947" kind="show"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="16941" translatesAutoresizingMaskIntoConstraints="NO" tag="2">
                                 <rect key="frame" x="16" y="268" width="343" height="38"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <state key="normal" title="Abhängig"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28" weight="light"/>
+                                <state key="normal" title="Abhängig">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                </state>
                                 <connections>
                                     <segue id="17376" destination="17342" kind="show"/>
                                 </connections>
@@ -433,7 +435,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="16942" translatesAutoresizingMaskIntoConstraints="NO" tag="3">
                                 <rect key="frame" x="16" y="314" width="343" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28" weight="light"/>
-                                <state key="normal" title="Wochentage"/>
+                                <state key="normal" title="Wochentage">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                </state>
                                 <connections>
                                     <segue id="17472" destination="17432" kind="show"/>
                                 </connections>
@@ -443,11 +447,20 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="16943" translatesAutoresizingMaskIntoConstraints="NO" tag="4">
                                 <rect key="frame" x="16" y="360" width="343" height="38"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <state key="normal" title="Bei Bedarf"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28" weight="light"/>
+                                <state key="normal" title="Bei Bedarf">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                </state>
                                 <connections>
                                     <segue id="17427" destination="17381" kind="show"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="38150" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                <rect key="frame" x="16" y="406" width="343" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28" weight="light"/>
+                                <state key="normal" title="Zeitplan">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                </state>
                             </button>
                         </subviews>
                         <constraints>
@@ -469,6 +482,11 @@
                             <constraint id="17900" firstItem="16940" firstAttribute="width" secondItem="16942" secondAttribute="width"/>
                             <constraint id="17901" firstItem="16940" firstAttribute="height" secondItem="16942" secondAttribute="height"/>
                             <constraint id="17902" firstItem="16941" firstAttribute="top" secondItem="16940" secondAttribute="bottom" constant="8"/>
+                            <constraint id="38728" firstItem="38150" firstAttribute="leading" secondItem="16031" secondAttribute="leadingMargin"/>
+                            <constraint id="38758" firstItem="38150" firstAttribute="trailing" secondItem="16031" secondAttribute="trailingMargin"/>
+                            <constraint id="38788" firstItem="38150" firstAttribute="top" secondItem="16943" secondAttribute="bottom" constant="8"/>
+                            <constraint id="38818" firstItem="38150" firstAttribute="top" secondItem="16943" secondAttribute="bottom" constant="8"/>
+                            <constraint id="38848" firstItem="38150" firstAttribute="width" secondItem="16943" secondAttribute="width"/>
                         </constraints>
                     </view>
                     <navigationItem title="Intervalltyp" id="17903" key="navigationItem"/>
@@ -487,35 +505,47 @@
                     <view key="view" contentMode="scaleToFill" id="16948">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.87450980392156863" green="0.97647058823529409" blue="0.984313725490196" alpha="1"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" id="18618" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="16" y="167" width="343" height="162"/>
+                                <rect key="frame" x="16" y="219" width="343" height="88"/>
                                 <constraints>
-                                    <constraint id="19167" firstItem="18618" firstAttribute="height" constant="162"/>
+                                    <constraint id="39705" firstItem="18618" firstAttribute="height" constant="88"/>
                                 </constraints>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intervall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="18619" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="16" y="84" width="343" height="37"/>
+                                <rect key="frame" x="16" y="136" width="343" height="37"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28" weight="thin"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                                 <nil key="highlightedColor"/>
                                 <constraints>
                                     <constraint id="19161" firstItem="18619" firstAttribute="height" constant="37"/>
                                 </constraints>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="18620" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Anzahl">
-                                <rect key="frame" x="16" y="129" width="343" height="30"/>
+                                <rect key="frame" x="16" y="181" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="29748" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="16" y="337" width="343" height="37"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="29748" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="315" width="209" height="37"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28" weight="thin"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="34304" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="233" y="318" width="126" height="30"/>
+                                <state key="normal" title="Weiter">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                </state>
+                                <connections>
+                                    <segue id="35200" destination="17910" kind="show"/>
+                                </connections>
+                                <constraints>
+                                    <constraint id="40203" firstItem="34304" firstAttribute="width" constant="126"/>
+                                </constraints>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint id="19157" firstItem="18619" firstAttribute="top" secondItem="16944" secondAttribute="bottom" constant="20"/>
@@ -528,20 +558,19 @@
                             <constraint id="19165" firstItem="18618" firstAttribute="width" secondItem="18619" secondAttribute="width"/>
                             <constraint id="19166" firstItem="18618" firstAttribute="leading" secondItem="16948" secondAttribute="leadingMargin"/>
                             <constraint id="19168" firstItem="18618" firstAttribute="top" secondItem="18620" secondAttribute="bottom" constant="8"/>
-                            <constraint id="29749" firstItem="29748" firstAttribute="centerX" secondItem="16948" secondAttribute="centerX"/>
                             <constraint id="29750" firstItem="29748" firstAttribute="leading" secondItem="16948" secondAttribute="leadingMargin"/>
-                            <constraint id="29751" firstItem="29748" firstAttribute="trailing" secondItem="16948" secondAttribute="trailingMargin"/>
                             <constraint id="29752" firstItem="29748" firstAttribute="height" secondItem="18619" secondAttribute="height"/>
-                            <constraint id="29753" firstItem="29748" firstAttribute="top" secondItem="18618" secondAttribute="bottom" constant="8"/>
+                            <constraint id="34873" firstItem="34304" firstAttribute="trailing" secondItem="16948" secondAttribute="trailingMargin"/>
+                            <constraint id="39675" firstItem="18618" firstAttribute="top" secondItem="18620" secondAttribute="bottom" constant="8"/>
+                            <constraint id="40233" firstItem="34304" firstAttribute="top" secondItem="18618" secondAttribute="bottom" constant="11"/>
+                            <constraint id="40263" firstItem="34304" firstAttribute="trailing" secondItem="16948" secondAttribute="trailingMargin"/>
+                            <constraint id="40322" firstItem="34304" firstAttribute="leading" secondItem="29748" secondAttribute="trailing" constant="8"/>
+                            <constraint id="40381" firstItem="34304" firstAttribute="leading" secondItem="29748" secondAttribute="trailing" constant="8"/>
+                            <constraint id="40411" firstItem="29748" firstAttribute="leading" secondItem="16948" secondAttribute="leadingMargin"/>
+                            <constraint id="40441" firstItem="29748" firstAttribute="top" secondItem="18618" secondAttribute="bottom" constant="8"/>
                         </constraints>
                     </view>
-                    <navigationItem title="Intervall" id="17905" key="navigationItem">
-                        <barButtonItem key="rightBarButtonItem" title="Weiter" id="17915">
-                            <connections>
-                                <segue id="18021" destination="17910" kind="show"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem title="Intervall" id="17905" key="navigationItem"/>
                     <connections>
                         <outlet property="PickerIntervallType" destination="18618" id="name-outlet-18618"/>
                         <outlet property="LabelIntervallCount" destination="18620" id="name-outlet-18620"/>
@@ -562,23 +591,32 @@
                     <view key="view" contentMode="scaleToFill" id="17343">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.87450980392156863" green="0.97647058823529409" blue="0.984313725490196" alpha="1"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" id="17478" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="16" y="129" width="343" height="162"/>
+                                <rect key="frame" x="16" y="181" width="343" height="162"/>
                                 <constraints>
                                     <constraint id="29099" firstItem="17478" firstAttribute="height" constant="162"/>
                                 </constraints>
                             </pickerView>
                             <label key="titleView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="19146" translatesAutoresizingMaskIntoConstraints="NO" text="wähle Medikament">
-                                <rect key="frame" x="16" y="84" width="343" height="37"/>
+                                <rect key="frame" x="16" y="136" width="343" height="37"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28" weight="thin"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                                 <nil key="highlightedColor"/>
                                 <constraints>
                                     <constraint id="29093" firstItem="19146" firstAttribute="height" constant="37"/>
                                 </constraints>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="35489" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="351" width="343" height="30"/>
+                                <state key="normal" title="Weiter">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                </state>
+                                <connections>
+                                    <segue id="36566" destination="16947" kind="show"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint id="29090" firstItem="19146" firstAttribute="centerX" secondItem="17343" secondAttribute="centerX"/>
@@ -589,15 +627,12 @@
                             <constraint id="29096" firstItem="17478" firstAttribute="leading" secondItem="17343" secondAttribute="leadingMargin"/>
                             <constraint id="29097" firstItem="17478" firstAttribute="trailing" secondItem="17343" secondAttribute="trailingMargin"/>
                             <constraint id="29098" firstItem="17478" firstAttribute="top" secondItem="19146" secondAttribute="bottom" constant="8"/>
+                            <constraint id="41997" firstItem="35489" firstAttribute="trailing" secondItem="17343" secondAttribute="trailingMargin"/>
+                            <constraint id="42027" firstItem="35489" firstAttribute="leading" secondItem="17343" secondAttribute="leadingMargin"/>
+                            <constraint id="42057" firstItem="35489" firstAttribute="top" secondItem="17478" secondAttribute="bottom" constant="8"/>
                         </constraints>
                     </view>
-                    <navigationItem title="Abhängig" id="17906" key="navigationItem">
-                        <barButtonItem key="rightBarButtonItem" id="17916" title="Weiter">
-                            <connections>
-                                <segue id="18667" destination="16947" kind="show"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem title="Abhängig" id="17906" key="navigationItem"/>
                     <connections>
                         <outlet property="PickerDependency" destination="17478" id="name-outlet-17478"/>
                     </connections>
@@ -616,7 +651,7 @@
                     <view key="view" contentMode="scaleToFill" id="17382">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.87450980392156863" green="0.97647058823529409" blue="0.984313725490196" alpha="1"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="18059" translatesAutoresizingMaskIntoConstraints="NO">
                                 <rect key="frame" x="16" y="310" width="343" height="46"/>
@@ -627,7 +662,9 @@
                                 <constraints>
                                     <constraint id="31091" firstItem="18059" firstAttribute="height" constant="46"/>
                                 </constraints>
-                                <state key="normal" title="Save Medi"/>
+                                <state key="normal" title="speichern">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                </state>
                             </button>
                         </subviews>
                         <constraints>
@@ -659,7 +696,7 @@
                     <view key="view" contentMode="scaleToFill" id="17433">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.87450980392156863" green="0.97647058823529409" blue="0.984313725490196" alpha="1"/>
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="17474" translatesAutoresizingMaskIntoConstraints="NO" tag="2">
                                 <rect key="frame" x="69" y="240" width="51" height="31"/>
@@ -706,37 +743,37 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dienstag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="19147" translatesAutoresizingMaskIntoConstraints="NO">
                                 <rect key="frame" x="128" y="242" width="120" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22" weight="thin"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Montag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="19148" translatesAutoresizingMaskIntoConstraints="NO">
                                 <rect key="frame" x="128" y="204" width="120" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22" weight="thin"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sonntag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="19149" translatesAutoresizingMaskIntoConstraints="NO">
                                 <rect key="frame" x="128" y="438" width="120" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22" weight="thin"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Samstag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="19150" translatesAutoresizingMaskIntoConstraints="NO">
                                 <rect key="frame" x="128" y="398" width="120" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22" weight="thin"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="19151" translatesAutoresizingMaskIntoConstraints="NO" text="Freitag">
                                 <rect key="frame" x="128" y="357" width="120" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22" weight="thin"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Donnerstag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="19152" translatesAutoresizingMaskIntoConstraints="NO">
                                 <rect key="frame" x="128" y="320" width="120" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22" weight="thin"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                                 <nil key="highlightedColor"/>
                                 <constraints>
                                     <constraint id="22263" firstItem="19152" firstAttribute="width" constant="120"/>
@@ -746,9 +783,18 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mittwoch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="19153" translatesAutoresizingMaskIntoConstraints="NO">
                                 <rect key="frame" x="128" y="282" width="120" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22" weight="thin"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="31982" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="474" width="343" height="30"/>
+                                <state key="normal" title="Weiter">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                </state>
+                                <connections>
+                                    <segue id="32398" destination="17910" kind="show"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint id="22261" firstItem="19152" firstAttribute="centerX" secondItem="17433" secondAttribute="centerX"/>
@@ -793,15 +839,15 @@
                             <constraint id="23441" firstItem="19151" firstAttribute="leading" secondItem="19136" secondAttribute="trailing" constant="10"/>
                             <constraint id="23442" firstItem="19150" firstAttribute="leading" secondItem="19143" secondAttribute="trailing" constant="10"/>
                             <constraint id="23443" firstItem="19149" firstAttribute="leading" secondItem="19144" secondAttribute="trailing" constant="10"/>
+                            <constraint id="32429" firstItem="31982" firstAttribute="leading" secondItem="17433" secondAttribute="leadingMargin"/>
+                            <constraint id="32459" firstItem="31982" firstAttribute="centerX" secondItem="17433" secondAttribute="centerX"/>
+                            <constraint id="32489" firstItem="31982" firstAttribute="top" secondItem="19149" secondAttribute="bottom" constant="10"/>
                         </constraints>
                     </view>
-                    <navigationItem id="17904" key="navigationItem" title="Wochentage">
-                        <barButtonItem key="rightBarButtonItem" title="Weiter" id="17914">
-                            <connections>
-                                <segue id="17985" destination="17910" kind="show"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem id="17904" key="navigationItem" title="Wochentage"/>
+                    <connections>
+                        <outlet property="ButtonWeiter" destination="31982" id="name-outlet-31982"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17434" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -817,23 +863,32 @@
                     <view key="view" contentMode="scaleToFill" id="17911">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.87450980392156863" green="0.97647058823529409" blue="0.984313725490196" alpha="1"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="18060" translatesAutoresizingMaskIntoConstraints="NO" text="Dosis">
-                                <rect key="frame" x="16" y="84" width="343" height="37"/>
+                                <rect key="frame" x="16" y="136" width="343" height="37"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28" weight="thin"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                                 <nil key="highlightedColor"/>
                                 <constraints>
                                     <constraint id="24034" firstItem="18060" firstAttribute="height" constant="37"/>
                                 </constraints>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="18071" translatesAutoresizingMaskIntoConstraints="NO" borderStyle="roundedRect">
-                                <rect key="frame" x="16" y="129" width="343" height="30"/>
+                                <rect key="frame" x="16" y="181" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="32548" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="232" width="343" height="30"/>
+                                <state key="normal" title="Weiter">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                </state>
+                                <connections>
+                                    <segue id="32869" destination="18545" kind="show"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint id="18061" firstItem="18060" firstAttribute="leading" secondItem="17911" secondAttribute="leadingMargin"/>
@@ -851,15 +906,12 @@
                             <constraint id="24035" firstItem="18071" firstAttribute="trailing" secondItem="17911" secondAttribute="trailingMargin"/>
                             <constraint id="24036" firstItem="18071" firstAttribute="leading" secondItem="17911" secondAttribute="leadingMargin"/>
                             <constraint id="24037" firstItem="18071" firstAttribute="top" secondItem="18060" secondAttribute="bottom" constant="8"/>
+                            <constraint id="32723" firstItem="32548" firstAttribute="trailing" secondItem="17911" secondAttribute="trailingMargin"/>
+                            <constraint id="32753" firstItem="32548" firstAttribute="leading" secondItem="17911" secondAttribute="leadingMargin"/>
+                            <constraint id="32783" firstItem="32548" firstAttribute="top" secondItem="18071" secondAttribute="bottom" constant="21"/>
                         </constraints>
                     </view>
-                    <navigationItem title="Dosis" id="18023" key="navigationItem">
-                        <barButtonItem key="rightBarButtonItem" title="Weiter" id="18024">
-                            <connections>
-                                <segue id="18575" destination="18545" kind="show"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem title="Dosis" id="18023" key="navigationItem"/>
                     <connections>
                         <outlet property="LabelDosage" destination="18071" id="name-outlet-18071"/>
                     </connections>
@@ -878,10 +930,10 @@
                     <view key="view" contentMode="scaleToFill" id="18546">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.87450980392156863" green="0.97647058823529409" blue="0.984313725490196" alpha="1"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="18617" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="27" y="148" width="321" height="216"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" id="18617" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="27" y="200" width="321" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="332704801.65417802">
                                     <!--2011-07-18 18:00:01 +0000-->
                                 </date>
@@ -890,14 +942,23 @@
                                 </constraints>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Startzeit wählen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="24028" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="16" y="84" width="343" height="37"/>
+                                <rect key="frame" x="16" y="136" width="343" height="37"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28" weight="thin"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                                 <nil key="highlightedColor"/>
                                 <constraints>
                                     <constraint id="24031" firstItem="24028" firstAttribute="height" constant="37"/>
                                 </constraints>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="32988" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="424" width="343" height="30"/>
+                                <state key="normal" title="Weiter">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                </state>
+                                <connections>
+                                    <segue id="33263" destination="17381" kind="show"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint id="24029" firstItem="24028" firstAttribute="leading" secondItem="18546" secondAttribute="leadingMargin"/>
@@ -908,15 +969,12 @@
                             <constraint id="24043" firstItem="18617" firstAttribute="top" secondItem="24028" secondAttribute="bottom" constant="27"/>
                             <constraint id="24046" firstItem="18617" firstAttribute="leading" secondItem="18546" secondAttribute="leadingMargin" constant="11"/>
                             <constraint id="24047" firstItem="18546" firstAttribute="trailingMargin" secondItem="18617" secondAttribute="trailing" constant="11"/>
+                            <constraint id="33323" firstItem="32988" firstAttribute="trailing" secondItem="18546" secondAttribute="trailingMargin"/>
+                            <constraint id="33353" firstItem="32988" firstAttribute="leading" secondItem="18546" secondAttribute="leadingMargin"/>
+                            <constraint id="33383" firstItem="32988" firstAttribute="top" secondItem="18617" secondAttribute="bottom" constant="8"/>
                         </constraints>
                     </view>
-                    <navigationItem title="Start" id="18577" key="navigationItem">
-                        <barButtonItem key="rightBarButtonItem" title="Weiter" id="18578">
-                            <connections>
-                                <segue id="18615" destination="17381" kind="show" identifier="ToSaveMediViewController"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem title="Start" id="18577" key="navigationItem"/>
                     <connections>
                         <outlet property="PickerStartTime" destination="18617" id="name-outlet-18617"/>
                     </connections>

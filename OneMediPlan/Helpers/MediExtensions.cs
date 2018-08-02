@@ -83,13 +83,13 @@ namespace OneMediPlan.Helpers
                 return medi.NextDate.ToString("dddd");
             }
 
-            return medi.NextDate.ToString("dd.MM.y");
+            return medi.NextDate.ToString("dd. MMMM");
         }
 
         public static string GetLastDate(this Medi medi)
         {
             if (medi.LastDate == DateTimeOffset.MinValue)
-                return "n/a";
+                return "-";
 
             var now = DateTimeOffset.Now;
             var latest = medi.LastDate;
@@ -98,7 +98,7 @@ namespace OneMediPlan.Helpers
             if (now.DayOfWeek == latest.DayOfWeek && diffDay.Days <= 1) // Heute
                 return medi.LastDate.ToString("HH:mm");
             
-            return medi.LastDate.ToString("dd.MM.y");
+            return medi.LastDate.ToString("dd. MMMM");
         }
 
         public static string GetDosage(this Medi medi)

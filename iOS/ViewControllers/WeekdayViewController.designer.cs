@@ -14,12 +14,20 @@ namespace OneMediPlan.iOS
     [Register ("WeekdayViewController")]
     partial class WeekdayViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton ButtonWeiter { get; set; }
+
         [Action ("WeekdayValueChanged:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void WeekdayValueChanged (UIKit.UISwitch sender);
 
         void ReleaseDesignerOutlets ()
         {
+            if (ButtonWeiter != null) {
+                ButtonWeiter.Dispose ();
+                ButtonWeiter = null;
+            }
         }
     }
 }
