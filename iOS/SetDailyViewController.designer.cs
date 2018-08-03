@@ -14,5 +14,8 @@ namespace OneMediPlan.iOS
     [Register ("SetDailyViewController")]
     partial class SetDailyViewController
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }
