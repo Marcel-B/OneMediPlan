@@ -54,6 +54,11 @@
                             <constraint id="3989" firstItem="3988" firstAttribute="height" constant="29"/>
                             <constraint id="3990" firstItem="3988" firstAttribute="width" constant="29"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                <real key="value" value="25"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                 </subviews>
                 <constraints>

@@ -207,6 +207,10 @@
       <DependentUpon>SetDosageViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\IosExtensions.cs" />
+    <Compile Include="SetDailyViewController.cs" />
+    <Compile Include="SetDailyViewController.designer.cs">
+      <DependentUpon>SetDailyViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />

@@ -18,6 +18,18 @@ namespace OneMediPlan.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton ButtonSave { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel LabelDosage { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel LabelIntevall { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel LabelName { get; set; }
+
         [Action ("UIButton18059_TouchUpInside:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void UIButton18059_TouchUpInside (UIKit.UIButton sender);
@@ -27,6 +39,21 @@ namespace OneMediPlan.iOS
             if (ButtonSave != null) {
                 ButtonSave.Dispose ();
                 ButtonSave = null;
+            }
+
+            if (LabelDosage != null) {
+                LabelDosage.Dispose ();
+                LabelDosage = null;
+            }
+
+            if (LabelIntevall != null) {
+                LabelIntevall.Dispose ();
+                LabelIntevall = null;
+            }
+
+            if (LabelName != null) {
+                LabelName.Dispose ();
+                LabelName = null;
             }
         }
     }

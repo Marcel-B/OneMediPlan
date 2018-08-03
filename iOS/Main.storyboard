@@ -455,12 +455,15 @@
                                     <segue id="17427" destination="17381" kind="show"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="38150" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
-                                <rect key="frame" x="16" y="406" width="343" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="38150" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="406" width="343" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28" weight="light"/>
                                 <state key="normal" title="Zeitplan">
                                     <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
                                 </state>
+                                <connections>
+                                    <segue id="42823" destination="42783" kind="show"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -487,6 +490,7 @@
                             <constraint id="38788" firstItem="38150" firstAttribute="top" secondItem="16943" secondAttribute="bottom" constant="8"/>
                             <constraint id="38818" firstItem="38150" firstAttribute="top" secondItem="16943" secondAttribute="bottom" constant="8"/>
                             <constraint id="38848" firstItem="38150" firstAttribute="width" secondItem="16943" secondAttribute="width"/>
+                            <constraint id="42825" firstItem="38150" firstAttribute="height" secondItem="16943" secondAttribute="height"/>
                         </constraints>
                     </view>
                     <navigationItem title="Intervalltyp" id="17903" key="navigationItem"/>
@@ -666,6 +670,29 @@
                                     <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MediName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="43608" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="136" width="343" height="37"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28" weight="thin"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="43611" firstItem="43608" firstAttribute="height" constant="37"/>
+                                </constraints>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intervall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="43613" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="16" y="181" width="119" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dosis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="43614" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="259" y="181" width="100" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint id="24662" firstItem="18059" firstAttribute="centerX" secondItem="17382" secondAttribute="centerX"/>
@@ -676,10 +703,16 @@
                             <constraint id="31087" firstItem="18059" firstAttribute="leading" secondItem="17382" secondAttribute="leadingMargin"/>
                             <constraint id="31088" firstItem="18059" firstAttribute="trailing" secondItem="17382" secondAttribute="trailingMargin"/>
                             <constraint id="31089" firstItem="18059" firstAttribute="centerX" secondItem="17382" secondAttribute="centerX"/>
+                            <constraint id="43609" firstItem="43608" firstAttribute="leading" secondItem="17382" secondAttribute="leadingMargin"/>
+                            <constraint id="43610" firstItem="43608" firstAttribute="trailing" secondItem="17382" secondAttribute="trailingMargin"/>
+                            <constraint id="43612" firstItem="43608" firstAttribute="top" secondItem="17378" secondAttribute="bottom" constant="20"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="ButtonSave" destination="18059" id="name-outlet-18059"/>
+                        <outlet property="LabelName" destination="43608" id="name-outlet-43608"/>
+                        <outlet property="LabelIntevall" destination="43613" id="name-outlet-43613"/>
+                        <outlet property="LabelDosage" destination="43614" id="name-outlet-43614"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17383" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -956,7 +989,7 @@
                                     <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
                                 </state>
                                 <connections>
-                                    <segue id="33263" destination="17381" kind="show"/>
+                                    <segue id="33263" destination="17381" kind="show" identifier="ToSaveMediViewController"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -983,10 +1016,46 @@
             </objects>
             <point key="canvasLocation" x="5482" y="-1538"/>
         </scene>
+        <scene sceneID="42782">
+            <objects>
+                <viewController id="42783" sceneMemberID="viewController" customClass="SetDailyViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="42780"/>
+                        <viewControllerLayoutGuide type="bottom" id="42781"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="42784">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.87450980392156863" green="0.97647058823529409" blue="0.984313725490196" alpha="1"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="42826" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="151" width="343" height="30"/>
+                                <state key="normal" title="Weiter">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                </state>
+                                <connections>
+                                    <segue id="42868" destination="18545" kind="show"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint id="42827" firstItem="42826" firstAttribute="trailing" secondItem="42784" secondAttribute="trailingMargin"/>
+                            <constraint id="42828" firstItem="42826" firstAttribute="leading" secondItem="42784" secondAttribute="leadingMargin"/>
+                            <constraint id="42829" firstItem="42826" firstAttribute="leading" secondItem="42784" secondAttribute="leadingMargin"/>
+                            <constraint id="42830" firstItem="42826" firstAttribute="centerX" secondItem="42784" secondAttribute="centerX"/>
+                            <constraint id="42831" firstItem="42826" firstAttribute="top" secondItem="42780" secondAttribute="bottom" constant="35"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="42785" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5037" y="-342"/>
+        </scene>
     </scenes>
     <resources>
         <image name="First" width="32" height="30"/>
         <image name="Second" width="32" height="30"/>
         <image name="XamarinLogo" width="220" height="51"/>
     </resources>
+    <color key="tintColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
 </document>
