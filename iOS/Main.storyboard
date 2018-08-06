@@ -1029,23 +1029,70 @@
                         <color key="backgroundColor" colorSpace="calibratedRGB" red="0.87450980392156863" green="0.97647058823529409" blue="0.984313725490196" alpha="1"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="42826" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="16" y="151" width="343" height="30"/>
+                                <rect key="frame" x="16" y="378" width="343" height="30"/>
                                 <state key="normal" title="Weiter">
                                     <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
                                 </state>
                                 <connections>
-                                    <segue id="42868" destination="18545" kind="show"/>
+                                    <segue id="46726" destination="17381" kind="show"/>
                                 </connections>
                             </button>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" id="44368" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="116" width="343" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="332704801.65417802">
+                                    <!--2011-07-18 18:00:01 +0000-->
+                                </date>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="44379" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="340" width="343" height="30"/>
+                                <state key="normal" title="Add Time">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                </state>
+                                <connections>
+                                    <action selector="UIButton44379_TouchUpInside:" destination="42783" id="45152" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="47494" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="416" width="343" height="207"/>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.87450980392156863" green="0.97647058823529409" blue="0.984313725490196" alpha="1"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="47495" reuseIdentifier="DateCell">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="47495" id="47496">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections/>
+                                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.87450980392156863" green="0.97647058823529409" blue="0.984313725490196" alpha="1"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <color key="sectionIndexBackgroundColor" colorSpace="calibratedRGB" red="0.87450980392156863" green="0.97647058823529409" blue="0.984313725490196" alpha="1"/>
+                            </tableView>
                         </subviews>
                         <constraints>
                             <constraint id="42827" firstItem="42826" firstAttribute="trailing" secondItem="42784" secondAttribute="trailingMargin"/>
                             <constraint id="42828" firstItem="42826" firstAttribute="leading" secondItem="42784" secondAttribute="leadingMargin"/>
                             <constraint id="42829" firstItem="42826" firstAttribute="leading" secondItem="42784" secondAttribute="leadingMargin"/>
                             <constraint id="42830" firstItem="42826" firstAttribute="centerX" secondItem="42784" secondAttribute="centerX"/>
-                            <constraint id="42831" firstItem="42826" firstAttribute="top" secondItem="42780" secondAttribute="bottom" constant="35"/>
+                            <constraint id="44372" firstItem="44368" firstAttribute="top" secondItem="42780" secondAttribute="bottom"/>
+                            <constraint id="44373" firstItem="44368" firstAttribute="leading" secondItem="42784" secondAttribute="leadingMargin"/>
+                            <constraint id="44374" firstItem="44368" firstAttribute="trailing" secondItem="42784" secondAttribute="trailingMargin"/>
+                            <constraint id="44381" firstItem="44379" firstAttribute="top" secondItem="44368" secondAttribute="bottom" constant="8"/>
+                            <constraint id="44382" firstItem="44379" firstAttribute="trailing" secondItem="42784" secondAttribute="trailingMargin"/>
+                            <constraint id="44383" firstItem="44379" firstAttribute="leading" secondItem="42784" secondAttribute="leadingMargin"/>
+                            <constraint id="44384" firstItem="42826" firstAttribute="top" secondItem="44379" secondAttribute="bottom" constant="8"/>
+                            <constraint id="47497" firstItem="47494" firstAttribute="top" secondItem="42826" secondAttribute="bottom" constant="8"/>
+                            <constraint id="47498" firstItem="47494" firstAttribute="bottom" secondItem="42781" secondAttribute="top"/>
+                            <constraint id="47499" firstItem="47494" firstAttribute="leading" secondItem="42784" secondAttribute="leadingMargin"/>
+                            <constraint id="47500" firstItem="47494" firstAttribute="leading" secondItem="44379" secondAttribute="leading"/>
+                            <constraint id="47501" firstItem="47494" firstAttribute="trailing" secondItem="42784" secondAttribute="trailingMargin"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="PickerTime" destination="44368" id="name-outlet-44368"/>
+                        <outlet property="TableViewDates" destination="47494" id="name-outlet-47494"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42785" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

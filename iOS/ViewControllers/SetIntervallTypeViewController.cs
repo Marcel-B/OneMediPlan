@@ -26,14 +26,22 @@ namespace OneMediPlan.iOS
                 setIntervallViewController.CurrentMedi = CurrentMedi;
                 return;
             }
-            if(segue.DestinationViewController is WeekdayViewController weekdayViewController){
+            if (segue.DestinationViewController is WeekdayViewController weekdayViewController)
+            {
                 CurrentMedi.IntervallType = IntervallType.Weekdays;
                 weekdayViewController.CurrentMedi = CurrentMedi;
                 return;
             }
-            if(segue.DestinationViewController is SaveMediViewController saveMediViewController){
+            if (segue.DestinationViewController is SaveMediViewController saveMediViewController)
+            {
                 CurrentMedi.IntervallType = IntervallType.IfNedded;
                 saveMediViewController.CurrentMedi = CurrentMedi;
+                return;
+            }
+            if (segue.DestinationViewController is SetDailyViewController setDailyViewController)
+            {
+                CurrentMedi.IntervallType = IntervallType.DailyAppointment;
+                setDailyViewController.CurrentMedi = CurrentMedi;
                 return;
             }
         }

@@ -14,8 +14,6 @@ namespace OneMediPlan.iOS
         public string Intervall { get => LabelIntevall.Text; set => LabelIntevall.Text = value; }
         public string Dosage { get => LabelDosage.Text; set => LabelDosage.Text = value; }
 
-
-
         async partial void UIButton18059_TouchUpInside(UIButton sender)
         {
             var dataStore = App.Container.Get<IDataStore<Medi>>();

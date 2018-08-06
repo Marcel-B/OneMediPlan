@@ -207,8 +207,8 @@
       <DependentUpon>SetDosageViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\IosExtensions.cs" />
-    <Compile Include="SetDailyViewController.cs" />
-    <Compile Include="SetDailyViewController.designer.cs">
+    <Compile Include="ViewControllers\SetDailyViewController.cs" />
+    <Compile Include="ViewControllers\SetDailyViewController.designer.cs">
       <DependentUpon>SetDailyViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
