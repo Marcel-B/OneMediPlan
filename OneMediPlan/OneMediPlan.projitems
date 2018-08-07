@@ -14,7 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\CloudDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MockDataStore.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AppSettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MediDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MediViewModel.cs" />
@@ -27,5 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Weekdays.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\IntervallType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ISomeLogic.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\MediSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\AppSettingsDataStore.cs" />
   </ItemGroup>
 </Project>

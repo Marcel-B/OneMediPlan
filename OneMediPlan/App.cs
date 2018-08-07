@@ -3,6 +3,7 @@ using Ninject;
 using OneMediPlan.ViewModels;
 using OneMediPlan.Helpers;
 using System;
+using OneMediPlan.Services;
 
 namespace OneMediPlan
 {
@@ -41,11 +42,13 @@ namespace OneMediPlan
             {
                 Container.Bind<IDataStore<Medi>>().To<MockDataStore>().InSingletonScope();
                 Container.Bind<IDataStore<Weekdays>>().To<WeekdayDataStoreMock>().InSingletonScope();
+                Container.Bind<IDataStore<MediSettings>>().To<AppSettingsDataStore>().InSingletonScope();
             }
             else
             {
                 Container.Bind<IDataStore<Medi>>().To<CloudDataStore>().InSingletonScope();
                 Container.Bind<IDataStore<Weekdays>>().ToSelf().InSingletonScope();
+                Container.Bind<IDataStore<MediSettings>>().To<AppSettingsDataStore>().InSingletonScope();
             }
         }
     }

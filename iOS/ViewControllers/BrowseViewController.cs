@@ -12,6 +12,7 @@ using Ninject.Parameters;
 using System.Runtime.CompilerServices;
 using OneMediPlan.Models;
 using System.Threading.Tasks;
+using Realms;
 
 namespace OneMediPlan.iOS
 {
@@ -30,6 +31,7 @@ namespace OneMediPlan.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
             TableView.RegisterNibForCellReuse(MyMediTableViewCell.Nib, MyMediTableViewCell.Key);
 
             TableView.RowHeight = 100;

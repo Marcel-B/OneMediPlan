@@ -16,39 +16,39 @@ namespace OneMediPlan.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIImageView AboutImageView { get; set; }
+        UIKit.UIButton ButtonSave { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextView AboutTextView { get; set; }
+        UIKit.UILabel LabelStandardzeit { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel AppNameLabel { get; set; }
+        UIKit.UIDatePicker PickerDefaultTime { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel VersionLabel { get; set; }
 
-        [Action ("ReadMoreButton_TouchUpInside:")]
+        [Action ("ButtonSave_TouchUpInside:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void ReadMoreButton_TouchUpInside (UIKit.UIButton sender);
+        partial void ButtonSave_TouchUpInside (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
-            if (AboutImageView != null) {
-                AboutImageView.Dispose ();
-                AboutImageView = null;
+            if (ButtonSave != null) {
+                ButtonSave.Dispose ();
+                ButtonSave = null;
             }
 
-            if (AboutTextView != null) {
-                AboutTextView.Dispose ();
-                AboutTextView = null;
+            if (LabelStandardzeit != null) {
+                LabelStandardzeit.Dispose ();
+                LabelStandardzeit = null;
             }
 
-            if (AppNameLabel != null) {
-                AppNameLabel.Dispose ();
-                AppNameLabel = null;
+            if (PickerDefaultTime != null) {
+                PickerDefaultTime.Dispose ();
+                PickerDefaultTime = null;
             }
 
             if (VersionLabel != null) {
