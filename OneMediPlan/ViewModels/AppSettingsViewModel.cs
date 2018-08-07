@@ -9,13 +9,14 @@ namespace OneMediPlan
 {
     public class AppSettingsViewModel : BaseViewModel
     {
-        public DateTimeOffset StandardReminderTime { get; set; }
-        MediSettings _mediSettings;
+        private MediSettings _mediSettings;
+
         public MediSettings CurrentSettings
         {
-            get => _mediSettings; 
+            get => _mediSettings;
             set => SetProperty(ref _mediSettings, value);
         }
+
         public ICommand SaveSettingsCommand { get; }
 
         public async Task LoadSettings()
