@@ -42,7 +42,7 @@
             <TimePicker
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/timePicker1" />
+                android:id="@+id/timePickerStdTime" />
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -51,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/save"
-                android:id="@+id/button_learn_more"
+                android:id="@+id/button_save_settings"
                 android:backgroundTint="@color/primary"
                 android:theme="@style/button_primary" />
         </LinearLayout>

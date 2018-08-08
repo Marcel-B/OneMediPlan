@@ -4,6 +4,8 @@ using OneMediPlan.ViewModels;
 using OneMediPlan.Helpers;
 using System;
 using OneMediPlan.Services;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace OneMediPlan
 {
@@ -47,7 +49,7 @@ namespace OneMediPlan
             Container.Bind<SetDailyViewModel>().ToSelf().InSingletonScope();
             Container.Bind<SetStartViewModel>().ToSelf().InSingletonScope();
             Container.Bind<SaveMediViewModel>().ToSelf().InSingletonScope();
-            
+
             Container.Bind<ISomeLogic>().To<SomeLogic>();
             if (UseMockDataStore)
             {
@@ -60,6 +62,22 @@ namespace OneMediPlan
                 Container.Bind<IDataStore<Medi>>().To<CloudDataStore>().InSingletonScope();
                 Container.Bind<IDataStore<Weekdays>>().ToSelf().InSingletonScope();
                 Container.Bind<IDataStore<MediSettings>>().To<AppSettingsDataStore>().InSingletonScope();
+            }
+
+            Task.Run(() => SetSettings());
+
+        }
+        public static async Task SetSettings()
+        {
+            var ct = App.Container.Get<IDataStore<MediSettings>>();
+            var ffo = await ct.GetItemsAsync();
+            if (ffo.ToList().Count <= 0)
+            {
+                var medSett = new MediSettings();
+                medSett.Hour = 12;
+                medSett.Minute = 15;
+                medSett.Id = Guid.NewGuid().ToString();
+                await ct.AddItemAsync(medSett);
             }
         }
     }

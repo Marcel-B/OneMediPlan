@@ -2,11 +2,28 @@
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using Ninject;
+using OneMediPlan.Models;
+using System.Linq;
+using Android.Media;
 
 namespace OneMediPlan.Droid
 {
     public class AboutFragment : Android.Support.V4.App.Fragment, IFragmentVisible
     {
+        void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (sender is AppSettingsViewModel viewModel)
+            {
+                if (e.PropertyName.Equals("CurrentSettings"))
+                {
+                    timePicker.Hour = viewModel.CurrentSettings.Hour;
+                    timePicker.Minute = viewModel.CurrentSettings.Minute;
+                }
+            }
+        }
+
+
         public static AboutFragment NewInstance() =>
             new AboutFragment { Arguments = new Bundle() };
 
@@ -15,30 +32,32 @@ namespace OneMediPlan.Droid
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-            // Create your fragment here
+            ViewModel = App.Container.Get<AppSettingsViewModel>();
         }
 
-        Button learnMoreButton;
+        MediSettings Setting;
+        Button saveSettingsButton;
+        TimePicker timePicker;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = inflater.Inflate(Resource.Layout.fragment_about, container, false);
-            ViewModel = new AppSettingsViewModel();
-            learnMoreButton = view.FindViewById<Button>(Resource.Id.button_learn_more);
+            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+            saveSettingsButton = view.FindViewById<Button>(Resource.Id.button_save_settings);
+            timePicker = view.FindViewById<TimePicker>(Resource.Id.timePickerStdTime);
             return view;
         }
 
         public override void OnStart()
         {
             base.OnStart();
-            learnMoreButton.Click += LearnMoreButton_Click;
+            saveSettingsButton.Click += SaveSettingsButtonn_Click;
         }
 
         public override void OnStop()
         {
             base.OnStop();
-            learnMoreButton.Click -= LearnMoreButton_Click;
+            saveSettingsButton.Click -= SaveSettingsButtonn_Click;
         }
 
         public void BecameVisible()
@@ -46,9 +65,11 @@ namespace OneMediPlan.Droid
 
         }
 
-        void LearnMoreButton_Click(object sender, System.EventArgs e)
+        void SaveSettingsButtonn_Click(object sender, System.EventArgs e)
         {
-            //ViewModel.OpenWebCommand.Execute(null);
+            var now = DateTime.Now;
+            var dt = new DateTime(now.Year, now.Month, now.Day, timePicker.Hour, timePicker.Minute, 0);
+            ViewModel.SaveSettingsCommand.Execute(dt);
         }
     }
 }
