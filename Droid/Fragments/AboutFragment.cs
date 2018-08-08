@@ -48,7 +48,7 @@ namespace OneMediPlan.Droid
 
         void LearnMoreButton_Click(object sender, System.EventArgs e)
         {
-            ViewModel.OpenWebCommand.Execute(null);
+            //ViewModel.OpenWebCommand.Execute(null);
         }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
-using Ninject;
+using System.ComponentModel;
 using UIKit;
-using OneMediPlan.Services;
-using System.Linq;
 using OneMediPlan.iOS.Helper;
 
 namespace OneMediPlan.iOS
@@ -20,12 +18,12 @@ namespace OneMediPlan.iOS
         public AboutViewController(IntPtr handle) : base(handle)
         {
             ViewModel = new AppSettingsViewModel();
-            ViewModel.PropertyChanged += (object sender, System.ComponentModel.PropertyChangedEventArgs e) =>
+            ViewModel.PropertyChanged += (object sender, PropertyChangedEventArgs e) =>
             {
-                if (sender is AppSettingsViewModel vm)
+                if (sender is AppSettingsViewModel viewModel)
                 {
                     if (!base.IsViewLoaded) return;
-                    var timeSettings = ViewModel.CurrentSettings;
+                    var timeSettings = viewModel.CurrentSettings;
                     var now = DateTimeOffset.Now;
                     var dt = new DateTime(now.Year, now.Month, now.Day, timeSettings.Hour, timeSettings.Minute, 0);
                     PickerDefaultTime.SetDate(dt.DateTimeToNSDate(), true);

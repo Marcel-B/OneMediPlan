@@ -30,10 +30,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\MediSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AppSettingsDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MediStockViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SaveMediViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SetDailyViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SetDependencyViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SetDosageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SetIntervallTypeViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SetIntervallViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SetStartViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\WeekdayViewModel.cs" />
   </ItemGroup>
 </Project>

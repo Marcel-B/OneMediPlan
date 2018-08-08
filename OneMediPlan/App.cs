@@ -43,8 +43,11 @@ namespace OneMediPlan
             Container.Bind<SetIntervallViewModel>().ToSelf().InSingletonScope();
             Container.Bind<SetDependencyViewModel>().ToSelf().InSingletonScope();
             Container.Bind<SetDosageViewModel>().ToSelf().InSingletonScope();
-            Container.Bind<WeekdayViewModel>().ToSelf().InSingletonScope();
-
+            Container.Bind<WeekdayViewModel>().ToSelf().InSingletonScope(); 
+            Container.Bind<SetDailyViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<SetStartViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<SaveMediViewModel>().ToSelf().InSingletonScope();
+            
             Container.Bind<ISomeLogic>().To<SomeLogic>();
             if (UseMockDataStore)
             {

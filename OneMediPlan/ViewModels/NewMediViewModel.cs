@@ -21,11 +21,14 @@ namespace OneMediPlan.ViewModels
             };
 
             SaveNameCommand = new Command(
-                SaveMedi,
-                (obj) => obj.ToString().Length > 0);
+                SaveNameExecute,
+                CanExecuteSaveName);
         }
 
-        public async void SaveMedi(object param)
+        public bool CanExecuteSaveName(object obj)
+            => obj.ToString().Length > 0;
+
+        public async void SaveNameExecute(object obj)
         {
             var store = App.Container.Get<IDataStore<Medi>>();
             CurrentMedi.Name = Name;
