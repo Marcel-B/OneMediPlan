@@ -37,6 +37,9 @@ namespace OneMediPlan
             Container.Bind<MediViewModel>().ToSelf().InSingletonScope();
             Container.Bind<MediDetailViewModel>().ToSelf().InSingletonScope();
             Container.Bind<NewMediViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<MediStockViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<SetIntervallTypeViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<SetIntervallViewModel>().ToSelf().InSingletonScope();
             Container.Bind<ISomeLogic>().To<SomeLogic>();
             if (UseMockDataStore)
             {

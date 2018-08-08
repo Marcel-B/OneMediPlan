@@ -264,6 +264,10 @@
                                 <rect key="frame" x="18" y="181" width="341" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="TextFieldEditingBegin:" destination="2248" id="51388" eventType="editingDidBegin"/>
+                                    <action selector="TextFieldEditingChanged:" destination="2248" id="52160" eventType="editingChanged"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2344" text="Gib einen Namen ein">
                                 <rect key="frame" x="16" y="136" width="343" height="37"/>
@@ -274,7 +278,7 @@
                                     <constraint id="4908" firstItem="2344" firstAttribute="height" constant="37"/>
                                 </constraints>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6739" translatesAutoresizingMaskIntoConstraints="NO">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6739" translatesAutoresizingMaskIntoConstraints="NO" hidden="YES">
                                 <rect key="frame" x="16" y="219" width="343" height="39"/>
                                 <constraints>
                                     <constraint id="6994" firstItem="6739" firstAttribute="height" constant="39"/>
@@ -284,6 +288,7 @@
                                 </state>
                                 <connections>
                                     <segue id="7520" destination="7323" kind="show"/>
+                                    <action selector="ButtonNext_TouchUpInside:" destination="2248" id="49072" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -340,6 +345,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <connections>
+                                    <action selector="TextViewStockChanged:" destination="7323" id="52933" eventType="editingChanged"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="10958" translatesAutoresizingMaskIntoConstraints="NO" placeholder="minimum">
                                 <rect key="frame" x="192.5" y="181" width="166.5" height="30"/>
@@ -349,6 +357,9 @@
                                 <constraints>
                                     <constraint id="14104" firstItem="10958" firstAttribute="height" constant="30"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="TextViewStockMinimumChanged:" destination="7323" id="53705" eventType="editingChanged"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="13146" translatesAutoresizingMaskIntoConstraints="NO">
                                 <rect key="frame" x="16" y="219" width="343" height="30"/>
@@ -385,6 +396,7 @@
                     <connections>
                         <outlet property="LabelCurrentStock" destination="10903" id="name-outlet-10903"/>
                         <outlet property="LabelMinimumStock" destination="10958" id="name-outlet-10958"/>
+                        <outlet property="ButtonNext" destination="13146" id="name-outlet-13146"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7325" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -411,6 +423,7 @@
                                 </state>
                                 <connections>
                                     <segue id="17337" destination="16947" kind="show"/>
+                                    <action selector="SetIntervallTouched:" destination="16030" id="54479" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="16941" translatesAutoresizingMaskIntoConstraints="NO" tag="2">
@@ -421,6 +434,7 @@
                                 </state>
                                 <connections>
                                     <segue id="17376" destination="17342" kind="show"/>
+                                    <action selector="SetIntervallTouched:" destination="16030" id="57575" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="16942" translatesAutoresizingMaskIntoConstraints="NO" tag="3">
@@ -431,6 +445,7 @@
                                 </state>
                                 <connections>
                                     <segue id="17472" destination="17432" kind="show"/>
+                                    <action selector="SetIntervallTouched:" destination="16030" id="56027" eventType="touchUpInside"/>
                                 </connections>
                                 <constraints>
                                     <constraint id="17880" firstItem="16942" firstAttribute="height" constant="38"/>
@@ -444,6 +459,7 @@
                                 </state>
                                 <connections>
                                     <segue id="17427" destination="17381" kind="show"/>
+                                    <action selector="SetIntervallTouched:" destination="16030" id="58349" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="38150" translatesAutoresizingMaskIntoConstraints="NO">
@@ -454,6 +470,7 @@
                                 </state>
                                 <connections>
                                     <segue id="42823" destination="42783" kind="show"/>
+                                    <action selector="SetIntervallTouched:" destination="16030" id="56801" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -522,6 +539,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <action selector="TextFieldIntervallChanged:" destination="16947" id="59123" eventType="editingChanged"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="29748" translatesAutoresizingMaskIntoConstraints="NO">
                                 <rect key="frame" x="16" y="315" width="209" height="37"/>
@@ -536,6 +556,7 @@
                                 </state>
                                 <connections>
                                     <segue id="35200" destination="17910" kind="show"/>
+                                    <action selector="ButtonNextTouched:" destination="16947" id="59897" eventType="touchUpInside"/>
                                 </connections>
                                 <constraints>
                                     <constraint id="40203" firstItem="34304" firstAttribute="width" constant="126"/>
@@ -570,6 +591,7 @@
                         <outlet property="PickerIntervallType" destination="18618" id="name-outlet-18618"/>
                         <outlet property="LabelIntervallCount" destination="18620" id="name-outlet-18620"/>
                         <outlet property="LabelDependencyInfo" destination="29748" id="name-outlet-29748"/>
+                        <outlet property="ButtonNext" destination="34304" id="name-outlet-34304"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16949" userLabel="First Responder" sceneMemberID="firstResponder"/>

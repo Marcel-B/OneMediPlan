@@ -2,34 +2,73 @@ using Foundation;
 using System;
 using UIKit;
 using OneMediPlan.Models;
-using AVFoundation;
+using OneMediPlan.ViewModels;
+using Ninject;
 
 namespace OneMediPlan.iOS
 {
     public partial class MediStockViewController : UIViewController
     {
-        public Medi CurrentMedi { get; set; }
+        private MediStockViewModel _viewModel;
 
-        public MediStockViewController(IntPtr handle) : base(handle) { }
-
-        private double _minimumStock;
-        private double _stock;
-
-        public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
+        partial void TextViewStockMinimumChanged(UITextField sender)
         {
-            if (double.TryParse(LabelMinimumStock.Text, out _minimumStock))
-                return double.TryParse(LabelCurrentStock.Text, out _stock);
-            return false;
+            _viewModel.StockMinimum = sender.Text;
+            var arr = new[] { sender.Text, LabelCurrentStock.Text };
+            var result = _viewModel.SaveStockCommand.CanExecute(arr);
+            ButtonNext.Hidden = !result;
         }
 
-        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        partial void TextViewStockChanged(UITextField sender)
         {
-            if (segue.DestinationViewController is SetIntervallTypeViewController viewController)
+            _viewModel.Stock = sender.Text;
+            var arr = new[] { LabelMinimumStock.Text, sender.Text };
+            var result = _viewModel.SaveStockCommand.CanExecute(arr);
+            ButtonNext.Hidden = !result;
+        }
+
+        public MediStockViewController(IntPtr handle) : base(handle)
+        {
+            _viewModel = App.Container.Get<MediStockViewModel>();
+            _viewModel.PropertyChanged += (sender, e) =>
             {
-                CurrentMedi.MinimumStock = _minimumStock;
-                CurrentMedi.Stock = _stock;
-                viewController.CurrentMedi = CurrentMedi;
-            }
+                if (sender is MediStockViewModel viewModel)
+                {
+                    if (e.PropertyName.Equals("Medi"))
+                    {
+                        var stock = viewModel.Medi.Stock;
+                        var minStock = viewModel.Medi.MinimumStock;
+                        if (stock > 0)
+                            LabelCurrentStock.Text = stock.ToString();
+                        if (minStock > 0)
+                            LabelMinimumStock.Text = minStock.ToString();
+                    }
+                }
+            };
         }
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            _viewModel.Init();
+            ButtonNext.Hidden = true;
+        }
+
+        //public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
+        //{
+        //    if (double.TryParse(LabelMinimumStock.Text, out _minimumStock))
+        //        return double.TryParse(LabelCurrentStock.Text, out _stock);
+        //    return false;
+        //}
+
+        //public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        //{
+        //    if (segue.DestinationViewController is SetIntervallTypeViewController viewController)
+        //    {
+        //        CurrentMedi.MinimumStock = _minimumStock;
+        //        CurrentMedi.Stock = _stock;
+        //        viewController.CurrentMedi = CurrentMedi;
+        //    }
+        //}
     }
 }

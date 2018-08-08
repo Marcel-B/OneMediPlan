@@ -29,5 +29,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ISomeLogic.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MediSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AppSettingsDataStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MediStockViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SetIntervallTypeViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SetIntervallViewModel.cs" />
   </ItemGroup>
 </Project>

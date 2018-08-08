@@ -5,27 +5,47 @@ using System.Linq;
 using OneMediPlan.Models;
 using Foundation;
 using Ninject;
+using OneMediPlan.ViewModels;
 
 namespace OneMediPlan.iOS
 {
     public partial class SetIntervallViewController : UIViewController
     {
+        partial void ButtonNextTouched(UIButton sender)
+        {
+            ViewModel.NextCommand.Execute(null);
+        }
+
+        partial void TextFieldIntervallChanged(UITextField sender)
+        {
+            ButtonNext.Hidden = !ViewModel.NextCommand.CanExecute(sender.Text);
+        }
+
         public Medi CurrentMedi { get; set; }
         private int _intervall;
         private int _intervallFactor;
         private IntervallTime _intervallTime;
+        SetIntervallViewModel ViewModel;
 
         public IDataStore<Medi> DataStore => App.Container.Get<IDataStore<Medi>>();
 
         IEnumerable<string> IntervallTypes =
             new[] { "Minute(n)", "Stunde(n)", "Tag(e)", "Woche(n)" };
 
-        public SetIntervallViewController(IntPtr handle) : base(handle) { }
+        public SetIntervallViewController(IntPtr handle) : base(handle)
+        {
+            ViewModel = App.Container.Get<SetIntervallViewModel>();
+        }
 
         async public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            CurrentMedi.IntervallInMinutes = 0;
+            ButtonNext.Hidden = true;
+            await ViewModel.Init();
+            Title = ViewModel.Title;
+            return;
+
+            //CurrentMedi.IntervallInMinutes = 0;
             var pickerModle = new IntervallTypeDataModel();
             pickerModle.Items.AddRange(IntervallTypes.ToList());
             PickerIntervallType.Model = pickerModle;
@@ -44,29 +64,33 @@ namespace OneMediPlan.iOS
             {
                 if (sender is IntervallTypeDataModel intervallTypeDataModel)
                 {
-                    var item = intervallTypeDataModel.SelectedItem;
-                    var idx =intervallTypeDataModel.SelectedIndex;
-                    _intervallTime = (IntervallTime)idx;
-                    switch(idx){
-                        case 0: // Minuten
-                            _intervallFactor = 1;
-                            break;
-                        case 1: // Stunden
-                            _intervallFactor = 1 * 60;
-                            break;
-                        case 2: // Tage
-                            _intervallFactor = 1 * 60 * 24;
-                            break;
-                        case 3: // Woche(n)
-                            _intervallFactor = 1 * 60 * 24 * 7;
-                            break;
-                        case 4: // Monat(e)
-                            _intervallFactor = 99;
-                            break;
-                        default:
-                            _intervallFactor = 0;
-                            break;
-                    }
+                    //var item = intervallTypeDataModel.SelectedItem;
+                    var idx = intervallTypeDataModel.SelectedIndex;
+                    //_intervallTime = (IntervallTime)idx;
+
+                    ViewModel.IntervallTime = (IntervallTime)idx;
+
+                    //switch (idx)
+                    //{
+                    //    case 0: // Minuten
+                    //        _intervallFactor = 1;
+                    //        break;
+                    //    case 1: // Stunden
+                    //        _intervallFactor = 1 * 60;
+                    //        break;
+                    //    case 2: // Tage
+                    //        _intervallFactor = 1 * 60 * 24;
+                    //        break;
+                    //    case 3: // Woche(n)
+                    //        _intervallFactor = 1 * 60 * 24 * 7;
+                    //        break;
+                    //    case 4: // Monat(e)
+                    //        _intervallFactor = 99;
+                    //        break;
+                    //    default:
+                    //        _intervallFactor = 0;
+                    //        break;
+                    //}
                 }
             };
         }

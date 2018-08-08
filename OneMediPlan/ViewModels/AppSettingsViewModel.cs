@@ -9,7 +9,7 @@ namespace OneMediPlan
 {
     public class AppSettingsViewModel : BaseViewModel
     {
-        private MediSettings _mediSettings;
+        MediSettings _mediSettings;
 
         public MediSettings CurrentSettings
         {

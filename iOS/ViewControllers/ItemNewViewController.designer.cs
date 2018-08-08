@@ -22,6 +22,18 @@ namespace OneMediPlan.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField TextFieldName { get; set; }
 
+        [Action ("ButtonNext_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ButtonNext_TouchUpInside (UIKit.UIButton sender);
+
+        [Action ("TextFieldEditingBegin:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void TextFieldEditingBegin (UIKit.UITextField sender);
+
+        [Action ("TextFieldEditingChanged:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void TextFieldEditingChanged (UIKit.UITextField sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (ButtonNext != null) {

@@ -14,6 +14,10 @@ namespace OneMediPlan.iOS
     [Register ("SetIntervallTypeViewController")]
     partial class SetIntervallTypeViewController
     {
+        [Action ("SetIntervallTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void SetIntervallTouched (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
         }
