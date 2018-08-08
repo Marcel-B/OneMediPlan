@@ -11,120 +11,87 @@ namespace OneMediPlan.iOS
 {
     public partial class SetIntervallViewController : UIViewController
     {
+        SetIntervallViewModel ViewModel;
+
         partial void ButtonNextTouched(UIButton sender)
-        {
-            ViewModel.NextCommand.Execute(null);
-        }
+            => ViewModel.NextCommand.Execute(null);
 
         partial void TextFieldIntervallChanged(UITextField sender)
         {
             ButtonNext.Hidden = !ViewModel.NextCommand.CanExecute(sender.Text);
         }
 
-        public Medi CurrentMedi { get; set; }
-        private int _intervall;
-        private int _intervallFactor;
-        private IntervallTime _intervallTime;
-        SetIntervallViewModel ViewModel;
-
-        public IDataStore<Medi> DataStore => App.Container.Get<IDataStore<Medi>>();
-
-        IEnumerable<string> IntervallTypes =
-            new[] { "Minute(n)", "Stunde(n)", "Tag(e)", "Woche(n)" };
-
         public SetIntervallViewController(IntPtr handle) : base(handle)
         {
             ViewModel = App.Container.Get<SetIntervallViewModel>();
+            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+        }
+
+        private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if(sender is SetIntervallViewModel viewModel)
+            {
+                if (e.PropertyName.Equals("CurrentMedi"))
+                {
+                    var noParent = viewModel.CurrentMedi.DependsOn == Guid.Empty;
+                    LabelDependencyInfo.Hidden = noParent;
+                }
+                else if (e.PropertyName.Equals("LabelText"))
+                {
+                    LabelDependencyInfo.Text = $"nach {viewModel.LabelText}.";
+                }
+            }
         }
 
         async public override void ViewDidLoad()
         {
             base.ViewDidLoad();
             ButtonNext.Hidden = true;
+
             await ViewModel.Init();
             Title = ViewModel.Title;
-            return;
 
-            //CurrentMedi.IntervallInMinutes = 0;
             var pickerModle = new IntervallTypeDataModel();
-            pickerModle.Items.AddRange(IntervallTypes.ToList());
+            pickerModle.Items.AddRange(ViewModel.IntervallTypes.ToList());
             PickerIntervallType.Model = pickerModle;
-            if (CurrentMedi.DependsOn != Guid.Empty)
-            {
-                var m = await DataStore.GetItemAsync(CurrentMedi.DependsOn);
-                LabelDependencyInfo.Hidden = false;
-                LabelDependencyInfo.Text = $"nach {m.Name}.";
-            }
-            else
-            {
-                LabelDependencyInfo.Hidden = true;
-            }
 
             pickerModle.ValueChanged += (object sender, EventArgs e) =>
             {
                 if (sender is IntervallTypeDataModel intervallTypeDataModel)
                 {
-                    //var item = intervallTypeDataModel.SelectedItem;
                     var idx = intervallTypeDataModel.SelectedIndex;
-                    //_intervallTime = (IntervallTime)idx;
-
                     ViewModel.IntervallTime = (IntervallTime)idx;
-
-                    //switch (idx)
-                    //{
-                    //    case 0: // Minuten
-                    //        _intervallFactor = 1;
-                    //        break;
-                    //    case 1: // Stunden
-                    //        _intervallFactor = 1 * 60;
-                    //        break;
-                    //    case 2: // Tage
-                    //        _intervallFactor = 1 * 60 * 24;
-                    //        break;
-                    //    case 3: // Woche(n)
-                    //        _intervallFactor = 1 * 60 * 24 * 7;
-                    //        break;
-                    //    case 4: // Monat(e)
-                    //        _intervallFactor = 99;
-                    //        break;
-                    //    default:
-                    //        _intervallFactor = 0;
-                    //        break;
-                    //}
                 }
             };
         }
 
-        public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
-            => int.TryParse(LabelIntervallCount.Text, out _intervall);
-
-        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-        {
-            if (segue.DestinationViewController is SetDosageViewController setDosageViewController)
-            {
-                CurrentMedi.IntervallTime = _intervallTime;
-                CurrentMedi.PureIntervall = _intervall;
-                switch (_intervallTime)
-                {
-                    case IntervallTime.Minute:
-                        CurrentMedi.Intervall = new TimeSpan(0, _intervall, 0);
-                        break;
-                    case IntervallTime.Hour:
-                        CurrentMedi.Intervall = new TimeSpan(_intervall, 0, 0);
-                        break;
-                    case IntervallTime.Week:
-                        CurrentMedi.Intervall = new TimeSpan(24 * 7, 0, 0);
-                        break;
-                    case IntervallTime.Month:
-                        CurrentMedi.Intervall = new TimeSpan(24 * 30, 0, 0);
-                        break;
-                    default:
-                        break;
-                }
-                CurrentMedi.IntervallInMinutes = (_intervall * _intervallFactor);
-                setDosageViewController.CurrentMedi = CurrentMedi;
-            }
-        }
+        //public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        //{
+        //    if (segue.DestinationViewController is SetDosageViewController setDosageViewController)
+        //    {
+        //        CurrentMedi.IntervallTime = _intervallTime;
+        //        CurrentMedi.PureIntervall = _intervall;
+        //        switch (_intervallTime)
+        //        {
+        //            case IntervallTime.Minute:
+        //                CurrentMedi.Intervall = new TimeSpan(0, _intervall, 0);
+        //                break;
+        //            case IntervallTime.Hour:
+        //                CurrentMedi.Intervall = new TimeSpan(_intervall, 0, 0);
+        //                break;
+        //            case IntervallTime.Week:
+        //                CurrentMedi.Intervall = new TimeSpan(24 * 7, 0, 0);
+        //                break;
+        //            case IntervallTime.Month:
+        //                CurrentMedi.Intervall = new TimeSpan(24 * 30, 0, 0);
+        //                break;
+        //            default:
+        //                break;
+        //        }
+        //        CurrentMedi.IntervallInMinutes = (_intervall * _intervallFactor);
+        //        setDosageViewController.CurrentMedi = CurrentMedi;
+        //    }
+        //}
         internal class IntervallTypeDataModel : UIPickerViewModel
         {
             public event EventHandler<EventArgs> ValueChanged;

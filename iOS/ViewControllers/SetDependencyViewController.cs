@@ -5,46 +5,53 @@ using System.Collections.Generic;
 using UIKit;
 using System.Linq;
 using Ninject;
+using OneMediPlan.ViewModels;
 
 namespace OneMediPlan.iOS
 {
     public partial class SetDependencyViewController : UIViewController
     {
-        public Medi CurrentMedi { get; set; }
-        public Medi SelectedMedi { get; set; }
+        SetDependencyViewModel ViewModel;
 
-        public IDataStore<Medi> DataStore => App.Container.Get<IDataStore<Medi>>();
+        public SetDependencyViewController(IntPtr handle) : base(handle)
+        {
+            ViewModel = App.Container.Get<SetDependencyViewModel>();
+            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+        }
 
-        public SetDependencyViewController(IntPtr handle) : base(handle) { }
+        private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (sender is SetDependencyViewModel viewModel)
+            {
+                if (e.PropertyName.Equals("CurrentMedi"))
+                {
+
+                }
+                else if (e.PropertyName.Equals("Medis"))
+                {
+                    var model = new DependencyTypeDataModel();
+                    model.ValueChanged -= Model_ValueChanged;
+                    model.ValueChanged += Model_ValueChanged;
+                    model.Medis.AddRange(viewModel.Medis);
+                    PickerDependency.Select(0, 0, true);
+                    PickerDependency.Model = model;
+                }
+            }
+        }
+
+        private void Model_ValueChanged(object sender, EventArgs e)
+        {
+            if (sender is DependencyTypeDataModel data)
+                ViewModel.ParentMedi = data.SelectedItem;
+        }
 
         async public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            var model = new DependencyTypeDataModel();
-            model.ValueChanged += (object sender, EventArgs e) =>
-            {
-                if (sender is DependencyTypeDataModel data)
-                {
-                    SelectedMedi = data.SelectedItem;
-                }
-            };
-            var tmp = await DataStore.GetItemsAsync(true);
-            var medis = tmp.ToList();
-            foreach (var medi in medis)
-                model.Medis.Add(medi);
-            PickerDependency.Model = model;
-            PickerDependency.Select(0, 0, true);
-            SelectedMedi = medis[0];
+            await ViewModel.Init();
+            Title = ViewModel.Title;
         }
 
-        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-        {
-            if (segue.DestinationViewController is SetIntervallViewController viewController)
-            {
-                CurrentMedi.DependsOn = SelectedMedi.Id;
-                viewController.CurrentMedi = CurrentMedi;
-            }
-        }
         internal class DependencyTypeDataModel : UIPickerViewModel
         {
             public event EventHandler<EventArgs> ValueChanged;

@@ -33,13 +33,18 @@ namespace OneMediPlan
 
         public static void Initialize()
         {
-            Container = new Ninject.StandardKernel();
+            Container = new StandardKernel();
+
             Container.Bind<MediViewModel>().ToSelf().InSingletonScope();
             Container.Bind<MediDetailViewModel>().ToSelf().InSingletonScope();
             Container.Bind<NewMediViewModel>().ToSelf().InSingletonScope();
             Container.Bind<MediStockViewModel>().ToSelf().InSingletonScope();
             Container.Bind<SetIntervallTypeViewModel>().ToSelf().InSingletonScope();
             Container.Bind<SetIntervallViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<SetDependencyViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<SetDosageViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<WeekdayViewModel>().ToSelf().InSingletonScope();
+
             Container.Bind<ISomeLogic>().To<SomeLogic>();
             if (UseMockDataStore)
             {

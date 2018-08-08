@@ -1,49 +1,45 @@
 using System;
 using UIKit;
-using OneMediPlan.Models;
-using Foundation;
-using System.Linq;
+using OneMediPlan.ViewModels;
+using Ninject;
 
 namespace OneMediPlan.iOS
 {
     public partial class WeekdayViewController : UIViewController
     {
-        public Medi CurrentMedi { get; set; }
-
-        bool[] days = new[]{
-            false, // Sonntag
-            false,
-            false,
-            false, // Mittwoch
-            false,
-            false,
-            false  // Samstag
-        };
+        WeekdayViewModel ViewModel;
 
         partial void WeekdayValueChanged(UISwitch sender)
         {
-            if (sender == null) return;
+            if (sender == null)
+                return;
             var i = sender.Tag == 7 ? 0 : sender.Tag;
-            days[i] = sender.On;
+            ViewModel.Weekdays[i] = sender.On;
+            ButtonWeiter.Hidden = ViewModel.NextCommand.CanExecute(null);
         }
 
-        public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
-            => days.Contains(true);
-
-        public WeekdayViewController(IntPtr handle) : base(handle) { }
-
-        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        public WeekdayViewController(IntPtr handle) : base(handle)
         {
-            if (segue.DestinationViewController is SetDosageViewController dosageViewController)
+            ViewModel = App.Container.Get<WeekdayViewModel>();
+            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+        }
+
+        private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if(sender is WeekdayViewModel viewModel)
             {
-                var weekdays = new Weekdays
+                if (e.PropertyName.Equals("Weekdays"))
                 {
-                    Id = Guid.NewGuid(),
-                    MediFk = CurrentMedi.Id,
-                    Days = days
-                };
-                dosageViewController.CurrentMedi = CurrentMedi;
+                    // TODO - Set Weekdays on UIControll
+                }
             }
+        }
+
+        public async override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            ButtonWeiter.Hidden = true;
+            await ViewModel.Init();
         }
     }
 }

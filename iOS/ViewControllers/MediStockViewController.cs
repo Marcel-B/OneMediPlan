@@ -53,22 +53,5 @@ namespace OneMediPlan.iOS
             _viewModel.Init();
             ButtonNext.Hidden = true;
         }
-
-        //public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
-        //{
-        //    if (double.TryParse(LabelMinimumStock.Text, out _minimumStock))
-        //        return double.TryParse(LabelCurrentStock.Text, out _stock);
-        //    return false;
-        //}
-
-        //public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-        //{
-        //    if (segue.DestinationViewController is SetIntervallTypeViewController viewController)
-        //    {
-        //        CurrentMedi.MinimumStock = _minimumStock;
-        //        CurrentMedi.Stock = _stock;
-        //        viewController.CurrentMedi = CurrentMedi;
-        //    }
-        //}
     }
 }
