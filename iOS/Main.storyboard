@@ -632,6 +632,7 @@
                                 </state>
                                 <connections>
                                     <segue id="36566" destination="16947" kind="show"/>
+                                    <action selector="UIButton35489_TouchUpInside:" destination="17342" id="65002" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -925,14 +926,18 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <connections>
+                                    <action selector="TextFieldDosageChanged:" destination="17910" id="60673" eventType="editingChanged"/>
+                                </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="32548" translatesAutoresizingMaskIntoConstraints="NO">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="32548" translatesAutoresizingMaskIntoConstraints="NO" hidden="YES">
                                 <rect key="frame" x="16" y="232" width="343" height="30"/>
                                 <state key="normal" title="Weiter">
                                     <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
                                 </state>
                                 <connections>
                                     <segue id="32869" destination="18545" kind="show"/>
+                                    <action selector="ButtonNext_TouchUpInside:" destination="17910" id="61209" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -960,6 +965,8 @@
                     <navigationItem title="Dosis" id="18023" key="navigationItem"/>
                     <connections>
                         <outlet property="LabelDosage" destination="18071" id="name-outlet-18071"/>
+                        <outlet property="TextFieldDosage" destination="18073" id="name-outlet-18073"/>
+                        <outlet property="ButtonNext" destination="32548" id="name-outlet-32548"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17912" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1003,6 +1010,7 @@
                                 </state>
                                 <connections>
                                     <segue id="33263" destination="17381" kind="show" identifier="ToSaveMediViewController"/>
+                                    <action selector="ButtonNext_TouchUpInside:" destination="18545" id="61942" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1023,6 +1031,7 @@
                     <navigationItem title="Start" id="18577" key="navigationItem"/>
                     <connections>
                         <outlet property="PickerStartTime" destination="18617" id="name-outlet-18617"/>
+                        <outlet property="ButtonNext" destination="32988" id="name-outlet-32988"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="18547" userLabel="First Responder" sceneMemberID="firstResponder"/>

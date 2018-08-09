@@ -11,7 +11,10 @@ namespace OneMediPlan.iOS
 {
     public partial class SetDependencyViewController : UIViewController
     {
-        SetDependencyViewModel ViewModel;
+        partial void UIButton35489_TouchUpInside(UIButton sender)
+            => ViewModel.NextCommand.Execute(null);
+
+        SetDependencyViewModel ViewModel { get; set; }
 
         public SetDependencyViewController(IntPtr handle) : base(handle)
         {

@@ -13,7 +13,7 @@ namespace OneMediPlan.ViewModels
         public ICommand NextCommand { get; }
 
         private Medi _currentMedi;
-        private string _dosage;
+        private double _dosage;
 
         public Medi CurrentMedi
         {
@@ -21,7 +21,7 @@ namespace OneMediPlan.ViewModels
             set => SetProperty(ref _currentMedi, value);
         }
 
-        public string Dosage
+        public double Dosage
         {
             get => _dosage;
             set => SetProperty(ref _dosage, value);
@@ -29,7 +29,8 @@ namespace OneMediPlan.ViewModels
 
         public SetDosageViewModel()
         {
-
+            Title = "Dosis";
+            NextCommand = new Command(ExecuteNextCommand, CanExecuteNextCommand);
         }
 
         public async Task Init()
@@ -37,6 +38,24 @@ namespace OneMediPlan.ViewModels
             var store = App.Container.Get<IDataStore<Medi>>();
             CurrentMedi = await store.GetItemAsync(Guid.Empty);
             return;
+        }
+
+        private async void ExecuteNextCommand(object obj)
+        {
+            CurrentMedi.Dosage = Dosage;
+            var store = App.Container.Get<IDataStore<Medi>>();
+            await store.UpdateItemAsync(CurrentMedi);
+        }
+
+        private bool CanExecuteNextCommand(object obj)
+        {
+            if (obj.ToString().Length <= 0) return false;
+            if (double.TryParse(obj.ToString(), out var dos))
+            {
+                Dosage = dos;
+                return true;
+            }
+            return false;
         }
     }
 }

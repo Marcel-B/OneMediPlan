@@ -18,6 +18,10 @@ namespace OneMediPlan.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIPickerView PickerDependency { get; set; }
 
+        [Action ("UIButton35489_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void UIButton35489_TouchUpInside (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (PickerDependency != null) {

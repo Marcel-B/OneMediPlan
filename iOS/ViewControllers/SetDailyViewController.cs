@@ -47,16 +47,16 @@ namespace OneMediPlan.iOS
             return false;
         }
 
-        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-        {
-            if (segue.DestinationViewController is SaveMediViewController saveMediViewController)
-            {
-                if(TableViewDates.Source is MyDateTableViewSource s){
-                    CurrentMedi.DailyAppointments = s.Times;
-                    saveMediViewController.CurrentMedi = CurrentMedi;
-                }
-            }
-        }
+        //public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        //{
+        //    if (segue.DestinationViewController is SaveMediViewController saveMediViewController)
+        //    {
+        //        if(TableViewDates.Source is MyDateTableViewSource s){
+        //            CurrentMedi.DailyAppointments = s.Times;
+        //            saveMediViewController.CurrentMedi = CurrentMedi;
+        //        }
+        //    }
+        //}
     }
 
     internal class MyDateTableViewSource : UITableViewSource
