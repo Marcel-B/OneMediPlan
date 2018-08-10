@@ -20,16 +20,7 @@ namespace OneMediPlan.ViewModels
         public MediStockViewModel()
         {
             Title = "Vorrat";
-            SaveStockCommand = new Command(SaveStock, (obj) =>
-            {
-                if (obj is string[] arr)
-                {
-                    if (string.IsNullOrWhiteSpace(arr[0])) return false;
-                    if (string.IsNullOrWhiteSpace(arr[1])) return false;
-                    return true;
-                }
-                return false;
-            });
+            SaveStockCommand = new Command(SaveStockExecute, SaveStockCanExecute);
         }
 
         public void Init()
@@ -43,7 +34,17 @@ namespace OneMediPlan.ViewModels
             Medi = await store.GetItemAsync(Guid.Empty);
         }
 
-        public async void SaveStock(object obj)
+        private bool SaveStockCanExecute(object obj)
+        {
+            if (obj is string[] arr)
+            {
+                if (string.IsNullOrWhiteSpace(arr[0])) return false;
+                if (string.IsNullOrWhiteSpace(arr[1])) return false;
+                return true;
+            }
+            return false;
+        }
+        private async void SaveStockExecute(object obj)
         {
             var store = App.Container.Get<IDataStore<Medi>>();
             var medi = await store.GetItemAsync(Guid.Empty);

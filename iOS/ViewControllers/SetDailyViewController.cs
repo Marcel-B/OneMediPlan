@@ -4,14 +4,24 @@ using System;
 using System.Collections.Generic;
 using UIKit;
 using OneMediPlan.iOS.Helper;
-using System.Collections.ObjectModel;
-using System.Linq;
+using OneMediPlan.ViewModels;
+using Ninject;
 
 namespace OneMediPlan.iOS
 {
     public partial class SetDailyViewController : UIViewController
     {
-        partial void UIButton44379_TouchUpInside(UIButton sender)
+        SetDailyViewModel ViewModel { get; set; }
+
+        partial void ButtonNext_TouchUpInside(UIButton sender)
+        {
+            if (TableViewDates.Source is MyDateTableViewSource source)
+            {
+                ViewModel.NextCommand.Execute(source.Times);
+            }
+        }
+
+        partial void ButtonAdd_TouchUpInside(UIButton sender)
         {
             var time = PickerTime.Date;
             var dt = time.NSDateToDateTime();
@@ -22,20 +32,21 @@ namespace OneMediPlan.iOS
             {
                 s.Times.Add(tpl);
                 TableViewDates.ReloadData();
+                ButtonNext.Hidden = !ViewModel.NextCommand.CanExecute(s.Times);
             }
         }
 
-        public Medi CurrentMedi { get; set; }
-
         public SetDailyViewController(IntPtr handle) : base(handle)
         {
+            ViewModel = App.Container.Get<SetDailyViewModel>();
         }
 
-        public override void ViewDidLoad()
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            TableViewDates.Source = new MyDateTableViewSource();
-            CurrentMedi.DailyAppointments = null;
+            await ViewModel.Init();
+            ButtonNext.Hidden = true;
+            TableViewDates.Source = App.Container.Get<MyDateTableViewSource>();
             PickerTime.Date = NSDate.Now;
             TableViewDates.SeparatorStyle = UITableViewCellSeparatorStyle.None;
         }
@@ -46,22 +57,10 @@ namespace OneMediPlan.iOS
                 return s.Times.Count > 0;
             return false;
         }
-
-        //public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-        //{
-        //    if (segue.DestinationViewController is SaveMediViewController saveMediViewController)
-        //    {
-        //        if(TableViewDates.Source is MyDateTableViewSource s){
-        //            CurrentMedi.DailyAppointments = s.Times;
-        //            saveMediViewController.CurrentMedi = CurrentMedi;
-        //        }
-        //    }
-        //}
     }
 
     internal class MyDateTableViewSource : UITableViewSource
     {
-
         public IList<Tuple<Hour, Minute>> Times;
         public MyDateTableViewSource()
         {

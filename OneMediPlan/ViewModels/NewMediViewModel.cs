@@ -14,22 +14,21 @@ namespace OneMediPlan.ViewModels
         public NewMediViewModel()
         {
             Title = "Neu";
-            CurrentMedi = new Medi
-            {
-                Id = Guid.Empty,
-                Create = DateTimeOffset.Now
-            };
-
             SaveNameCommand = new Command(
                 SaveNameExecute,
                 CanExecuteSaveName);
         }
 
-        public bool CanExecuteSaveName(object obj)
+        private bool CanExecuteSaveName(object obj)
             => obj.ToString().Length > 0;
 
-        public async void SaveNameExecute(object obj)
+        private async void SaveNameExecute(object obj)
         {
+            CurrentMedi = new Medi
+            {
+                Id = Guid.Empty,
+                Create = DateTimeOffset.Now
+            };
             var store = App.Container.Get<IDataStore<Medi>>();
             CurrentMedi.Name = Name;
             await store.AddItemAsync(CurrentMedi);

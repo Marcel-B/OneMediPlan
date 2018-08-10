@@ -11,20 +11,20 @@ namespace OneMediPlan.ViewModels
         public Medi CurrentMedi { get => _currentMedi; set => SetProperty(ref _currentMedi, value); }
         public ICommand SelectIntervallCommand { get; set; }
 
-
         public SetIntervallTypeViewModel()
         {
             Title = "Intervalltyp";
+            SelectIntervallCommand = new Command(SelectIntervallCommandExecute);
+        }
 
-            SelectIntervallCommand = new Command(async (object obj) =>
+        private async void SelectIntervallCommandExecute(object obj)
+        {
+            if (obj is IntervallType type)
             {
-                if (obj is IntervallType type)
-                {
-                    CurrentMedi.IntervallType = type;
-                    var store = App.Container.Get<IDataStore<Medi>>();
-                    await store.UpdateItemAsync(CurrentMedi);
-                }
-            });
+                CurrentMedi.IntervallType = type;
+                var store = App.Container.Get<IDataStore<Medi>>();
+                await store.UpdateItemAsync(CurrentMedi);
+            }
         }
 
         public async Task Init()

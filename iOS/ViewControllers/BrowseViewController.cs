@@ -103,8 +103,6 @@ namespace OneMediPlan.iOS
         {
             InvokeOnMainThread(() => TableView.ReloadData());
         }
-
-
     }
 
     internal class MedisDataSource : UITableViewSource

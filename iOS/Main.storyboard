@@ -415,11 +415,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" colorSpace="calibratedRGB" red="0.87450980392156863" green="0.97647058823529409" blue="0.984313725490196" alpha="1"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="16940" translatesAutoresizingMaskIntoConstraints="NO" tag="1">
+                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="16940" translatesAutoresizingMaskIntoConstraints="NO" tag="1" opaque="NO">
                                 <rect key="frame" x="16" y="222" width="343" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28" weight="light"/>
+                                <color key="tintColor" colorSpace="calibratedRGB" red="0.89803921568627454" green="0.55686274509803924" blue="0.14901960784313725" alpha="1"/>
                                 <state key="normal" title="Intervall">
-                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.89803921568627454" green="0.55686274509803924" blue="0.14901960784313725" alpha="1"/>
+                                    <color key="titleShadowColor" colorSpace="calibratedRGB" red="0.89803921568627454" green="0.55686274509803924" blue="0.14901960784313725" alpha="1"/>
                                 </state>
                                 <connections>
                                     <segue id="17337" destination="16947" kind="show"/>
@@ -430,7 +432,7 @@
                                 <rect key="frame" x="16" y="268" width="343" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28" weight="light"/>
                                 <state key="normal" title="Abhängig">
-                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.97254901960784312" green="0.76078431372549016" blue="0.56862745098039214" alpha="1"/>
                                 </state>
                                 <connections>
                                     <segue id="17376" destination="17342" kind="show"/>
@@ -441,7 +443,7 @@
                                 <rect key="frame" x="16" y="314" width="343" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28" weight="light"/>
                                 <state key="normal" title="Wochentage">
-                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.027450980392156862" green="0.6" blue="0.5725490196078431" alpha="1"/>
                                 </state>
                                 <connections>
                                     <segue id="17472" destination="17432" kind="show"/>
@@ -455,7 +457,7 @@
                                 <rect key="frame" x="16" y="360" width="343" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28" weight="light"/>
                                 <state key="normal" title="Bei Bedarf">
-                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.72156862745098038" green="0.9137254901960784" blue="0.57647058823529407" alpha="1"/>
                                 </state>
                                 <connections>
                                     <segue id="17427" destination="17381" kind="show"/>
@@ -466,7 +468,7 @@
                                 <rect key="frame" x="16" y="406" width="343" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28" weight="light"/>
                                 <state key="normal" title="Zeitplan">
-                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.11764705882352941" green="0.21568627450980393" blue="0.6" alpha="1"/>
                                 </state>
                                 <connections>
                                     <segue id="42823" destination="42783" kind="show"/>
@@ -693,16 +695,14 @@
                                     <constraint id="43611" firstItem="43608" firstAttribute="height" constant="37"/>
                                 </constraints>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intervall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="43613" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="16" y="181" width="119" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intervall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="43613" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                <rect key="frame" x="16" y="181" width="161" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dosis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="43614" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="259" y="181" width="100" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dosis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="43614" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                <rect key="frame" x="201" y="181" width="158" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" colorSpace="calibratedRGB" red="0.18823529411764706" green="0.2" blue="0.41960784313725491" alpha="1"/>
                                 <nil key="highlightedColor"/>
@@ -720,6 +720,11 @@
                             <constraint id="43609" firstItem="43608" firstAttribute="leading" secondItem="17382" secondAttribute="leadingMargin"/>
                             <constraint id="43610" firstItem="43608" firstAttribute="trailing" secondItem="17382" secondAttribute="trailingMargin"/>
                             <constraint id="43612" firstItem="43608" firstAttribute="top" secondItem="17378" secondAttribute="bottom" constant="20"/>
+                            <constraint id="70135" firstItem="43613" firstAttribute="top" secondItem="43608" secondAttribute="bottom" constant="8"/>
+                            <constraint id="70136" firstItem="43613" firstAttribute="leading" secondItem="17382" secondAttribute="leadingMargin"/>
+                            <constraint id="70137" firstItem="43614" firstAttribute="top" secondItem="43608" secondAttribute="bottom" constant="8"/>
+                            <constraint id="70138" firstItem="43614" firstAttribute="trailing" secondItem="17382" secondAttribute="trailingMargin"/>
+                            <constraint id="70139" firstItem="43613" firstAttribute="width" secondItem="43614" secondAttribute="width" constant="3"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1057,6 +1062,7 @@
                                 </state>
                                 <connections>
                                     <segue id="46726" destination="17381" kind="show"/>
+                                    <action selector="ButtonNext_TouchUpInside:" destination="42783" id="65784" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" id="44368" translatesAutoresizingMaskIntoConstraints="NO">
@@ -1071,7 +1077,7 @@
                                     <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
                                 </state>
                                 <connections>
-                                    <action selector="UIButton44379_TouchUpInside:" destination="42783" id="45152" eventType="touchUpInside"/>
+                                    <action selector="ButtonAdd_TouchUpInside:" destination="42783" id="67453" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="47494" translatesAutoresizingMaskIntoConstraints="NO">
@@ -1114,6 +1120,8 @@
                     <connections>
                         <outlet property="PickerTime" destination="44368" id="name-outlet-44368"/>
                         <outlet property="TableViewDates" destination="47494" id="name-outlet-47494"/>
+                        <outlet property="ButtonNext" destination="42826" id="name-outlet-42826"/>
+                        <outlet property="ButtonAdd" destination="44379" id="name-outlet-44379"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42785" userLabel="First Responder" sceneMemberID="firstResponder"/>

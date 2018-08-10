@@ -42,13 +42,13 @@ namespace OneMediPlan.ViewModels
         public SetIntervallViewModel()
         {
             Title = "Intervall";
-            NextCommand = new Command(SaveMedi, Check);
+            NextCommand = new Command(NextCommandExecute, NextCommandCanExecute);
         }
 
-        private bool Check(object obj)
+        private bool NextCommandCanExecute(object obj)
             => int.TryParse(obj.ToString(), out Intervall);
 
-        private async void SaveMedi(object obj)
+        private async void NextCommandExecute(object obj)
         {
             CurrentMedi.PureIntervall = Intervall;
             CurrentMedi.IntervallTime = IntervallTime;

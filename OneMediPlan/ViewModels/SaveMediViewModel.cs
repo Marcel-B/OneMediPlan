@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
-using System.Runtime.CompilerServices;
 using OneMediPlan.Models;
 using System.Threading.Tasks;
 using Ninject;
+using System.Runtime.InteropServices;
 
 namespace OneMediPlan.ViewModels
 {
@@ -30,10 +28,12 @@ namespace OneMediPlan.ViewModels
             var store = App.Container.Get<IDataStore<Medi>>();
             CurrentMedi = await store.GetItemAsync(Guid.Empty);
         }
+
         private async void SaveMediExecute(object obj)
         {
             var store = App.Container.Get<IDataStore<Medi>>();
-
+            await store.DeleteItemAsync(Guid.Empty);
+            CurrentMedi.Id = Guid.NewGuid();
             await store.AddItemAsync(CurrentMedi);
         }
 

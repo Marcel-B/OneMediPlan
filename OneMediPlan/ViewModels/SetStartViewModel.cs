@@ -24,7 +24,7 @@ namespace OneMediPlan.ViewModels
      
         public SetStartViewModel()
         {
-            NextCommand = new Command(NextCommandExecute, CanExecuteNextCommand);
+            NextCommand = new Command(NextCommandExecute, NextCommandCanExecute);
         }
 
         public async Task Init()
@@ -40,9 +40,6 @@ namespace OneMediPlan.ViewModels
             await store.UpdateItemAsync(CurrentMedi);
         }
 
-        private bool CanExecuteNextCommand(object obj)
-        {
-            return true;
-        }
+        private bool NextCommandCanExecute(object obj) => true;
     }
 }

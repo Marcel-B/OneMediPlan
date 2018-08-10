@@ -1,8 +1,5 @@
 ﻿using System;
-using OneMediPlan.Models;
 using UIKit;
-using System.Runtime.Remoting.Channels;
-using Foundation;
 using OneMediPlan.ViewModels;
 using Ninject;
 
@@ -10,6 +7,8 @@ namespace OneMediPlan.iOS
 {
     public partial class NewMediViewController : UIViewController
     {
+        NewMediViewModel ViewModel { get; set; }
+
         partial void TextFieldEditingChanged(UITextField sender)
         {
             ViewModel.Name = sender.Text;
@@ -26,10 +25,9 @@ namespace OneMediPlan.iOS
         partial void ButtonNext_TouchUpInside(UIButton sender)
             => ViewModel.SaveNameCommand.Execute(TextFieldName.Text);
 
-        public NewMediViewModel ViewModel { get; set; }
-        //public Medi CurrentMedi { get; set; }
 
-        public NewMediViewController(IntPtr handle) : base(handle) {
+        public NewMediViewController(IntPtr handle) : base(handle)
+        {
             ViewModel = App.Container.Get<NewMediViewModel>();
         }
 
@@ -38,21 +36,5 @@ namespace OneMediPlan.iOS
             base.ViewDidLoad();
             Title = ViewModel.Title;
         }
-
-        //public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
-            //=> !string.IsNullOrWhiteSpace(TextFieldName.Text);
-
-        //public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-        //{
-        //    if (segue.DestinationViewController is MediStockViewController mediStockViewController)
-        //    {
-        //        mediStockViewController.CurrentMedi = new Medi
-        //        {
-        //            Id = Guid.NewGuid(),
-        //            Name = TextFieldName.Text,
-        //            Create = DateTimeOffset.Now
-        //        };
-        //    }
-        //}
     }
 }

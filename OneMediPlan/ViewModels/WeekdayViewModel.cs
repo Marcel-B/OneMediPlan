@@ -1,9 +1,7 @@
 ﻿using Ninject;
 using OneMediPlan.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -30,7 +28,7 @@ namespace OneMediPlan.ViewModels
 
         public WeekdayViewModel()
         {
-            NextCommand = new Command(ExecuteNextCommand, CanExecuteNextCommand);
+            NextCommand = new Command(NextCommandExecute, NextCommandCanExecute);
         }
 
         public async Task Init()
@@ -39,17 +37,19 @@ namespace OneMediPlan.ViewModels
             CurrentMedi = await store.GetItemAsync(Guid.Empty);
         }
 
-        public async void ExecuteNextCommand(object obj)
+        private async void NextCommandExecute(object obj)
         {
-            var days = new Weekdays();
-            days.Id = Guid.NewGuid();
-            days.MediFk = CurrentMedi.Id;
-            days.Days = Weekdays;
+            var days = new Weekdays
+            {
+                Id = Guid.NewGuid(),
+                MediFk = CurrentMedi.Id,
+                Days = Weekdays
+            };
             var store = App.Container.Get<IDataStore<Weekdays>>();
             await store.AddItemAsync(days);
         }
 
-        public bool CanExecuteNextCommand(object obj)
+        private bool NextCommandCanExecute(object obj)
             => Weekdays.Contains(true);
     }
 }

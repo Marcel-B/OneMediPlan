@@ -31,7 +31,8 @@ namespace OneMediPlan.ViewModels
 
         public SetDependencyViewModel()
         {
-            NextCommand = new Command(ExecuteNext, CanExecuteNext);
+            Title = "Abhängigkeit";
+            NextCommand = new Command(NextCommandExecute, NextCommandCanExecute);
         }
 
         public async Task Init()
@@ -45,14 +46,14 @@ namespace OneMediPlan.ViewModels
             ParentMedi = Medis.First();
         }
 
-        public async void ExecuteNext(object obj)
+        public async void NextCommandExecute(object obj)
         {
             CurrentMedi.DependsOn = ParentMedi.Id;
             var store = App.Container.Get<IDataStore<Medi>>();
             await store.UpdateItemAsync(CurrentMedi);
         }
 
-        public bool CanExecuteNext(object obj)
+        public bool NextCommandCanExecute(object obj)
         {
             if (ParentMedi == null) return false;
             return true;

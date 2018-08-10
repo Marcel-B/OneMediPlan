@@ -30,7 +30,7 @@ namespace OneMediPlan.ViewModels
         public SetDosageViewModel()
         {
             Title = "Dosis";
-            NextCommand = new Command(ExecuteNextCommand, CanExecuteNextCommand);
+            NextCommand = new Command(ExecuteNextCommand, NextCommandCanExecute);
         }
 
         public async Task Init()
@@ -47,7 +47,7 @@ namespace OneMediPlan.ViewModels
             await store.UpdateItemAsync(CurrentMedi);
         }
 
-        private bool CanExecuteNextCommand(object obj)
+        private bool NextCommandCanExecute(object obj)
         {
             if (obj.ToString().Length <= 0) return false;
             if (double.TryParse(obj.ToString(), out var dos))
