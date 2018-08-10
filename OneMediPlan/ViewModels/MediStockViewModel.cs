@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Ninject;
 using OneMediPlan.Models;
@@ -9,13 +10,26 @@ namespace OneMediPlan.ViewModels
     {
         public ICommand SaveStockCommand { get; }
 
-        Medi _medi;
+        Medi _currentMedi;
         string _stock;
         string _stockMinimum;
 
-        public Medi Medi { get => _medi; set => SetProperty(ref _medi, value); }
-        public string Stock { get => _stock; set => _stock = value; }
-        public string StockMinimum { get => _stockMinimum; set => _stockMinimum = value; }
+        public Medi CurrentMedi
+        {
+            get => _currentMedi;
+            set => SetProperty(ref _currentMedi, value);
+        }
+
+        public string Stock
+        {
+            get => _stock;
+            set => _stock = value;
+        }
+        public string StockMinimum
+        {
+            get => _stockMinimum;
+            set => _stockMinimum = value;
+        }
 
         public MediStockViewModel()
         {
@@ -23,15 +37,11 @@ namespace OneMediPlan.ViewModels
             SaveStockCommand = new Command(SaveStockExecute, SaveStockCanExecute);
         }
 
-        public void Init()
-        {
-            GetMedi();
-        }
-
-        private async void GetMedi()
+        public async Task Init()
         {
             var store = App.Container.Get<IDataStore<Medi>>();
-            Medi = await store.GetItemAsync(Guid.Empty);
+            CurrentMedi = await store.GetItemAsync(Guid.Empty);
+            return;
         }
 
         private bool SaveStockCanExecute(object obj)
@@ -44,18 +54,18 @@ namespace OneMediPlan.ViewModels
             }
             return false;
         }
+
         private async void SaveStockExecute(object obj)
         {
             var store = App.Container.Get<IDataStore<Medi>>();
-            var medi = await store.GetItemAsync(Guid.Empty);
 
             if (double.TryParse(Stock, out var stock))
-                medi.Stock = stock;
+                CurrentMedi.Stock = stock;
 
             if (double.TryParse(StockMinimum, out var stockMin))
-                medi.MinimumStock = stockMin;
+                CurrentMedi.MinimumStock = stockMin;
 
-            await store.UpdateItemAsync(medi);
+            await store.UpdateItemAsync(CurrentMedi);
         }
     }
 }

@@ -36,7 +36,8 @@ namespace OneMediPlan.iOS
             {
                 if (e.PropertyName.Equals("CurrentMedi"))
                 {
-                    if (viewModel.CurrentMedi.DependsOn != Guid.Empty)
+                    if (viewModel.CurrentMedi.DependsOn != Guid.Empty ||
+                        viewModel.CurrentMedi.DailyAppointments != null)
                     {
                         PickerStartTime.Enabled = false;
                         PerformSegue("ToSaveMediViewController", this);

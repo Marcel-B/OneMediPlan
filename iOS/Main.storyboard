@@ -317,7 +317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2250" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2906" y="-1534"/>
+            <point key="canvasLocation" x="2725" y="-781"/>
         </scene>
         <scene sceneID="7322">
             <objects>
@@ -368,6 +368,7 @@
                                 </state>
                                 <connections>
                                     <segue id="16103" destination="16030" kind="show"/>
+                                    <action selector="ButtonNext_TouchUpInside:" destination="7323" id="73388" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -401,7 +402,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7325" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3433" y="-1530"/>
+            <point key="canvasLocation" x="3237" y="-790"/>
         </scene>
         <scene sceneID="16029">
             <objects>
@@ -507,7 +508,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16032" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3944" y="-1530"/>
+            <point key="canvasLocation" x="3752" y="-783"/>
         </scene>
         <scene sceneID="16946">
             <objects>
@@ -598,7 +599,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16949" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4443" y="-2350"/>
+            <point key="canvasLocation" x="5049" y="665"/>
         </scene>
         <scene sceneID="17341">
             <objects>
@@ -659,7 +660,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17344" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4502" y="-719"/>
+            <point key="canvasLocation" x="4393" y="673"/>
         </scene>
         <scene sceneID="17380">
             <objects>
@@ -736,7 +737,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17383" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5985" y="-1524"/>
+            <point key="canvasLocation" x="6690" y="-343"/>
         </scene>
         <scene sceneID="17431">
             <objects>
@@ -903,7 +904,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17434" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4484" y="-1521"/>
+            <point key="canvasLocation" x="4485" y="-1215"/>
         </scene>
         <scene sceneID="17909">
             <objects>
@@ -976,7 +977,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17912" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4996" y="-1520"/>
+            <point key="canvasLocation" x="5873" y="-1256"/>
         </scene>
         <scene sceneID="18544">
             <objects>
@@ -1041,7 +1042,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="18547" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5482" y="-1538"/>
+            <point key="canvasLocation" x="6429" y="-1275"/>
         </scene>
         <scene sceneID="42782">
             <objects>
@@ -1061,8 +1062,8 @@
                                     <color key="titleColor" colorSpace="calibratedRGB" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1"/>
                                 </state>
                                 <connections>
-                                    <segue id="46726" destination="17381" kind="show"/>
                                     <action selector="ButtonNext_TouchUpInside:" destination="42783" id="65784" eventType="touchUpInside"/>
+                                    <segue id="71222" destination="17910" kind="show"/>
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" id="44368" translatesAutoresizingMaskIntoConstraints="NO">
@@ -1126,7 +1127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42785" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5050" y="-724"/>
+            <point key="canvasLocation" x="5140" y="-195"/>
         </scene>
     </scenes>
     <resources>

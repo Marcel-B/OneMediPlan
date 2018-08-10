@@ -26,6 +26,10 @@ namespace OneMediPlan.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField LabelMinimumStock { get; set; }
 
+        [Action ("ButtonNext_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ButtonNext_TouchUpInside (UIKit.UIButton sender);
+
         [Action ("TextViewStockChanged:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void TextViewStockChanged (UIKit.UITextField sender);

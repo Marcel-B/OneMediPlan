@@ -9,35 +9,38 @@ namespace OneMediPlan.iOS
 {
     public partial class MediStockViewController : UIViewController
     {
-        private MediStockViewModel _viewModel;
+        partial void ButtonNext_TouchUpInside(UIButton sender)
+        => ViewModel.SaveStockCommand.Execute(null);
+
+        MediStockViewModel ViewModel { get; set; }
 
         partial void TextViewStockMinimumChanged(UITextField sender)
         {
-            _viewModel.StockMinimum = sender.Text;
+            ViewModel.StockMinimum = sender.Text;
             var arr = new[] { sender.Text, LabelCurrentStock.Text };
-            var result = _viewModel.SaveStockCommand.CanExecute(arr);
+            var result = ViewModel.SaveStockCommand.CanExecute(arr);
             ButtonNext.Hidden = !result;
         }
 
         partial void TextViewStockChanged(UITextField sender)
         {
-            _viewModel.Stock = sender.Text;
+            ViewModel.Stock = sender.Text;
             var arr = new[] { LabelMinimumStock.Text, sender.Text };
-            var result = _viewModel.SaveStockCommand.CanExecute(arr);
+            var result = ViewModel.SaveStockCommand.CanExecute(arr);
             ButtonNext.Hidden = !result;
         }
 
         public MediStockViewController(IntPtr handle) : base(handle)
         {
-            _viewModel = App.Container.Get<MediStockViewModel>();
-            _viewModel.PropertyChanged += (sender, e) =>
+            ViewModel = App.Container.Get<MediStockViewModel>();
+            ViewModel.PropertyChanged += (sender, e) =>
             {
                 if (sender is MediStockViewModel viewModel)
                 {
-                    if (e.PropertyName.Equals("Medi"))
+                    if (e.PropertyName.Equals("CurrentMedi"))
                     {
-                        var stock = viewModel.Medi.Stock;
-                        var minStock = viewModel.Medi.MinimumStock;
+                        var stock = viewModel.CurrentMedi.Stock;
+                        var minStock = viewModel.CurrentMedi.MinimumStock;
                         if (stock > 0)
                             LabelCurrentStock.Text = stock.ToString();
                         if (minStock > 0)
@@ -47,10 +50,10 @@ namespace OneMediPlan.iOS
             };
         }
 
-        public override void ViewDidLoad()
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            _viewModel.Init();
+            await ViewModel.Init();
             ButtonNext.Hidden = true;
         }
     }
