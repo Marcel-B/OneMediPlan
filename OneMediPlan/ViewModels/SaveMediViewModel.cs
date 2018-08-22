@@ -38,8 +38,6 @@ namespace OneMediPlan.ViewModels
         }
 
         private bool SaveMediCanExecute(object obj)
-        {
-            return true;
-        }
+            => true;
     }
 }
