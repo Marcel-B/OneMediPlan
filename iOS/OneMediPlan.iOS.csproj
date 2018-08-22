@@ -117,6 +117,9 @@
     <Reference Include="Realm.Sync">
       <HintPath>..\packages\Realm.3.1.0\lib\netstandard1.4\Realm.Sync.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.Annotations">
+      <HintPath>..\..\..\..\..\..\usr\local\share\dotnet\sdk\NuGetFallbackFolder\microsoft.netcore.app\2.1.0\ref\netcoreapp2.1\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">

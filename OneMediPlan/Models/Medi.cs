@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections;
+using Realms;
+using System.Threading.Tasks;
+using System.Linq;
+using System.Net;
+using System.ComponentModel.DataAnnotations;
 
 namespace OneMediPlan.Models
 {
@@ -31,6 +35,37 @@ namespace OneMediPlan.Models
         }
         private readonly int value;
         public int Value { get => value; }
+    }
+
+    public class DailyAppointment : RealmObject
+    {
+        [PrimaryKey]
+        public string Id { get; set; }
+        public string MediFk { get; set; }
+        public int Hour { get; set; }
+        public int Minute { get; set; }
+    }
+
+    public class MediSave : RealmObject
+    {
+        [PrimaryKey]
+        public string Id { get; set; }
+        public DateTimeOffset Created { get; set; }
+        public DateTimeOffset LastEdit { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public bool DailyAppointments { get; set; }
+        public string DependsOn { get; set; }
+        public double Stock { get; set; }
+        public double MinimumStock { get; set; }
+        public double Dosage { get; set; }
+        public int DosageType { get; set; }
+        public int IntervallType { get; set; }
+        public int IntervallTime { get; set; }
+        public int PureIntervall { get; set; }
+        public DateTimeOffset NextDate { get; set; }
+        public DateTimeOffset LastDate { get; set; }
+        public DateTimeOffset LastRefill { get; set; }
     }
 
     public class Medi : Item, IComparable
@@ -66,6 +101,129 @@ namespace OneMediPlan.Models
                 return 0;
             }
             throw new ArgumentException();
+        }
+    }
+
+    public static class MediExtensions
+    {
+        public async static Task<MediSave> Save(this Medi medi)
+        {
+            var realm = await Realm.GetInstanceAsync(App.RealmConf);
+            var obj = new MediSave();
+            obj.Id = medi.Id.ToString();
+            obj.Name = medi.Name;
+            obj.Created = medi.Create;
+            obj.DailyAppointments = medi.DailyAppointments != null;
+            obj.DependsOn = medi.DependsOn.ToString();
+            obj.Description = medi.Description ?? String.Empty;
+            obj.Dosage = medi.Dosage;
+            obj.DosageType = (int)medi.DosageType;
+            obj.IntervallTime = (int)medi.IntervallTime;
+            obj.IntervallType = (int)medi.IntervallType;
+            obj.LastDate = medi.LastDate;
+            obj.LastEdit = DateTimeOffset.Now;
+            obj.LastRefill = medi.LastRefill;
+            obj.MinimumStock = medi.MinimumStock;
+            obj.NextDate = medi.NextDate;
+            obj.PureIntervall = medi.PureIntervall;
+            obj.Stock = medi.Stock;
+            realm.Write(() => realm.Add(obj));
+
+            var foo = medi.IntervallType;
+            switch (foo)
+            {
+                case IntervallType.DailyAppointment:
+                    realm.Write(() =>
+                    {
+                        foreach (var dailyAppointment in medi.DailyAppointments)
+                        {
+                            var tmp = new DailyAppointment
+                            {
+                                Id = Guid.NewGuid().ToString(),
+                                Hour = dailyAppointment.Item1.Value,
+                                Minute = dailyAppointment.Item2.Value,
+                                MediFk = medi.Id.ToString()
+                            };
+                            realm.Add(tmp);
+                        }
+                    });
+                    break;
+                case IntervallType.Weekdays:
+                    break;
+                case IntervallType.Depend:
+                case IntervallType.IfNedded:
+                case IntervallType.Intervall:
+                case IntervallType.Nothing:
+                    break;
+                default:
+                    break;
+            }
+            return obj;
+        }
+
+        public async static Task<MediSave> Update(this Medi medi)
+        {
+            var r = await Realm.GetInstanceAsync(App.RealmConf);
+            var me = r.Find<MediSave>(medi.Id.ToString());
+            using (var trans = r.BeginWrite())
+            {
+                me.Name = medi.Name;
+                me.DailyAppointments = medi.DailyAppointments != null;
+                me.DependsOn = medi.DependsOn.ToString();
+                me.Description = medi.Description;
+                me.Dosage = medi.Dosage;
+                me.DosageType = (int)medi.DosageType;
+                me.IntervallTime = (int)medi.IntervallTime;
+                me.IntervallType = (int)medi.IntervallType;
+                me.LastDate = medi.LastDate;
+                me.LastEdit = DateTimeOffset.Now;
+                me.LastRefill = medi.LastRefill;
+                me.MinimumStock = medi.MinimumStock;
+                me.NextDate = medi.NextDate;
+                me.PureIntervall = medi.PureIntervall;
+                me.Stock = medi.Stock;
+                trans.Commit();
+            }
+            if (medi.DailyAppointments != null)
+            {
+                var da = r.All<DailyAppointment>().Where(d => d.MediFk.Equals(medi.Id.ToString()));
+                await r.WriteAsync((Realm realm) => realm.RemoveRange(da));
+                foreach (var appointment in medi.DailyAppointments)
+                {
+                    await r.WriteAsync((Realm realm) => realm.Add(new DailyAppointment
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        MediFk = medi.Id.ToString(),
+                        Hour = appointment.Item1.Value,
+                        Minute = appointment.Item2.Value
+                    }));
+                }
+            }
+            else
+            {
+                // Keine Daily Appointments mehr, abrer es sind noch einträge vorhanden
+                var da = r.All<DailyAppointment>()
+                          .ToList()
+                          .Where(d => d.MediFk.Equals(medi.Id.ToString()));
+                r.Write(() =>
+                {
+                    foreach (var d in da)
+                    {
+                        r.Remove(d);
+                    }
+                });
+            }
+            return me;
+        }
+
+        public static Medi ToMedi(this MediSave medi)
+        {
+            return new Medi
+            {
+                Id = Guid.Parse(medi.Id),
+                Create = medi.Created,
+                Name = medi.Name,
+            };
         }
     }
 }

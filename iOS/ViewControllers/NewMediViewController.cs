@@ -9,6 +9,22 @@ namespace OneMediPlan.iOS
     {
         NewMediViewModel ViewModel { get; set; }
 
+        void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (sender is NewMediViewModel viewModel)
+            {
+                if (e.PropertyName.Equals("CurrentMedi"))
+                {
+                    TextFieldName.Text = viewModel.CurrentMedi.Name;
+                }
+                else if (e.PropertyName.Equals("Name"))
+                {
+                    TextFieldName.Text = viewModel.Name;
+                    TextFieldEditingChanged(TextFieldName);
+                }
+            }
+        }
+
         partial void TextFieldEditingChanged(UITextField sender)
         {
             ViewModel.Name = sender.Text;
@@ -29,11 +45,13 @@ namespace OneMediPlan.iOS
         public NewMediViewController(IntPtr handle) : base(handle)
         {
             ViewModel = App.Container.Get<NewMediViewModel>();
+            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
-        public override void ViewDidLoad()
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            await ViewModel.Init();
             Title = ViewModel.Title;
         }
     }

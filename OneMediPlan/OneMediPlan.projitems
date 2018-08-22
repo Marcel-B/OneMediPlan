@@ -11,7 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Command.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\CloudDataStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\MediDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MockDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AppSettingsViewModel.cs" />

@@ -6,6 +6,7 @@ using System;
 using OneMediPlan.Services;
 using System.Threading.Tasks;
 using System.Linq;
+using Realms;
 
 namespace OneMediPlan
 {
@@ -27,14 +28,19 @@ namespace OneMediPlan
         }
     }
 
+ 
     public class App
     {
         public static StandardKernel Container { get; set; }
-        public static bool UseMockDataStore = true;
+        public static bool UseMockDataStore = false;
         public static string BackendUrl = "http://localhost:5000";
+        public static RealmConfiguration RealmConf = new RealmConfiguration("default.realm");
+        public const int SCHEMA_VERSION = 2;
 
         public static void Initialize()
         {
+            RealmConf.SchemaVersion = SCHEMA_VERSION;
+
             Container = new StandardKernel();
 
             Container.Bind<MediViewModel>().ToSelf().InSingletonScope();
@@ -59,7 +65,7 @@ namespace OneMediPlan
             }
             else
             {
-                Container.Bind<IDataStore<Medi>>().To<CloudDataStore>().InSingletonScope();
+                Container.Bind<IDataStore<Medi>>().To<MediDataStore>().InSingletonScope();
                 Container.Bind<IDataStore<Weekdays>>().ToSelf().InSingletonScope();
                 Container.Bind<IDataStore<MediSettings>>().To<AppSettingsDataStore>().InSingletonScope();
             }
