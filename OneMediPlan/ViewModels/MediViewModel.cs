@@ -38,6 +38,7 @@ namespace OneMediPlan.ViewModels
                 medis.Sort();
                 foreach (var medi in medis)
                 {
+                    if (medi.Id == Guid.Empty) continue;
                     Medis.Add(medi);
                 }
             }

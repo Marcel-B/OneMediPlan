@@ -46,6 +46,10 @@ namespace OneMediPlan.iOS
                         if (minStock > 0)
                             LabelMinimumStock.Text = minStock.ToString();
                     }
+                    else if (e.PropertyName.Equals("StockMinimum"))
+                    {
+                        LabelMinimumStock.Text = viewModel.StockMinimum;
+                    }
                 }
             };
         }

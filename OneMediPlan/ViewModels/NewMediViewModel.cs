@@ -14,7 +14,11 @@ namespace OneMediPlan.ViewModels
         public Medi CurrentMedi
         {
             get => _currentMedi;
-            set => SetProperty(ref _currentMedi, value);
+            set
+            {
+                _currentMedi = value;
+                OnPropertyChanged("CurrentMedi");
+            }
         }
 
         string _name;
@@ -32,10 +36,9 @@ namespace OneMediPlan.ViewModels
                 CanExecuteSaveName);
         }
 
-        public async Task Init()
+        public void Init()
         {
-            var store = App.Container.Get<IDataStore<Medi>>();
-            var medi = await store.GetItemAsync(Guid.Empty);
+            var medi = App.Container.Get<Medi>();
             if (medi == null)
                 medi = new Medi
                 {
@@ -44,8 +47,8 @@ namespace OneMediPlan.ViewModels
                     Create = DateTimeOffset.Now
                 };
             CurrentMedi = medi;
+            //OnPropertyChanged("CurrentMedi");
             Name = medi.Name;
-            return;
         }
 
         private bool CanExecuteSaveName(object obj)
@@ -55,7 +58,7 @@ namespace OneMediPlan.ViewModels
         {
             var store = App.Container.Get<IDataStore<Medi>>();
             CurrentMedi.Name = Name;
-            store.AddItemAsync(CurrentMedi);
+            var result = await store.AddItemAsync(CurrentMedi);
         }
     }
 }

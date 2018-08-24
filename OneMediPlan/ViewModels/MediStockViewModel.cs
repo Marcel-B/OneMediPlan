@@ -17,7 +17,11 @@ namespace OneMediPlan.ViewModels
         public Medi CurrentMedi
         {
             get => _currentMedi;
-            set => SetProperty(ref _currentMedi, value);
+            set
+            {
+                _currentMedi = value;
+                OnPropertyChanged("CurrentMedi");
+            }
         }
 
         public string Stock
@@ -28,7 +32,7 @@ namespace OneMediPlan.ViewModels
         public string StockMinimum
         {
             get => _stockMinimum;
-            set => _stockMinimum = value;
+            set => SetProperty(ref _stockMinimum, value);
         }
 
         public MediStockViewModel()
@@ -41,6 +45,8 @@ namespace OneMediPlan.ViewModels
         {
             var store = App.Container.Get<IDataStore<Medi>>();
             CurrentMedi = await store.GetItemAsync(Guid.Empty);
+            if (CurrentMedi.MinimumStock > 0)
+                StockMinimum = CurrentMedi.MinimumStock.ToString();
             return;
         }
 

@@ -48,10 +48,10 @@ namespace OneMediPlan.iOS
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
-        public async override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            await ViewModel.Init();
+            ViewModel.Init();
             Title = ViewModel.Title;
         }
     }

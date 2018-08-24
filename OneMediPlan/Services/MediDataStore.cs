@@ -20,16 +20,23 @@ namespace OneMediPlan
         public MediDataStore()
         {
             _medis = new List<Medi>();
+            var realm = Realm.GetInstance(App.RealmConf);
+            var medis = realm.All<MediSave>();
+            foreach (var medi in medis)
+                _medis.Add(medi.ToMedi());
         }
 
         public async Task<IEnumerable<Medi>> GetItemsAsync(bool forceRefresh = false)
         {
-            _medis.Clear();
-            var realm = await Realm.GetInstanceAsync(App.RealmConf);
-            var medis = realm.All<MediSave>();
-            foreach (var medi in medis)
+            //_medis.Clear();
+            if (_medis.Count <= 0)
             {
-                _medis.Add(medi.ToMedi());
+                var realm = await Realm.GetInstanceAsync(App.RealmConf);
+                var medis = realm.All<MediSave>();
+                foreach (var medi in medis)
+                {
+                    _medis.Add(medi.ToMedi());
+                }
             }
             return _medis;
         }
@@ -38,15 +45,18 @@ namespace OneMediPlan
         {
             var med = _medis.SingleOrDefault(m => m.Id == id);
             if (med != null) return med;
-
             var i = await Realm.GetInstanceAsync(App.RealmConf);
             var o = i.Find<MediSave>(id.ToString());
-            return o?.ToMedi();
+            return o?.ToMedi() ?? med;
         }
 
         public async Task<bool> AddItemAsync(Medi item)
         {
-            _medis.Add(item);
+            var contains = _medis.SingleOrDefault(m => m.Id == item.Id);
+            if (contains != null)
+                _medis[_medis.IndexOf(contains)] = contains;
+            else
+                _medis.Add(item);
             var realm = await Realm.GetInstanceAsync(App.RealmConf);
             var obj = realm.Find("MediSave", item.Id.ToString());
             MediSave medi;
@@ -61,7 +71,7 @@ namespace OneMediPlan
         {
             var med = _medis.SingleOrDefault(m => m.Id == item.Id);
             _medis[_medis.IndexOf(med)] = item;
-            
+
             var medi = await item.Update();
             return medi != null;
         }

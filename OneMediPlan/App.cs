@@ -55,6 +55,7 @@ namespace OneMediPlan
             Container.Bind<SetDailyViewModel>().ToSelf().InSingletonScope();
             Container.Bind<SetStartViewModel>().ToSelf().InSingletonScope();
             Container.Bind<SaveMediViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<Medi>().ToSelf().InSingletonScope(); // Temp Medi
 
             Container.Bind<ISomeLogic>().To<SomeLogic>();
             if (UseMockDataStore)
