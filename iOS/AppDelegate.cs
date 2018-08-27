@@ -32,6 +32,7 @@ namespace OneMediPlan.iOS
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
+            App.SetNotification = SetNotification;
             var notificationSettings =
                 UIUserNotificationSettings
                     .GetSettingsForTypes(UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null);

@@ -44,6 +44,11 @@ namespace OneMediPlan
             return await Task.FromResult(weekdays);
         }
 
+        public Task SaveStore()
+        {
+            throw new NotImplementedException();
+        }
+
         async public Task<bool> UpdateItemAsync(Weekdays item)
         {
             var _weekdays = weekdays.Where((Weekdays arg) => arg.Id == item.Id).FirstOrDefault();
@@ -169,5 +174,10 @@ namespace OneMediPlan
 
         public async Task<IEnumerable<Medi>> GetItemsAsync(bool forceRefresh = false)
             => await Task.FromResult(medis);
+
+        public Task SaveStore()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

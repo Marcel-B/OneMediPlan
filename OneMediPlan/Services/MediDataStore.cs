@@ -28,16 +28,16 @@ namespace OneMediPlan
 
         public async Task<IEnumerable<Medi>> GetItemsAsync(bool forceRefresh = false)
         {
-            //_medis.Clear();
-            if (_medis.Count <= 0)
-            {
+            _medis.Clear();
+            //if (_medis.Count <= 0)
+            //{
                 var realm = await Realm.GetInstanceAsync(App.RealmConf);
                 var medis = realm.All<MediSave>();
                 foreach (var medi in medis)
                 {
                     _medis.Add(medi.ToMedi());
                 }
-            }
+            //}
             return _medis;
         }
 
@@ -84,6 +84,13 @@ namespace OneMediPlan
             var item = realm.Find<MediSave>(id.ToString());
             realm.Write(() => realm.Remove(item));
             return true;
+        }
+
+        public async Task SaveStore()
+        {
+            foreach (var medi in _medis)
+                await medi.Save();
+            return;
         }
     }
 }

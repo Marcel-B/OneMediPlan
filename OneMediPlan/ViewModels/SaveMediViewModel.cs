@@ -34,6 +34,8 @@ namespace OneMediPlan.ViewModels
             var store = App.Container.Get<IDataStore<Medi>>();
             await store.DeleteItemAsync(Guid.Empty);
             CurrentMedi.Id = Guid.NewGuid();
+            if (App.SetNotification != null)
+                App.SetNotification(CurrentMedi);
             await store.AddItemAsync(CurrentMedi);
         }
 

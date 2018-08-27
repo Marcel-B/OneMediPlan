@@ -45,6 +45,11 @@ namespace OneMediPlan.Services
             return all;
         }
 
+        public Task SaveStore()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> UpdateItemAsync(MediSettings item)
         {
             var realm = await Realm.GetInstanceAsync(App.RealmConf);

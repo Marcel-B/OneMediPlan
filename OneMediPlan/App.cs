@@ -37,6 +37,8 @@ namespace OneMediPlan
         public static RealmConfiguration RealmConf = new RealmConfiguration("default.realm");
         public const int SCHEMA_VERSION = 2;
 
+        public static Action<Medi> SetNotification { get; set; }
+
         public static void Initialize()
         {
             RealmConf.SchemaVersion = SCHEMA_VERSION;
@@ -56,6 +58,7 @@ namespace OneMediPlan
             Container.Bind<SetStartViewModel>().ToSelf().InSingletonScope();
             Container.Bind<SaveMediViewModel>().ToSelf().InSingletonScope();
             Container.Bind<Medi>().ToSelf().InSingletonScope(); // Temp Medi
+
 
             Container.Bind<ISomeLogic>().To<SomeLogic>();
             if (UseMockDataStore)

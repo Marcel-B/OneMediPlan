@@ -223,6 +223,21 @@ namespace OneMediPlan.Models
                 Id = Guid.Parse(medi.Id),
                 Create = medi.Created,
                 Name = medi.Name,
+                LastDate = medi.LastDate,
+                LastEdit = medi.LastEdit,
+                LastRefill = medi.LastRefill,
+                DependsOn = Guid.Parse(medi.DependsOn),
+                Stock = medi.Stock,
+                Dosage = medi.Dosage,
+                MinimumStock = medi.MinimumStock,
+                NextDate = medi.NextDate,
+                DosageType = (MediType)medi.DosageType,
+                IntervallType = (IntervallType)medi.IntervallType,
+                IntervallTime = (IntervallTime)medi.IntervallTime,
+                Description = medi.Description,
+                PureIntervall = medi.PureIntervall
+                // TODO - Set DailyAppointments and Weekdays etc ...
+                //me.DailyAppointments = medi.DailyAppointments != null;
             };
         }
     }
