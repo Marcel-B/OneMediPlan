@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Net;
 using System.ComponentModel.DataAnnotations;
+using Ninject;
 
 namespace OneMediPlan.Models
 {
@@ -186,8 +187,17 @@ namespace OneMediPlan.Models
             }
             if (medi.DailyAppointments != null)
             {
-                var da = r.All<DailyAppointment>().Where(d => d.MediFk.Equals(medi.Id.ToString()));
-                await r.WriteAsync((Realm realm) => realm.RemoveRange(da));
+                var da = r.All<DailyAppointment>()
+                             .ToList()
+                             .Where(d => d.MediFk.Equals(medi.Id.ToString()))
+                             .ToList();
+                r.Write(() =>
+                {
+                    foreach (var d in da)
+                    {
+                        r.Remove(d);
+                    }
+                });
                 foreach (var appointment in medi.DailyAppointments)
                 {
                     await r.WriteAsync((Realm realm) => realm.Add(new DailyAppointment
@@ -218,6 +228,19 @@ namespace OneMediPlan.Models
 
         public static Medi ToMedi(this MediSave medi)
         {
+            var mediHasDailyAppointments = medi.DailyAppointments;
+            IList<Tuple<Hour, Minute>> das = null;
+            if (mediHasDailyAppointments)
+            {
+                var realm = Realm.GetInstance(App.RealmConf);
+                var da = realm.All<DailyAppointment>();
+                var dd = da.Where(a => a.MediFk.Equals(medi.Id));
+                das = new List<Tuple<Hour, Minute>>();
+                foreach (var item in dd)
+                {
+                    das.Add(new Tuple<Hour, Minute>(new Hour(item.Hour), new Minute(item.Minute)));
+                }
+            }
             return new Medi
             {
                 Id = Guid.Parse(medi.Id),
@@ -235,7 +258,8 @@ namespace OneMediPlan.Models
                 IntervallType = (IntervallType)medi.IntervallType,
                 IntervallTime = (IntervallTime)medi.IntervallTime,
                 Description = medi.Description,
-                PureIntervall = medi.PureIntervall
+                PureIntervall = medi.PureIntervall,
+                DailyAppointments = das
                 // TODO - Set DailyAppointments and Weekdays etc ...
                 //me.DailyAppointments = medi.DailyAppointments != null;
             };
