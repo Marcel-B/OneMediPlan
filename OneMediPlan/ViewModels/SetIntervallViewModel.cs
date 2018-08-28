@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Ninject;
 using System.Windows.Input;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace OneMediPlan.ViewModels
 {
@@ -48,12 +49,12 @@ namespace OneMediPlan.ViewModels
         private bool NextCommandCanExecute(object obj)
             => int.TryParse(obj.ToString(), out Intervall);
 
-        private async void NextCommandExecute(object obj)
+        private void NextCommandExecute(object obj)
         {
             CurrentMedi.PureIntervall = Intervall;
             CurrentMedi.IntervallTime = IntervallTime;
-            var store = App.Container.Get<IDataStore<Medi>>();
-            await store.UpdateItemAsync(CurrentMedi);
+            var store = App.Container.Get<IMediDataStore>();
+            store.SetTemporaryMedi(CurrentMedi);
         }
 
         // Vielleich über ne property und property changed
@@ -63,8 +64,8 @@ namespace OneMediPlan.ViewModels
 
         public async Task Init()
         {
-            var store = App.Container.Get<IDataStore<Medi>>();
-            CurrentMedi = await store.GetItemAsync(Guid.Empty);
+            var store = App.Container.Get<IMediDataStore>();
+            CurrentMedi = store.GetTemporaryMedi();
             LabelHidden = CurrentMedi.DependsOn == Guid.Empty;
             if (!LabelHidden)
             {

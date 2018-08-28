@@ -41,13 +41,12 @@ namespace OneMediPlan.ViewModels
             SaveStockCommand = new Command(SaveStockExecute, SaveStockCanExecute);
         }
 
-        public async Task Init()
+        public void Init()
         {
-            var store = App.Container.Get<IDataStore<Medi>>();
-            CurrentMedi = await store.GetItemAsync(Guid.Empty);
+            var store = App.Container.Get<IMediDataStore>();
+            CurrentMedi = store.GetTemporaryMedi();
             if (CurrentMedi.MinimumStock > 0)
                 StockMinimum = CurrentMedi.MinimumStock.ToString();
-            return;
         }
 
         private bool SaveStockCanExecute(object obj)
@@ -61,9 +60,9 @@ namespace OneMediPlan.ViewModels
             return false;
         }
 
-        private async void SaveStockExecute(object obj)
+        private void SaveStockExecute(object obj)
         {
-            var store = App.Container.Get<IDataStore<Medi>>();
+            var store = App.Container.Get<IMediDataStore>();
 
             if (double.TryParse(Stock, out var stock))
                 CurrentMedi.Stock = stock;
@@ -71,7 +70,7 @@ namespace OneMediPlan.ViewModels
             if (double.TryParse(StockMinimum, out var stockMin))
                 CurrentMedi.MinimumStock = stockMin;
 
-            await store.UpdateItemAsync(CurrentMedi);
+            store.SetTemporaryMedi(CurrentMedi);
         }
     }
 }

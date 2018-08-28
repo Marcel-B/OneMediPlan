@@ -2,6 +2,7 @@ using System;
 using UIKit;
 using OneMediPlan.ViewModels;
 using Ninject;
+using OneMediPlan.Helpers;
 
 namespace OneMediPlan.iOS
 {
@@ -28,7 +29,7 @@ namespace OneMediPlan.iOS
         {
             if(sender is WeekdayViewModel viewModel)
             {
-                if (e.PropertyName.Equals("Weekdays"))
+                if (e.PropertyName.Equals(Strings.WEEKDAYS))
                 {
                     // TODO - Set Weekdays on UIControll
                 }

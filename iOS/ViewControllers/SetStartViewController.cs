@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using OneMediPlan.ViewModels;
 using Ninject;
+using OneMediPlan.Helpers;
 
 namespace OneMediPlan.iOS
 {
@@ -19,10 +20,10 @@ namespace OneMediPlan.iOS
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
-        public async override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            await ViewModel.Init();
+            ViewModel.Init();
         }
 
         partial void ButtonNext_TouchUpInside(UIButton sender)
@@ -34,7 +35,7 @@ namespace OneMediPlan.iOS
         {
             if (sender is SetStartViewModel viewModel)
             {
-                if (e.PropertyName.Equals("CurrentMedi"))
+                if (e.PropertyName.Equals(Strings.CURRENT_MEDI))
                 {
                     if (viewModel.CurrentMedi.DependsOn != Guid.Empty ||
                         viewModel.CurrentMedi.DailyAppointments != null)

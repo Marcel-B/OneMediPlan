@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-
-using Newtonsoft.Json;
 using OneMediPlan.Models;
-using Plugin.Connectivity;
 using Realms;
 using System.Linq;
 
 namespace OneMediPlan
 {
-    public class MediDataStore : IDataStore<Medi>
+    public interface IMediDataStore : IDataStore<Medi>
     {
-        IList<Medi> _medis;
+        Medi GetTemporaryMedi();
+        void SetTemporaryMedi(Medi medi);
+    }
+
+    public class MediDataStore : IMediDataStore
+    {
+        readonly IList<Medi> _medis;
+        private Medi _temporaryMedi;
 
         public MediDataStore()
         {
@@ -31,12 +32,12 @@ namespace OneMediPlan
             _medis.Clear();
             //if (_medis.Count <= 0)
             //{
-                var realm = await Realm.GetInstanceAsync(App.RealmConf);
-                var medis = realm.All<MediSave>();
-                foreach (var medi in medis)
-                {
-                    _medis.Add(medi.ToMedi());
-                }
+            var realm = await Realm.GetInstanceAsync(App.RealmConf);
+            var medis = realm.All<MediSave>();
+            foreach (var medi in medis)
+            {
+                _medis.Add(medi.ToMedi());
+            }
             //}
             return _medis;
         }
@@ -92,5 +93,11 @@ namespace OneMediPlan
                 await medi.Save();
             return;
         }
+
+        public Medi GetTemporaryMedi()
+        => _temporaryMedi ?? new Medi { Create = DateTimeOffset.Now };
+
+        public void SetTemporaryMedi(Medi medi)
+        => _temporaryMedi = medi;
     }
 }

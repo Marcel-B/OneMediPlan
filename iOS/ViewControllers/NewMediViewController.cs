@@ -2,6 +2,7 @@
 using UIKit;
 using OneMediPlan.ViewModels;
 using Ninject;
+using OneMediPlan.Helpers;
 
 namespace OneMediPlan.iOS
 {
@@ -13,11 +14,11 @@ namespace OneMediPlan.iOS
         {
             if (sender is NewMediViewModel viewModel)
             {
-                if (e.PropertyName.Equals("CurrentMedi"))
+                if (e.PropertyName.Equals(Strings.CURRENT_MEDI))
                 {
                     TextFieldName.Text = viewModel.CurrentMedi.Name;
                 }
-                else if (e.PropertyName.Equals("Name"))
+                else if (e.PropertyName.Equals(Strings.NAME))
                 {
                     TextFieldName.Text = viewModel.Name;
                     TextFieldEditingChanged(TextFieldName);

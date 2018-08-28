@@ -1,8 +1,7 @@
 ﻿using OneMediPlan.Models;
 using System.Windows.Input;
 using Ninject;
-using System;
-using System.Threading.Tasks;
+
 namespace OneMediPlan.ViewModels
 {
     public class SetIntervallTypeViewModel : BaseViewModel
@@ -17,21 +16,20 @@ namespace OneMediPlan.ViewModels
             SelectIntervallCommand = new Command(SelectIntervallCommandExecute);
         }
 
-        private async void SelectIntervallCommandExecute(object obj)
+        private void SelectIntervallCommandExecute(object obj)
         {
             if (obj is IntervallType type)
             {
                 CurrentMedi.IntervallType = type;
-                var store = App.Container.Get<IDataStore<Medi>>();
-                await store.UpdateItemAsync(CurrentMedi);
+                var store = App.Container.Get<IMediDataStore>();
+                store.SetTemporaryMedi(CurrentMedi);
             }
         }
 
-        public async Task Init()
+        public void Init()
         {
-            var store = App.Container.Get<IDataStore<Medi>>();
-            CurrentMedi = await store.GetItemAsync(Guid.Empty);
-            return;
+            var store = App.Container.Get<IMediDataStore>();
+            CurrentMedi = store.GetTemporaryMedi();
         }
     }
 }

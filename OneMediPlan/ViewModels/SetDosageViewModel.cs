@@ -33,18 +33,17 @@ namespace OneMediPlan.ViewModels
             NextCommand = new Command(ExecuteNextCommand, NextCommandCanExecute);
         }
 
-        public async Task Init()
+        public void Init()
         {
-            var store = App.Container.Get<IDataStore<Medi>>();
-            CurrentMedi = await store.GetItemAsync(Guid.Empty);
-            return;
+            var store = App.Container.Get<IMediDataStore>();
+            CurrentMedi = store.GetTemporaryMedi();
         }
 
-        private async void ExecuteNextCommand(object obj)
+        private void ExecuteNextCommand(object obj)
         {
             CurrentMedi.Dosage = Dosage;
-            var store = App.Container.Get<IDataStore<Medi>>();
-            await store.UpdateItemAsync(CurrentMedi);
+            var store = App.Container.Get<IMediDataStore>();
+            store.SetTemporaryMedi(CurrentMedi);
         }
 
         private bool NextCommandCanExecute(object obj)

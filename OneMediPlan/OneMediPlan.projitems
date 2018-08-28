@@ -38,5 +38,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SetIntervallViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SetStartViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\WeekdayViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Strings.cs" />
   </ItemGroup>
 </Project>

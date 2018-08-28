@@ -44,45 +44,10 @@ namespace OneMediPlan.iOS
             ViewModel = App.Container.Get<SetIntervallTypeViewModel>();
         }
 
-        public async override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            await ViewModel.Init();
+            ViewModel.Init();
         }
-
-        //public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-        //{
-        //CurrentMedi.DependsOn = Guid.Empty;
-        //if (segue.DestinationViewController is SetDependencyViewController viewController)
-        //{
-        //    CurrentMedi.IntervallType = IntervallType.Depend;
-        //    viewController.CurrentMedi = CurrentMedi;
-        //    return;
-        //}
-        //if (segue.DestinationViewController is SetIntervallViewController setIntervallViewController)
-        //{
-        //    CurrentMedi.IntervallType = IntervallType.Intervall;
-        //    setIntervallViewController.CurrentMedi = CurrentMedi;
-        //    return;
-        //}
-        //if (segue.DestinationViewController is WeekdayViewController weekdayViewController)
-        //{
-        //    CurrentMedi.IntervallType = IntervallType.Weekdays;
-        //    weekdayViewController.CurrentMedi = CurrentMedi;
-        //    return;
-        //}
-        //if (segue.DestinationViewController is SaveMediViewController saveMediViewController)
-        //{
-        //    CurrentMedi.IntervallType = IntervallType.IfNedded;
-        //    saveMediViewController.CurrentMedi = CurrentMedi;
-        //    return;
-        //}
-        //if (segue.DestinationViewController is SetDailyViewController setDailyViewController)
-        //{
-        //    CurrentMedi.IntervallType = IntervallType.DailyAppointment;
-        //    setDailyViewController.CurrentMedi = CurrentMedi;
-        //    return;
-        //}
-        //}
     }
 }

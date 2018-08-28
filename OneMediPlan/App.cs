@@ -63,13 +63,13 @@ namespace OneMediPlan
             Container.Bind<ISomeLogic>().To<SomeLogic>();
             if (UseMockDataStore)
             {
-                Container.Bind<IDataStore<Medi>>().To<MockDataStore>().InSingletonScope();
+                //Container.Bind<IMediDataStore>().To<MockDataStore>().InSingletonScope();
                 Container.Bind<IDataStore<Weekdays>>().To<WeekdayDataStoreMock>().InSingletonScope();
                 Container.Bind<IDataStore<MediSettings>>().To<AppSettingsDataStore>().InSingletonScope();
             }
             else
             {
-                Container.Bind<IDataStore<Medi>>().To<MediDataStore>().InSingletonScope();
+                Container.Bind<IMediDataStore>().To<MediDataStore>().InSingletonScope();
                 Container.Bind<IDataStore<Weekdays>>().ToSelf().InSingletonScope();
                 Container.Bind<IDataStore<MediSettings>>().To<AppSettingsDataStore>().InSingletonScope();
             }

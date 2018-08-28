@@ -38,27 +38,19 @@ namespace OneMediPlan.ViewModels
 
         public void Init()
         {
-            var medi = App.Container.Get<Medi>();
-            if (medi == null)
-                medi = new Medi
-                {
-                    Id = Guid.Empty,
-                    Name = string.Empty,
-                    Create = DateTimeOffset.Now
-                };
-            CurrentMedi = medi;
-            //OnPropertyChanged("CurrentMedi");
-            Name = medi.Name;
+            var store = App.Container.Get<IMediDataStore>();
+            CurrentMedi = store.GetTemporaryMedi();
+            Name = CurrentMedi.Name;
         }
 
         private bool CanExecuteSaveName(object obj)
             => obj.ToString().Length > 0;
 
-        private async void SaveNameExecute(object obj)
+        private void SaveNameExecute(object obj)
         {
-            var store = App.Container.Get<IDataStore<Medi>>();
+            var store = App.Container.Get<IMediDataStore>();
             CurrentMedi.Name = Name;
-            var result = await store.AddItemAsync(CurrentMedi);
+            store.SetTemporaryMedi(CurrentMedi);
         }
     }
 }

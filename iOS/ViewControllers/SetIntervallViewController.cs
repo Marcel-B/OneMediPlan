@@ -6,6 +6,7 @@ using OneMediPlan.Models;
 using Foundation;
 using Ninject;
 using OneMediPlan.ViewModels;
+using OneMediPlan.Helpers;
 
 namespace OneMediPlan.iOS
 {
@@ -31,7 +32,7 @@ namespace OneMediPlan.iOS
         {
             if(sender is SetIntervallViewModel viewModel)
             {
-                if (e.PropertyName.Equals("CurrentMedi"))
+                if (e.PropertyName.Equals(Strings.CURRENT_MEDI))
                 {
                     var noParent = viewModel.CurrentMedi.DependsOn == Guid.Empty;
                     LabelDependencyInfo.Hidden = noParent;
@@ -43,7 +44,7 @@ namespace OneMediPlan.iOS
             }
         }
 
-        async public override void ViewDidLoad()
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
             ButtonNext.Hidden = true;
@@ -65,33 +66,6 @@ namespace OneMediPlan.iOS
             };
         }
 
-        //public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-        //{
-        //    if (segue.DestinationViewController is SetDosageViewController setDosageViewController)
-        //    {
-        //        CurrentMedi.IntervallTime = _intervallTime;
-        //        CurrentMedi.PureIntervall = _intervall;
-        //        switch (_intervallTime)
-        //        {
-        //            case IntervallTime.Minute:
-        //                CurrentMedi.Intervall = new TimeSpan(0, _intervall, 0);
-        //                break;
-        //            case IntervallTime.Hour:
-        //                CurrentMedi.Intervall = new TimeSpan(_intervall, 0, 0);
-        //                break;
-        //            case IntervallTime.Week:
-        //                CurrentMedi.Intervall = new TimeSpan(24 * 7, 0, 0);
-        //                break;
-        //            case IntervallTime.Month:
-        //                CurrentMedi.Intervall = new TimeSpan(24 * 30, 0, 0);
-        //                break;
-        //            default:
-        //                break;
-        //        }
-        //        CurrentMedi.IntervallInMinutes = (_intervall * _intervallFactor);
-        //        setDosageViewController.CurrentMedi = CurrentMedi;
-        //    }
-        //}
         internal class IntervallTypeDataModel : UIPickerViewModel
         {
             public event EventHandler<EventArgs> ValueChanged;

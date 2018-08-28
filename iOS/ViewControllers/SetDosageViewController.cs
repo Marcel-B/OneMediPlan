@@ -5,6 +5,7 @@ using OneMediPlan.Models;
 using System.ComponentModel;
 using OneMediPlan.ViewModels;
 using Ninject;
+using OneMediPlan.Helpers;
 
 namespace OneMediPlan.iOS
 {
@@ -21,7 +22,7 @@ namespace OneMediPlan.iOS
         {
             if (sender is SetDosageViewModel viewModel)
             {
-                if (e.PropertyName.Equals("CurrentMedi"))
+                if (e.PropertyName.Equals(Strings.CURRENT_MEDI))
                 {
                     if (viewModel.CurrentMedi.Dosage > 0)
                         LabelDosage.Text = viewModel.CurrentMedi.Dosage.ToString();
@@ -37,10 +38,10 @@ namespace OneMediPlan.iOS
             ButtonNext.Hidden = !ViewModel.NextCommand.CanExecute(sender.Text);
         }
 
-        public async override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            await ViewModel.Init();
+            ViewModel.Init();
             Title = ViewModel.Title;
         }
     }

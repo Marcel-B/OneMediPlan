@@ -20,10 +20,10 @@ namespace OneMediPlan.iOS
             ViewModel = App.Container.Get<SaveMediViewModel>();
         }
 
-        public async override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            await ViewModel.Init();
+            ViewModel.Init();
         }
     }
 }

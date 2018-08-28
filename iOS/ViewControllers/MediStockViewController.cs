@@ -1,9 +1,8 @@
-using Foundation;
 using System;
 using UIKit;
-using OneMediPlan.Models;
 using OneMediPlan.ViewModels;
 using Ninject;
+using OneMediPlan.Helpers;
 
 namespace OneMediPlan.iOS
 {
@@ -37,7 +36,7 @@ namespace OneMediPlan.iOS
             {
                 if (sender is MediStockViewModel viewModel)
                 {
-                    if (e.PropertyName.Equals("CurrentMedi"))
+                    if (e.PropertyName.Equals(Strings.CURRENT_MEDI))
                     {
                         var stock = viewModel.CurrentMedi.Stock;
                         var minStock = viewModel.CurrentMedi.MinimumStock;
@@ -46,7 +45,7 @@ namespace OneMediPlan.iOS
                         if (minStock > 0)
                             LabelMinimumStock.Text = minStock.ToString();
                     }
-                    else if (e.PropertyName.Equals("StockMinimum"))
+                    else if (e.PropertyName.Equals(Strings.STOCK_MINIMUM))
                     {
                         LabelMinimumStock.Text = viewModel.StockMinimum;
                     }
@@ -54,10 +53,10 @@ namespace OneMediPlan.iOS
             };
         }
 
-        public async override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            await ViewModel.Init();
+            ViewModel.Init();
             ButtonNext.Hidden = true;
         }
     }

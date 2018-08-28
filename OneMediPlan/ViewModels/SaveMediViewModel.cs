@@ -23,20 +23,20 @@ namespace OneMediPlan.ViewModels
             SaveMediCommand = new Command(SaveMediExecute, SaveMediCanExecute);
         }
 
-        public async Task Init()
+        public void Init()
         {
-            var store = App.Container.Get<IDataStore<Medi>>();
-            CurrentMedi = await store.GetItemAsync(Guid.Empty);
+            var store = App.Container.Get<IMediDataStore>();
+            CurrentMedi = store.GetTemporaryMedi();
         }
 
         private async void SaveMediExecute(object obj)
         {
-            var store = App.Container.Get<IDataStore<Medi>>();
-            await store.DeleteItemAsync(Guid.Empty);
+            var store = App.Container.Get<MediDataStore>();
             CurrentMedi.Id = Guid.NewGuid();
             if (App.SetNotification != null)
                 App.SetNotification(CurrentMedi);
             await store.AddItemAsync(CurrentMedi);
+            CurrentMedi.Reset();
         }
 
         private bool SaveMediCanExecute(object obj)

@@ -103,6 +103,13 @@ namespace OneMediPlan.Models
             }
             throw new ArgumentException();
         }
+
+        internal void Reset()
+        {
+            var store = App.Container.Get<IMediDataStore>();
+            store.SetTemporaryMedi(new Medi());
+            Console.WriteLine("AllValues reseted");
+        }
     }
 
     public static class MediExtensions

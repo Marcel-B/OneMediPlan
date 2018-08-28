@@ -24,7 +24,7 @@ namespace OneMediPlan.ViewModels
 
         async Task ExecuteLoadMedisCommand()
         {
-            var dataStore = App.Container.Get<IDataStore<Medi>>();
+            var dataStore = App.Container.Get<IMediDataStore>();
             if (IsBusy)
                 return;
 
