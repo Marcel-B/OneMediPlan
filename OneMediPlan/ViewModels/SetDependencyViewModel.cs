@@ -37,8 +37,8 @@ namespace OneMediPlan.ViewModels
 
         public async Task Init()
         {
-            var store = App.Container.Get<IDataStore<Medi>>();
-            CurrentMedi = await store.GetItemAsync(Guid.Empty);
+            var store = App.Container.Get<IMediDataStore>();
+            CurrentMedi = store.GetTemporaryMedi();
             var medis = await store.GetItemsAsync();
             Medis = medis
                 .Where(m => m.Id != Guid.Empty)
@@ -46,17 +46,14 @@ namespace OneMediPlan.ViewModels
             ParentMedi = Medis.First();
         }
 
-        public async void NextCommandExecute(object obj)
+        public void NextCommandExecute(object obj)
         {
             CurrentMedi.DependsOn = ParentMedi.Id;
-            var store = App.Container.Get<IDataStore<Medi>>();
-            await store.UpdateItemAsync(CurrentMedi);
+            var store = App.Container.Get<IMediDataStore>();
+            store.SetTemporaryMedi(CurrentMedi);
         }
 
         public bool NextCommandCanExecute(object obj)
-        {
-            if (ParentMedi == null) return false;
-            return true;
-        }
+            => ParentMedi != null;
     }
 }

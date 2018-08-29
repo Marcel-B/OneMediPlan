@@ -18,6 +18,10 @@ namespace OneMediPlan.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton ButtonWeiter { get; set; }
 
+        [Action ("ButtonWeiter_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ButtonWeiter_TouchUpInside (UIKit.UIButton sender);
+
         [Action ("WeekdayValueChanged:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void WeekdayValueChanged (UIKit.UISwitch sender);

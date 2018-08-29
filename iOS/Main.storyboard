@@ -850,6 +850,7 @@
                                 </state>
                                 <connections>
                                     <segue destination="17910" kind="show" id="32398"/>
+                                    <action selector="ButtonWeiter_TouchUpInside:" destination="17432" id="74184" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1005,6 +1006,9 @@
                                 <date key="date" timeIntervalSinceReferenceDate="332704801.65417802">
                                     <!--2011-07-18 18:00:01 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="StartPickerValueChanged:" destination="18545" id="74980" eventType="valueChanged"/>
+                                </connections>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Startzeit wählen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24028">
                                 <rect key="frame" x="20" y="136" width="374" height="37"/>

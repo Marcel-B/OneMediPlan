@@ -1,17 +1,24 @@
 using Foundation;
 using System;
 using UIKit;
-using OneMediPlan.Models;
-using System.Collections.Generic;
 using System.ComponentModel;
 using OneMediPlan.ViewModels;
 using Ninject;
 using OneMediPlan.Helpers;
+using OneMediPlan.iOS.Helper;
 
 namespace OneMediPlan.iOS
 {
     public partial class SetStartViewController : UIViewController
     {
+        partial void StartPickerValueChanged(UIDatePicker sender)
+        {
+            if (sender is UIDatePicker picker)
+            {
+                ViewModel.StartDate = sender.Date.NSDateToDateTime();
+            }
+        }
+
         SetStartViewModel ViewModel { get; set; }
 
         public SetStartViewController(IntPtr handle) : base(handle)
@@ -24,6 +31,7 @@ namespace OneMediPlan.iOS
         {
             base.ViewDidLoad();
             ViewModel.Init();
+            ViewModel.StartDate = PickerStartTime.Date.NSDateToDateTime();
         }
 
         partial void ButtonNext_TouchUpInside(UIButton sender)

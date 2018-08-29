@@ -249,7 +249,7 @@ namespace OneMediPlan.iOS
 
         public async Task UpdateList(Medi medi)
         {
-            var s = App.Container.Get<SomeLogic>();
+            var s = App.Container.Get<ISomeLogic>();
             await s.HandleIntoke(medi);
             viewModel.LoadItemsCommand.Execute(null);
             return;

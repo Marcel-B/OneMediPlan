@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.ComponentModel.DataAnnotations;
 using Ninject;
+using System.ComponentModel;
 
 namespace OneMediPlan.Models
 {
@@ -88,6 +89,7 @@ namespace OneMediPlan.Models
         public DateTimeOffset LastDate { get; set; }
         public DateTimeOffset LastRefill { get; set; }
         public IList<Tuple<Hour, Minute>> DailyAppointments { get; set; } // z.B. morgens mittags abends
+        public bool[] Weekdays { get; set; }
         public bool Confirmed { get; set; }
         public bool Scheduled { get; set; }
 
@@ -112,8 +114,30 @@ namespace OneMediPlan.Models
         }
     }
 
+
     public static class MediExtensions
     {
+        public static void AddWeekdayToDb(Realm realm, Medi medi)
+        {
+            realm.Write(() =>
+            {
+                var weekday = medi.Weekdays;
+                var wd = new Weekdays
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    MediFk = medi.Id.ToString(),
+                    Created = DateTimeOffset.Now,
+                    Monday = weekday[1],
+                    Tuesday = weekday[2],
+                    Wednesday = weekday[3],
+                    Thursday = weekday[4],
+                    Friday = weekday[5],
+                    Saturday = weekday[6],
+                    Sunday = weekday[0]
+                };
+                realm.Add(wd);
+            });
+        }
         public async static Task<MediSave> Save(this Medi medi)
         {
             var realm = await Realm.GetInstanceAsync(App.RealmConf);
@@ -121,8 +145,8 @@ namespace OneMediPlan.Models
             obj.Id = medi.Id.ToString();
             obj.Name = medi.Name;
             obj.Created = medi.Create;
-            obj.DailyAppointments = medi.DailyAppointments != null;
-            obj.DependsOn = medi.DependsOn.ToString();
+            obj.DailyAppointments = medi.IntervallType == IntervallType.DailyAppointment;
+            obj.DependsOn = medi.IntervallType == IntervallType.Depend ? medi.DependsOn.ToString() : Guid.Empty.ToString();
             obj.Description = medi.Description ?? String.Empty;
             obj.Dosage = medi.Dosage;
             obj.DosageType = (int)medi.DosageType;
@@ -137,8 +161,8 @@ namespace OneMediPlan.Models
             obj.Stock = medi.Stock;
             realm.Write(() => realm.Add(obj));
 
-            var foo = medi.IntervallType;
-            switch (foo)
+            var currentIntervallType = medi.IntervallType;
+            switch (currentIntervallType)
             {
                 case IntervallType.DailyAppointment:
                     realm.Write(() =>
@@ -157,6 +181,7 @@ namespace OneMediPlan.Models
                     });
                     break;
                 case IntervallType.Weekdays:
+                    AddWeekdayToDb(realm, medi);
                     break;
                 case IntervallType.Depend:
                 case IntervallType.IfNedded:
@@ -237,18 +262,9 @@ namespace OneMediPlan.Models
         {
             var mediHasDailyAppointments = medi.DailyAppointments;
             IList<Tuple<Hour, Minute>> das = null;
-            if (mediHasDailyAppointments)
-            {
-                var realm = Realm.GetInstance(App.RealmConf);
-                var da = realm.All<DailyAppointment>();
-                var dd = da.Where(a => a.MediFk.Equals(medi.Id));
-                das = new List<Tuple<Hour, Minute>>();
-                foreach (var item in dd)
-                {
-                    das.Add(new Tuple<Hour, Minute>(new Hour(item.Hour), new Minute(item.Minute)));
-                }
-            }
-            return new Medi
+            var intervallType = (IntervallType)medi.IntervallType;
+
+            var currentMedi = new Medi
             {
                 Id = Guid.Parse(medi.Id),
                 Create = medi.Created,
@@ -262,14 +278,38 @@ namespace OneMediPlan.Models
                 MinimumStock = medi.MinimumStock,
                 NextDate = medi.NextDate,
                 DosageType = (MediType)medi.DosageType,
-                IntervallType = (IntervallType)medi.IntervallType,
+                IntervallType = intervallType,
                 IntervallTime = (IntervallTime)medi.IntervallTime,
                 Description = medi.Description,
                 PureIntervall = medi.PureIntervall,
-                DailyAppointments = das
-                // TODO - Set DailyAppointments and Weekdays etc ...
-                //me.DailyAppointments = medi.DailyAppointments != null;
             };
+
+            if (intervallType == IntervallType.DailyAppointment)
+            {
+                var realm = Realm.GetInstance(App.RealmConf);
+                var da = realm.All<DailyAppointment>();
+                var dd = da.Where(a => a.MediFk.Equals(medi.Id));
+                currentMedi.DailyAppointments = new List<Tuple<Hour, Minute>>();
+                foreach (var item in dd)
+                    currentMedi.DailyAppointments.Add(new Tuple<Hour, Minute>(new Hour(item.Hour), new Minute(item.Minute)));
+            }
+            else if (intervallType == IntervallType.Weekdays)
+            {
+                var realm = Realm.GetInstance(App.RealmConf);
+                var weekdays = realm
+                    .All<Weekdays>()
+                    .ToList();
+                currentMedi.Weekdays = new bool[7];
+                var currentWeekdays = weekdays.SingleOrDefault(wd => medi.Id.Equals(wd.MediFk));
+                currentMedi.Weekdays[0] = currentWeekdays.Sunday;
+                currentMedi.Weekdays[1] = currentWeekdays.Monday;
+                currentMedi.Weekdays[2] = currentWeekdays.Tuesday;
+                currentMedi.Weekdays[3] = currentWeekdays.Wednesday;
+                currentMedi.Weekdays[4] = currentWeekdays.Thursday;
+                currentMedi.Weekdays[5] = currentWeekdays.Friday;
+                currentMedi.Weekdays[6] = currentWeekdays.Sunday;
+            }
+            return currentMedi;
         }
     }
 }

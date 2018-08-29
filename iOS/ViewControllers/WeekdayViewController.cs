@@ -16,7 +16,8 @@ namespace OneMediPlan.iOS
                 return;
             var i = sender.Tag == 7 ? 0 : sender.Tag;
             ViewModel.Weekdays[i] = sender.On;
-            ButtonWeiter.Hidden = ViewModel.NextCommand.CanExecute(null);
+            //ViewModel.SetWeekday((int)i, sender.On);
+            ButtonWeiter.Hidden = !ViewModel.NextCommand.CanExecute(null);
         }
 
         public WeekdayViewController(IntPtr handle) : base(handle)
@@ -25,9 +26,12 @@ namespace OneMediPlan.iOS
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
+        partial void ButtonWeiter_TouchUpInside(UIButton sender)
+        => ViewModel.NextCommand.Execute(null);
+
         private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if(sender is WeekdayViewModel viewModel)
+            if (sender is WeekdayViewModel viewModel)
             {
                 if (e.PropertyName.Equals(Strings.WEEKDAYS))
                 {
@@ -36,11 +40,11 @@ namespace OneMediPlan.iOS
             }
         }
 
-        public async override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
             ButtonWeiter.Hidden = true;
-            await ViewModel.Init();
+            ViewModel.Init();
         }
     }
 }

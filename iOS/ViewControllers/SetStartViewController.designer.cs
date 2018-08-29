@@ -26,6 +26,10 @@ namespace OneMediPlan.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void ButtonNext_TouchUpInside (UIKit.UIButton sender);
 
+        [Action ("StartPickerValueChanged:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void StartPickerValueChanged (UIKit.UIDatePicker sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (ButtonNext != null) {

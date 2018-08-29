@@ -20,17 +20,17 @@ namespace OneMediPlan.Helpers
             return med;
         }
 
-        async public static Task<Weekdays> GetWeekdaysAsync(this Medi medi)
-        {
-            var store = App.Container.Get<IDataStore<Weekdays>>();
-            var days = await store.GetItemsAsync();
-            return days.SingleOrDefault(x => x.MediFk == medi.Id);
-        }
+        //async public static Task<Weekdays> GetWeekdaysAsync(this Medi medi)
+        //{
+        //    var store = App.Container.Get<IDataStore<Weekdays>>();
+        //    var days = await store.GetItemsAsync();
+        //    return days.SingleOrDefault(x => x.MediFk == medi.Id);
+        //}
 
-        public async static Task CalculateNewWeekdayIntervall(this Medi medi)
+        public static void CalculateNewWeekdayIntervall(this Medi medi)
         {
-            var weekdays = await medi.GetWeekdaysAsync();
-            var days = weekdays.Days;
+            //var weekdays = await medi.GetWeekdaysAsync();
+            var days = medi.Weekdays;
             var now = DateTimeOffset.Now;
             var today = (int)now.DayOfWeek;
             int diffDay = 0;

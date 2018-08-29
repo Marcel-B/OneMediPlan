@@ -59,7 +59,7 @@ namespace OneMediPlan
             else
                 _medis.Add(item);
             var realm = await Realm.GetInstanceAsync(App.RealmConf);
-            var obj = realm.Find("MediSave", item.Id.ToString());
+            var obj = realm.Find<MediSave>(item.Id.ToString());
             MediSave medi;
             if (obj == null)
                 medi = await item.Save();

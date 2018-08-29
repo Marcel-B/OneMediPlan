@@ -58,19 +58,17 @@ namespace OneMediPlan
             Container.Bind<SetStartViewModel>().ToSelf().InSingletonScope();
             Container.Bind<SaveMediViewModel>().ToSelf().InSingletonScope();
             Container.Bind<Medi>().ToSelf().InSingletonScope(); // Temp Medi
-
-
             Container.Bind<ISomeLogic>().To<SomeLogic>();
             if (UseMockDataStore)
             {
                 //Container.Bind<IMediDataStore>().To<MockDataStore>().InSingletonScope();
-                Container.Bind<IDataStore<Weekdays>>().To<WeekdayDataStoreMock>().InSingletonScope();
+                //Container.Bind<IDataStore<Weekdays>>().To<WeekdayDataStoreMock>().InSingletonScope();
                 Container.Bind<IDataStore<MediSettings>>().To<AppSettingsDataStore>().InSingletonScope();
             }
             else
             {
                 Container.Bind<IMediDataStore>().To<MediDataStore>().InSingletonScope();
-                Container.Bind<IDataStore<Weekdays>>().ToSelf().InSingletonScope();
+                //Container.Bind<IDataStore<Weekdays>>().ToSelf().InSingletonScope();
                 Container.Bind<IDataStore<MediSettings>>().To<AppSettingsDataStore>().InSingletonScope();
             }
 

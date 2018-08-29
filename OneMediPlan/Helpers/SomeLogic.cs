@@ -10,7 +10,7 @@ namespace OneMediPlan.Helpers
     {
         private IDataStore<Medi> _store;
         private readonly Action<Medi> _setNotification;
-        public SomeLogic(IDataStore<Medi> store, Action<Medi> setNotification)
+        public SomeLogic(IMediDataStore store, Action<Medi> setNotification)
         {
             _store = store;
             _setNotification = setNotification;
@@ -51,7 +51,7 @@ namespace OneMediPlan.Helpers
                     }
                     break;
                 case IntervallType.Weekdays:
-                    await medi.CalculateNewWeekdayIntervall();
+                    medi.CalculateNewWeekdayIntervall();
                     medi.NextDate = t.AddDays(medi.PureIntervall);
                     break;
                 case IntervallType.DailyAppointment:

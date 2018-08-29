@@ -6,57 +6,57 @@ using OneMediPlan.Models;
 
 namespace OneMediPlan
 {
-    public class WeekdayDataStoreMock : IDataStore<Weekdays>
-    {
-        IList<Weekdays> weekdays;
+    //public class WeekdayDataStoreMock : IDataStore<Weekdays>
+    //{
+    //    IList<Weekdays> weekdays;
 
-        public WeekdayDataStoreMock()
-        {
-            weekdays = new List<Weekdays>();
-            weekdays.Add(new Weekdays
-            {
-                Id = Guid.Parse("f4282afe-5b1b-450a-ab14-e211301c30a6"),
-                MediFk = Guid.Parse("c2a6321c-bd83-48fa-a3df-4369834b3782"),
-                Days = new[] { true, false, false, false, false, true, false }
-            });
-        }
+    //    public WeekdayDataStoreMock()
+    //    {
+    //        weekdays = new List<Weekdays>();
+    //        weekdays.Add(new Weekdays
+    //        {
+    //            Id = Guid.Parse("f4282afe-5b1b-450a-ab14-e211301c30a6"),
+    //            MediFk = Guid.Parse("c2a6321c-bd83-48fa-a3df-4369834b3782"),
+    //            Days = new[] { true, false, false, false, false, true, false }
+    //        });
+    //    }
 
-        async public Task<bool> AddItemAsync(Weekdays item)
-        {
-            weekdays.Add(item);
-            return await Task.FromResult(true);
-        }
+    //    async public Task<bool> AddItemAsync(Weekdays item)
+    //    {
+    //        weekdays.Add(item);
+    //        return await Task.FromResult(true);
+    //    }
 
-        public async Task<bool> DeleteItemAsync(Guid id)
-        {
-            var _medi = weekdays.Where((Weekdays arg) => arg.Id == id).FirstOrDefault();
-            weekdays.Remove(_medi);
-            return await Task.FromResult(true);
-        }
+    //    public async Task<bool> DeleteItemAsync(Guid id)
+    //    {
+    //        var _medi = weekdays.Where((Weekdays arg) => arg.Id == id).FirstOrDefault();
+    //        weekdays.Remove(_medi);
+    //        return await Task.FromResult(true);
+    //    }
 
-        public async Task<Weekdays> GetItemAsync(Guid id)
-        {
-            return await Task.FromResult(weekdays.FirstOrDefault(s => s.Id == id));
-        }
+    //    public async Task<Weekdays> GetItemAsync(Guid id)
+    //    {
+    //        return await Task.FromResult(weekdays.FirstOrDefault(s => s.Id == id));
+    //    }
 
-        public async Task<IEnumerable<Weekdays>> GetItemsAsync(bool forceRefresh = false)
-        {
-            return await Task.FromResult(weekdays);
-        }
+    //    public async Task<IEnumerable<Weekdays>> GetItemsAsync(bool forceRefresh = false)
+    //    {
+    //        return await Task.FromResult(weekdays);
+    //    }
 
-        public Task SaveStore()
-        {
-            throw new NotImplementedException();
-        }
+    //    public Task SaveStore()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
 
-        async public Task<bool> UpdateItemAsync(Weekdays item)
-        {
-            var _weekdays = weekdays.Where((Weekdays arg) => arg.Id == item.Id).FirstOrDefault();
-            weekdays.Remove(_weekdays);
-            weekdays.Add(item);
-            return await Task.FromResult(true);
-        }
-    }
+    //    async public Task<bool> UpdateItemAsync(Weekdays item)
+    //    {
+    //        var _weekdays = weekdays.Where((Weekdays arg) => arg.Id == item.Id).FirstOrDefault();
+    //        weekdays.Remove(_weekdays);
+    //        weekdays.Add(item);
+    //        return await Task.FromResult(true);
+    //    }
+    //}
 
     public class MockDataStore : IDataStore<Medi>
     {

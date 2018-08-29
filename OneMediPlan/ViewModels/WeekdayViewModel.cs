@@ -22,31 +22,34 @@ namespace OneMediPlan.ViewModels
 
         public bool[] Weekdays
         {
-            get => _weekdays ?? new bool[7];
+            get => _weekdays;
             set => SetProperty(ref _weekdays, value);
         }
+
+        //public void SetWeekday(int idx, bool value)
+        //{
+        //    Weekdays[idx] = value;
+        //}
 
         public WeekdayViewModel()
         {
             NextCommand = new Command(NextCommandExecute, NextCommandCanExecute);
         }
 
-        public async Task Init()
+        public void Init()
         {
-            var store = App.Container.Get<IDataStore<Medi>>();
-            CurrentMedi = await store.GetItemAsync(Guid.Empty);
+            _weekdays = new bool[7];
+            var store = App.Container.Get<IMediDataStore>();
+            CurrentMedi = store.GetTemporaryMedi();
+            if (CurrentMedi.Weekdays != null)
+                Weekdays = CurrentMedi.Weekdays;
         }
 
-        private async void NextCommandExecute(object obj)
+        private void NextCommandExecute(object obj)
         {
-            var days = new Weekdays
-            {
-                Id = Guid.NewGuid(),
-                MediFk = CurrentMedi.Id,
-                Days = Weekdays
-            };
-            var store = App.Container.Get<IDataStore<Weekdays>>();
-            await store.AddItemAsync(days);
+            CurrentMedi.Weekdays = Weekdays;
+            var store = App.Container.Get<MediDataStore>();
+            store.SetTemporaryMedi(CurrentMedi);
         }
 
         private bool NextCommandCanExecute(object obj)
