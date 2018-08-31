@@ -33,7 +33,6 @@ namespace OneMediPlan
     {
         public static StandardKernel Container { get; set; }
         public static bool UseMockDataStore = false;
-        public static string BackendUrl = "http://localhost:5000";
         public static RealmConfiguration RealmConf = new RealmConfiguration("default.realm");
         public const int SCHEMA_VERSION = 2;
 
@@ -42,17 +41,17 @@ namespace OneMediPlan
         public static void Initialize()
         {
             RealmConf.SchemaVersion = SCHEMA_VERSION;
-
+            Console.WriteLine(RealmConf.DatabasePath);
             Container = new StandardKernel();
 
-            Container.Bind<MediViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<MainViewModel>().ToSelf().InSingletonScope();
             Container.Bind<MediDetailViewModel>().ToSelf().InSingletonScope();
             Container.Bind<NewMediViewModel>().ToSelf().InSingletonScope();
-            Container.Bind<MediStockViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<StockViewModel>().ToSelf().InSingletonScope();
             Container.Bind<SetIntervallTypeViewModel>().ToSelf().InSingletonScope();
             Container.Bind<SetIntervallViewModel>().ToSelf().InSingletonScope();
-            Container.Bind<SetDependencyViewModel>().ToSelf().InSingletonScope();
-            Container.Bind<SetDosageViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<DependencyViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<DosageViewModel>().ToSelf().InSingletonScope();
             Container.Bind<WeekdayViewModel>().ToSelf().InSingletonScope(); 
             Container.Bind<SetDailyViewModel>().ToSelf().InSingletonScope();
             Container.Bind<SetStartViewModel>().ToSelf().InSingletonScope();

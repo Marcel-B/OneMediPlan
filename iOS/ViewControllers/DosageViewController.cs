@@ -9,18 +9,18 @@ using OneMediPlan.Helpers;
 
 namespace OneMediPlan.iOS
 {
-    public partial class SetDosageViewController : UIViewController
+    public partial class DosageViewController : UIViewController
     {
-        SetDosageViewModel ViewModel { get; set; }
-        public SetDosageViewController(IntPtr handle) : base(handle)
+        DosageViewModel ViewModel { get; set; }
+        public DosageViewController(IntPtr handle) : base(handle)
         {
-            ViewModel = App.Container.Get<SetDosageViewModel>();
+            ViewModel = App.Container.Get<DosageViewModel>();
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
         void ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (sender is SetDosageViewModel viewModel)
+            if (sender is DosageViewModel viewModel)
             {
                 if (e.PropertyName.Equals(Strings.CURRENT_MEDI))
                 {
@@ -42,7 +42,7 @@ namespace OneMediPlan.iOS
         {
             base.ViewDidLoad();
             ViewModel.Init();
-            Title = ViewModel.Title;
+            Title = NSBundle.MainBundle.GetLocalizedString(Strings.DOSAGE);
         }
     }
 }

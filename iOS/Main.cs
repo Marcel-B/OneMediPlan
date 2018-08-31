@@ -1,6 +1,8 @@
 ﻿using UIKit;
 using System;
 using OneMediPlan.Models;
+using OneMediPlan.Helpers;
+using Foundation;
 
 namespace OneMediPlan.iOS
 {
@@ -13,7 +15,6 @@ namespace OneMediPlan.iOS
 
             App.Container.Bind<MedisDataSource>().ToSelf();
             App.Container.Bind<MyDateTableViewSource>().ToSelf();
-
             App.Container.Bind<Action<Medi>>().ToMethod(context => AppDelegate.SetNotification).InSingletonScope();
             UIApplication.Main(args, null, "AppDelegate");
         }

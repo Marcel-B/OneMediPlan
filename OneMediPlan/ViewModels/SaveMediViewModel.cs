@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using OneMediPlan.Models;
-using System.Threading.Tasks;
 using Ninject;
-using System.Runtime.InteropServices;
 
 namespace OneMediPlan.ViewModels
 {

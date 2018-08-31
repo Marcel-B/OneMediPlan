@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System;
 using System.Collections.Generic;
+using Metal;
 
 namespace OneMediPlan.Helpers
 {
@@ -87,12 +88,40 @@ namespace OneMediPlan.Helpers
         {
             var dep = medis.SingleOrDefault(m => m.DependsOn == medi.Id);
             if (dep == null) return; // fertig
-            dep.NextDate = medi.LastDate.AddMinutes(dep.IntervallInMinutes);
+            var pureInterall = dep.PureIntervall;
+            var intervallType = dep.IntervallTime.ToMinutes();
+
+            if (dep.IntervallTime == IntervallTime.Day)
+            {
+                dep.NextDate = medi.LastDate.AddDays(pureInterall);
+            }
+
+            dep.NextDate = medi.LastDate.AddMinutes(pureInterall * intervallType);
             SetNotification(dep);
             await _store.UpdateItemAsync(dep);
         }
 
         private void SetNotification(Medi medi)
             => _setNotification?.Invoke(medi);
+    }
+
+    public static class IntervallTimeExtensions
+    {
+        public static int ToMinutes(this IntervallTime intervallTime)
+        {
+            switch (intervallTime)
+            {
+                case IntervallTime.Minute:
+                    return 1;
+                case IntervallTime.Hour:
+                    return 60;
+                case IntervallTime.Day:
+                    return 60 * 24;
+                case IntervallTime.Week:
+                    return 60 * 24 * 7;
+                default:
+                    return -1;
+            }
+        }
     }
 }

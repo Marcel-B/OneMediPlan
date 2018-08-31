@@ -3,6 +3,7 @@ using System.Windows.Input;
 using System;
 using Ninject;
 using System.Threading.Tasks;
+using OneMediPlan.Helpers;
 
 namespace OneMediPlan.ViewModels
 {
@@ -17,7 +18,7 @@ namespace OneMediPlan.ViewModels
             set
             {
                 _currentMedi = value;
-                OnPropertyChanged("CurrentMedi");
+                OnPropertyChanged(Strings.CURRENT_MEDI);
             }
         }
 
@@ -30,7 +31,7 @@ namespace OneMediPlan.ViewModels
 
         public NewMediViewModel()
         {
-            Title = "Neu";
+            Title = Strings.NEW;
             SaveNameCommand = new Command(
                 SaveNameExecute,
                 CanExecuteSaveName);
@@ -40,6 +41,9 @@ namespace OneMediPlan.ViewModels
         {
             var store = App.Container.Get<IMediDataStore>();
             CurrentMedi = store.GetTemporaryMedi();
+            CurrentMedi.Create = 
+                CurrentMedi.Create <= DateTimeOffset.MinValue ? 
+                DateTimeOffset.Now : CurrentMedi.Create;
             Name = CurrentMedi.Name;
         }
 

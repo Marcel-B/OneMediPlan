@@ -3,15 +3,16 @@ using UIKit;
 using OneMediPlan.ViewModels;
 using Ninject;
 using OneMediPlan.Helpers;
+using Foundation;
 
 namespace OneMediPlan.iOS
 {
-    public partial class MediStockViewController : UIViewController
+    public partial class StockViewController : UIViewController
     {
         partial void ButtonNext_TouchUpInside(UIButton sender)
         => ViewModel.SaveStockCommand.Execute(null);
 
-        MediStockViewModel ViewModel { get; set; }
+        StockViewModel ViewModel { get; set; }
 
         partial void TextViewStockMinimumChanged(UITextField sender)
         {
@@ -29,12 +30,12 @@ namespace OneMediPlan.iOS
             ButtonNext.Hidden = !result;
         }
 
-        public MediStockViewController(IntPtr handle) : base(handle)
+        public StockViewController(IntPtr handle) : base(handle)
         {
-            ViewModel = App.Container.Get<MediStockViewModel>();
+            ViewModel = App.Container.Get<StockViewModel>();
             ViewModel.PropertyChanged += (sender, e) =>
             {
-                if (sender is MediStockViewModel viewModel)
+                if (sender is StockViewModel viewModel)
                 {
                     if (e.PropertyName.Equals(Strings.CURRENT_MEDI))
                     {
@@ -56,6 +57,7 @@ namespace OneMediPlan.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            Title = NSBundle.MainBundle.GetLocalizedString(Strings.STOCK);
             ViewModel.Init();
             ButtonNext.Hidden = true;
         }

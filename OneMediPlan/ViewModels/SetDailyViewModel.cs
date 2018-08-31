@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Threading.Tasks;
 using OneMediPlan.Models;
 using Ninject;
+using OneMediPlan.Helpers;
 
 namespace OneMediPlan.ViewModels
 {
@@ -18,25 +19,25 @@ namespace OneMediPlan.ViewModels
         public ICommand NextCommand { get; }
         public SetDailyViewModel()
         {
-            Title = "Termine";
+            Title = Strings.APPOINTMENTS;
             NextCommand = new Command(NextCommandExecute, NextCommandCanExecute);
         }
 
-        public async Task Init()
+        public void Init()
         {
-            var store = App.Container.Get<IDataStore<Medi>>();
-            var medi = await store.GetItemAsync(Guid.Empty);
+            var store = App.Container.Get<IMediDataStore>();
+            var medi = store.GetTemporaryMedi();
             medi.DailyAppointments = null;
             CurrentMedi = medi;
         }
 
-        private async void NextCommandExecute(object obj)
+        private void NextCommandExecute(object obj)
         {
             if (obj is List<Tuple<Hour, Minute>> cl)
             {
-                var store = App.Container.Get<IDataStore<Medi>>();
+                var store = App.Container.Get<IMediDataStore>();
                 CurrentMedi.DailyAppointments = cl;
-                await store.UpdateItemAsync(CurrentMedi);
+                store.SetTemporaryMedi(CurrentMedi);
             }
         }
 

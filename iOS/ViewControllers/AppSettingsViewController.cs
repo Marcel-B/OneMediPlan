@@ -2,10 +2,12 @@
 using System.ComponentModel;
 using UIKit;
 using OneMediPlan.iOS.Helper;
+using Foundation;
+using OneMediPlan.Helpers;
 
 namespace OneMediPlan.iOS
 {
-    public partial class AboutViewController : UIViewController
+    public partial class AppSettingsViewController : UIViewController
     {
         partial void ButtonSave_TouchUpInside(UIButton sender)
         {
@@ -15,7 +17,7 @@ namespace OneMediPlan.iOS
 
         public AppSettingsViewModel ViewModel { get; set; }
 
-        public AboutViewController(IntPtr handle) : base(handle)
+        public AppSettingsViewController(IntPtr handle) : base(handle)
         {
             ViewModel = new AppSettingsViewModel();
             ViewModel.PropertyChanged += (object sender, PropertyChangedEventArgs e) =>
@@ -28,14 +30,14 @@ namespace OneMediPlan.iOS
                     var dt = new DateTime(now.Year, now.Month, now.Day, timeSettings.Hour, timeSettings.Minute, 0);
                     PickerDefaultTime.SetDate(dt.DateTimeToNSDate(), true);
                 }
-
             };
         }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            Title = ViewModel.Title;
+            var localizedString = NSBundle.MainBundle.GetLocalizedString(Strings.SETTINGS);
+            Title = localizedString;
         }
     }
 }

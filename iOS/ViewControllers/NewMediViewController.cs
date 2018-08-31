@@ -3,6 +3,7 @@ using UIKit;
 using OneMediPlan.ViewModels;
 using Ninject;
 using OneMediPlan.Helpers;
+using Foundation;
 
 namespace OneMediPlan.iOS
 {
@@ -42,7 +43,6 @@ namespace OneMediPlan.iOS
         partial void ButtonNext_TouchUpInside(UIButton sender)
             => ViewModel.SaveNameCommand.Execute(TextFieldName.Text);
 
-
         public NewMediViewController(IntPtr handle) : base(handle)
         {
             ViewModel = App.Container.Get<NewMediViewModel>();
@@ -53,7 +53,7 @@ namespace OneMediPlan.iOS
         {
             base.ViewDidLoad();
             ViewModel.Init();
-            Title = ViewModel.Title;
+            Title = NSBundle.MainBundle.GetLocalizedString(Strings.NEW_MEDI);
         }
     }
 }

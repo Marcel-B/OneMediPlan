@@ -12,7 +12,7 @@ using UIKit;
 namespace OneMediPlan.iOS
 {
     [Register ("MediStockViewController")]
-    partial class MediStockViewController
+    partial class StockViewController
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]

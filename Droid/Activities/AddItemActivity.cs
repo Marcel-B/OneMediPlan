@@ -15,7 +15,7 @@ namespace OneMediPlan.Droid
         FloatingActionButton saveButton;
         EditText title, description;
 
-        public MediViewModel ViewModel { get; set; }
+        public MainViewModel ViewModel { get; set; }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {

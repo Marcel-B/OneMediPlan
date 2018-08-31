@@ -32,6 +32,10 @@ namespace OneMediPlan.iOS
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
+            // Localization:
+            // https://docs.microsoft.com/de-de/xamarin/ios/app-fundamentals/localization/
+            var nn = NSBundle.MainBundle.PreferredLocalizations.Length;
+            var lang = NSBundle.MainBundle.PreferredLocalizations[0];
             App.SetNotification = SetNotification;
             var notificationSettings =
                 UIUserNotificationSettings
@@ -64,6 +68,7 @@ namespace OneMediPlan.iOS
         {
             // Restart any tasks that were paused (or not yet started) while the application was inactive. 
             // If the application was previously in the background, optionally refresh the user interface.
+
         }
 
         public override void WillTerminate(UIApplication application)

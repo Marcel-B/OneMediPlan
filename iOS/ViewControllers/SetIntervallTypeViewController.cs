@@ -4,6 +4,7 @@ using UIKit;
 using OneMediPlan.Models;
 using OneMediPlan.ViewModels;
 using Ninject;
+using OneMediPlan.Helpers;
 
 namespace OneMediPlan.iOS
 {
@@ -48,6 +49,7 @@ namespace OneMediPlan.iOS
         {
             base.ViewDidLoad();
             ViewModel.Init();
+            Title = NSBundle.MainBundle.GetLocalizedString(Strings.INTERVALL_TYPE);
         }
     }
 }

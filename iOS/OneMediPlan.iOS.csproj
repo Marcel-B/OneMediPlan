@@ -26,6 +26,7 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <PlatformTarget>x86</PlatformTarget>
+    <MtouchI18n>west</MtouchI18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>pdbonly</DebugType>
@@ -170,13 +171,13 @@
     <Compile Include="ViewControllers\DetailViewControllers\BrowseItemDetailViewController.designer.cs">
       <DependentUpon>BrowseItemDetailViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\AboutViewController.cs" />
-    <Compile Include="ViewControllers\AboutViewController.designer.cs">
-      <DependentUpon>AboutViewController.cs</DependentUpon>
+    <Compile Include="ViewControllers\AppSettingsViewController.cs" />
+    <Compile Include="ViewControllers\AppSettingsViewController.designer.cs">
+      <DependentUpon>AppSettingsViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\BrowseViewController.cs" />
+    <Compile Include="ViewControllers\MainViewController.cs" />
     <Compile Include="ViewControllers\BrowseViewController.designer.cs">
-      <DependentUpon>BrowseViewController.cs</DependentUpon>
+      <DependentUpon>MainViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewControllers\NewMediViewController.cs" />
     <Compile Include="ViewControllers\ItemNewViewController.designer.cs">
@@ -192,9 +193,9 @@
     <Compile Include="CustomCells\MyMediTableViewCell.designer.cs">
       <DependentUpon>MyMediTableViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\MediStockViewController.cs" />
-    <Compile Include="ViewControllers\MediStockViewController.designer.cs">
-      <DependentUpon>MediStockViewController.cs</DependentUpon>
+    <Compile Include="ViewControllers\StockViewController.cs" />
+    <Compile Include="ViewControllers\StockViewController.designer.cs">
+      <DependentUpon>StockViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewControllers\SetIntervallViewController.cs" />
     <Compile Include="ViewControllers\SetIntervallViewController.designer.cs">
@@ -208,9 +209,9 @@
     <Compile Include="ViewControllers\WeekdayViewController.designer.cs">
       <DependentUpon>WeekdayViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\SetDependencyViewController.cs" />
-    <Compile Include="ViewControllers\SetDependencyViewController.designer.cs">
-      <DependentUpon>SetDependencyViewController.cs</DependentUpon>
+    <Compile Include="ViewControllers\DependencyViewController.cs" />
+    <Compile Include="ViewControllers\DependencyViewController.designer.cs">
+      <DependentUpon>DependencyViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewControllers\SetIntervallTypeViewController.cs" />
     <Compile Include="ViewControllers\SetIntervallTypeViewController.designer.cs">
@@ -220,9 +221,9 @@
     <Compile Include="ViewControllers\SaveMediViewController.designer.cs">
       <DependentUpon>SaveMediViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\SetDosageViewController.cs" />
-    <Compile Include="ViewControllers\SetDosageViewController.designer.cs">
-      <DependentUpon>SetDosageViewController.cs</DependentUpon>
+    <Compile Include="ViewControllers\DosageViewController.cs" />
+    <Compile Include="ViewControllers\DosageViewController.designer.cs">
+      <DependentUpon>DosageViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\IosExtensions.cs" />
     <Compile Include="ViewControllers\SetDailyViewController.cs" />
@@ -243,6 +244,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helper\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\en.lproj\" />
+    <Folder Include="Resources\de.lproj\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\en.lproj\Localizable.strings" />
+    <BundleResource Include="Resources\en.lproj\Main.strings" />
+    <BundleResource Include="Resources\de.lproj\Localizable.strings" />
+    <BundleResource Include="Resources\de.lproj\Main.strings" />
   </ItemGroup>
   <Import Project="..\OneMediPlan\OneMediPlan.projitems" Label="Shared" Condition="Exists('..\OneMediPlan\OneMediPlan.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

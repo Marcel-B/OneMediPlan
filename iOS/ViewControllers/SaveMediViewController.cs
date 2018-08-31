@@ -2,6 +2,8 @@ using System;
 using UIKit;
 using Ninject;
 using OneMediPlan.ViewModels;
+using Foundation;
+using OneMediPlan.Helpers;
 
 namespace OneMediPlan.iOS
 {
@@ -24,6 +26,7 @@ namespace OneMediPlan.iOS
         {
             base.ViewDidLoad();
             ViewModel.Init();
+            Title = NSBundle.MainBundle.GetLocalizedString(Strings.SAVE);
         }
     }
 }

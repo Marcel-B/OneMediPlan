@@ -12,7 +12,7 @@ using UIKit;
 namespace OneMediPlan.iOS
 {
     [Register ("ItemsViewController")]
-    partial class BrowseViewController
+    partial class MainViewController
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]

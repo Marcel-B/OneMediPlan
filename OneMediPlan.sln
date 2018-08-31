@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMediPlan.iOS", "iOS\OneM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMediPlan.Droid", "Droid\OneMediPlan.Droid.csproj", "{17493038-CEEF-4995-B64B-B98E53CF0A5A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneMediPlan.Tests", "Tests\OneMediPlan.Tests.csproj", "{B6B331AE-B303-4C03-9CA4-75CBCB17A153}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMediPlan.Tests", "Tests\OneMediPlan.Tests.csproj", "{B6B331AE-B303-4C03-9CA4-75CBCB17A153}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution

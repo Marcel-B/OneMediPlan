@@ -19,7 +19,7 @@ namespace OneMediPlan.Droid
         SwipeRefreshLayout refresher;
 
         ProgressBar progress;
-        public static MediViewModel ViewModel { get; set; }
+        public static MainViewModel ViewModel { get; set; }
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -30,7 +30,7 @@ namespace OneMediPlan.Droid
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            ViewModel = new MediViewModel();
+            ViewModel = new MainViewModel();
 
             View view = inflater.Inflate(Resource.Layout.fragment_browse, container, false);
             var recyclerView =
@@ -89,10 +89,10 @@ namespace OneMediPlan.Droid
 
     class BrowseItemsAdapter : BaseRecycleViewAdapter
     {
-        MediViewModel viewModel;
+        MainViewModel viewModel;
         Activity activity;
 
-        public BrowseItemsAdapter(Activity activity, MediViewModel viewModel)
+        public BrowseItemsAdapter(Activity activity, MainViewModel viewModel)
         {
             this.viewModel = viewModel;
             this.activity = activity;

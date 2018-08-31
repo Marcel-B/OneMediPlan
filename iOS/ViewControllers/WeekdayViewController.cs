@@ -3,6 +3,7 @@ using UIKit;
 using OneMediPlan.ViewModels;
 using Ninject;
 using OneMediPlan.Helpers;
+using Foundation;
 
 namespace OneMediPlan.iOS
 {
@@ -43,6 +44,7 @@ namespace OneMediPlan.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            Title = NSBundle.MainBundle.GetLocalizedString(Strings.WEEKDAYS);
             ButtonWeiter.Hidden = true;
             ViewModel.Init();
         }

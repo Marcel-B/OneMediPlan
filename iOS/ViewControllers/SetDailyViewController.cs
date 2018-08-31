@@ -6,6 +6,7 @@ using UIKit;
 using OneMediPlan.iOS.Helper;
 using OneMediPlan.ViewModels;
 using Ninject;
+using OneMediPlan.Helpers;
 
 namespace OneMediPlan.iOS
 {
@@ -41,14 +42,15 @@ namespace OneMediPlan.iOS
             ViewModel = App.Container.Get<SetDailyViewModel>();
         }
 
-        public async override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            await ViewModel.Init();
+            ViewModel.Init();
             ButtonNext.Hidden = true;
             TableViewDates.Source = App.Container.Get<MyDateTableViewSource>();
             PickerTime.Date = NSDate.Now;
             TableViewDates.SeparatorStyle = UITableViewCellSeparatorStyle.None;
+            Title = NSBundle.MainBundle.GetLocalizedString(Strings.APPOINTMENTS);
         }
 
         public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)

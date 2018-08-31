@@ -6,27 +6,28 @@ using UIKit;
 using System.Linq;
 using Ninject;
 using OneMediPlan.ViewModels;
+using OneMediPlan.Helpers;
 
 namespace OneMediPlan.iOS
 {
-    public partial class SetDependencyViewController : UIViewController
+    public partial class DependencyViewController : UIViewController
     {
         partial void UIButton35489_TouchUpInside(UIButton sender)
             => ViewModel.NextCommand.Execute(null);
 
-        SetDependencyViewModel ViewModel { get; set; }
+        DependencyViewModel ViewModel { get; set; }
 
-        public SetDependencyViewController(IntPtr handle) : base(handle)
+        public DependencyViewController(IntPtr handle) : base(handle)
         {
-            ViewModel = App.Container.Get<SetDependencyViewModel>();
+            ViewModel = App.Container.Get<DependencyViewModel>();
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
         private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (sender is SetDependencyViewModel viewModel)
+            if (sender is DependencyViewModel viewModel)
             {
-                if (e.PropertyName.Equals("CurrentMedi"))
+                if (e.PropertyName.Equals(Strings.CURRENT_MEDI))
                 {
 
                 }
@@ -52,7 +53,7 @@ namespace OneMediPlan.iOS
         {
             base.ViewDidLoad();
             await ViewModel.Init();
-            Title = ViewModel.Title;
+            Title = NSBundle.MainBundle.GetLocalizedString(Strings.DEPENDS);
         }
 
         internal class DependencyTypeDataModel : UIPickerViewModel

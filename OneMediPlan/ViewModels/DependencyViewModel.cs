@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace OneMediPlan.ViewModels
 {
-    public class SetDependencyViewModel : BaseViewModel
+    public class DependencyViewModel : BaseViewModel
     {
         public ICommand NextCommand { get; }
 
@@ -29,7 +29,7 @@ namespace OneMediPlan.ViewModels
             set => SetProperty(ref _medis, value);
         }
 
-        public SetDependencyViewModel()
+        public DependencyViewModel()
         {
             Title = "Abhängigkeit";
             NextCommand = new Command(NextCommandExecute, NextCommandCanExecute);

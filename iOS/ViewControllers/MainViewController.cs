@@ -16,14 +16,14 @@ using Realms;
 
 namespace OneMediPlan.iOS
 {
-    public partial class BrowseViewController : UITableViewController
+    public partial class MainViewController : UITableViewController
     {
         //UIRefreshControl refreshControl;
-        public MediViewModel ViewModel { get; set; }
+        public MainViewModel ViewModel { get; set; }
 
-        public BrowseViewController(IntPtr handle) : base(handle)
+        public MainViewController(IntPtr handle) : base(handle)
         {
-            ViewModel = App.Container.Get<MediViewModel>();
+            ViewModel = App.Container.Get<MainViewModel>();
             //ViewModel.PropertyChanged += IsBusy_PropertyChanged;
             ViewModel.Medis.CollectionChanged += Items_CollectionChanged;
         }
@@ -107,10 +107,10 @@ namespace OneMediPlan.iOS
 
     internal class MedisDataSource : UITableViewSource
     {
-        MediViewModel viewModel;
-        public BrowseViewController parent;
+        MainViewModel viewModel;
+        public MainViewController parent;
 
-        public MedisDataSource(MediViewModel viewModel)
+        public MedisDataSource(MainViewModel viewModel)
         {
             this.viewModel = viewModel;
         }

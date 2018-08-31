@@ -1,0 +1,19 @@
+﻿"2344.text" = "Montag";
+"16941.text" = "Hallo";
+"10847.text" ="Vorat.test";
+"19148.text" = "Montag.t";
+"19147.text" = "Dienstag.t";
+"19153.text" = "Mittwoch.t";
+"19152.text" = "Donnerstag.t";
+"19151.text" = "Freitag.t";
+"19150.text" = "Samstag.t";
+"19149.text" = "Sonntag.t";
+
+/* Buttons */
+"16941.normalTitle" = "Abhängig.Test";
+"16940.normalTitle" = "Intervall.Test";
+"38150.normalTitle" = "Zeitplan.Test";
+"16942.normalTitle" = "Wochentage.Test";
+"16943.normalTitle" = "Bei Bedarf.Test";
+"13146.normalTitle" = "Weiter.Test";
+"6739.normalTitle" = "Weiter.Test";

@@ -12,7 +12,7 @@ using UIKit;
 namespace OneMediPlan.iOS
 {
     [Register ("SetDosageViewController")]
-    partial class SetDosageViewController
+    partial class DosageViewController
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]

@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace OneMediPlan.ViewModels
 {
-    public class SetDosageViewModel : BaseViewModel
+    public class DosageViewModel : BaseViewModel
     {
         public ICommand NextCommand { get; }
 
@@ -27,9 +27,8 @@ namespace OneMediPlan.ViewModels
             set => SetProperty(ref _dosage, value);
         }
 
-        public SetDosageViewModel()
+        public DosageViewModel()
         {
-            Title = "Dosis";
             NextCommand = new Command(ExecuteNextCommand, NextCommandCanExecute);
         }
 

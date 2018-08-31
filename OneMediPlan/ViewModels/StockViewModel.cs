@@ -3,10 +3,11 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Ninject;
 using OneMediPlan.Models;
+using OneMediPlan.Helpers;
 
 namespace OneMediPlan.ViewModels
 {
-    public class MediStockViewModel : BaseViewModel
+    public class StockViewModel : BaseViewModel
     {
         public ICommand SaveStockCommand { get; }
 
@@ -20,7 +21,7 @@ namespace OneMediPlan.ViewModels
             set
             {
                 _currentMedi = value;
-                OnPropertyChanged("CurrentMedi");
+                OnPropertyChanged(Strings.CURRENT_MEDI);
             }
         }
 
@@ -35,9 +36,8 @@ namespace OneMediPlan.ViewModels
             set => SetProperty(ref _stockMinimum, value);
         }
 
-        public MediStockViewModel()
+        public StockViewModel()
         {
-            Title = "Vorrat";
             SaveStockCommand = new Command(SaveStockExecute, SaveStockCanExecute);
         }
 

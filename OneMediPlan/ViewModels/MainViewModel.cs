@@ -8,13 +8,13 @@ using System.Linq;
 
 namespace OneMediPlan.ViewModels
 {
-    public class MediViewModel : BaseViewModel
+    public class MainViewModel : BaseViewModel
     {
         public ObservableCollection<Medi> Medis { get; set; }
         public Command LoadItemsCommand { get; set; }
         public Command AddItemCommand { get; set; }
 
-        public MediViewModel()
+        public MainViewModel()
         {
             Title = "One Mediplan";
             Medis = new ObservableCollection<Medi>();
