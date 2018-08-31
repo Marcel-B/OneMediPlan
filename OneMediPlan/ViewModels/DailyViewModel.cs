@@ -8,7 +8,7 @@ using OneMediPlan.Helpers;
 
 namespace OneMediPlan.ViewModels
 {
-    public class SetDailyViewModel : BaseViewModel
+    public class DailyViewModel : BaseViewModel
     {
         Medi _currentMedi;
         public Medi CurrentMedi
@@ -17,7 +17,7 @@ namespace OneMediPlan.ViewModels
             set => SetProperty(ref _currentMedi, value);
         }
         public ICommand NextCommand { get; }
-        public SetDailyViewModel()
+        public DailyViewModel()
         {
             Title = Strings.APPOINTMENTS;
             NextCommand = new Command(NextCommandExecute, NextCommandCanExecute);

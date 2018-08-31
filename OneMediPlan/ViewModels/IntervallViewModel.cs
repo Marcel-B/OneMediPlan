@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace OneMediPlan.ViewModels
 {
-    public class SetIntervallViewModel : BaseViewModel
+    public class IntervallViewModel : BaseViewModel
     {
         public ICommand NextCommand { get; }
 
@@ -40,7 +40,7 @@ namespace OneMediPlan.ViewModels
         public int Intervall;
         public IntervallTime IntervallTime { get; set; }
 
-        public SetIntervallViewModel()
+        public IntervallViewModel()
         {
             Title = "Intervall";
             NextCommand = new Command(NextCommandExecute, NextCommandCanExecute);

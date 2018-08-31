@@ -31,12 +31,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\AppSettingsDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StockViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SaveMediViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SetDailyViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DailyViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DependencyViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DosageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SetIntervallTypeViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SetIntervallViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SetStartViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\IntervallTypeViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\IntervallViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StartViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\WeekdayViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Strings.cs" />
   </ItemGroup>

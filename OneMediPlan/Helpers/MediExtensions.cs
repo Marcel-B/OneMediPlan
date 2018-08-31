@@ -27,6 +27,10 @@ namespace OneMediPlan.Helpers
         //    return days.SingleOrDefault(x => x.MediFk == medi.Id);
         //}
 
+        public static bool NeedsNoStartDate(this Medi medi)
+        => medi.DependsOn != Guid.Empty ||
+               medi.DailyAppointments != null;
+
         public static void CalculateNewWeekdayIntervall(this Medi medi)
         {
             //var weekdays = await medi.GetWeekdaysAsync();

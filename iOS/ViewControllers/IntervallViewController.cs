@@ -3,16 +3,15 @@ using UIKit;
 using System.Collections.Generic;
 using System.Linq;
 using OneMediPlan.Models;
-using Foundation;
 using Ninject;
 using OneMediPlan.ViewModels;
 using OneMediPlan.Helpers;
 
 namespace OneMediPlan.iOS
 {
-    public partial class SetIntervallViewController : UIViewController
+    public partial class IntervallViewController : UIViewController
     {
-        SetIntervallViewModel ViewModel;
+        IntervallViewModel ViewModel;
 
         partial void ButtonNextTouched(UIButton sender)
             => ViewModel.NextCommand.Execute(null);
@@ -22,15 +21,15 @@ namespace OneMediPlan.iOS
             ButtonNext.Hidden = !ViewModel.NextCommand.CanExecute(sender.Text);
         }
 
-        public SetIntervallViewController(IntPtr handle) : base(handle)
+        public IntervallViewController(IntPtr handle) : base(handle)
         {
-            ViewModel = App.Container.Get<SetIntervallViewModel>();
+            ViewModel = App.Container.Get<IntervallViewModel>();
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
         private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if(sender is SetIntervallViewModel viewModel)
+            if(sender is IntervallViewModel viewModel)
             {
                 if (e.PropertyName.Equals(Strings.CURRENT_MEDI))
                 {

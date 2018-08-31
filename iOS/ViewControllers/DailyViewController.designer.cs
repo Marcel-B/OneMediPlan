@@ -12,7 +12,7 @@ using UIKit;
 namespace OneMediPlan.iOS
 {
     [Register ("SetDailyViewController")]
-    partial class SetDailyViewController
+    partial class DailyViewController
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]

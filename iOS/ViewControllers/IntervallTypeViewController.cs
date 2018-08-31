@@ -8,7 +8,7 @@ using OneMediPlan.Helpers;
 
 namespace OneMediPlan.iOS
 {
-    public partial class SetIntervallTypeViewController : UIViewController
+    public partial class IntervallTypeViewController : UIViewController
     {
         partial void SetIntervallTouched(UIButton sender)
         {
@@ -38,11 +38,11 @@ namespace OneMediPlan.iOS
         }
 
         public Medi CurrentMedi { get; set; }
-        SetIntervallTypeViewModel ViewModel;
+        IntervallTypeViewModel ViewModel;
 
-        public SetIntervallTypeViewController(IntPtr handle) : base(handle)
+        public IntervallTypeViewController(IntPtr handle) : base(handle)
         {
-            ViewModel = App.Container.Get<SetIntervallTypeViewModel>();
+            ViewModel = App.Container.Get<IntervallTypeViewModel>();
         }
 
         public override void ViewDidLoad()

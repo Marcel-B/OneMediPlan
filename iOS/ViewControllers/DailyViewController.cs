@@ -10,9 +10,9 @@ using OneMediPlan.Helpers;
 
 namespace OneMediPlan.iOS
 {
-    public partial class SetDailyViewController : UIViewController
+    public partial class DailyViewController : UIViewController
     {
-        SetDailyViewModel ViewModel { get; set; }
+        DailyViewModel ViewModel { get; set; }
 
         partial void ButtonNext_TouchUpInside(UIButton sender)
         {
@@ -25,7 +25,7 @@ namespace OneMediPlan.iOS
         partial void ButtonAdd_TouchUpInside(UIButton sender)
         {
             var time = PickerTime.Date;
-            var dt = time.NSDateToDateTime();
+            var dt = time.ToDateTime();
             var hour = dt.Hour;
             var minute = dt.Minute;
             var tpl = new Tuple<Hour, Minute>(new Hour(hour), new Minute(minute));
@@ -37,9 +37,9 @@ namespace OneMediPlan.iOS
             }
         }
 
-        public SetDailyViewController(IntPtr handle) : base(handle)
+        public DailyViewController(IntPtr handle) : base(handle)
         {
-            ViewModel = App.Container.Get<SetDailyViewModel>();
+            ViewModel = App.Container.Get<DailyViewModel>();
         }
 
         public override void ViewDidLoad()

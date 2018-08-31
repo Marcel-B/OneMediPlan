@@ -17,7 +17,7 @@ namespace OneMediPlan.iOS
 
         public static void SetNotification(Medi medi)
         {
-            var newTime = medi.NextDate.DateTime.DateTimeToNSDate();
+            var newTime = medi.NextDate.DateTime.ToNSDate();
 
             var notification = new UILocalNotification();
             notification.FireDate = newTime;

@@ -12,7 +12,7 @@ using UIKit;
 namespace OneMediPlan.iOS
 {
     [Register ("SetIntervallTypeViewController")]
-    partial class SetIntervallTypeViewController
+    partial class IntervallTypeViewController
     {
         [Action ("SetIntervallTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]

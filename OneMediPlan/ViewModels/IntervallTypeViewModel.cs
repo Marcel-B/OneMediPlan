@@ -4,13 +4,13 @@ using Ninject;
 
 namespace OneMediPlan.ViewModels
 {
-    public class SetIntervallTypeViewModel : BaseViewModel
+    public class IntervallTypeViewModel : BaseViewModel
     {
         Medi _currentMedi;
         public Medi CurrentMedi { get => _currentMedi; set => SetProperty(ref _currentMedi, value); }
         public ICommand SelectIntervallCommand { get; set; }
 
-        public SetIntervallTypeViewModel()
+        public IntervallTypeViewModel()
         {
             Title = "Intervalltyp";
             SelectIntervallCommand = new Command(SelectIntervallCommandExecute);

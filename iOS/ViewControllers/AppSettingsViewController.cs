@@ -11,7 +11,7 @@ namespace OneMediPlan.iOS
     {
         partial void ButtonSave_TouchUpInside(UIButton sender)
         {
-            var d = PickerDefaultTime.Date.NSDateToDateTime();
+            var d = PickerDefaultTime.Date.ToDateTime();
             ViewModel.SaveSettingsCommand.Execute(d);
         }
 
@@ -28,7 +28,7 @@ namespace OneMediPlan.iOS
                     var timeSettings = viewModel.CurrentSettings;
                     var now = DateTimeOffset.Now;
                     var dt = new DateTime(now.Year, now.Month, now.Day, timeSettings.Hour, timeSettings.Minute, 0);
-                    PickerDefaultTime.SetDate(dt.DateTimeToNSDate(), true);
+                    PickerDefaultTime.SetDate(dt.ToNSDate(), true);
                 }
             };
         }

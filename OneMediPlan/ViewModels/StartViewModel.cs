@@ -8,7 +8,7 @@ using OneMediPlan.Models;
 
 namespace OneMediPlan.ViewModels
 {
-    public class SetStartViewModel : BaseViewModel
+    public class StartViewModel : BaseViewModel
     {
         public ICommand NextCommand { get; }
 
@@ -22,7 +22,7 @@ namespace OneMediPlan.ViewModels
         public DateTimeOffset StartDate { get; set; }
 
      
-        public SetStartViewModel()
+        public StartViewModel()
         {
             NextCommand = new Command(NextCommandExecute, NextCommandCanExecute);
         }

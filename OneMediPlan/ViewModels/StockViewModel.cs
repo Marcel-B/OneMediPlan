@@ -30,6 +30,7 @@ namespace OneMediPlan.ViewModels
             get => _stock;
             set => _stock = value;
         }
+
         public string StockMinimum
         {
             get => _stockMinimum;
@@ -50,15 +51,11 @@ namespace OneMediPlan.ViewModels
         }
 
         private bool SaveStockCanExecute(object obj)
-        {
-            if (obj is string[] arr)
-            {
-                if (string.IsNullOrWhiteSpace(arr[0])) return false;
-                if (string.IsNullOrWhiteSpace(arr[1])) return false;
-                return true;
-            }
-            return false;
-        }
+            => obj is string[] arr && 
+                       !string.IsNullOrWhiteSpace(arr[0]) &&
+                       !string.IsNullOrWhiteSpace(arr[1]) &&
+                       double.TryParse(arr[0], out var valueOne) &&
+                       double.TryParse(arr[1], out var ValueTwo);
 
         private void SaveStockExecute(object obj)
         {

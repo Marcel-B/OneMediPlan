@@ -48,13 +48,13 @@ namespace OneMediPlan
             Container.Bind<MediDetailViewModel>().ToSelf().InSingletonScope();
             Container.Bind<NewMediViewModel>().ToSelf().InSingletonScope();
             Container.Bind<StockViewModel>().ToSelf().InSingletonScope();
-            Container.Bind<SetIntervallTypeViewModel>().ToSelf().InSingletonScope();
-            Container.Bind<SetIntervallViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<IntervallTypeViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<IntervallViewModel>().ToSelf().InSingletonScope();
             Container.Bind<DependencyViewModel>().ToSelf().InSingletonScope();
             Container.Bind<DosageViewModel>().ToSelf().InSingletonScope();
             Container.Bind<WeekdayViewModel>().ToSelf().InSingletonScope(); 
-            Container.Bind<SetDailyViewModel>().ToSelf().InSingletonScope();
-            Container.Bind<SetStartViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<DailyViewModel>().ToSelf().InSingletonScope();
+            Container.Bind<StartViewModel>().ToSelf().InSingletonScope();
             Container.Bind<SaveMediViewModel>().ToSelf().InSingletonScope();
             Container.Bind<Medi>().ToSelf().InSingletonScope(); // Temp Medi
             Container.Bind<ISomeLogic>().To<SomeLogic>();

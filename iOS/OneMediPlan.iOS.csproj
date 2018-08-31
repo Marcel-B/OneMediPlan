@@ -106,12 +106,6 @@
     <Reference Include="Realm.DataBinding">
       <HintPath>..\packages\Realm.DataBinding.1.2.0\lib\Xamarin.iOS10\Realm.DataBinding.dll</HintPath>
     </Reference>
-    <Reference Include="Remotion.Linq">
-      <HintPath>..\packages\Remotion.Linq.2.1.2\lib\portable-net45+win+wpa81+wp80\Remotion.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.4.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
     <Reference Include="Realm">
       <HintPath>..\packages\Realm.Database.3.1.0\lib\netstandard1.4\Realm.dll</HintPath>
     </Reference>
@@ -120,6 +114,12 @@
     </Reference>
     <Reference Include="System.ComponentModel.Annotations">
       <HintPath>..\..\..\..\..\..\usr\local\share\dotnet\sdk\NuGetFallbackFolder\microsoft.netcore.app\2.1.0\ref\netcoreapp2.1\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Linq">
+      <HintPath>..\packages\Remotion.Linq.2.2.0\lib\portable-net45+win+wpa81+wp80\Remotion.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -197,13 +197,13 @@
     <Compile Include="ViewControllers\StockViewController.designer.cs">
       <DependentUpon>StockViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\SetIntervallViewController.cs" />
-    <Compile Include="ViewControllers\SetIntervallViewController.designer.cs">
-      <DependentUpon>SetIntervallViewController.cs</DependentUpon>
+    <Compile Include="ViewControllers\IntervallViewController.cs" />
+    <Compile Include="ViewControllers\IntervallViewController.designer.cs">
+      <DependentUpon>IntervallViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\SetStartViewController.cs" />
-    <Compile Include="ViewControllers\SetStartViewController.designer.cs">
-      <DependentUpon>SetStartViewController.cs</DependentUpon>
+    <Compile Include="ViewControllers\StartViewController.cs" />
+    <Compile Include="ViewControllers\StartViewController.designer.cs">
+      <DependentUpon>StartViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewControllers\WeekdayViewController.cs" />
     <Compile Include="ViewControllers\WeekdayViewController.designer.cs">
@@ -213,9 +213,9 @@
     <Compile Include="ViewControllers\DependencyViewController.designer.cs">
       <DependentUpon>DependencyViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\SetIntervallTypeViewController.cs" />
-    <Compile Include="ViewControllers\SetIntervallTypeViewController.designer.cs">
-      <DependentUpon>SetIntervallTypeViewController.cs</DependentUpon>
+    <Compile Include="ViewControllers\IntervallTypeViewController.cs" />
+    <Compile Include="ViewControllers\IntervallTypeViewController.designer.cs">
+      <DependentUpon>IntervallTypeViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewControllers\SaveMediViewController.cs" />
     <Compile Include="ViewControllers\SaveMediViewController.designer.cs">
@@ -226,9 +226,9 @@
       <DependentUpon>DosageViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\IosExtensions.cs" />
-    <Compile Include="ViewControllers\SetDailyViewController.cs" />
-    <Compile Include="ViewControllers\SetDailyViewController.designer.cs">
-      <DependentUpon>SetDailyViewController.cs</DependentUpon>
+    <Compile Include="ViewControllers\DailyViewController.cs" />
+    <Compile Include="ViewControllers\DailyViewController.designer.cs">
+      <DependentUpon>DailyViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -256,8 +256,8 @@
   </ItemGroup>
   <Import Project="..\OneMediPlan\OneMediPlan.projitems" Label="Shared" Condition="Exists('..\OneMediPlan\OneMediPlan.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <Import Project="..\packages\Fody.3.0.3\build\Fody.targets" Condition="Exists('..\packages\Fody.3.0.3\build\Fody.targets')" />
-  <Import Project="..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets')" />
   <Import Project="..\packages\Realm.Database.3.1.0\build\Realm.Database.targets" Condition="Exists('..\packages\Realm.Database.3.1.0\build\Realm.Database.targets')" />
   <Import Project="..\packages\Realm.3.1.0\build\Realm.targets" Condition="Exists('..\packages\Realm.3.1.0\build\Realm.targets')" />
+  <Import Project="..\packages\Fody.3.1.7\build\Fody.targets" Condition="Exists('..\packages\Fody.3.1.7\build\Fody.targets')" />
+  <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
 </Project>
