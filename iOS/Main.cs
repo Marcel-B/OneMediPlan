@@ -13,10 +13,23 @@ namespace OneMediPlan.iOS
         {
             App.Initialize();
 
+            // Special Configuration for iOS App
+            ConfigureContainer();
+            SetLanguageConstants();
+
+            UIApplication.Main(args, null, "AppDelegate");
+        }
+
+        private static void ConfigureContainer()
+        {
             App.Container.Bind<MedisDataSource>().ToSelf();
             App.Container.Bind<MyDateTableViewSource>().ToSelf();
             App.Container.Bind<Action<Medi>>().ToMethod(context => AppDelegate.SetNotification).InSingletonScope();
-            UIApplication.Main(args, null, "AppDelegate");
+        }
+
+        private static void SetLanguageConstants()
+        {
+            MediExtensions.Today = NSBundle.MainBundle.GetLocalizedString(Strings.TODAY);
         }
     }
 }

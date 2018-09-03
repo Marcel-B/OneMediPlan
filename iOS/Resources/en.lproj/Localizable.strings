@@ -8,3 +8,6 @@
 "Depends" = "Depends";
 "Appointments" = "Appointments";
 "Save" = "Save";
+"Today" = "Today";
+"DateFormat" = "";
+"TimeFormat" = "";

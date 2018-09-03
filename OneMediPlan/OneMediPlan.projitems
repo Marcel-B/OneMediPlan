@@ -39,5 +39,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StartViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\WeekdayViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Strings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DailyAppointment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Hour.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Minute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\MediSave.cs" />
   </ItemGroup>
 </Project>

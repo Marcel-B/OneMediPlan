@@ -2,7 +2,7 @@
 using System.Collections.Specialized;
 using OneMediPlan.iOS.CustomCells;
 
-//using ChameleonFramework;
+using ChameleonFramework;
 using Foundation;
 using UIKit;
 using OneMediPlan.Helpers;

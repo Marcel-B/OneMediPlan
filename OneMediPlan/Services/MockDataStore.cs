@@ -85,7 +85,7 @@ namespace OneMediPlan
                     Dosage = 1.5,
                     Stock = 5,
                     MinimumStock = 2,
-                    DosageType = MediType.Injection
+                    //DosageType = MediType.Injection
                 },
                 new Medi {
                     Id = Guid.Parse("c2a6321c-bd83-48fa-a3df-4369834b3782"),
@@ -93,7 +93,7 @@ namespace OneMediPlan
                     IntervallType = IntervallType.Weekdays,
                     NextDate = DateTimeOffset.Now,
                     Dosage = 1,
-                    DosageType = MediType.Fluency,
+                    //DosageType = MediType.Fluency,
                     MinimumStock = 2,
                     Stock = 22
                 },
@@ -104,8 +104,8 @@ namespace OneMediPlan
                     DependsOn = Guid.Parse("c2a6321c-bd83-48fa-a3df-4369834b3782"),
                     NextDate = DateTimeOffset.MinValue,
                     Dosage = 2,
-                    DosageType = MediType.Fluency,
-                    IntervallInMinutes = 2 * 24 * 60,
+                    //DosageType = MediType.Fluency,
+                    //IntervallInMinutes = 2 * 24 * 60,
                     Stock = 20,
                     MinimumStock = 3
                 },
@@ -114,7 +114,7 @@ namespace OneMediPlan
                     Name = "Paracethamol",
                     IntervallType = IntervallType.IfNedded,
                     LastDate = DateTimeOffset.MinValue,
-                    DosageType = MediType.Tablet,
+                    //DosageType = MediType.Tablet,
                     Stock = 50,
                     MinimumStock = 5
                 },
@@ -125,7 +125,7 @@ namespace OneMediPlan
                     DailyAppointments = tpls,
                     LastDate = DateTimeOffset.MinValue,
                     NextDate = new DateTimeOffset(t),
-                    DosageType = MediType.Tablet,
+                    //DosageType = MediType.Tablet,
                     Dosage = 1,
                     Stock = 10,
                     MinimumStock = 1
@@ -136,7 +136,7 @@ namespace OneMediPlan
                     IntervallType = IntervallType.Intervall,
                     LastDate = DateTimeOffset.MinValue,
                     NextDate = new DateTimeOffset(t),
-                    DosageType = MediType.Tablet,
+                    //DosageType = MediType.Tablet,
                     PureIntervall = 1,
                     IntervallTime = IntervallTime.Minute,
                     Dosage = 1,

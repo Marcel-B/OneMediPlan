@@ -1,4 +1,5 @@
 ﻿using System;
+using Intents;
 namespace OneMediPlan.Helpers
 {
     public static class Strings
@@ -16,5 +17,8 @@ namespace OneMediPlan.Helpers
         public const string INTERVALL_TYPE = "IntervallType";
         public const string DEPENDS = "Depends";
         public const string SAVE = "Save";
+        public const string TODAY = "Today";
+        public const string DATE_FORMAT = "DateFormat";
+        public const string TIME_FORMAT = "TimeFormat";
     }
 }

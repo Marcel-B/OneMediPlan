@@ -230,6 +230,7 @@
     <Compile Include="ViewControllers\DailyViewController.designer.cs">
       <DependentUpon>DailyViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="IntervallTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />

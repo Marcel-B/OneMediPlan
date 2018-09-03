@@ -8,3 +8,6 @@
 "Depends" = "Abhängig";
 "Appointments" = "Termine";
 "Save" = "Speichern";
+"Today" = "Heute";
+"DateFormat" = "";
+"TimeFormat" = "";

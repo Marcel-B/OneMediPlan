@@ -27,7 +27,7 @@ namespace OneMediPlan.Helpers
                 case IntervallType.Depend:
                     medi.LastDate = now;
                     medi.NextDate = DateTimeOffset.MinValue;
-                    medi.Stock--;
+                    medi.Stock -= medi.Dosage;
                     SetNotification(medi);
                     await _store.UpdateItemAsync(medi);
                     return;
@@ -77,7 +77,7 @@ namespace OneMediPlan.Helpers
                     }
                     break;
             }
-            medi.Stock--;
+            medi.Stock -= medi.Dosage;
             medi.LastDate = now;
             SetNotification(medi);
             await _store.UpdateItemAsync(medi);
