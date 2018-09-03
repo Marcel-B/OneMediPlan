@@ -42,6 +42,7 @@ namespace OneMediPlan.iOS
 
         public IntervallTypeViewController(IntPtr handle) : base(handle)
         {
+
             ViewModel = App.Container.Get<IntervallTypeViewModel>();
         }
 

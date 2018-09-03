@@ -214,10 +214,15 @@ namespace OneMediPlan.iOS
             tableView.DeselectRow(indexPath, true);
             var medi = viewModel.Medis[indexPath.Row];
 
+            var waring = NSBundle.MainBundle.GetLocalizedString(Strings.WARNING);
+            var cancel = NSBundle.MainBundle.GetLocalizedString(Strings.CANCEL);
+            var noLeft = NSBundle.MainBundle.GetLocalizedString(Strings.NO_JOKER_LEFT);
+            var notEnough = NSBundle.MainBundle.GetLocalizedString(Strings.NOT_ENOUGH_JOKER_LEFT);
+            var takeLast = NSBundle.MainBundle.GetLocalizedString(Strings.TAKE_LAST_JOKER_UNITS);
             if (medi.Stock <= 0)
             {
                 //Create Alert
-                var okAlertController = UIAlertController.Create("Waring", $"No '{medi.Name}' left.", UIAlertControllerStyle.Alert);
+                var okAlertController = UIAlertController.Create(waring, string.Format(noLeft, medi.Name), UIAlertControllerStyle.Alert);
 
                 //Add Action
                 okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
@@ -230,15 +235,15 @@ namespace OneMediPlan.iOS
             {
                 // TODO - Fire warn message
                 //Create Alert
-                var okCancelAlertController = UIAlertController.Create("Waring", $"Not enough '{medi.Name}' left.", UIAlertControllerStyle.Alert);
+                var okCancelAlertController = UIAlertController.Create(waring, string.Format(notEnough, medi.Name), UIAlertControllerStyle.Alert);
 
                 //Add Actions
-                okCancelAlertController.AddAction(UIAlertAction.Create($"Take last {medi.Stock} unit(s)", UIAlertActionStyle.Default, async alert =>
+                okCancelAlertController.AddAction(UIAlertAction.Create(string.Format(takeLast, medi.Name), UIAlertActionStyle.Default, async alert =>
                 {
                     await UpdateList(medi);
                 }));
 
-                okCancelAlertController.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null));
+                okCancelAlertController.AddAction(UIAlertAction.Create(cancel, UIAlertActionStyle.Cancel, null));
 
                 // Present Alert
                 parent.PresentViewController(okCancelAlertController, true, null);

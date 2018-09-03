@@ -18,7 +18,20 @@ namespace OneMediPlan.Helpers
         public const string DEPENDS = "Depends";
         public const string SAVE = "Save";
         public const string TODAY = "Today";
-        public const string DATE_FORMAT = "DateFormat";
-        public const string TIME_FORMAT = "TimeFormat";
+        //public const string DATE_FORMAT = "DateFormat";
+        //public const string TIME_FORMAT = "TimeFormat";
+        public const string MINUTES = "Minute(s)";
+        public const string HOURS = "Hour(s)";
+        public const string DAYS = "Day(s)";
+        public const string WEEKS = "Week(s)";
+        public const string MONTHS = "Month(s)";
+        public const string _AFTER = "after";
+        public const string LABEL_TEXT = "LabelText";
+        public const string WARNING = "Waring";
+        public const string CANCEL = "Cancel";
+        public const string NO_JOKER_LEFT = "NoJokerLeft";
+        public const string NOT_ENOUGH_JOKER_LEFT = "NotEnoughJokerLeft";
+        public const string TAKE_LAST_JOKER_UNITS = "TakeLastJokerUnits";
+
     }
 }

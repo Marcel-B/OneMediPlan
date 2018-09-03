@@ -40,9 +40,10 @@ namespace OneMediPlan.ViewModels
         public int Intervall;
         public IntervallTime IntervallTime { get; set; }
 
-        public IntervallViewModel()
+        public IntervallViewModel(IEnumerable<string> intervallTypes)
         {
             Title = "Intervall";
+            _intervallTypes = intervallTypes;
             NextCommand = new Command(NextCommandExecute, NextCommandCanExecute);
         }
 

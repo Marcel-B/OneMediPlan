@@ -6,6 +6,8 @@ using OneMediPlan.Models;
 using Ninject;
 using OneMediPlan.ViewModels;
 using OneMediPlan.Helpers;
+using Foundation;
+using Ninject.Parameters;
 
 namespace OneMediPlan.iOS
 {
@@ -23,22 +25,30 @@ namespace OneMediPlan.iOS
 
         public IntervallViewController(IntPtr handle) : base(handle)
         {
-            ViewModel = App.Container.Get<IntervallViewModel>();
+            IList<string> list = new List<string>
+            {
+                NSBundle.MainBundle.GetLocalizedString(Strings.MINUTES),
+                NSBundle.MainBundle.GetLocalizedString(Strings.HOURS),
+                NSBundle.MainBundle.GetLocalizedString(Strings.DAYS),
+                NSBundle.MainBundle.GetLocalizedString(Strings.WEEKS)
+            };
+            ViewModel = App.Container.Get<IntervallViewModel>(new ConstructorArgument("intervallTypes", list));
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
         private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if(sender is IntervallViewModel viewModel)
+            if (sender is IntervallViewModel viewModel)
             {
                 if (e.PropertyName.Equals(Strings.CURRENT_MEDI))
                 {
                     var noParent = viewModel.CurrentMedi.DependsOn == Guid.Empty;
                     LabelDependencyInfo.Hidden = noParent;
                 }
-                else if (e.PropertyName.Equals("LabelText"))
+                else if (e.PropertyName.Equals(NSBundle.MainBundle.GetLocalizedString(Strings.LABEL_TEXT)))
                 {
-                    LabelDependencyInfo.Text = $"nach {viewModel.LabelText}.";
+                    LabelDependencyInfo.Text = 
+                        $"{NSBundle.MainBundle.GetLocalizedString(Strings._AFTER)} '{viewModel.LabelText}'.";
                 }
             }
         }

@@ -43,5 +43,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Hour.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Minute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MediSave.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\IntervallTime.cs" />
   </ItemGroup>
 </Project>

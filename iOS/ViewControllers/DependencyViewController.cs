@@ -3,7 +3,6 @@ using OneMediPlan.Models;
 using System;
 using System.Collections.Generic;
 using UIKit;
-using System.Linq;
 using Ninject;
 using OneMediPlan.ViewModels;
 using OneMediPlan.Helpers;

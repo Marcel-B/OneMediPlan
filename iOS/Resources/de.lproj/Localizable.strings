@@ -9,5 +9,14 @@
 "Appointments" = "Termine";
 "Save" = "Speichern";
 "Today" = "Heute";
-"DateFormat" = "";
-"TimeFormat" = "";
+"Minute(s)" = "Minute(n)";
+"Hour(s)" = "Stunde(n)";
+"Day(s)" = "Tag(e)";
+"Week(s)" = "Woche(n)";
+"Month(s)" = "Monat(e)";
+"after" = "nach";
+"Waring" = "Achtung";
+"Cancel" = "Abbruch";
+"NoJokerLeft" = "Kein '{0}' mehr vorhanden.";
+"NotEnoughJokerLeft" = "Nicht genug '{0}' vorhanden.";
+"TakeLastJokerUnits" = "Die letzte(n) '{0}' Einheit(en) nehmen.";
