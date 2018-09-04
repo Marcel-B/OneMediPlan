@@ -119,12 +119,9 @@ namespace OneMediPlan.Helpers
             var now = DateTimeOffset.Now;
             var latest = medi.LastDate;
             var diffDay = now - latest;
-
-            if (now.DayOfWeek == latest.DayOfWeek && diffDay.Days <= 1) // Heute
-                return medi.LastDate.ToString("t");
-
-            //return medi.LastDate.ToString("dd. MMMM");
-            return medi.LastDate.ToString("M");
+            return now.DayOfWeek == latest.DayOfWeek && diffDay.Days <= 1 ? 
+                      medi.LastDate.ToString("t") : 
+                      medi.LastDate.ToString("M");
         }
 
         public static string GetDosage(this Medi medi)

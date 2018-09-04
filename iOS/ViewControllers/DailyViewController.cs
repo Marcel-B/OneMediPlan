@@ -70,7 +70,7 @@ namespace OneMediPlan.iOS
         }
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var cell = tableView.DequeueReusableCell("DateCell", indexPath) as UITableViewCell;
+            var cell = tableView.DequeueReusableCell(Strings.DATE_CELL, indexPath) as UITableViewCell;
             var hour = Times[indexPath.Row].Item1.Value;
             var min = Times[indexPath.Row].Item2.Value;
             cell.TextLabel.Text = $"{hour}:{min}";

@@ -1,30 +1,24 @@
 ﻿using System;
 using System.Collections.Specialized;
-using OneMediPlan.iOS.CustomCells;
-
-using ChameleonFramework;
+using System.Threading.Tasks;
 using Foundation;
-using UIKit;
-using OneMediPlan.Helpers;
-using OneMediPlan.ViewModels;
 using Ninject;
 using Ninject.Parameters;
-using System.Runtime.CompilerServices;
+using OneMediPlan.Helpers;
+using OneMediPlan.iOS.CustomCells;
 using OneMediPlan.Models;
-using System.Threading.Tasks;
-using Realms;
+using OneMediPlan.ViewModels;
+using UIKit;
 
 namespace OneMediPlan.iOS
 {
     public partial class MainViewController : UITableViewController
     {
-        //UIRefreshControl refreshControl;
         public MainViewModel ViewModel { get; set; }
 
         public MainViewController(IntPtr handle) : base(handle)
         {
             ViewModel = App.Container.Get<MainViewModel>();
-            //ViewModel.PropertyChanged += IsBusy_PropertyChanged;
             ViewModel.Medis.CollectionChanged += Items_CollectionChanged;
         }
 
@@ -36,25 +30,15 @@ namespace OneMediPlan.iOS
 
             TableView.RowHeight = 100;
 
-            // Setup UITableView.
-            //refreshControl = new UIRefreshControl();
-            //refreshControl.ValueChanged += RefreshControl_ValueChanged;
-            //TableView.Add(refreshControl);
             var source = App.Container.Get<MedisDataSource>();
             source.parent = this;
             TableView.Source = source;
             Title = ViewModel.Title;
-
-
-            //ViewModel.PropertyChanged += IsBusy_PropertyChanged;
-            //ViewModel.Medis.CollectionChanged += Items_CollectionChanged;
         }
 
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
-            //var rows = TableView.NumberOfRowsInSection(0);
-            //if (ViewModel.Medis.Count == 0)
             ViewModel.LoadItemsCommand.Execute(null);
         }
 
@@ -67,37 +51,7 @@ namespace OneMediPlan.iOS
                 var item = ViewModel.Medis[indexPath.Row];
                 controller.ViewModel = App.Container.Get<MediDetailViewModel>(new ConstructorArgument("item", item));
             }
-            //else
-            //{
-            //    var controller = segue.DestinationViewController as NewMediViewController;
-            //    controller.ViewModel = new NewMediViewModel();
-            //}
         }
-
-        //void RefreshControl_ValueChanged(object sender, EventArgs e)
-        //{
-        //    if (!ViewModel.IsBusy && refreshControl.Refreshing)
-        //        ViewModel.LoadItemsCommand.Execute(null);
-        //}
-
-        //void IsBusy_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        //{
-        //    var propertyName = e.PropertyName;
-        //    switch (propertyName)
-        //    {
-        //        case nameof(ViewModel.IsBusy):
-        //            {
-        //                InvokeOnMainThread(() =>
-        //                {
-        //                    if (ViewModel.IsBusy && !refreshControl.Refreshing)
-        //                        refreshControl.BeginRefreshing();
-        //                    else if (!ViewModel.IsBusy)
-        //                        refreshControl.EndRefreshing();
-        //                });
-        //            }
-        //            break;
-        //    }
-        //}
 
         void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -182,16 +136,8 @@ namespace OneMediPlan.iOS
             return action;
         }
 
-        public override void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath)
-        {
-            viewModel.Medis.RemoveAt(indexPath.Row);
-            //base.CommitEditingStyle(tableView, editingStyle, indexPath);
-        }
-
-        //public override string TitleForDeleteConfirmation(UITableView tableView, NSIndexPath indexPath)
-        //{   // Optional - default text is 'Delete'
-        //    return "Trash (" + tableItems[indexPath.Row].SubHeading + ")";
-        //}
+        public override async void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath)
+            => await viewModel.RemoveMedi(indexPath.Row);
 
         public override bool CanEditRow(UITableView tableView, NSIndexPath indexPath)
             => true;
@@ -219,6 +165,7 @@ namespace OneMediPlan.iOS
             var noLeft = NSBundle.MainBundle.GetLocalizedString(Strings.NO_JOKER_LEFT);
             var notEnough = NSBundle.MainBundle.GetLocalizedString(Strings.NOT_ENOUGH_JOKER_LEFT);
             var takeLast = NSBundle.MainBundle.GetLocalizedString(Strings.TAKE_LAST_JOKER_UNITS);
+
             if (medi.Stock <= 0)
             {
                 //Create Alert
@@ -233,7 +180,6 @@ namespace OneMediPlan.iOS
             }
             else if (medi.Stock - medi.Dosage < 0)
             {
-                // TODO - Fire warn message
                 //Create Alert
                 var okCancelAlertController = UIAlertController.Create(waring, string.Format(notEnough, medi.Name), UIAlertControllerStyle.Alert);
 

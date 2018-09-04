@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using OneMediPlan.Helpers;
 using OneMediPlan.Models;
 using Realms;
-using System.Linq;
-using OneMediPlan.Helpers;
 
 namespace OneMediPlan
 {
@@ -17,7 +17,7 @@ namespace OneMediPlan
     public class MediDataStore : IMediDataStore
     {
         readonly IList<Medi> _medis;
-        private Medi _temporaryMedi;
+        Medi _temporaryMedi;
 
         public MediDataStore()
         {
@@ -31,15 +31,10 @@ namespace OneMediPlan
         public async Task<IEnumerable<Medi>> GetItemsAsync(bool forceRefresh = false)
         {
             _medis.Clear();
-            //if (_medis.Count <= 0)
-            //{
             var realm = await Realm.GetInstanceAsync(App.RealmConf);
             var medis = realm.All<MediSave>();
             foreach (var medi in medis)
-            {
                 _medis.Add(medi.ToMedi());
-            }
-            //}
             return _medis;
         }
 
@@ -84,7 +79,22 @@ namespace OneMediPlan
             _medis.Remove(med);
             var realm = await Realm.GetInstanceAsync(App.RealmConf);
             var item = realm.Find<MediSave>(id.ToString());
-            realm.Write(() => realm.Remove(item));
+            var weekdays = realm.All<Weekdays>();
+            var idStr = id.ToString();
+
+            var dailyAppointments = realm
+                .All<DailyAppointment>()
+                .Where(d => d.MediFk.Equals(idStr));
+
+            var weekday = weekdays.SingleOrDefault(w => w.MediFk.Equals(idStr));
+
+            realm.Write(() =>
+            {
+                realm.Remove(item);
+                if (weekday != null)
+                    realm.Remove(weekday);
+                realm.RemoveRange(dailyAppointments);
+            });
             return true;
         }
 
@@ -96,9 +106,9 @@ namespace OneMediPlan
         }
 
         public Medi GetTemporaryMedi()
-        => _temporaryMedi ?? new Medi { Create = DateTimeOffset.Now };
+            => _temporaryMedi ?? new Medi { Create = DateTimeOffset.Now };
 
         public void SetTemporaryMedi(Medi medi)
-        => _temporaryMedi = medi;
+            => _temporaryMedi = medi;
     }
 }

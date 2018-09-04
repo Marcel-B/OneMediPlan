@@ -25,7 +25,7 @@ namespace OneMediPlan.iOS
 
         public IntervallViewController(IntPtr handle) : base(handle)
         {
-            IList<string> list = new List<string>
+            var list = new List<string>
             {
                 NSBundle.MainBundle.GetLocalizedString(Strings.MINUTES),
                 NSBundle.MainBundle.GetLocalizedString(Strings.HOURS),

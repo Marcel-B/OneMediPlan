@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Linq;
 using System;
 using System.Collections.Generic;
-using Metal;
 
 namespace OneMediPlan.Helpers
 {

@@ -22,6 +22,17 @@ namespace OneMediPlan.ViewModels
             AddItemCommand = new Command<Medi>(async (Medi item) => await AddItem(item));
         }
 
+        public async Task<Medi> RemoveMedi(int index)
+            => await RemoveMedi(Medis[index]);
+
+        public async Task<Medi> RemoveMedi(Medi medi)
+        {
+            Medis.Remove(medi);
+            var store = App.Container.Get<MediDataStore>();
+            await store.DeleteItemAsync(medi.Id);
+            return medi;
+        }
+
         async Task ExecuteLoadMedisCommand()
         {
             var dataStore = App.Container.Get<IMediDataStore>();
