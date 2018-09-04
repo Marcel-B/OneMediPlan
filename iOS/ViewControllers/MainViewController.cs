@@ -112,7 +112,7 @@ namespace OneMediPlan.iOS
         {
             var action = UIContextualAction.FromContextualActionStyle
                             (UIContextualActionStyle.Normal,
-                                "Foo",
+                             NSBundle.MainBundle.GetLocalizedString(Strings.EDIT),
                                 (FlagAction, view, success) =>
                                 {
                                     success(true);
@@ -127,10 +127,12 @@ namespace OneMediPlan.iOS
         public UIContextualAction ContextualDefinitionAction(int row)
         {
 
-            var action = UIContextualAction.FromContextualActionStyle(UIContextualActionStyle.Normal,
-                "Bar",
+            var action = UIContextualAction.FromContextualActionStyle(
+                UIContextualActionStyle.Normal,
+                NSBundle.MainBundle.GetLocalizedString(Strings.STOCK),
                 (ReadLaterAction, view, success) =>
                 {
+                    success(true);
                 });
             action.BackgroundColor = UIColor.Green;
             return action;

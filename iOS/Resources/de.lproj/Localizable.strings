@@ -20,3 +20,4 @@
 "NoJokerLeft" = "Kein '{0}' mehr vorhanden.";
 "NotEnoughJokerLeft" = "Nicht genug '{0}' vorhanden.";
 "TakeLastJokerUnits" = "Die letzte(n) '{0}' Einheit(en) nehmen.";
+"Edit" = "Ändern";

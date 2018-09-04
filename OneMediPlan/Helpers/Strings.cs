@@ -33,5 +33,6 @@ namespace OneMediPlan.Helpers
         public const string NOT_ENOUGH_JOKER_LEFT = "NotEnoughJokerLeft";
         public const string TAKE_LAST_JOKER_UNITS = "TakeLastJokerUnits";
         public const string DATE_CELL = "DateCell";
+        public const string EDIT = "Edit";
     }
 }
