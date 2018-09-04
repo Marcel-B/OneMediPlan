@@ -9,6 +9,7 @@ using OneMediPlan.iOS.CustomCells;
 using OneMediPlan.Models;
 using OneMediPlan.ViewModels;
 using UIKit;
+using System.Net.Mail;
 
 namespace OneMediPlan.iOS
 {
@@ -119,22 +120,57 @@ namespace OneMediPlan.iOS
                                 });
 
             //action.Image = UIImage.FromFile("feedback.png");
-            action.BackgroundColor = UIColor.Blue;
+            action.BackgroundColor = UIColor.FromRGB(84, 160, 255);
 
             return action;
         }
 
         public UIContextualAction ContextualDefinitionAction(int row)
         {
-
+            var medi = viewModel.Medis[row];
             var action = UIContextualAction.FromContextualActionStyle(
                 UIContextualActionStyle.Normal,
                 NSBundle.MainBundle.GetLocalizedString(Strings.STOCK),
                 (ReadLaterAction, view, success) =>
                 {
-                    success(true);
+                    var foo = UIAlertController.Create("HeyHo", "Let's go", UIAlertControllerStyle.Alert);
+                    foo.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, alert =>
+                    {
+
+                    }));
+
+                    foo.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, alert =>
+                    {
+
+                    }));
+                    foo.ShowViewController(foo, this);
+                    var alertView = new UIAlertView
+                    {
+                        Title = NSBundle.MainBundle.GetLocalizedString(Strings.STOCK),
+                        Message = $"Enter new stock for {medi.Name}, dude!",
+                        AlertViewStyle = UIAlertViewStyle.PlainTextInput
+                    };
+                    alertView.GetTextField(0).Text = medi.Stock.ToString();
+                    alertView.GetTextField(0).KeyboardType = UIKeyboardType.DecimalPad;
+
+                    alertView.AddButton("OK");
+                    alertView.AddButton(NSBundle.MainBundle.GetLocalizedString(Strings.CANCEL));
+                    alertView.Clicked += async (object sender, UIButtonEventArgs e) =>
+                    {
+                        if (e.ButtonIndex == 0)
+                        {
+                            var stock = alertView.GetTextField(0).Text;
+                            if (double.TryParse(stock, out var newStock))
+                            {
+                                medi.Stock = newStock;
+                                success(true);
+                                await UpdateList(medi);
+                            }
+                        }
+                    };
+                    alertView.Show();
                 });
-            action.BackgroundColor = UIColor.Green;
+            action.BackgroundColor = UIColor.FromRGB(16, 172, 132);
             return action;
         }
 
