@@ -73,7 +73,8 @@ namespace OneMediPlan.iOS
             var cell = tableView.DequeueReusableCell(Strings.DATE_CELL, indexPath) as UITableViewCell;
             var hour = Times[indexPath.Row].Item1.Value;
             var min = Times[indexPath.Row].Item2.Value;
-            cell.TextLabel.Text = $"{hour}:{min}";
+            var dt = new DateTime(1, 1, 1, hour, min, 0);
+            cell.TextLabel.Text = dt.ToString("t");
             return cell;
         }
 

@@ -33,10 +33,10 @@ namespace OneMediPlan.ViewModels
 
         private void NextCommandExecute(object obj)
         {
-            if (obj is List<Tuple<Hour, Minute>> cl)
+            if (obj is List<Tuple<Hour, Minute>> appointmentList)
             {
                 var store = App.Container.Get<IMediDataStore>();
-                CurrentMedi.DailyAppointments = cl;
+                CurrentMedi.DailyAppointments = appointmentList;
                 store.SetTemporaryMedi(CurrentMedi);
             }
         }

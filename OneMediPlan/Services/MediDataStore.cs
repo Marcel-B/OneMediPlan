@@ -30,11 +30,15 @@ namespace OneMediPlan
 
         public async Task<IEnumerable<Medi>> GetItemsAsync(bool forceRefresh = false)
         {
-            _medis.Clear();
-            var realm = await Realm.GetInstanceAsync(App.RealmConf);
-            var medis = realm.All<MediSave>();
-            foreach (var medi in medis)
-                _medis.Add(medi.ToMedi());
+            if (forceRefresh)
+            {
+                _medis.Clear();
+                var realm = await Realm.GetInstanceAsync(App.RealmConf);
+                var medis = realm.All<MediSave>();
+                foreach (var medi in medis)
+                    _medis.Add(medi.ToMedi());
+                return _medis;
+            }
             return _medis;
         }
 
@@ -80,13 +84,13 @@ namespace OneMediPlan
             var realm = await Realm.GetInstanceAsync(App.RealmConf);
             var item = realm.Find<MediSave>(id.ToString());
             var weekdays = realm.All<Weekdays>();
-            var idStr = id.ToString();
+            var pk = id.ToString();
 
             var dailyAppointments = realm
                 .All<DailyAppointment>()
-                .Where(d => d.MediFk.Equals(idStr));
+                .Where(d => d.MediFk.Equals(pk));
 
-            var weekday = weekdays.SingleOrDefault(w => w.MediFk.Equals(idStr));
+            var weekday = weekdays.SingleOrDefault(w => w.MediFk.Equals(pk));
 
             realm.Write(() =>
             {
