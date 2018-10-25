@@ -7,7 +7,7 @@ using OneMediPlan.ViewModels;
 using Ninject;
 using OneMediPlan.Helpers;
 
-namespace OneMediPlan.iOS
+namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class DosageViewController : UIViewController
     {

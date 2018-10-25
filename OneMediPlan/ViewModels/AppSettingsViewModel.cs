@@ -1,11 +1,10 @@
 ﻿using System.Windows.Input;
 using System;
 using Ninject;
-using OneMediPlan.Models;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace OneMediPlan
+namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class AppSettingsViewModel : BaseViewModel
     {

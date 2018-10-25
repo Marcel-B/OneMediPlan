@@ -6,12 +6,10 @@ using Ninject;
 using Ninject.Parameters;
 using OneMediPlan.Helpers;
 using OneMediPlan.iOS.CustomCells;
-using OneMediPlan.Models;
 using OneMediPlan.ViewModels;
 using UIKit;
-using System.Net.Mail;
 
-namespace OneMediPlan.iOS
+namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class MainViewController : UITableViewController
     {

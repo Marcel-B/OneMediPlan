@@ -9,7 +9,7 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace OneMediPlan.iOS
+namespace com.b_velop.OneMediPlan.iOS
 {
     [Register ("TabBarController")]
     partial class TabBarController

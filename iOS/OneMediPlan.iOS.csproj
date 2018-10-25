@@ -5,7 +5,7 @@
     <ProjectGuid>{D808B6D4-AAA0-47B5-A985-A54CF6DF3DC5}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>OneMediPlan.iOS</RootNamespace>
+    <RootNamespace>com.b_velop.OneMediPlan.iOS</RootNamespace>
     <AssemblyName>OneMediPlan.iOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
   </PropertyGroup>
@@ -102,15 +102,6 @@
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Portable.Ninject.3.3.1\lib\Xamarin.iOS\Ninject.dll</HintPath>
-    </Reference>
-    <Reference Include="Realm.DataBinding">
-      <HintPath>..\packages\Realm.DataBinding.1.2.0\lib\Xamarin.iOS10\Realm.DataBinding.dll</HintPath>
-    </Reference>
-    <Reference Include="Realm">
-      <HintPath>..\packages\Realm.Database.3.1.0\lib\netstandard1.4\Realm.dll</HintPath>
-    </Reference>
-    <Reference Include="Realm.Sync">
-      <HintPath>..\packages\Realm.3.1.0\lib\netstandard1.4\Realm.Sync.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Annotations">
       <HintPath>..\..\..\..\..\..\usr\local\share\dotnet\sdk\NuGetFallbackFolder\microsoft.netcore.app\2.1.0\ref\netcoreapp2.1\System.ComponentModel.Annotations.dll</HintPath>
@@ -251,13 +242,18 @@
   <ItemGroup>
     <BundleResource Include="Resources\en.lproj\Localizable.strings" />
     <BundleResource Include="Resources\en.lproj\Main.strings" />
-    <BundleResource Include="Resources\de.lproj\Localizable.strings" />
-    <BundleResource Include="Resources\de.lproj\Main.strings" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\de.lproj\Main.strings" />
+    <EmbeddedResource Include="Resources\de.lproj\Localizable.strings" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OneMediPlan.Meta\OneMediPlan.Meta.csproj">
+      <Project>{BDF078B5-1204-4DE2-903B-E84A36E18164}</Project>
+      <Name>OneMediPlan.Meta</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\OneMediPlan\OneMediPlan.projitems" Label="Shared" Condition="Exists('..\OneMediPlan\OneMediPlan.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <Import Project="..\packages\Realm.Database.3.1.0\build\Realm.Database.targets" Condition="Exists('..\packages\Realm.Database.3.1.0\build\Realm.Database.targets')" />
-  <Import Project="..\packages\Realm.3.1.0\build\Realm.targets" Condition="Exists('..\packages\Realm.3.1.0\build\Realm.targets')" />
-  <Import Project="..\packages\Fody.3.1.7\build\Fody.targets" Condition="Exists('..\packages\Fody.3.1.7\build\Fody.targets')" />
   <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
 </Project>

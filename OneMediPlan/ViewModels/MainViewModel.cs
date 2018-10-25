@@ -6,7 +6,7 @@ using OneMediPlan.Models;
 using Ninject;
 using System.Linq;
 
-namespace OneMediPlan.ViewModels
+namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {

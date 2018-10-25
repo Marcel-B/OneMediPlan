@@ -6,7 +6,7 @@ using OneMediPlan.Models;
 using Ninject;
 using OneMediPlan.Helpers;
 
-namespace OneMediPlan.ViewModels
+namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class DailyViewModel : BaseViewModel
     {

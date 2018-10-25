@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace OneMediPlan
+namespace com.b_velop.OneMediPlan.Helpers
 {
     public sealed class Command<T> : Command
     {

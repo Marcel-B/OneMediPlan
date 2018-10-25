@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using Ninject;
 
-namespace OneMediPlan.ViewModels
+namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class IntervallTypeViewModel : BaseViewModel
     {

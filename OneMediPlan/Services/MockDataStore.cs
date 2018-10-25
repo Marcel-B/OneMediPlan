@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using OneMediPlan.Models;
 
-namespace OneMediPlan
+namespace com.b_velop.OneMediPlan.Services
 {
     //public class WeekdayDataStoreMock : IDataStore<Weekdays>
     //{

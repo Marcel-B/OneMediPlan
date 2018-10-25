@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Ninject;
-using OneMediPlan.Models;
 using System.Linq;
-using Realms;
 using System.Collections.Generic;
+using com.b_velop.OneMediPlan.Models;
 
-namespace OneMediPlan.Helpers
+namespace com.b_velop.OneMediPlan.Helpers
 {
     public static class MediExtensions
     {

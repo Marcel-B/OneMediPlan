@@ -5,7 +5,7 @@ using Ninject;
 using System.Threading.Tasks;
 using OneMediPlan.Helpers;
 
-namespace OneMediPlan.ViewModels
+namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class NewMediViewModel : BaseViewModel
     {

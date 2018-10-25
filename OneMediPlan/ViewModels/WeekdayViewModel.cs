@@ -1,11 +1,11 @@
-﻿using Ninject;
-using OneMediPlan.Models;
+﻿using com.b_velop.OneMediPlan.Models;
+using Ninject;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace OneMediPlan.ViewModels
+namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class WeekdayViewModel : BaseViewModel
     {

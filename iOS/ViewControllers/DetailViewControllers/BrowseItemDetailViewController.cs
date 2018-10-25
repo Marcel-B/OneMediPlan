@@ -1,7 +1,7 @@
 ﻿using System;
 using UIKit;
 
-namespace OneMediPlan.iOS
+namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class BrowseItemDetailViewController : UIViewController
     {

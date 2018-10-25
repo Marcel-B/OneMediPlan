@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using OneMediPlan.Models;
 using Ninject;
 
-namespace OneMediPlan
+namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

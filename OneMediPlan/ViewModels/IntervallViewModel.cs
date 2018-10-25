@@ -6,7 +6,7 @@ using System.Windows.Input;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace OneMediPlan.ViewModels
+namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class IntervallViewModel : BaseViewModel
     {

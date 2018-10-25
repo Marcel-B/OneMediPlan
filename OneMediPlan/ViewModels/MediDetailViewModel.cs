@@ -1,6 +1,6 @@
 ﻿using OneMediPlan.Models;
 
-namespace OneMediPlan
+namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class MediDetailViewModel : BaseViewModel
     {

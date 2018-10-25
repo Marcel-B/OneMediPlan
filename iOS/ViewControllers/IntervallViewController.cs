@@ -2,14 +2,13 @@ using System;
 using UIKit;
 using System.Collections.Generic;
 using System.Linq;
-using OneMediPlan.Models;
 using Ninject;
-using OneMediPlan.ViewModels;
-using OneMediPlan.Helpers;
 using Foundation;
 using Ninject.Parameters;
+using com.b_velop.OneMediPlan.Meta;
+using OneMediPlan.ViewModels;
 
-namespace OneMediPlan.iOS
+namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class IntervallViewController : UIViewController
     {

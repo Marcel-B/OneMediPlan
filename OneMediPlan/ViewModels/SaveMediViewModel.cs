@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows.Input;
-using OneMediPlan.Models;
 using Ninject;
+using com.b_velop.OneMediPlan.Models;
+using com.b_velop.OneMediPlan.Helpers;
 
-namespace OneMediPlan.ViewModels
+namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class SaveMediViewModel : BaseViewModel
     {

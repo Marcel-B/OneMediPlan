@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using Ninject;
 
-namespace OneMediPlan.Models
+namespace com.b_velop.OneMediPlan.Models
 {
 
-    public class Medi : Item, IComparable
+    public class Medi : IComparable
     {
         public Medi() { }
 
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public double Stock { get; set; }
         public double MinimumStock { get; set; }

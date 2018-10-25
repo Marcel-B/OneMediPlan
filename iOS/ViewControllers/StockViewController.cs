@@ -5,7 +5,7 @@ using Ninject;
 using OneMediPlan.Helpers;
 using Foundation;
 
-namespace OneMediPlan.iOS
+namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class StockViewController : UIViewController
     {

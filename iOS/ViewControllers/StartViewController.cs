@@ -10,7 +10,7 @@ using Security;
 using OneMediPlan.Models;
 using GameKit;
 
-namespace OneMediPlan.iOS
+namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class StartViewController : UIViewController
     {

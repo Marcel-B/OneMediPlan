@@ -2,14 +2,13 @@ using System;
 using UIKit;
 using OneMediPlan.ViewModels;
 using Ninject;
-using OneMediPlan.Helpers;
 using Foundation;
 
-namespace OneMediPlan.iOS
+namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class WeekdayViewController : UIViewController
     {
-        WeekdayViewModel ViewModel;
+        public WeekdayViewModel ViewModel { get; set; }
 
         partial void WeekdayValueChanged(UISwitch sender)
         {

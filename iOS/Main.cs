@@ -1,10 +1,10 @@
 ﻿using UIKit;
 using System;
-using OneMediPlan.Models;
-using OneMediPlan.Helpers;
 using Foundation;
+using com.b_velop.OneMediPlan.Helpers;
+using com.b_velop.OneMediPlan.Models;
 
-namespace OneMediPlan.iOS
+namespace com.b_velop.OneMediPlan.iOS
 {
     public class Application
     {

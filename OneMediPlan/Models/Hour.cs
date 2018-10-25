@@ -1,4 +1,4 @@
-﻿namespace OneMediPlan.Models
+﻿namespace com.b_velop.OneMediPlan.Models
 {
     public class Hour
     {

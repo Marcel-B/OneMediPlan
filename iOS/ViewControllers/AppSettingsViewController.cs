@@ -5,7 +5,7 @@ using OneMediPlan.iOS.Helper;
 using Foundation;
 using OneMediPlan.Helpers;
 
-namespace OneMediPlan.iOS
+namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class AppSettingsViewController : UIViewController
     {

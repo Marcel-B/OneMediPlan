@@ -1,11 +1,9 @@
 ﻿using Foundation;
 using UIKit;
-using OneMediPlan;
-using OneMediPlan.Models;
 using OneMediPlan.iOS.Helper;
-using System;
+using com.b_velop.OneMediPlan.Models;
 
-namespace OneMediPlan.iOS
+namespace com.b_velop.OneMediPlan.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the
     // User Interface of the application, as well as listening (and optionally responding) to application events from iOS.

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using OneMediPlan.Models;
-using Realms;
 using System.Linq;
 
-namespace OneMediPlan.Services
+namespace com.b_velop.OneMediPlan.Services
 {
     public class AppSettingsDataStore : IDataStore<MediSettings>
     {

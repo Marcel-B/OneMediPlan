@@ -1,11 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.Models;
 using Ninject;
-using OneMediPlan.Models;
-using OneMediPlan.Helpers;
 
-namespace OneMediPlan.ViewModels
+namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class StockViewModel : BaseViewModel
     {

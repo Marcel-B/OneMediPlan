@@ -1,6 +1,4 @@
-﻿using System;
-using Intents;
-namespace OneMediPlan.Helpers
+﻿namespace com.b_velop.OneMediPlan.Meta
 {
     public static class Strings
     {

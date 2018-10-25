@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using OneMediPlan.Helpers;
-using OneMediPlan.Models;
-using Realms;
+using com.b_velop.OneMediPlan.Models;
 
-namespace OneMediPlan
+namespace com.b_velop.OneMediPlan.Services
 {
     public interface IMediDataStore : IDataStore<Medi>
     {

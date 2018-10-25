@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace OneMediPlan
+namespace com.b_velop.OneMediPlan.Services
 {
     public interface IDataStore<T>
     {

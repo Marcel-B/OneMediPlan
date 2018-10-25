@@ -1,14 +1,13 @@
-﻿using OneMediPlan.Models;
-using Ninject;
+﻿using Ninject;
 using OneMediPlan.ViewModels;
 using OneMediPlan.Helpers;
 using System;
 using OneMediPlan.Services;
 using System.Threading.Tasks;
 using System.Linq;
-using Realms;
+using com.b_velop.OneMediPlan.Models;
 
-namespace OneMediPlan
+namespace com.b_velop.OneMediPlan
 {
     public class Settings
     {

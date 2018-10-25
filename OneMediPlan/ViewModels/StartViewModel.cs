@@ -4,9 +4,10 @@ using System.Text;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using Ninject;
-using OneMediPlan.Models;
+using com.b_velop.OneMediPlan.Models;
+using com.b_velop.OneMediPlan.Helpers;
 
-namespace OneMediPlan.ViewModels
+namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class StartViewModel : BaseViewModel
     {
