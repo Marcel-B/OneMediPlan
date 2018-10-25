@@ -101,7 +101,7 @@
         <scene sceneID="hTF-aU-mbW">
             <objects>
                 <navigationController title="Browse" automaticallyAdjustsScrollViewInsets="NO" id="IVu-6x-Ha6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="First" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Home" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="U58-7W-wiN">
                         <rect key="frame" x="0.0" y="20" width="414" height="102"/>
@@ -121,6 +121,7 @@
                     <connections>
                         <segue destination="75" kind="relationship" relationship="rootViewController" id="105"/>
                     </connections>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ic3-tP-dXf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -130,7 +131,7 @@
         <scene sceneID="4YN-yV-spV">
             <objects>
                 <navigationController title="About" automaticallyAdjustsScrollViewInsets="NO" id="uSp-bD-Qry" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Einstellungen" image="Second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Einstellungen" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dDs-el-YGI">
                         <rect key="frame" x="0.0" y="20" width="414" height="50"/>
@@ -145,6 +146,7 @@
                     <connections>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="jMW-O1-ib0"/>
                     </connections>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fyu-rb-jDK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1093,9 +1095,5 @@
             <point key="canvasLocation" x="5140" y="-195"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="First" width="32" height="30"/>
-        <image name="Second" width="32" height="30"/>
-    </resources>
     <color key="tintColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
 </document>
