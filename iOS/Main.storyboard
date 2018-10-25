@@ -196,55 +196,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="81" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1480" y="-776"/>
+            <point key="canvasLocation" x="1555" y="-389"/>
         </scene>
         <!--Title-->
-        <scene sceneID="117">
-            <objects>
-                <viewController id="118" customClass="ItemDetailViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="115"/>
-                        <viewControllerLayoutGuide type="bottom" id="116"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="119">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Name" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1702">
-                                <rect key="frame" x="20" y="85" width="339" height="36"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Date" lineBreakMode="wordWrap" numberOfLines="0" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1705">
-                                <rect key="frame" x="20" y="129" width="339" height="20"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="1702" firstAttribute="top" secondItem="115" secondAttribute="bottom" constant="21" id="2231"/>
-                            <constraint firstItem="1702" firstAttribute="leading" secondItem="119" secondAttribute="leading" constant="20" id="2232"/>
-                            <constraint firstItem="1705" firstAttribute="top" secondItem="1702" secondAttribute="bottom" constant="8" id="2233"/>
-                            <constraint firstItem="1705" firstAttribute="leading" secondItem="119" secondAttribute="leading" constant="20" id="2234"/>
-                            <constraint firstItem="1702" firstAttribute="trailing" secondItem="119" secondAttribute="trailingMargin" id="3697"/>
-                            <constraint firstItem="1705" firstAttribute="width" secondItem="1702" secondAttribute="width" id="3698"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Title" id="200"/>
-                    <connections>
-                        <outlet property="ItemNameLabel" destination="1702" id="name-outlet-1702"/>
-                        <outlet property="ItemNextDatePanel" destination="1705" id="name-outlet-1705"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="120" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2240" y="-776"/>
-        </scene>
         <!--New Medi-->
         <scene sceneID="2247">
             <objects>

@@ -8,7 +8,7 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 
-namespace OneMediPlan.iOS.CustomCells
+namespace com.b_velop.OneMediPlan.iOS.CustomCells
 {
     [Register ("MyMediTableViewCell")]
     partial class MyMediTableViewCell

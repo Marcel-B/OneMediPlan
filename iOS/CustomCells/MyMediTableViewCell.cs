@@ -3,7 +3,7 @@
 using Foundation;
 using UIKit;
 
-namespace OneMediPlan.iOS.CustomCells
+namespace com.b_velop.OneMediPlan.iOS.CustomCells
 {
     public partial class MyMediTableViewCell : UITableViewCell
     {
