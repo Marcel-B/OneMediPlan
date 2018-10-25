@@ -8,8 +8,8 @@ namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class IntervallTypeViewModel : BaseViewModel
     {
-        Medi _currentMedi;
-        public Medi CurrentMedi { get => _currentMedi; set => SetProperty(ref _currentMedi, value); }
+        AppMedi _currentMedi;
+        public AppMedi CurrentMedi { get => _currentMedi; set => SetProperty(ref _currentMedi, value); }
         public ICommand SelectIntervallCommand { get; set; }
 
         public IntervallTypeViewModel()
@@ -22,16 +22,16 @@ namespace com.b_velop.OneMediPlan.ViewModels
         {
             if (obj is IntervallType type)
             {
-                CurrentMedi.IntervallType = type;
-                var store = App.Container.Get<IMediDataStore>();
-                store.SetTemporaryMedi(CurrentMedi);
+                //CurrentMedi.IntervallType = type;
+                //var store = App.Container.Get<IMediDataStore>();
+                //store.SetTemporaryMedi(CurrentMedi);
             }
         }
 
         public void Init()
         {
-            var store = App.Container.Get<IMediDataStore>();
-            CurrentMedi = store.GetTemporaryMedi();
+            //var store = App.Container.Get<IMediDataStore>();
+            //CurrentMedi = store.GetTemporaryMedi();
         }
     }
 }

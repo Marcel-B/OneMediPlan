@@ -5,6 +5,6 @@ namespace com.b_velop.OneMediPlan.Helpers
 {
     public interface ISomeLogic
     {
-        Task HandleIntoke(Medi medi);
+        Task HandleIntoke(AppMedi medi);
     }
 }

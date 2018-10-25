@@ -34,12 +34,12 @@ namespace OneMediPlan.Droid
 
         void SaveButton_Click(object sender, EventArgs e)
         {
-            var item = new Medi
-            {
-                Name = title.Text,
-                Description = description.Text
-            };
-            ViewModel.AddItemCommand.Execute(item);
+            //var item = new Medi
+            //{
+            //    Name = title.Text,
+            //    Description = description.Text
+            //};
+            //ViewModel.AddItemCommand.Execute(item);
 
             Finish();
         }

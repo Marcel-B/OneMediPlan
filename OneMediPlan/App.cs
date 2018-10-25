@@ -7,6 +7,9 @@ using com.b_velop.OneMediPlan.ViewModels;
 using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Services;
 using OneMediPlan.Helpers;
+using com.b_velop.OneMediPlan.Domain.Services;
+using com.b_velop.OneMediPlan.Domain;
+using com.b_velop.OneMediPlan.Domain.Stores;
 
 namespace com.b_velop.OneMediPlan
 {
@@ -36,7 +39,7 @@ namespace com.b_velop.OneMediPlan
         //public static RealmConfiguration RealmConf = new RealmConfiguration("default.realm");
         public const int SCHEMA_VERSION = 2;
 
-        public static Action<Medi> SetNotification { get; set; }
+        public static Action<AppMedi> SetNotification { get; set; }
 
         public static void Initialize()
         {
@@ -56,19 +59,19 @@ namespace com.b_velop.OneMediPlan
             Container.Bind<DailyViewModel>().ToSelf().InSingletonScope();
             Container.Bind<StartViewModel>().ToSelf().InSingletonScope();
             Container.Bind<SaveMediViewModel>().ToSelf().InSingletonScope();
-            Container.Bind<Medi>().ToSelf().InSingletonScope(); // Temp Medi
+            Container.Bind<AppMedi>().ToSelf().InSingletonScope(); // Temp Medi
             Container.Bind<ISomeLogic>().To<SomeLogic>();
             if (UseMockDataStore)
             {
                 //Container.Bind<IMediDataStore>().To<MockDataStore>().InSingletonScope();
                 //Container.Bind<IDataStore<Weekdays>>().To<WeekdayDataStoreMock>().InSingletonScope();
-                Container.Bind<IDataStore<MediSettings>>().To<AppSettingsDataStore>().InSingletonScope();
+                //Container.Bind<IDataStore<MediSettings>>().To<AppSettingsDataStore>().InSingletonScope();
             }
             else
             {
-                Container.Bind<IMediDataStore>().To<MediDataStore>().InSingletonScope();
-                //Container.Bind<IDataStore<Weekdays>>().ToSelf().InSingletonScope();
-                Container.Bind<IDataStore<MediSettings>>().To<AppSettingsDataStore>().InSingletonScope();
+                Container.Bind<IDataStore<Medi>>().To<MediDataStore>().InSingletonScope();
+                Container.Bind<IDataStore<Weekdays>>().To<WeekdaysDataStore>().InSingletonScope();
+                Container.Bind<IDataStore<AppSettings>>().To<AppSettingsDataStore>().InSingletonScope();
             }
 
             Task.Run(() => SetSettings());
@@ -76,14 +79,16 @@ namespace com.b_velop.OneMediPlan
         }
         public static async Task SetSettings()
         {
-            var ct = App.Container.Get<IDataStore<MediSettings>>();
+            var ct = Container.Get<IDataStore<AppSettings>>();
             var ffo = await ct.GetItemsAsync();
             if (ffo.ToList().Count <= 0)
             {
-                var medSett = new MediSettings();
-                medSett.Hour = 12;
-                medSett.Minute = 15;
-                medSett.Id = Guid.NewGuid().ToString();
+                var medSett = new AppSettings
+                {
+                    Hour = 12,
+                    Minute = 15,
+                    Id = Guid.NewGuid()
+                };
                 await ct.AddItemAsync(medSett);
             }
         }

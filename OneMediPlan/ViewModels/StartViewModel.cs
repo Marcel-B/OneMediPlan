@@ -13,8 +13,8 @@ namespace com.b_velop.OneMediPlan.ViewModels
     {
         public ICommand NextCommand { get; }
 
-        Medi _currentMedi;
-        public Medi CurrentMedi
+        AppMedi _currentMedi;
+        public AppMedi CurrentMedi
         {
             get => _currentMedi;
             set => SetProperty(ref _currentMedi, value);
@@ -30,15 +30,15 @@ namespace com.b_velop.OneMediPlan.ViewModels
 
         public void Init()
         {
-            var store = App.Container.Get<IMediDataStore>();
-            CurrentMedi = store.GetTemporaryMedi();
+            //var store = App.Container.Get<IMediDataStore>();
+            //CurrentMedi = store.GetTemporaryMedi();
         }
 
         private void NextCommandExecute(object obj)
         {
-            var store = App.Container.Get<IMediDataStore>();
-            CurrentMedi.NextDate = StartDate;
-            store.SetTemporaryMedi(CurrentMedi);
+            //var store = App.Container.Get<IMediDataStore>();
+            //CurrentMedi.NextDate = StartDate;
+            //store.SetTemporaryMedi(CurrentMedi);
         }
 
         private bool NextCommandCanExecute(object obj) => true;

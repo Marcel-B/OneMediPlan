@@ -4,7 +4,6 @@ namespace com.b_velop.OneMediPlan.Domain
     public class Medi : Item
     {
         public string Name { get; set; }
-        public string Description { get; set; }
         public bool DailyAppointments { get; set; }
         public string DependsOn { get; set; }
         public double Stock { get; set; }

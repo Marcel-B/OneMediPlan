@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 
 using com.b_velop.OneMediPlan.Models;
 
@@ -12,11 +11,10 @@ namespace com.b_velop.OneMediPlan.Services
 
         protected AppStore()
         {
-            Medis = new ObservableCollection<Medi>();
+
         }
 
-        public ObservableCollection<Medi> Medis { get; set; }
-        public Medi CurrentMedi { get; set; }
-
+        public AppUser User { get; set; }
+        public AppMedi CurrentMedi { get; set; }
     }
 }

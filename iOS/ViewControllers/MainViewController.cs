@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
+using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Meta;
 using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.ViewModels;
@@ -235,7 +236,7 @@ namespace com.b_velop.OneMediPlan.iOS
             await UpdateList(medi);
         }
 
-        public async Task UpdateList(Medi medi)
+        public async Task UpdateList(AppMedi medi)
         {
             var s = App.Container.Get<ISomeLogic>();
             await s.HandleIntoke(medi);

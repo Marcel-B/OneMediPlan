@@ -12,8 +12,8 @@ namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class DailyViewModel : BaseViewModel
     {
-        Medi _currentMedi;
-        public Medi CurrentMedi
+        AppMedi _currentMedi;
+        public AppMedi CurrentMedi
         {
             get => _currentMedi;
             set => SetProperty(ref _currentMedi, value);
@@ -27,19 +27,19 @@ namespace com.b_velop.OneMediPlan.ViewModels
 
         public void Init()
         {
-            var store = App.Container.Get<IMediDataStore>();
-            var medi = store.GetTemporaryMedi();
-            medi.DailyAppointments = null;
-            CurrentMedi = medi;
+            //var store = App.Container.Get<IMediDataStore>();
+            //var medi = store.GetTemporaryMedi();
+            //medi.DailyAppointments = null;
+            //CurrentMedi = medi;
         }
 
         private void NextCommandExecute(object obj)
         {
             if (obj is List<Tuple<Hour, Minute>> appointmentList)
             {
-                var store = App.Container.Get<IMediDataStore>();
-                CurrentMedi.DailyAppointments = appointmentList;
-                store.SetTemporaryMedi(CurrentMedi);
+                //var store = App.Container.Get<IMediDataStore>();
+                //CurrentMedi.DailyAppointments = appointmentList;
+                //store.SetTemporaryMedi(CurrentMedi);
             }
         }
 

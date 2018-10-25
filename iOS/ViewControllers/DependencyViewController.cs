@@ -61,12 +61,12 @@ namespace com.b_velop.OneMediPlan.iOS
             /// <summary>
             /// The items to show up in the picker
             /// </summary>
-            public List<Medi> Medis { get; private set; }
+            public List<AppMedi> Medis { get; private set; }
 
             /// <summary>
             /// The current selected item
             /// </summary>
-            public Medi SelectedItem
+            public AppMedi SelectedItem
             {
                 get => Medis[selectedIndex];
             }
@@ -75,7 +75,7 @@ namespace com.b_velop.OneMediPlan.iOS
 
             public DependencyTypeDataModel()
             {
-                Medis = new List<Medi>();
+                Medis = new List<AppMedi>();
             }
 
             /// <summary>

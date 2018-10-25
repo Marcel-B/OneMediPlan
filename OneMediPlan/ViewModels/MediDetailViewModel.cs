@@ -4,8 +4,8 @@ namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class MediDetailViewModel : BaseViewModel
     {
-        public Medi Medi { get; set; }
-        public MediDetailViewModel(Medi item = null)
+        public AppMedi Medi { get; set; }
+        public MediDetailViewModel(AppMedi item = null)
         {
             if (item != null)
             {

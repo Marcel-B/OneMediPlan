@@ -3,9 +3,10 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Ninject;
-using OneMediPlan.Models;
 using System.Linq;
 using Android.Media;
+using com.b_velop.OneMediPlan.ViewModels;
+using com.b_velop.OneMediPlan.Models;
 
 namespace OneMediPlan.Droid
 {
@@ -31,8 +32,8 @@ namespace OneMediPlan.Droid
 
         public override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
-            ViewModel = App.Container.Get<AppSettingsViewModel>();
+            //base.OnCreate(savedInstanceState);
+            //ViewModel = App.Container.Get<AppSettingsViewModel>();
         }
 
         MediSettings Setting;

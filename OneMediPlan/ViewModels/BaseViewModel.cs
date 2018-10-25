@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using com.b_velop.OneMediPlan.Models;
-using com.b_velop.OneMediPlan.Services;
+using com.b_velop.OneMediPlan.Domain;
+using com.b_velop.OneMediPlan.Domain.Services;
 using Ninject;
 
 namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Medi> DataStore => App.Container.Get<IDataStore<Medi>>();
+        public IDataStore<Medi> MediDataStore => App.Container.Get<IDataStore<Medi>>();
+        public IDataStore<Weekdays> WeekdaysDataStore => App.Container.Get<IDataStore<Weekdays>>();
+        public IDataStore<DailyAppointment> DailyAppointmentDataStore => App.Container.Get<IDataStore<DailyAppointment>>();
 
         bool isBusy = false;
         public bool IsBusy

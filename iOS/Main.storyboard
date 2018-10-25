@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -28,13 +26,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="48282">
-                                <rect key="frame" x="24" y="131" width="370" height="216"/>
+                                <rect key="frame" x="24" y="137" width="370" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="332704801.65417802">
                                     <!--2011-07-18 18:00:01 +0000-->
                                 </date>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Standardzeit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48285">
-                                <rect key="frame" x="20" y="86" width="374" height="37"/>
+                                <rect key="frame" x="20" y="92" width="374" height="37"/>
                                 <color key="tintColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="48294"/>
@@ -44,7 +42,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48295">
-                                <rect key="frame" x="22" y="355" width="374" height="30"/>
+                                <rect key="frame" x="22" y="361" width="374" height="30"/>
                                 <state key="normal" title="Speichern">
                                     <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -85,7 +83,7 @@
                 <tabBarController storyboardIdentifier="tabViewController" id="49e-Tb-3d3" customClass="TabBarController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
-                        <rect key="frame" x="0.0" y="687" width="414" height="49"/>
+                        <rect key="frame" x="0.0" y="686" width="414" height="50"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.49411764705882355" green="0.83921568627450982" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
@@ -106,7 +104,7 @@
                     <tabBarItem key="tabBarItem" title="Home" image="First" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="U58-7W-wiN">
-                        <rect key="frame" x="0.0" y="20" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="20" width="414" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.13333333333333333" green="0.65098039215686276" blue="0.70196078431372544" alpha="1" colorSpace="calibratedRGB"/>
@@ -135,7 +133,7 @@
                     <tabBarItem key="tabBarItem" title="Einstellungen" image="Second" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dDs-el-YGI">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="414" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.13333333333333333" green="0.65098039215686276" blue="0.70196078431372544" alpha="1" colorSpace="calibratedRGB"/>
@@ -260,7 +258,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Medi name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2329">
-                                <rect key="frame" x="22" y="181" width="372" height="30"/>
+                                <rect key="frame" x="22" y="187" width="372" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -269,7 +267,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gib einen Namen ein" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2344">
-                                <rect key="frame" x="20" y="136" width="374" height="37"/>
+                                <rect key="frame" x="20" y="142" width="374" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="4908"/>
                                 </constraints>
@@ -278,7 +276,7 @@
                                 <color key="highlightedColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6739">
-                                <rect key="frame" x="20" y="219" width="374" height="39"/>
+                                <rect key="frame" x="20" y="225" width="374" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="6994"/>
                                 </constraints>
@@ -331,7 +329,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vorrat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10847">
-                                <rect key="frame" x="20" y="136" width="374" height="37"/>
+                                <rect key="frame" x="20" y="142" width="374" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="13824"/>
                                 </constraints>
@@ -340,7 +338,7 @@
                                 <color key="highlightedColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="momentan" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="10903">
-                                <rect key="frame" x="20" y="181" width="179" height="30"/>
+                                <rect key="frame" x="20" y="187" width="179" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -349,7 +347,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="minimum" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="10958">
-                                <rect key="frame" x="212" y="181" width="182" height="30"/>
+                                <rect key="frame" x="212" y="187" width="182" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="14104"/>
                                 </constraints>
@@ -361,7 +359,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13146">
-                                <rect key="frame" x="20" y="219" width="374" height="30"/>
+                                <rect key="frame" x="20" y="225" width="374" height="30"/>
                                 <state key="normal" title="Weiter">
                                     <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -465,7 +463,7 @@
                                     <segue destination="17381" kind="show" id="17427"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38150" tag="5">
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38150">
                                 <rect key="frame" x="20" y="441" width="374" height="38"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                 <state key="normal" title="Zeitplan">
@@ -524,13 +522,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="18618">
-                                <rect key="frame" x="20" y="219" width="374" height="88"/>
+                                <rect key="frame" x="20" y="225" width="374" height="88"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" id="39705"/>
                                 </constraints>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intervall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18619">
-                                <rect key="frame" x="20" y="136" width="374" height="37"/>
+                                <rect key="frame" x="20" y="142" width="374" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="19161"/>
                                 </constraints>
@@ -539,7 +537,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Anzahl" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="18620">
-                                <rect key="frame" x="20" y="181" width="374" height="30"/>
+                                <rect key="frame" x="20" y="187" width="374" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -548,13 +546,13 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29748">
-                                <rect key="frame" x="20" y="315" width="240" height="37"/>
+                                <rect key="frame" x="20" y="321" width="240" height="37"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="28"/>
                                 <color key="textColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34304">
-                                <rect key="frame" x="268" y="318" width="126" height="30"/>
+                                <rect key="frame" x="268" y="324" width="126" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="126" id="40203"/>
                                 </constraints>
@@ -616,13 +614,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17478">
-                                <rect key="frame" x="20" y="181" width="374" height="162"/>
+                                <rect key="frame" x="20" y="187" width="374" height="162"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="162" id="29099"/>
                                 </constraints>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wähle Medikament" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="19146">
-                                <rect key="frame" x="20" y="136" width="374" height="37"/>
+                                <rect key="frame" x="20" y="142" width="374" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="29093"/>
                                 </constraints>
@@ -631,7 +629,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35489">
-                                <rect key="frame" x="20" y="351" width="374" height="30"/>
+                                <rect key="frame" x="20" y="357" width="374" height="30"/>
                                 <state key="normal" title="Weiter">
                                     <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -691,7 +689,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MediName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43608">
-                                <rect key="frame" x="20" y="136" width="374" height="37"/>
+                                <rect key="frame" x="20" y="142" width="374" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="43611"/>
                                 </constraints>
@@ -849,8 +847,8 @@
                                     <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="ButtonWeiter_TouchUpInside:" destination="17432" eventType="touchUpInside" id="74184"/>
                                     <segue destination="17910" kind="show" id="32398"/>
-                                    <action selector="ButtonWeiter_TouchUpInside:" destination="17432" id="74184" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -925,7 +923,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dosis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18060">
-                                <rect key="frame" x="20" y="136" width="374" height="37"/>
+                                <rect key="frame" x="20" y="142" width="374" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="24034"/>
                                 </constraints>
@@ -934,7 +932,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="18071">
-                                <rect key="frame" x="20" y="181" width="374" height="30"/>
+                                <rect key="frame" x="20" y="187" width="374" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -943,7 +941,7 @@
                                 </connections>
                             </textField>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32548">
-                                <rect key="frame" x="20" y="232" width="374" height="30"/>
+                                <rect key="frame" x="20" y="238" width="374" height="30"/>
                                 <state key="normal" title="Weiter">
                                     <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -999,7 +997,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="18617">
-                                <rect key="frame" x="31" y="200" width="352" height="216"/>
+                                <rect key="frame" x="31" y="206" width="352" height="216"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="216" id="24045"/>
                                 </constraints>
@@ -1007,11 +1005,11 @@
                                     <!--2011-07-18 18:00:01 +0000-->
                                 </date>
                                 <connections>
-                                    <action selector="StartPickerValueChanged:" destination="18545" id="74980" eventType="valueChanged"/>
+                                    <action selector="StartPickerValueChanged:" destination="18545" eventType="valueChanged" id="74980"/>
                                 </connections>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Startzeit wählen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24028">
-                                <rect key="frame" x="20" y="136" width="374" height="37"/>
+                                <rect key="frame" x="20" y="142" width="374" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="24031"/>
                                 </constraints>
@@ -1020,7 +1018,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32988">
-                                <rect key="frame" x="20" y="424" width="374" height="30"/>
+                                <rect key="frame" x="20" y="430" width="374" height="30"/>
                                 <state key="normal" title="Weiter">
                                     <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -1068,7 +1066,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="42826">
-                                <rect key="frame" x="20" y="378" width="374" height="30"/>
+                                <rect key="frame" x="20" y="384" width="374" height="30"/>
                                 <state key="normal" title="Weiter">
                                     <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -1078,13 +1076,13 @@
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="44368">
-                                <rect key="frame" x="20" y="116" width="374" height="216"/>
+                                <rect key="frame" x="20" y="122" width="374" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="332704801.65417802">
                                     <!--2011-07-18 18:00:01 +0000-->
                                 </date>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44379">
-                                <rect key="frame" x="20" y="340" width="374" height="30"/>
+                                <rect key="frame" x="20" y="346" width="374" height="30"/>
                                 <state key="normal" title="Add Time">
                                     <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -1093,7 +1091,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="47494">
-                                <rect key="frame" x="20" y="416" width="374" height="276"/>
+                                <rect key="frame" x="20" y="422" width="374" height="264"/>
                                 <color key="backgroundColor" red="0.87450980392156863" green="0.97647058823529409" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.87450980392156863" green="0.97647058823529409" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>

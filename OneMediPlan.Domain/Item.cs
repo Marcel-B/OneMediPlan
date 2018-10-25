@@ -7,5 +7,7 @@ namespace com.b_velop.OneMediPlan.Domain
         public Guid Id { get; set; }
         public DateTimeOffset Created { get; set; }
         public DateTimeOffset LastEdit { get; set; }
+        public string Description { get; set; }
+
     }
 }

@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>OneMediPlan</string>
 	<key>CFBundleName</key>
-	<string>OneMediPlan</string>
+	<string>OneMedi Plan</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.b-velop.OneMediPlan</string>
 	<key>CFBundleShortVersionString</key>
@@ -15,7 +15,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>11.0</string>
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>en</string>
@@ -37,8 +37,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

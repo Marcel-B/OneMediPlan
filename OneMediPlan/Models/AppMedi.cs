@@ -5,12 +5,14 @@ using Ninject;
 namespace com.b_velop.OneMediPlan.Models
 {
 
-    public class Medi : IComparable
+    public class AppMedi : IComparable
     {
-        public Medi() { }
+        public AppMedi() { }
 
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
+
         public double Stock { get; set; }
         public double MinimumStock { get; set; }
         public double Dosage { get; set; }
@@ -31,7 +33,7 @@ namespace com.b_velop.OneMediPlan.Models
 
         public int CompareTo(Object obj)
         {
-            if (obj is Medi med)
+            if (obj is AppMedi med)
             {
                 if (this.NextDate == DateTimeOffset.MinValue) return 1;
                 if (med.NextDate == DateTimeOffset.MinValue) return -1;
@@ -42,11 +44,11 @@ namespace com.b_velop.OneMediPlan.Models
             throw new ArgumentException();
         }
 
-        internal void Reset()
-        {
-            var store = App.Container.Get<IMediDataStore>();
-            store.SetTemporaryMedi(new Medi());
-            Console.WriteLine("AllValues reseted");
-        }
+        //internal void Reset()
+        //{
+        //    var store = App.Container.Get<IDataStore<Medi>>();
+        //    store.SetTemporaryMedi(new Medi());
+        //    Console.WriteLine("AllValues reseted");
+        //}
     }
 }

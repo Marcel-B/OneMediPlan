@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Meta;
 using com.b_velop.OneMediPlan.Models;
 using Ninject;
@@ -9,11 +10,11 @@ namespace com.b_velop.OneMediPlan.ViewModels
     {
         public ICommand SaveStockCommand { get; }
 
-        Medi _currentMedi;
+        AppMedi _currentMedi;
         string _stock;
         string _stockMinimum;
 
-        public Medi CurrentMedi
+        public AppMedi CurrentMedi
         {
             get => _currentMedi;
             set
@@ -42,10 +43,10 @@ namespace com.b_velop.OneMediPlan.ViewModels
 
         public void Init()
         {
-            var store = App.Container.Get<IMediDataStore>();
-            CurrentMedi = store.GetTemporaryMedi();
-            if (CurrentMedi.MinimumStock > 0)
-                StockMinimum = CurrentMedi.MinimumStock.ToString();
+            //var store = App.Container.Get<IMediDataStore>();
+            //CurrentMedi = store.GetTemporaryMedi();
+            //if (CurrentMedi.MinimumStock > 0)
+                //StockMinimum = CurrentMedi.MinimumStock.ToString();
         }
 
         private bool SaveStockCanExecute(object obj)
@@ -57,15 +58,15 @@ namespace com.b_velop.OneMediPlan.ViewModels
 
         private void SaveStockExecute(object obj)
         {
-            var store = App.Container.Get<IMediDataStore>();
+            //var store = App.Container.Get<IMediDataStore>();
 
-            if (double.TryParse(Stock, out var stock))
-                CurrentMedi.Stock = stock;
+            //if (double.TryParse(Stock, out var stock))
+            //    CurrentMedi.Stock = stock;
 
-            if (double.TryParse(StockMinimum, out var stockMin))
-                CurrentMedi.MinimumStock = stockMin;
+            //if (double.TryParse(StockMinimum, out var stockMin))
+            //    CurrentMedi.MinimumStock = stockMin;
 
-            store.SetTemporaryMedi(CurrentMedi);
+            //store.SetTemporaryMedi(CurrentMedi);
         }
     }
 }

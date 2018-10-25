@@ -10,8 +10,8 @@ namespace com.b_velop.OneMediPlan.ViewModels
     {
         public ICommand SaveMediCommand { get; }
 
-        Medi _currentMedi;
-        public Medi CurrentMedi
+        AppMedi _currentMedi;
+        public AppMedi CurrentMedi
         {
             get => _currentMedi;
             set => SetProperty(ref _currentMedi, value);
@@ -24,18 +24,18 @@ namespace com.b_velop.OneMediPlan.ViewModels
 
         public void Init()
         {
-            var store = App.Container.Get<IMediDataStore>();
-            CurrentMedi = store.GetTemporaryMedi();
+            //var store = App.Container.Get<IMediDataStore>();
+            //CurrentMedi = store.GetTemporaryMedi();
         }
 
         private async void SaveMediExecute(object obj)
         {
-            var store = App.Container.Get<MediDataStore>();
-            CurrentMedi.Id = Guid.NewGuid();
-            if (App.SetNotification != null)
-                App.SetNotification(CurrentMedi);
-            await store.AddItemAsync(CurrentMedi);
-            CurrentMedi.Reset();
+            //var store = App.Container.Get<MediDataStore>();
+            //CurrentMedi.Id = Guid.NewGuid();
+            //if (App.SetNotification != null)
+            //    App.SetNotification(CurrentMedi);
+            //await store.AddItemAsync(CurrentMedi);
+            //CurrentMedi.Reset();
         }
 
         private bool SaveMediCanExecute(object obj)

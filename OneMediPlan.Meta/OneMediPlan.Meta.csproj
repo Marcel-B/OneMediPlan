@@ -8,4 +8,10 @@
   <ItemGroup>
     <Compile Remove="Class1.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="I18NPortable" Version="0.6.0" />
+  </ItemGroup>
 </Project>

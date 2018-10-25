@@ -2,6 +2,8 @@
 using System;
 using Ninject;
 using com.b_velop.OneMediPlan.Models;
+using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.Helpers;
 
 namespace com.b_velop.OneMediPlan.ViewModels
 {
@@ -9,8 +11,8 @@ namespace com.b_velop.OneMediPlan.ViewModels
     {
         public ICommand SaveNameCommand { get; }
 
-        private Medi _currentMedi;
-        public Medi CurrentMedi
+        private AppMedi _currentMedi;
+        public AppMedi CurrentMedi
         {
             get => _currentMedi;
             set
@@ -37,12 +39,12 @@ namespace com.b_velop.OneMediPlan.ViewModels
 
         public void Init()
         {
-            var store = App.Container.Get<IMediDataStore>();
-            CurrentMedi = store.GetTemporaryMedi();
-            CurrentMedi.Create = 
-                CurrentMedi.Create <= DateTimeOffset.MinValue ? 
-                DateTimeOffset.Now : CurrentMedi.Create;
-            Name = CurrentMedi.Name;
+            //var store = App.Container.Get<IMediDataStore>();
+            //CurrentMedi = store.GetTemporaryMedi();
+            //CurrentMedi.Create = 
+            //    CurrentMedi.Create <= DateTimeOffset.MinValue ? 
+            //    DateTimeOffset.Now : CurrentMedi.Create;
+            //Name = CurrentMedi.Name;
         }
 
         private bool CanExecuteSaveName(object obj)
@@ -50,9 +52,9 @@ namespace com.b_velop.OneMediPlan.ViewModels
 
         private void SaveNameExecute(object obj)
         {
-            var store = App.Container.Get<IMediDataStore>();
-            CurrentMedi.Name = Name;
-            store.SetTemporaryMedi(CurrentMedi);
+            //var store = App.Container.Get<IMediDataStore>();
+            //CurrentMedi.Name = Name;
+            //store.SetTemporaryMedi(CurrentMedi);
         }
     }
 }

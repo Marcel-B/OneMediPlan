@@ -6,6 +6,10 @@ using System.Collections.Generic;
 using com.b_velop.OneMediPlan.Services;
 using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Models;
+using com.b_velop.OneMediPlan.Domain.Services;
+using com.b_velop.OneMediPlan.Domain;
+using com.b_velop.OneMediPlan;
+using System.Runtime.Remoting.Messaging;
 
 namespace OneMediPlan.Helpers
 {
@@ -13,13 +17,13 @@ namespace OneMediPlan.Helpers
     {
         private IDataStore<Medi> _store;
         private readonly Action<Medi> _setNotification;
-        public SomeLogic(IMediDataStore store, Action<Medi> setNotification)
+        public SomeLogic(IDataStore<Medi> store, Action<Medi> setNotification)
         {
             _store = store;
             _setNotification = setNotification;
         }
 
-        public async Task HandleIntoke(Medi medi)
+        public async Task HandleIntoke(AppMedi medi)
         {
             var medis = await _store.GetItemsAsync();
             var t = Settings.GetStdTime();
@@ -32,7 +36,7 @@ namespace OneMediPlan.Helpers
                     medi.Stock = medi.Stock - medi.Dosage < 0 ? 0 : medi.Stock - medi.Dosage;
                     
                     SetNotification(medi);
-                    await _store.UpdateItemAsync(medi);
+                    //await _store.UpdateItemAsync(medi);
                     return;
                 case IntervallType.Intervall:
                     switch (medi.IntervallTime)
@@ -83,11 +87,11 @@ namespace OneMediPlan.Helpers
             medi.Stock = medi.Stock - medi.Dosage < 0 ? 0 : medi.Stock - medi.Dosage;
             medi.LastDate = now;
             SetNotification(medi);
-            await _store.UpdateItemAsync(medi);
-            await CheckDependencys(medi, medis);
+            //await _store.UpdateItemAsync(medi);
+            //await CheckDependencys(medi, medis);
         }
 
-        private async Task CheckDependencys(Medi medi, IEnumerable<Medi> medis)
+        private async Task CheckDependencys(AppMedi medi, IEnumerable<AppMedi> medis)
         {
             var dep = medis.SingleOrDefault(m => m.DependsOn == medi.Id);
             if (dep == null) return; // fertig
@@ -101,11 +105,13 @@ namespace OneMediPlan.Helpers
 
             dep.NextDate = medi.LastDate.AddMinutes(pureInterall * intervallType);
             SetNotification(dep);
-            await _store.UpdateItemAsync(dep);
+            //await _store.UpdateItemAsync(dep);
         }
 
-        private void SetNotification(Medi medi)
-            => _setNotification?.Invoke(medi);
+        private void SetNotification(AppMedi medi)
+        {
+            return;
+        } // => _setNotification?.Invoke(medi);
     }
 
     public static class IntervallTimeExtensions

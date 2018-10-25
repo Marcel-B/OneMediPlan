@@ -13,10 +13,10 @@ namespace com.b_velop.OneMediPlan.ViewModels
     {
         public ICommand NextCommand { get; }
 
-        private Medi _currentMedi;
+        private AppMedi _currentMedi;
         private bool[] _weekdays;
 
-        public Medi CurrentMedi
+        public AppMedi CurrentMedi
         {
             get => _currentMedi;
             set => SetProperty(ref _currentMedi, value);
@@ -40,18 +40,18 @@ namespace com.b_velop.OneMediPlan.ViewModels
 
         public void Init()
         {
-            _weekdays = new bool[7];
-            var store = App.Container.Get<IMediDataStore>();
-            CurrentMedi = store.GetTemporaryMedi();
-            if (CurrentMedi.Weekdays != null)
-                Weekdays = CurrentMedi.Weekdays;
+            //_weekdays = new bool[7];
+            //var store = App.Container.Get<IMediDataStore>();
+            //CurrentMedi = store.GetTemporaryMedi();
+            //if (CurrentMedi.Weekdays != null)
+                //Weekdays = CurrentMedi.Weekdays;
         }
 
         private void NextCommandExecute(object obj)
         {
-            CurrentMedi.Weekdays = Weekdays;
-            var store = App.Container.Get<MediDataStore>();
-            store.SetTemporaryMedi(CurrentMedi);
+            //CurrentMedi.Weekdays = Weekdays;
+            //var store = App.Container.Get<MediDataStore>();
+            //store.SetTemporaryMedi(CurrentMedi);
         }
 
         private bool NextCommandCanExecute(object obj)

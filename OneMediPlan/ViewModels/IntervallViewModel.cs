@@ -5,6 +5,7 @@ using System.Windows.Input;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using com.b_velop.OneMediPlan.Models;
+using com.b_velop.OneMediPlan.Helpers;
 
 namespace com.b_velop.OneMediPlan.ViewModels
 {
@@ -17,7 +18,7 @@ namespace com.b_velop.OneMediPlan.ViewModels
 
         bool _labelHidden;
         string _labelText;
-        Medi _currentMedi;
+        AppMedi _currentMedi;
 
         public bool LabelHidden
         {
@@ -31,7 +32,7 @@ namespace com.b_velop.OneMediPlan.ViewModels
             set => SetProperty(ref _labelText, value);
         }
 
-        public Medi CurrentMedi
+        public AppMedi CurrentMedi
         {
             get => _currentMedi;
             set => SetProperty(ref _currentMedi, value);
@@ -52,10 +53,10 @@ namespace com.b_velop.OneMediPlan.ViewModels
 
         private void NextCommandExecute(object obj)
         {
-            CurrentMedi.PureIntervall = Intervall;
-            CurrentMedi.IntervallTime = IntervallTime;
-            var store = App.Container.Get<IMediDataStore>();
-            store.SetTemporaryMedi(CurrentMedi);
+            //CurrentMedi.PureIntervall = Intervall;
+            //CurrentMedi.IntervallTime = IntervallTime;
+            //var store = App.Container.Get<IMediDataStore>();
+            //store.SetTemporaryMedi(CurrentMedi);
         }
 
         // Vielleich über ne property und property changed
@@ -65,14 +66,14 @@ namespace com.b_velop.OneMediPlan.ViewModels
 
         public async Task Init()
         {
-            var store = App.Container.Get<IMediDataStore>();
-            CurrentMedi = store.GetTemporaryMedi();
-            LabelHidden = CurrentMedi.DependsOn == Guid.Empty;
-            if (!LabelHidden)
-            {
-                var parentMedi = await store.GetItemAsync(CurrentMedi.DependsOn);
-                LabelText = parentMedi.Name;
-            }
+            //var store = App.Container.Get<IMediDataStore>();
+            //CurrentMedi = store.GetTemporaryMedi();
+            //LabelHidden = CurrentMedi.DependsOn == Guid.Empty;
+            //if (!LabelHidden)
+            //{
+            //    var parentMedi = await store.GetItemAsync(CurrentMedi.DependsOn);
+            //    LabelText = parentMedi.Name;
+            //}
             return;
         }
     }

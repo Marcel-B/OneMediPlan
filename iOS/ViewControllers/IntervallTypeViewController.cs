@@ -37,7 +37,7 @@ namespace com.b_velop.OneMediPlan.iOS
             ViewModel.SelectIntervallCommand.Execute(intervallType);
         }
 
-        public Medi CurrentMedi { get; set; }
+        public AppMedi CurrentMedi { get; set; }
         public IntervallTypeViewModel ViewModel;
 
         public IntervallTypeViewController(IntPtr handle) : base(handle)

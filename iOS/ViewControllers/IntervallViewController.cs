@@ -69,7 +69,7 @@ namespace com.b_velop.OneMediPlan.iOS
                 if (sender is IntervallTypeDataModel intervallTypeDataModel)
                 {
                     var idx = intervallTypeDataModel.SelectedIndex;
-                    ViewModel.IntervallTime = (IntervallTime)idx;
+                    //ViewModel.IntervallTime = (IntervallTime)idx;
                 }
             };
         }

@@ -19,7 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MediDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Medi.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AppMedi.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MediExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewMediViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SomeLogic.cs" />
@@ -44,6 +44,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\MediSave.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\IntervallTime.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AppStore.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\CloudStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AppUser.cs" />
   </ItemGroup>
 </Project>

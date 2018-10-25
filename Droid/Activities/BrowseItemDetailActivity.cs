@@ -2,7 +2,7 @@
 using Android.Content;
 using Android.OS;
 using Android.Widget;
-using OneMediPlan.Models;
+using com.b_velop.OneMediPlan.ViewModels;
 
 namespace OneMediPlan.Droid
 {
@@ -22,12 +22,12 @@ namespace OneMediPlan.Droid
 
             var data = Intent.GetStringExtra("data");
 
-            var item = Newtonsoft.Json.JsonConvert.DeserializeObject<Medi>(data);
-            viewModel = new MediDetailViewModel(item);
+            //var item = Newtonsoft.Json.JsonConvert.DeserializeObject<Medi>(data);
+            //viewModel = new MediDetailViewModel(item);
 
-            FindViewById<TextView>(Resource.Id.description).Text = item.Name;
+            //FindViewById<TextView>(Resource.Id.description).Text = item.Name;
 
-            SupportActionBar.Title = item.Name;
+            //SupportActionBar.Title = item.Name;
         }
 
         protected override void OnStart()

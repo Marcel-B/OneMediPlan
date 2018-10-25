@@ -13,7 +13,7 @@ namespace com.b_velop.OneMediPlan.iOS
         // class-level declarations
         public override UIWindow Window { get; set; }
 
-        public static void SetNotification(Medi medi)
+        public static void SetNotification(AppMedi medi)
         {
             var newTime = medi.NextDate.DateTime.ToNSDate();
 

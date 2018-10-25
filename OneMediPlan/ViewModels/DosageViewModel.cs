@@ -14,10 +14,10 @@ namespace com.b_velop.OneMediPlan.ViewModels
     {
         public ICommand NextCommand { get; }
 
-        private Medi _currentMedi;
+        private AppMedi _currentMedi;
         private double _dosage;
 
-        public Medi CurrentMedi
+        public AppMedi CurrentMedi
         {
             get => _currentMedi;
             set => SetProperty(ref _currentMedi, value);
@@ -36,15 +36,15 @@ namespace com.b_velop.OneMediPlan.ViewModels
 
         public void Init()
         {
-            var store = App.Container.Get<IMediDataStore>();
-            CurrentMedi = store.GetTemporaryMedi();
+            //var store = App.Container.Get<IMediDataStore>();
+            //CurrentMedi = store.GetTemporaryMedi();
         }
 
         private void ExecuteNextCommand(object obj)
         {
-            CurrentMedi.Dosage = Dosage;
-            var store = App.Container.Get<IMediDataStore>();
-            store.SetTemporaryMedi(CurrentMedi);
+            //CurrentMedi.Dosage = Dosage;
+            //var store = App.Container.Get<IMediDataStore>();
+            //store.SetTemporaryMedi(CurrentMedi);
         }
 
         private bool NextCommandCanExecute(object obj)
