@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace comOneMediPlan.BackEnd
+namespace com.b_velop.OneMediPlan.BackEnd
 {
     public class Program
     {

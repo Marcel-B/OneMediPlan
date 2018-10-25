@@ -3,7 +3,7 @@ using System.ComponentModel;
 using UIKit;
 using OneMediPlan.iOS.Helper;
 using Foundation;
-using OneMediPlan.Helpers;
+using com.b_velop.OneMediPlan.ViewModels;
 
 namespace com.b_velop.OneMediPlan.iOS
 {

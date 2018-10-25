@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
+using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.Models;
+using com.b_velop.OneMediPlan.ViewModels;
 using Foundation;
 using Ninject;
 using Ninject.Parameters;
-using OneMediPlan.Helpers;
 using OneMediPlan.iOS.CustomCells;
-using OneMediPlan.ViewModels;
 using UIKit;
 
 namespace com.b_velop.OneMediPlan.iOS

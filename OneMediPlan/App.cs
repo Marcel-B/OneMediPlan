@@ -1,11 +1,12 @@
 ﻿using Ninject;
-using OneMediPlan.ViewModels;
-using OneMediPlan.Helpers;
 using System;
-using OneMediPlan.Services;
 using System.Threading.Tasks;
 using System.Linq;
 using com.b_velop.OneMediPlan.Models;
+using com.b_velop.OneMediPlan.ViewModels;
+using com.b_velop.OneMediPlan.Helpers;
+using com.b_velop.OneMediPlan.Services;
+using OneMediPlan.Helpers;
 
 namespace com.b_velop.OneMediPlan
 {
@@ -32,15 +33,15 @@ namespace com.b_velop.OneMediPlan
     {
         public static StandardKernel Container { get; set; }
         public static bool UseMockDataStore = false;
-        public static RealmConfiguration RealmConf = new RealmConfiguration("default.realm");
+        //public static RealmConfiguration RealmConf = new RealmConfiguration("default.realm");
         public const int SCHEMA_VERSION = 2;
 
         public static Action<Medi> SetNotification { get; set; }
 
         public static void Initialize()
         {
-            RealmConf.SchemaVersion = SCHEMA_VERSION;
-            Console.WriteLine(RealmConf.DatabasePath);
+            //RealmConf.SchemaVersion = SCHEMA_VERSION;
+            //Console.WriteLine(RealmConf.DatabasePath);
             Container = new StandardKernel();
 
             Container.Bind<MainViewModel>().ToSelf().InSingletonScope();

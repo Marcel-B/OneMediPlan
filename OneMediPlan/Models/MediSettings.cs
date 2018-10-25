@@ -1,13 +1,12 @@
-﻿//using Realms;
-//using System;
+﻿using System;
 
-//namespace OneMediPlan.Models
-//{
-//    public class MediSettings : RealmObject
-//    {
-//        public MediSettings() { }
-//        public Guid Id { get; set; }
-//        public int Hour { get; set; }
-//        public int Minute { get; set; }
-//    }
-//}
+namespace com.b_velop.OneMediPlan.Models
+{
+    public class MediSettings
+    {
+        public MediSettings() { }
+        public Guid Id { get; set; }
+        public int Hour { get; set; }
+        public int Minute { get; set; }
+    }
+}

@@ -6,13 +6,13 @@ using Ninject;
 using Foundation;
 using Ninject.Parameters;
 using com.b_velop.OneMediPlan.Meta;
-using OneMediPlan.ViewModels;
+using com.b_velop.OneMediPlan.ViewModels;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class IntervallViewController : UIViewController
     {
-        IntervallViewModel ViewModel;
+        public IntervallViewModel ViewModel { get; set; }
 
         partial void ButtonNextTouched(UIButton sender)
             => ViewModel.NextCommand.Execute(null);

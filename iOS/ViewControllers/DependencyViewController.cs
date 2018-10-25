@@ -1,12 +1,11 @@
 using Foundation;
-using OneMediPlan.Models;
 using System;
 using System.Collections.Generic;
 using UIKit;
 using Ninject;
-using OneMediPlan.ViewModels;
-using OneMediPlan.Helpers;
-
+using com.b_velop.OneMediPlan.ViewModels;
+using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.Models;
 namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class DependencyViewController : UIViewController
@@ -14,7 +13,7 @@ namespace com.b_velop.OneMediPlan.iOS
         partial void UIButton35489_TouchUpInside(UIButton sender)
             => ViewModel.NextCommand.Execute(null);
 
-        DependencyViewModel ViewModel { get; set; }
+        public DependencyViewModel ViewModel { get; set; }
 
         public DependencyViewController(IntPtr handle) : base(handle)
         {

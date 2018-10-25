@@ -1,17 +1,17 @@
 using Foundation;
 using System;
 using UIKit;
-using OneMediPlan.Models;
 using System.ComponentModel;
-using OneMediPlan.ViewModels;
 using Ninject;
-using OneMediPlan.Helpers;
+
+using com.b_velop.OneMediPlan.ViewModels;
+using com.b_velop.OneMediPlan.Meta;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class DosageViewController : UIViewController
     {
-        DosageViewModel ViewModel { get; set; }
+        public DosageViewModel ViewModel { get; set; }
         public DosageViewController(IntPtr handle) : base(handle)
         {
             ViewModel = App.Container.Get<DosageViewModel>();

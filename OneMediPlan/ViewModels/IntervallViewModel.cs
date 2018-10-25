@@ -1,10 +1,10 @@
 ﻿using System;
-using OneMediPlan.Models;
 using System.Threading.Tasks;
 using Ninject;
 using System.Windows.Input;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using com.b_velop.OneMediPlan.Models;
 
 namespace com.b_velop.OneMediPlan.ViewModels
 {

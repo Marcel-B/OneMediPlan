@@ -2,9 +2,11 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using OneMediPlan.Models;
 using Ninject;
 using System.Linq;
+using com.b_velop.OneMediPlan.Models;
+using com.b_velop.OneMediPlan.Helpers;
+using com.b_velop.OneMediPlan.Services;
 
 namespace com.b_velop.OneMediPlan.ViewModels
 {

@@ -1,9 +1,9 @@
 using System;
 using UIKit;
-using OneMediPlan.ViewModels;
 using Ninject;
-using OneMediPlan.Helpers;
 using Foundation;
+using com.b_velop.OneMediPlan.ViewModels;
+using com.b_velop.OneMediPlan.Meta;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
@@ -12,7 +12,7 @@ namespace com.b_velop.OneMediPlan.iOS
         partial void ButtonNext_TouchUpInside(UIButton sender)
         => ViewModel.SaveStockCommand.Execute(null);
 
-        StockViewModel ViewModel { get; set; }
+        public StockViewModel ViewModel { get; set; }
 
         partial void TextViewStockMinimumChanged(UITextField sender)
         {

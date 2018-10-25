@@ -1,8 +1,9 @@
 using System;
 using UIKit;
-using OneMediPlan.ViewModels;
 using Ninject;
 using Foundation;
+using com.b_velop.OneMediPlan.ViewModels;
+using com.b_velop.OneMediPlan.Meta;
 
 namespace com.b_velop.OneMediPlan.iOS
 {

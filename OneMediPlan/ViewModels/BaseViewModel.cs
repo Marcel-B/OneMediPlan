@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using com.b_velop.OneMediPlan.Models;
+using com.b_velop.OneMediPlan.Services;
 using Ninject;
 
 namespace com.b_velop.OneMediPlan.ViewModels

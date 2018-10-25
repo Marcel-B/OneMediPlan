@@ -1,15 +1,15 @@
 using System;
 using UIKit;
 using Ninject;
-using OneMediPlan.ViewModels;
 using Foundation;
-using OneMediPlan.Helpers;
+using com.b_velop.OneMediPlan.ViewModels;
+using com.b_velop.OneMediPlan.Meta;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class SaveMediViewController : UIViewController
     {
-        SaveMediViewModel ViewModel { get; set; }
+       public SaveMediViewModel ViewModel { get; set; }
 
         partial void UIButton18059_TouchUpInside(UIButton sender)
         {

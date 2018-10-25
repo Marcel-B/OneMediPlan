@@ -1,10 +1,10 @@
 using Foundation;
 using System;
 using UIKit;
-using OneMediPlan.Models;
-using OneMediPlan.ViewModels;
 using Ninject;
-using OneMediPlan.Helpers;
+using com.b_velop.OneMediPlan.Models;
+using com.b_velop.OneMediPlan.ViewModels;
+using com.b_velop.OneMediPlan.Meta;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
@@ -38,7 +38,7 @@ namespace com.b_velop.OneMediPlan.iOS
         }
 
         public Medi CurrentMedi { get; set; }
-        IntervallTypeViewModel ViewModel;
+        public IntervallTypeViewModel ViewModel;
 
         public IntervallTypeViewController(IntPtr handle) : base(handle)
         {

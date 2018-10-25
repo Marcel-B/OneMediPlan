@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using OneMediPlan.Models;
+using com.b_velop.OneMediPlan.Models;
 
 namespace com.b_velop.OneMediPlan.Services
 {

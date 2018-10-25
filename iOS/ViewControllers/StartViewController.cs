@@ -2,13 +2,12 @@ using Foundation;
 using System;
 using UIKit;
 using System.ComponentModel;
-using OneMediPlan.ViewModels;
 using Ninject;
-using OneMediPlan.Helpers;
+using com.b_velop.OneMediPlan.ViewModels;
 using OneMediPlan.iOS.Helper;
-using Security;
-using OneMediPlan.Models;
-using GameKit;
+using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.Models;
+using com.b_velop.OneMediPlan.Helpers;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
@@ -22,7 +21,7 @@ namespace com.b_velop.OneMediPlan.iOS
             }
         }
 
-        StartViewModel ViewModel { get; set; }
+        public StartViewModel ViewModel { get; set; }
 
         public StartViewController(IntPtr handle) : base(handle)
         {

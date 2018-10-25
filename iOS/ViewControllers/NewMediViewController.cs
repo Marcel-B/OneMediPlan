@@ -1,15 +1,16 @@
 ﻿using System;
 using UIKit;
-using OneMediPlan.ViewModels;
 using Ninject;
-using OneMediPlan.Helpers;
 using Foundation;
+
+using com.b_velop.OneMediPlan.ViewModels;
+using com.b_velop.OneMediPlan.Meta;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class NewMediViewController : UIViewController
     {
-        NewMediViewModel ViewModel { get; set; }
+        public NewMediViewModel ViewModel { get; set; }
 
         void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {

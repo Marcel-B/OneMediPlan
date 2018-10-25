@@ -1,9 +1,7 @@
-﻿using OneMediPlan.Models;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using System;
 using Ninject;
-using System.Threading.Tasks;
-using OneMediPlan.Helpers;
+using com.b_velop.OneMediPlan.Models;
 
 namespace com.b_velop.OneMediPlan.ViewModels
 {

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace OneMediPlan.BackEnd
+namespace com.b_velop.OneMediPlan.BackEnd
 {
     public class Startup
     {

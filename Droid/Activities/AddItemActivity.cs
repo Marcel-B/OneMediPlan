@@ -4,8 +4,8 @@ using Android.App;
 using Android.OS;
 using Android.Widget;
 using Android.Support.Design.Widget;
-using OneMediPlan.Models;
-using OneMediPlan.ViewModels;
+using com.b_velop.OneMediPlan.ViewModels;
+using com.b_velop.OneMediPlan.Models;
 
 namespace OneMediPlan.Droid
 {

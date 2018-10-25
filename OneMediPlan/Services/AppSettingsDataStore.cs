@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using com.b_velop.OneMediPlan.Models;
 
 namespace com.b_velop.OneMediPlan.Services
 {
@@ -13,34 +14,36 @@ namespace com.b_velop.OneMediPlan.Services
 
         public async Task<bool> AddItemAsync(MediSettings item)
         {
-            var realm = await Realm.GetInstanceAsync(App.RealmConf);
-            await realm.WriteAsync((r) => r.Add(item, true));
+            //var realm = await Realm.GetInstanceAsync(App.RealmConf);
+            //await realm.WriteAsync((r) => r.Add(item, true));
             return true;
         }
 
         public async Task<bool> DeleteItemAsync(Guid id)
         {
-            var realm = await Realm.GetInstanceAsync(App.RealmConf);
-            await realm.WriteAsync((r) =>
-            {
-                var obj = r.Find<MediSettings>(id.ToString());
-                r.Remove(obj);
-            });
+            //var realm = await Realm.GetInstanceAsync(App.RealmConf);
+            //await realm.WriteAsync((r) =>
+            //{
+            //    var obj = r.Find<MediSettings>(id.ToString());
+            //    r.Remove(obj);
+            //});
 
             return true;
         }
 
         public async Task<MediSettings> GetItemAsync(Guid id)
         {
-            var realm = await Realm.GetInstanceAsync(App.RealmConf);
-            return realm.Find<MediSettings>(id.ToString());
+            //var realm = await Realm.GetInstanceAsync(App.RealmConf);
+            //return realm.Find<MediSettings>(id.ToString());
+            return null;
         }
 
         public async Task<IEnumerable<MediSettings>> GetItemsAsync(bool forceRefresh = false)
         {
-            var realm = await Realm.GetInstanceAsync(App.RealmConf);
-            var all = realm.All<MediSettings>();
-            return all;
+            //var realm = await Realm.GetInstanceAsync(App.RealmConf);
+            //var all = realm.All<MediSettings>();
+            //return all;
+            return null;
         }
 
         public Task SaveStore()
@@ -50,13 +53,13 @@ namespace com.b_velop.OneMediPlan.Services
 
         public async Task<bool> UpdateItemAsync(MediSettings item)
         {
-            var realm = await Realm.GetInstanceAsync(App.RealmConf);
-            await realm.WriteAsync((Realm r) =>
-            {
-                var lastItem = r.All<MediSettings>().First();
-                lastItem.Hour = item.Hour;
-                lastItem.Minute = item.Minute;
-            });
+            //var realm = await Realm.GetInstanceAsync(App.RealmConf);
+            //await realm.WriteAsync((Realm r) =>
+            //{
+            //    var lastItem = r.All<MediSettings>().First();
+            //    lastItem.Hour = item.Hour;
+            //    lastItem.Minute = item.Minute;
+            //});
             return true;
         }
     }

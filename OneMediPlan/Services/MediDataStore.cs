@@ -19,24 +19,24 @@ namespace com.b_velop.OneMediPlan.Services
 
         public MediDataStore()
         {
-            _medis = new List<Medi>();
-            var realm = Realm.GetInstance(App.RealmConf);
-            var medis = realm.All<MediSave>();
-            foreach (var medi in medis)
-                _medis.Add(medi.ToMedi());
-        }
+        //    _medis = new List<Medi>();
+        //    var realm = Realm.GetInstance(App.RealmConf);
+        //    var medis = realm.All<MediSave>();
+        //    foreach (var medi in medis)
+        //        _medis.Add(medi.ToMedi());
+        //}
 
         public async Task<IEnumerable<Medi>> GetItemsAsync(bool forceRefresh = false)
         {
-            if (forceRefresh)
-            {
-                _medis.Clear();
-                var realm = await Realm.GetInstanceAsync(App.RealmConf);
-                var medis = realm.All<MediSave>();
-                foreach (var medi in medis)
-                    _medis.Add(medi.ToMedi());
-                return _medis;
-            }
+            //if (forceRefresh)
+            //{
+            //    _medis.Clear();
+            //    var realm = await Realm.GetInstanceAsync(App.RealmConf);
+            //    var medis = realm.All<MediSave>();
+            //    foreach (var medi in medis)
+            //        _medis.Add(medi.ToMedi());
+            //    return _medis;
+            //}
             return _medis;
         }
 

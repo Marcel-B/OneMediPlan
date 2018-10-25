@@ -1,4 +1,6 @@
-﻿using com.b_velop.OneMediPlan.Models;
+﻿using com.b_velop.OneMediPlan.Helpers;
+using com.b_velop.OneMediPlan.Models;
+using com.b_velop.OneMediPlan.Services;
 using Ninject;
 using System;
 using System.Linq;
