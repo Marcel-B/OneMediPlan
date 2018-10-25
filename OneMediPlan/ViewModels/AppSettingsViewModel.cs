@@ -1,19 +1,19 @@
 ﻿using System.Windows.Input;
-using System;
-using Ninject;
 using System.Threading.Tasks;
-using System.Linq;
+
 using com.b_velop.OneMediPlan.Models;
-using com.b_velop.OneMediPlan.Services;
 using com.b_velop.OneMediPlan.Helpers;
+using com.b_velop.OneMediPlan.Services;
+using com.b_velop.OneMediPlan.Domain;
+using System;
 
 namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class AppSettingsViewModel : BaseViewModel
     {
-        MediSettings _mediSettings;
+        AppSettings _mediSettings;
 
-        public MediSettings CurrentSettings
+        public AppSettings CurrentSettings
         {
             get => _mediSettings;
             set => SetProperty(ref _mediSettings, value);
@@ -21,31 +21,26 @@ namespace com.b_velop.OneMediPlan.ViewModels
 
         public ICommand SaveSettingsCommand { get; }
 
-        public async Task LoadSettings()
+        public void LoadSettings()
         {
-            //var stored = App.Container.Get<IDataStore<MediSettings>>();
-            //var settingsList = await stored.GetItemsAsync();
-            //CurrentSettings = settingsList.First();
-            //return;
+            CurrentSettings = AppStore.Instance.AppSettings;
         }
 
 
         public AppSettingsViewModel()
         {
             Title = "Einstellungen";
-
-            LoadSettings();
-
             SaveSettingsCommand = new Command(async (time) =>
             {
-                //if (time is DateTime currentTime)
-                //{
-                //    var store = App.Container.Get<IDataStore<MediSettings>>();
-                //    var item = new MediSettings();
-                //    item.Hour = currentTime.Hour;
-                //    item.Minute = currentTime.Minute;
-                //    await store.UpdateItemAsync(item);
-                //}
+                if (time is DateTime currentTime)
+                {
+                    CurrentSettings.Hour = currentTime.Hour;
+                    CurrentSettings.Minute = currentTime.Minute;
+                    CurrentSettings.LastEdit = DateTimeOffset.Now;
+
+                    AppStore.Instance.AppSettings = CurrentSettings;
+                    await AppSettingsDataStore.UpdateItemAsync(CurrentSettings);
+                }
             });
         }
     }

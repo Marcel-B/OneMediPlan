@@ -5,6 +5,8 @@ using Ninject;
 using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.ViewModels;
 using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.Domain.Enums;
+using com.b_velop.OneMediPlan.Domain;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
@@ -37,7 +39,7 @@ namespace com.b_velop.OneMediPlan.iOS
             ViewModel.SelectIntervallCommand.Execute(intervallType);
         }
 
-        public AppMedi CurrentMedi { get; set; }
+        public Medi CurrentMedi { get; set; }
         public IntervallTypeViewModel ViewModel;
 
         public IntervallTypeViewController(IntPtr handle) : base(handle)

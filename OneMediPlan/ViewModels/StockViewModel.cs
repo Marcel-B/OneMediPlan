@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using com.b_velop.OneMediPlan.Domain;
 using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Meta;
 using com.b_velop.OneMediPlan.Models;
@@ -10,11 +11,11 @@ namespace com.b_velop.OneMediPlan.ViewModels
     {
         public ICommand SaveStockCommand { get; }
 
-        AppMedi _currentMedi;
+        Medi _currentMedi;
         string _stock;
         string _stockMinimum;
 
-        public AppMedi CurrentMedi
+        public Medi CurrentMedi
         {
             get => _currentMedi;
             set

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Ninject;
 using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.Helpers;
+using com.b_velop.OneMediPlan.Domain;
 
 namespace com.b_velop.OneMediPlan.ViewModels
 {
@@ -13,8 +14,8 @@ namespace com.b_velop.OneMediPlan.ViewModels
     {
         public ICommand NextCommand { get; }
 
-        AppMedi _currentMedi;
-        public AppMedi CurrentMedi
+        Medi _currentMedi;
+        public Medi CurrentMedi
         {
             get => _currentMedi;
             set => SetProperty(ref _currentMedi, value);

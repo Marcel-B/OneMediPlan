@@ -2,8 +2,8 @@
 using System;
 using Foundation;
 using com.b_velop.OneMediPlan.Helpers;
-using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.Domain;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
@@ -25,7 +25,7 @@ namespace com.b_velop.OneMediPlan.iOS
         {
             App.Container.Bind<MedisDataSource>().ToSelf();
             App.Container.Bind<MyDateTableViewSource>().ToSelf();
-            App.Container.Bind<Action<AppMedi>>().ToMethod(context => AppDelegate.SetNotification).InSingletonScope();
+            App.Container.Bind<Action<Medi>>().ToMethod(context => AppDelegate.SetNotification).InSingletonScope();
         }
 
         private static void SetLanguageConstants()

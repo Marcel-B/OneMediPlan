@@ -13,6 +13,7 @@ namespace com.b_velop.OneMediPlan.ViewModels
         public IDataStore<Medi> MediDataStore => App.Container.Get<IDataStore<Medi>>();
         public IDataStore<Weekdays> WeekdaysDataStore => App.Container.Get<IDataStore<Weekdays>>();
         public IDataStore<DailyAppointment> DailyAppointmentDataStore => App.Container.Get<IDataStore<DailyAppointment>>();
+        public IDataStore<AppSettings> AppSettingsDataStore => App.Container.Get<IDataStore<AppSettings>>();
 
         bool isBusy = false;
         public bool IsBusy

@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.Helpers;
+using com.b_velop.OneMediPlan.Domain.Enums;
+using com.b_velop.OneMediPlan.Domain;
 
 namespace com.b_velop.OneMediPlan.ViewModels
 {
@@ -18,7 +20,7 @@ namespace com.b_velop.OneMediPlan.ViewModels
 
         bool _labelHidden;
         string _labelText;
-        AppMedi _currentMedi;
+        Medi _currentMedi;
 
         public bool LabelHidden
         {
@@ -32,7 +34,7 @@ namespace com.b_velop.OneMediPlan.ViewModels
             set => SetProperty(ref _labelText, value);
         }
 
-        public AppMedi CurrentMedi
+        public Medi CurrentMedi
         {
             get => _currentMedi;
             set => SetProperty(ref _currentMedi, value);

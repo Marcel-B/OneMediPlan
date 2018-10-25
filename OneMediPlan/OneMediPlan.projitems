@@ -11,9 +11,6 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Command.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\MediDataStore.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\IDataStore.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\MockDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AppSettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MediDetailViewModel.cs" />
@@ -25,10 +22,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SomeLogic.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MediType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Weekdays.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\IntervallType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ISomeLogic.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MediSettings.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\AppSettingsDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StockViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SaveMediViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DailyViewModel.cs" />
@@ -42,8 +37,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Hour.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Minute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MediSave.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\IntervallTime.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AppStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AppUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\AppLogger.cs" />
   </ItemGroup>
 </Project>

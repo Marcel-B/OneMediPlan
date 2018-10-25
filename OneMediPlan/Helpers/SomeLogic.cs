@@ -3,15 +3,12 @@ using System.Linq;
 using System;
 using System.Collections.Generic;
 
-using com.b_velop.OneMediPlan.Services;
-using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.Domain.Services;
 using com.b_velop.OneMediPlan.Domain;
-using com.b_velop.OneMediPlan;
-using System.Runtime.Remoting.Messaging;
+using com.b_velop.OneMediPlan.Domain.Enums;
 
-namespace OneMediPlan.Helpers
+namespace com.b_velop.OneMediPlan.Helpers
 {
     public class SomeLogic : ISomeLogic
     {
@@ -23,7 +20,7 @@ namespace OneMediPlan.Helpers
             _setNotification = setNotification;
         }
 
-        public async Task HandleIntoke(AppMedi medi)
+        public async Task HandleIntoke(Medi medi)
         {
             var medis = await _store.GetItemsAsync();
             var t = Settings.GetStdTime();
@@ -34,7 +31,7 @@ namespace OneMediPlan.Helpers
                     medi.LastDate = now;
                     medi.NextDate = DateTimeOffset.MinValue;
                     medi.Stock = medi.Stock - medi.Dosage < 0 ? 0 : medi.Stock - medi.Dosage;
-                    
+
                     SetNotification(medi);
                     //await _store.UpdateItemAsync(medi);
                     return;
@@ -63,25 +60,25 @@ namespace OneMediPlan.Helpers
                     medi.NextDate = t.AddDays(medi.PureIntervall);
                     break;
                 case IntervallType.DailyAppointment:
-                    var h = now.Hour;
-                    var m = now.Minute;
-                    foreach (var item in medi.DailyAppointments)
-                    {
-                        if (item.Item1.Value == h && item.Item2.Value >= m)// Treffer
-                        {
-                            medi.NextDate = new DateTimeOffset(now.Year, now.Month, now.Day, item.Item1.Value, item.Item2.Value, 0, now.Offset);
-                            break;
-                        }
-                        if (item.Item1.Value > h)// Treffer
-                        {
-                            medi.NextDate = new DateTimeOffset(now.Year, now.Month, now.Day, item.Item1.Value, item.Item2.Value, 0, now.Offset);
-                            break;
-                        }
-                    }
-                    if (medi.NextDate < now)// Kein treffer Gefunden, dann ist es der erste
-                    {
-                        medi.NextDate = new DateTimeOffset(now.Year, now.Month, now.Day, medi.DailyAppointments[0].Item1.Value, medi.DailyAppointments[0].Item2.Value, 0, now.Offset).AddDays(1);
-                    }
+                    //var h = now.Hour;
+                    //var m = now.Minute;
+                    //foreach (var item in medi.DailyAppointments)
+                    //{
+                    //    if (item.Item1.Value == h && item.Item2.Value >= m)// Treffer
+                    //    {
+                    //        medi.NextDate = new DateTimeOffset(now.Year, now.Month, now.Day, item.Item1.Value, item.Item2.Value, 0, now.Offset);
+                    //        break;
+                    //    }
+                    //    if (item.Item1.Value > h)// Treffer
+                    //    {
+                    //        medi.NextDate = new DateTimeOffset(now.Year, now.Month, now.Day, item.Item1.Value, item.Item2.Value, 0, now.Offset);
+                    //        break;
+                    //    }
+                    //}
+                    //if (medi.NextDate < now)// Kein treffer Gefunden, dann ist es der erste
+                    //{
+                    //    medi.NextDate = new DateTimeOffset(now.Year, now.Month, now.Day, medi.DailyAppointments[0].Item1.Value, medi.DailyAppointments[0].Item2.Value, 0, now.Offset).AddDays(1);
+                    //}
                     break;
             }
             medi.Stock = medi.Stock - medi.Dosage < 0 ? 0 : medi.Stock - medi.Dosage;
@@ -91,7 +88,7 @@ namespace OneMediPlan.Helpers
             //await CheckDependencys(medi, medis);
         }
 
-        private async Task CheckDependencys(AppMedi medi, IEnumerable<AppMedi> medis)
+        private async Task CheckDependencys(Medi medi, IEnumerable<Medi> medis)
         {
             var dep = medis.SingleOrDefault(m => m.DependsOn == medi.Id);
             if (dep == null) return; // fertig
@@ -108,10 +105,8 @@ namespace OneMediPlan.Helpers
             //await _store.UpdateItemAsync(dep);
         }
 
-        private void SetNotification(AppMedi medi)
-        {
-            return;
-        } // => _setNotification?.Invoke(medi);
+        private void SetNotification(Medi medi)
+            => _setNotification?.Invoke(medi);
     }
 
     public static class IntervallTimeExtensions

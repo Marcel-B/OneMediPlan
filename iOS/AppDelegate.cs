@@ -2,6 +2,7 @@
 using UIKit;
 using OneMediPlan.iOS.Helper;
 using com.b_velop.OneMediPlan.Models;
+using com.b_velop.OneMediPlan.Domain;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
@@ -13,7 +14,7 @@ namespace com.b_velop.OneMediPlan.iOS
         // class-level declarations
         public override UIWindow Window { get; set; }
 
-        public static void SetNotification(AppMedi medi)
+        public static void SetNotification(Medi medi)
         {
             var newTime = medi.NextDate.DateTime.ToNSDate();
 

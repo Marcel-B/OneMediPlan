@@ -5,6 +5,7 @@ using OneMediPlan.iOS.Helper;
 using Foundation;
 using com.b_velop.OneMediPlan.ViewModels;
 using com.b_velop.OneMediPlan.Meta;
+using Ninject;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
@@ -20,7 +21,7 @@ namespace com.b_velop.OneMediPlan.iOS
 
         public AppSettingsViewController(IntPtr handle) : base(handle)
         {
-            ViewModel = new AppSettingsViewModel();
+            ViewModel = App.Container.Get<AppSettingsViewModel>();
             ViewModel.PropertyChanged += (object sender, PropertyChangedEventArgs e) =>
             {
                 if (sender is AppSettingsViewModel viewModel)
@@ -37,6 +38,7 @@ namespace com.b_velop.OneMediPlan.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            ViewModel.LoadSettings();
             var localizedString = NSBundle.MainBundle.GetLocalizedString(Strings.SETTINGS);
             Title = localizedString;
         }

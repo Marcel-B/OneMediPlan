@@ -1,4 +1,6 @@
 ﻿using System.Windows.Input;
+using com.b_velop.OneMediPlan.Domain;
+using com.b_velop.OneMediPlan.Domain.Enums;
 using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.Services;
@@ -8,8 +10,8 @@ namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class IntervallTypeViewModel : BaseViewModel
     {
-        AppMedi _currentMedi;
-        public AppMedi CurrentMedi { get => _currentMedi; set => SetProperty(ref _currentMedi, value); }
+        Medi _currentMedi;
+        public Medi CurrentMedi { get => _currentMedi; set => SetProperty(ref _currentMedi, value); }
         public ICommand SelectIntervallCommand { get; set; }
 
         public IntervallTypeViewModel()

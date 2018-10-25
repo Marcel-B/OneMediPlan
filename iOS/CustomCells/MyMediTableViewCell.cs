@@ -19,7 +19,6 @@ namespace com.b_velop.OneMediPlan.iOS.CustomCells
         public string Stock { get => LabelStock.Text; set => LabelStock.Text = value; }
         public string Dosage { get => LabelDosage.Text; set => LabelDosage.Text = value; }
 
-
         static MyMediTableViewCell()
         {
             Nib = UINib.FromName("MyMediTableViewCell", NSBundle.MainBundle);

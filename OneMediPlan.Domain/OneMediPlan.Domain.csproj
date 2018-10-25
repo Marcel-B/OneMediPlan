@@ -11,9 +11,12 @@
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Stores\" />
+    <Folder Include="MockStores\" />
+    <Folder Include="Enums\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Moq" Version="4.10.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OneMediPlan.Meta\OneMediPlan.Meta.csproj" />

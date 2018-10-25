@@ -110,7 +110,6 @@ namespace com.b_velop.OneMediPlan.Domain.Stores
                 logger?.Log(ex.Message, GetType(), ex);
                 return default(T);
             }
-
         }
 
         public virtual Task<T> GetByName(string name)

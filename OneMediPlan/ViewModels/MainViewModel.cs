@@ -7,27 +7,41 @@ using System.Linq;
 using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Services;
+using com.b_velop.OneMediPlan.Domain;
 
 namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        public ObservableCollection<AppMedi> Medis { get; set; }
+        public ObservableCollection<Medi> Medis { get; set; }
         public Command LoadItemsCommand { get; set; }
         public Command AddItemCommand { get; set; }
 
         public MainViewModel()
         {
             Title = "One Mediplan";
-            Medis = new ObservableCollection<AppMedi>();
+            Medis = new ObservableCollection<Medi>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadMedisCommand());
-            AddItemCommand = new Command<AppMedi>(async (AppMedi item) => await AddItem(item));
+            AddItemCommand = new Command<Medi>(async (Medi item) => await AddItem(item));
+        }
+        public void Init()
+        {
+            Medis.Clear();
+            var medis = AppStore
+                        .Instance
+                        .User
+                        .Medis
+                        .ToList();
+            medis.Sort();
+
+            foreach (var medi in medis)
+                Medis.Add(medi);
         }
 
-        public async Task<AppMedi> RemoveMedi(int index)
+        public async Task<Medi> RemoveMedi(int index)
             => await RemoveMedi(Medis[index]);
 
-        public async Task<AppMedi> RemoveMedi(AppMedi medi)
+        public async Task<Medi> RemoveMedi(Medi medi)
         {
             Medis.Remove(medi);
             //var store = App.Container.Get<MediDataStore>();
@@ -39,7 +53,7 @@ namespace com.b_velop.OneMediPlan.ViewModels
         {
             //var dataStore = App.Container.Get<IMediDataStore>();
             //if (IsBusy)
-                //return;
+            //return;
 
             IsBusy = true;
 
@@ -65,7 +79,7 @@ namespace com.b_velop.OneMediPlan.ViewModels
             }
         }
 
-        async Task AddItem(AppMedi medi)
+        async Task AddItem(Medi medi)
         {
             //Medis.Add(medi);
             //await DataStore.AddItemAsync(medi);

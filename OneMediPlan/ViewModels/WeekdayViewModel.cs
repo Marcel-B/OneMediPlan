@@ -1,4 +1,5 @@
-﻿using com.b_velop.OneMediPlan.Helpers;
+﻿using com.b_velop.OneMediPlan.Domain;
+using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.Services;
 using Ninject;
@@ -13,10 +14,10 @@ namespace com.b_velop.OneMediPlan.ViewModels
     {
         public ICommand NextCommand { get; }
 
-        private AppMedi _currentMedi;
+        private Medi _currentMedi;
         private bool[] _weekdays;
 
-        public AppMedi CurrentMedi
+        public Medi CurrentMedi
         {
             get => _currentMedi;
             set => SetProperty(ref _currentMedi, value);

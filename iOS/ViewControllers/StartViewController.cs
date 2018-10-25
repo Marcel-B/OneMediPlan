@@ -8,6 +8,7 @@ using OneMediPlan.iOS.Helper;
 using com.b_velop.OneMediPlan.Meta;
 using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.Helpers;
+using com.b_velop.OneMediPlan.Domain;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
@@ -47,7 +48,7 @@ namespace com.b_velop.OneMediPlan.iOS
                 SetCurrentMedi(viewModel.CurrentMedi);
         }
 
-        void SetCurrentMedi(AppMedi medi)
+        void SetCurrentMedi(Medi medi)
         {
             if (medi.NeedsNoStartDate())
                 NavigateForward();
@@ -55,7 +56,7 @@ namespace com.b_velop.OneMediPlan.iOS
                 SetStartTime(medi);
         }
 
-        public void SetStartTime(AppMedi medi)
+        public void SetStartTime(Medi medi)
         {
             if (medi.NextDate != DateTimeOffset.MinValue)
                 PickerStartTime.Date = medi.NextDate.DateTime.ToNSDate();

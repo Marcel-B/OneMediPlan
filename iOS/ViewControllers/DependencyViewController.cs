@@ -6,6 +6,8 @@ using Ninject;
 using com.b_velop.OneMediPlan.ViewModels;
 using com.b_velop.OneMediPlan.Meta;
 using com.b_velop.OneMediPlan.Models;
+using com.b_velop.OneMediPlan.Domain;
+
 namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class DependencyViewController : UIViewController
@@ -61,12 +63,12 @@ namespace com.b_velop.OneMediPlan.iOS
             /// <summary>
             /// The items to show up in the picker
             /// </summary>
-            public List<AppMedi> Medis { get; private set; }
+            public List<Medi> Medis { get; private set; }
 
             /// <summary>
             /// The current selected item
             /// </summary>
-            public AppMedi SelectedItem
+            public Medi SelectedItem
             {
                 get => Medis[selectedIndex];
             }
@@ -75,7 +77,7 @@ namespace com.b_velop.OneMediPlan.iOS
 
             public DependencyTypeDataModel()
             {
-                Medis = new List<AppMedi>();
+                Medis = new List<Medi>();
             }
 
             /// <summary>

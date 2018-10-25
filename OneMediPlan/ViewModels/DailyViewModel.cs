@@ -7,13 +7,14 @@ using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.Meta;
 using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Services;
+using com.b_velop.OneMediPlan.Domain;
 
 namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class DailyViewModel : BaseViewModel
     {
-        AppMedi _currentMedi;
-        public AppMedi CurrentMedi
+        Medi _currentMedi;
+        public Medi CurrentMedi
         {
             get => _currentMedi;
             set => SetProperty(ref _currentMedi, value);

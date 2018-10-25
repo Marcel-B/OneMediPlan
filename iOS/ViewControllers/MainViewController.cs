@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
+using com.b_velop.OneMediPlan.Domain;
+using com.b_velop.OneMediPlan.Domain.Enums;
 using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.iOS.CustomCells;
 using com.b_velop.OneMediPlan.Meta;
@@ -26,21 +28,19 @@ namespace com.b_velop.OneMediPlan.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
             TableView.RegisterNibForCellReuse(MyMediTableViewCell.Nib, MyMediTableViewCell.Key);
-
             TableView.RowHeight = 100;
 
             var source = App.Container.Get<MedisDataSource>();
             source.parent = this;
             TableView.Source = source;
             Title = ViewModel.Title;
+            ViewModel.Init();
         }
 
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
-            ViewModel.LoadItemsCommand.Execute(null);
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
@@ -83,22 +83,22 @@ namespace com.b_velop.OneMediPlan.iOS
             cell.BackgroundColor = UIColor.LightTextColor;
             switch (medi.IntervallType)
             {
-                case Models.IntervallType.Depend:
+                case IntervallType.Depend:
                     cell.ImageColor = UIColor.FromRGB(248, 194, 145);
                     break;
-                case Models.IntervallType.IfNedded:
+                case IntervallType.IfNedded:
                     cell.ImageColor = UIColor.FromRGB(184, 233, 148);
                     break;
-                case Models.IntervallType.Intervall:
+                case IntervallType.Intervall:
                     cell.ImageColor = UIColor.FromRGB(229, 142, 38);
                     break;
-                case Models.IntervallType.Nothing:
+                case IntervallType.Nothing:
                     cell.ImageColor = UIColor.FromRGB(235, 47, 6);
                     break;
-                case Models.IntervallType.Weekdays:
+                case IntervallType.Weekdays:
                     cell.ImageColor = UIColor.FromRGB(7, 153, 146);
                     break;
-                case Models.IntervallType.DailyAppointment:
+                case IntervallType.DailyAppointment:
                     cell.ImageColor = UIColor.FromRGB(30, 55, 153);
                     break;
                 default:
@@ -236,7 +236,7 @@ namespace com.b_velop.OneMediPlan.iOS
             await UpdateList(medi);
         }
 
-        public async Task UpdateList(AppMedi medi)
+        public async Task UpdateList(Medi medi)
         {
             var s = App.Container.Get<ISomeLogic>();
             await s.HandleIntoke(medi);

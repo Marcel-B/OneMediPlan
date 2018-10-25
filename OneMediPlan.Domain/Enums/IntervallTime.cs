@@ -1,4 +1,5 @@
-﻿namespace com.b_velop.OneMediPlan.Models
+﻿using System;
+namespace com.b_velop.OneMediPlan.Domain.Enums
 {
     public enum IntervallTime
     {

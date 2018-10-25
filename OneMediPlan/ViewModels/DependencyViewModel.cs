@@ -1,4 +1,5 @@
-﻿using com.b_velop.OneMediPlan.Helpers;
+﻿using com.b_velop.OneMediPlan.Domain;
+using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.Services;
 using Ninject;
@@ -14,18 +15,18 @@ namespace com.b_velop.OneMediPlan.ViewModels
     {
         public ICommand NextCommand { get; }
 
-        public AppMedi ParentMedi { get; set; }
+        public Medi ParentMedi { get; set; }
 
-        private AppMedi _currentMedi;
-        private IList<AppMedi> _medis;
+        private Medi _currentMedi;
+        private IList<Medi> _medis;
 
-        public AppMedi CurrentMedi
+        public Medi CurrentMedi
         {
             get => _currentMedi;
             set => SetProperty(ref _currentMedi, value);
         }
 
-        public IList<AppMedi> Medis
+        public IList<Medi> Medis
         {
             get => _medis;
             set => SetProperty(ref _medis, value);

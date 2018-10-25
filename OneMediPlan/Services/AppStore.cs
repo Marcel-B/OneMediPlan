@@ -1,6 +1,7 @@
 ﻿using System;
 
 using com.b_velop.OneMediPlan.Models;
+using com.b_velop.OneMediPlan.Domain;
 
 namespace com.b_velop.OneMediPlan.Services
 {
@@ -9,12 +10,10 @@ namespace com.b_velop.OneMediPlan.Services
         static readonly Lazy<AppStore> instance = new Lazy<AppStore>(() => new AppStore());
         public static AppStore Instance => instance.Value;
 
-        protected AppStore()
-        {
+        protected AppStore() { }
 
-        }
-
-        public AppUser User { get; set; }
-        public AppMedi CurrentMedi { get; set; }
+        public User User { get; set; }
+        public Medi CurrentMedi { get; set; }
+        public AppSettings AppSettings { get; set; }
     }
 }
