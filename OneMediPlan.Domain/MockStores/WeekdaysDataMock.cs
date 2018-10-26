@@ -10,10 +10,22 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
 {
     public class WeekdaysDataMock : IDataStore<Weekdays>
     {
+        public static Guid WeekdaysId = Guid.NewGuid();
         public WeekdaysDataMock(ILogger logger)
         {
             _logger = logger;
-            Weekdays = new List<Weekdays>();
+            Weekdays = new List<Weekdays>{
+                new Weekdays{
+                    Id = WeekdaysId,
+                    Sunday = false,
+                    Monday = true,
+                    Tuesday = false,
+                    Wednesday = false,
+                    Thursday = true,
+                    Friday = false,
+                    Saturday = false
+        }
+    };
         }
         ILogger _logger;
         public IList<Weekdays> Weekdays { get; set; }

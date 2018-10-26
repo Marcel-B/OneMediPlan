@@ -7,6 +7,7 @@ using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.Domain.Services;
 using com.b_velop.OneMediPlan.Domain;
 using com.b_velop.OneMediPlan.Domain.Enums;
+using com.b_velop.OneMediPlan.Services;
 
 namespace com.b_velop.OneMediPlan.Helpers
 {
@@ -22,7 +23,7 @@ namespace com.b_velop.OneMediPlan.Helpers
 
         public async Task HandleIntoke(Medi medi)
         {
-            var medis = await _store.GetItemsAsync();
+            var medis = AppStore.Instance.User.Medis;
             var t = Settings.GetStdTime();
             var now = DateTimeOffset.Now;
             switch (medi.IntervallType)
@@ -84,8 +85,8 @@ namespace com.b_velop.OneMediPlan.Helpers
             medi.Stock = medi.Stock - medi.Dosage < 0 ? 0 : medi.Stock - medi.Dosage;
             medi.LastDate = now;
             SetNotification(medi);
-            //await _store.UpdateItemAsync(medi);
-            //await CheckDependencys(medi, medis);
+            await _store.UpdateItemAsync(medi);
+            await CheckDependencys(medi, medis);
         }
 
         private async Task CheckDependencys(Medi medi, IEnumerable<Medi> medis)

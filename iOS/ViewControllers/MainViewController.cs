@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
+using Foundation;
+using Ninject;
+using Ninject.Parameters;
+using UIKit;
+
 using com.b_velop.OneMediPlan.Domain;
 using com.b_velop.OneMediPlan.Domain.Enums;
 using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.iOS.CustomCells;
 using com.b_velop.OneMediPlan.Meta;
-using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.ViewModels;
-using Foundation;
-using Ninject;
-using Ninject.Parameters;
-using UIKit;
+using com.b_velop.OneMediPlan.Services;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
@@ -22,20 +23,22 @@ namespace com.b_velop.OneMediPlan.iOS
         public MainViewController(IntPtr handle) : base(handle)
         {
             ViewModel = App.Container.Get<MainViewModel>();
+            ViewModel.Medis.CollectionChanged -= Items_CollectionChanged;
             ViewModel.Medis.CollectionChanged += Items_CollectionChanged;
         }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
             TableView.RegisterNibForCellReuse(MyMediTableViewCell.Nib, MyMediTableViewCell.Key);
             TableView.RowHeight = 100;
 
             var source = App.Container.Get<MedisDataSource>();
-            source.parent = this;
+            source.ParentController = this;
             TableView.Source = source;
             Title = ViewModel.Title;
-            ViewModel.Init();
+            ViewModel.LoadItemsCommand.Execute(null);
         }
 
         public override void ViewDidAppear(bool animated)
@@ -62,18 +65,18 @@ namespace com.b_velop.OneMediPlan.iOS
 
     internal class MedisDataSource : UITableViewSource
     {
-        MainViewModel viewModel;
-        public MainViewController parent;
+        public MainViewModel ViewModel { get; set; }
+        public MainViewController ParentController { get; set; }
 
         public MedisDataSource(MainViewModel viewModel)
         {
-            this.viewModel = viewModel;
+            ViewModel = viewModel;
         }
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             var cell = tableView.DequeueReusableCell(MyMediTableViewCell.Key, indexPath) as MyMediTableViewCell;
-            var medi = viewModel.Medis[indexPath.Row];
+            var medi = ViewModel.Medis[indexPath.Row];
             cell.Background = UIColor.FromRGB(223, 249, 251);
             cell.Name = medi.Name;
             cell.Next = medi.GetNextDate();
@@ -127,39 +130,31 @@ namespace com.b_velop.OneMediPlan.iOS
 
         public UIContextualAction ContextualDefinitionAction(int row)
         {
-            var medi = viewModel.Medis[row];
+            var medi = ViewModel.Medis[row];
             var action = UIContextualAction.FromContextualActionStyle(
                 UIContextualActionStyle.Normal,
                 NSBundle.MainBundle.GetLocalizedString(Strings.STOCK),
                 (ReadLaterAction, view, success) =>
                 {
-                    var foo = UIAlertController.Create("HeyHo", "Let's go", UIAlertControllerStyle.Alert);
-                    foo.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, alert =>
-                    {
-
-                    }));
-
-                    foo.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, alert =>
-                    {
-
-                    }));
-                    foo.ShowViewController(foo, this);
-                    var alertView = new UIAlertView
+                    //var editStockDialog = UIAlertController.Create("HeyHo", "Let's go", UIAlertControllerStyle.Alert);
+                    //editStockDialog.ShowViewController(editStockDialog, this);
+                // TODO - Deprecated, implement with "UIAlertController.Create"
+                    var editStockDialog = new UIAlertView
                     {
                         Title = NSBundle.MainBundle.GetLocalizedString(Strings.STOCK),
-                        Message = $"Enter new stock for {medi.Name}, dude!",
+                        Message = $"Enter new stock for '{medi.Name}'",
                         AlertViewStyle = UIAlertViewStyle.PlainTextInput
                     };
-                    alertView.GetTextField(0).Text = medi.Stock.ToString();
-                    alertView.GetTextField(0).KeyboardType = UIKeyboardType.DecimalPad;
+                    editStockDialog.GetTextField(0).Text = medi.Stock.ToString();
+                    editStockDialog.GetTextField(0).KeyboardType = UIKeyboardType.DecimalPad;
 
-                    alertView.AddButton("OK");
-                    alertView.AddButton(NSBundle.MainBundle.GetLocalizedString(Strings.CANCEL));
-                    alertView.Clicked += async (object sender, UIButtonEventArgs e) =>
+                    editStockDialog.AddButton("OK");
+                    editStockDialog.AddButton(NSBundle.MainBundle.GetLocalizedString(Strings.CANCEL));
+                    editStockDialog.Clicked += async (object sender, UIButtonEventArgs e) =>
                     {
                         if (e.ButtonIndex == 0)
                         {
-                            var stock = alertView.GetTextField(0).Text;
+                            var stock = editStockDialog.GetTextField(0).Text;
                             if (double.TryParse(stock, out var newStock))
                             {
                                 medi.Stock = newStock;
@@ -168,14 +163,14 @@ namespace com.b_velop.OneMediPlan.iOS
                             }
                         }
                     };
-                    alertView.Show();
+                    editStockDialog.Show();
                 });
             action.BackgroundColor = UIColor.FromRGB(16, 172, 132);
             return action;
         }
 
-        public override async void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath)
-            => await viewModel.RemoveMedi(indexPath.Row);
+        public override void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath)
+            => ViewModel.RemoveMedi(indexPath.Row);
 
         public override bool CanEditRow(UITableView tableView, NSIndexPath indexPath)
             => true;
@@ -196,7 +191,8 @@ namespace com.b_velop.OneMediPlan.iOS
         public async override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             tableView.DeselectRow(indexPath, true);
-            var medi = viewModel.Medis[indexPath.Row];
+            var medi = ViewModel.Medis[indexPath.Row];
+            AppStore.Instance.CurrentMedi = medi;
 
             var waring = NSBundle.MainBundle.GetLocalizedString(Strings.WARNING);
             var cancel = NSBundle.MainBundle.GetLocalizedString(Strings.CANCEL);
@@ -213,7 +209,7 @@ namespace com.b_velop.OneMediPlan.iOS
                 okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
 
                 // Present Alert
-                parent.PresentViewController(okAlertController, true, null);
+                ParentController.PresentViewController(okAlertController, true, null);
                 return;
             }
             else if (medi.Stock - medi.Dosage < 0)
@@ -230,7 +226,7 @@ namespace com.b_velop.OneMediPlan.iOS
                 okCancelAlertController.AddAction(UIAlertAction.Create(cancel, UIAlertActionStyle.Cancel, null));
 
                 // Present Alert
-                parent.PresentViewController(okCancelAlertController, true, null);
+                ParentController.PresentViewController(okCancelAlertController, true, null);
                 return;
             }
             await UpdateList(medi);
@@ -240,11 +236,11 @@ namespace com.b_velop.OneMediPlan.iOS
         {
             var s = App.Container.Get<ISomeLogic>();
             await s.HandleIntoke(medi);
-            viewModel.LoadItemsCommand.Execute(null);
+            ViewModel.LoadItemsCommand.Execute(this);
             return;
         }
 
         public override nint RowsInSection(UITableView tableview, nint section)
-            => viewModel.Medis.Count;
+            => ViewModel.Medis.Count;
     }
 }

@@ -2,11 +2,11 @@ using Foundation;
 using System;
 using System.Collections.Generic;
 using UIKit;
-using OneMediPlan.iOS.Helper;
 using Ninject;
 using com.b_velop.OneMediPlan.ViewModels;
 using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.iOS.Helper;
 
 namespace com.b_velop.OneMediPlan.iOS
 {

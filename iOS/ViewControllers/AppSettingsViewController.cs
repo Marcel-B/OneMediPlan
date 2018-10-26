@@ -1,11 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
-using UIKit;
-using OneMediPlan.iOS.Helper;
-using Foundation;
-using com.b_velop.OneMediPlan.ViewModels;
+using com.b_velop.OneMediPlan.iOS.Helper;
 using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.ViewModels;
+using Foundation;
 using Ninject;
+using UIKit;
 
 namespace com.b_velop.OneMediPlan.iOS
 {

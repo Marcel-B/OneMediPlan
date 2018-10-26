@@ -4,11 +4,11 @@ using UIKit;
 using System.ComponentModel;
 using Ninject;
 using com.b_velop.OneMediPlan.ViewModels;
-using OneMediPlan.iOS.Helper;
 using com.b_velop.OneMediPlan.Meta;
 using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Domain;
+using com.b_velop.OneMediPlan.iOS.Helper;
 
 namespace com.b_velop.OneMediPlan.iOS
 {

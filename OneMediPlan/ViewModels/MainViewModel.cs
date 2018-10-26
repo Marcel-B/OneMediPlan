@@ -1,77 +1,64 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using Ninject;
 using System.Linq;
-using com.b_velop.OneMediPlan.Models;
+
 using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Services;
 using com.b_velop.OneMediPlan.Domain;
+using com.b_velop.OneMediPlan.Meta.Interfaces;
+using com.b_velop.OneMediPlan.Meta;
 
 namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
         public ObservableCollection<Medi> Medis { get; set; }
+        private ILogger _logger;
         public Command LoadItemsCommand { get; set; }
         public Command AddItemCommand { get; set; }
 
-        public MainViewModel()
+        public MainViewModel(ILogger logger)
         {
-            Title = "One Mediplan";
+            _logger = logger;
+            Title = Strings.APP_TITLE;
             Medis = new ObservableCollection<Medi>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadMedisCommand());
-            AddItemCommand = new Command<Medi>(async (Medi item) => await AddItem(item));
-        }
-        public void Init()
-        {
-            Medis.Clear();
-            var medis = AppStore
-                        .Instance
-                        .User
-                        .Medis
-                        .ToList();
-            medis.Sort();
-
-            foreach (var medi in medis)
-                Medis.Add(medi);
+            LoadItemsCommand = new Command(() => ExecuteLoadMedisCommand());
+            AddItemCommand = new Command<Medi>((Medi item) => AddItem(item));
         }
 
-        public async Task<Medi> RemoveMedi(int index)
-            => await RemoveMedi(Medis[index]);
+        public Medi RemoveMedi(int index)
+            => RemoveMedi(Medis[index]);
 
-        public async Task<Medi> RemoveMedi(Medi medi)
+        public Medi RemoveMedi(Medi medi)
         {
+            // Local remove
             Medis.Remove(medi);
-            //var store = App.Container.Get<MediDataStore>();
-            //await store.DeleteItemAsync(medi.Id);
+
+            // Store remove
+            var medis = AppStore.Instance.User.Medis;
+            medis.Remove(medi);
             return medi;
         }
 
-        async Task ExecuteLoadMedisCommand()
+        private void ExecuteLoadMedisCommand()
         {
-            //var dataStore = App.Container.Get<IMediDataStore>();
-            //if (IsBusy)
-            //return;
-
+            if (IsBusy)
+                return;
             IsBusy = true;
-
             try
             {
+                var medis = AppStore.Instance.User.Medis.ToList();
+                medis.Sort();
                 Medis.Clear();
-                //var meds = await dataStore.GetItemsAsync(true);
-                //var medis = meds.ToList();
-                //medis.Sort();
-                //foreach (var medi in medis)
-                //{
-                //    if (medi.Id == Guid.Empty) continue;
-                //    Medis.Add(medi);
-                //}
+                foreach (var medi in medis)
+                {
+                    if (medi.Id == Guid.Empty) continue;
+                    Medis.Add(medi);
+                }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
+                _logger.Log($"Error occured while getting Medis", GetType(), ex);
             }
             finally
             {
@@ -79,10 +66,10 @@ namespace com.b_velop.OneMediPlan.ViewModels
             }
         }
 
-        async Task AddItem(Medi medi)
+        private void AddItem(Medi medi)
         {
-            //Medis.Add(medi);
-            //await DataStore.AddItemAsync(medi);
+            Medis.Add(medi);
+            AppStore.Instance.User.Medis.Add(medi);
         }
     }
 }

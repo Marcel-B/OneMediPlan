@@ -1,7 +1,7 @@
 ﻿using System;
 using Foundation;
 
-namespace OneMediPlan.iOS.Helper
+namespace com.b_velop.OneMediPlan.iOS.Helper
 {
     public static class IosExtensions
     {

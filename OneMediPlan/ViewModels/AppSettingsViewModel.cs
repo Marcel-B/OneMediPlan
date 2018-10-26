@@ -1,11 +1,9 @@
 ﻿using System.Windows.Input;
-using System.Threading.Tasks;
+using System;
 
-using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Services;
 using com.b_velop.OneMediPlan.Domain;
-using System;
 
 namespace com.b_velop.OneMediPlan.ViewModels
 {
