@@ -1,19 +1,18 @@
 ﻿using Ninject;
 using System;
 using System.Threading.Tasks;
-using System.Linq;
 
 using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.ViewModels;
 using com.b_velop.OneMediPlan.Helpers;
-using com.b_velop.OneMediPlan.Domain.Services;
+using com.b_velop.OneMediPlan.Services;
+using System.Collections.Generic;
+using System.Linq;
 using com.b_velop.OneMediPlan.Domain;
+using com.b_velop.OneMediPlan.Domain.MockStores;
+using com.b_velop.OneMediPlan.Domain.Services;
 using com.b_velop.OneMediPlan.Domain.Stores;
 using com.b_velop.OneMediPlan.Meta.Interfaces;
-using com.b_velop.OneMediPlan.Services;
-using System.Security.Policy;
-using com.b_velop.OneMediPlan.Domain.MockStores;
-using System.Collections.Generic;
 
 namespace com.b_velop.OneMediPlan
 {

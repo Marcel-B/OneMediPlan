@@ -86,10 +86,10 @@ namespace com.b_velop.OneMediPlan.Helpers
             medi.LastDate = now;
             SetNotification(medi);
             await _store.UpdateItemAsync(medi);
-            await CheckDependencys(medi, medis);
+            CheckDependencys(medi, medis);
         }
 
-        private async Task CheckDependencys(Medi medi, IEnumerable<Medi> medis)
+        private void CheckDependencys(Medi medi, IEnumerable<Medi> medis)
         {
             var dep = medis.SingleOrDefault(m => m.DependsOn == medi.Id);
             if (dep == null) return; // fertig
