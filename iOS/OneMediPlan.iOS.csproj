@@ -108,6 +108,9 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="I18NPortable">
+      <HintPath>..\packages\I18NPortable.0.6.0\lib\netstandard1.1\I18NPortable.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -220,17 +223,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helper\" />
-    <Folder Include="Resources\" />
-    <Folder Include="Resources\en.lproj\" />
-    <Folder Include="Resources\de.lproj\" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\en.lproj\Localizable.strings" />
-    <BundleResource Include="Resources\en.lproj\Main.strings" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\de.lproj\Main.strings" />
-    <EmbeddedResource Include="Resources\de.lproj\Localizable.strings" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OneMediPlan.Meta\OneMediPlan.Meta.csproj">

@@ -32,7 +32,6 @@ namespace com.b_velop.OneMediPlan.Helpers
                     medi.LastDate = now;
                     medi.NextDate = DateTimeOffset.MinValue;
                     medi.Stock = medi.Stock - medi.Dosage < 0 ? 0 : medi.Stock - medi.Dosage;
-
                     SetNotification(medi);
                     //await _store.UpdateItemAsync(medi);
                     return;
@@ -61,35 +60,37 @@ namespace com.b_velop.OneMediPlan.Helpers
                     medi.NextDate = t.AddDays(medi.PureIntervall);
                     break;
                 case IntervallType.DailyAppointment:
-                    //var h = now.Hour;
-                    //var m = now.Minute;
-                    //foreach (var item in medi.DailyAppointments)
-                    //{
-                    //    if (item.Item1.Value == h && item.Item2.Value >= m)// Treffer
-                    //    {
-                    //        medi.NextDate = new DateTimeOffset(now.Year, now.Month, now.Day, item.Item1.Value, item.Item2.Value, 0, now.Offset);
-                    //        break;
-                    //    }
-                    //    if (item.Item1.Value > h)// Treffer
-                    //    {
-                    //        medi.NextDate = new DateTimeOffset(now.Year, now.Month, now.Day, item.Item1.Value, item.Item2.Value, 0, now.Offset);
-                    //        break;
-                    //    }
-                    //}
-                    //if (medi.NextDate < now)// Kein treffer Gefunden, dann ist es der erste
-                    //{
-                    //    medi.NextDate = new DateTimeOffset(now.Year, now.Month, now.Day, medi.DailyAppointments[0].Item1.Value, medi.DailyAppointments[0].Item2.Value, 0, now.Offset).AddDays(1);
-                    //}
+                    var h = now.Hour;
+                    var m = now.Minute;
+                    var dailyAppointments = AppStore.Instance.CurrentMedi.DailyAppointments;
+
+                    foreach (var item in dailyAppointments)
+                    {
+                        if (item.Hour == h && item.Minute >= m)// Treffer
+                        {
+                            medi.NextDate = new DateTimeOffset(now.Year, now.Month, now.Day, item.Hour, item.Minute, 0, now.Offset);
+                            break;
+                        }
+                        if (item.Hour > h)// Treffer
+                        {
+                            medi.NextDate = new DateTimeOffset(now.Year, now.Month, now.Day, item.Hour, item.Minute, 0, now.Offset);
+                            break;
+                        }
+                    }
+                    if (medi.NextDate < now)// Kein treffer Gefunden, dann ist es der erste
+                    {
+                        medi.NextDate = new DateTimeOffset(now.Year, now.Month, now.Day, medi.DailyAppointments[0].Hour, medi.DailyAppointments[0].Minute, 0, now.Offset).AddDays(1);
+                    }
                     break;
             }
             medi.Stock = medi.Stock - medi.Dosage < 0 ? 0 : medi.Stock - medi.Dosage;
             medi.LastDate = now;
             SetNotification(medi);
             await _store.UpdateItemAsync(medi);
-            await CheckDependencys(medi, medis);
+            CheckDependencys(medi, medis);
         }
 
-        private async Task CheckDependencys(Medi medi, IEnumerable<Medi> medis)
+        private void CheckDependencys(Medi medi, IEnumerable<Medi> medis)
         {
             var dep = medis.SingleOrDefault(m => m.DependsOn == medi.Id);
             if (dep == null) return; // fertig

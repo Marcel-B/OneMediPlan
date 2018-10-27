@@ -14,8 +14,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMediPlan.Domain", "OneMe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMediPlan.Meta", "OneMediPlan.Meta\OneMediPlan.Meta.csproj", "{BDF078B5-1204-4DE2-903B-E84A36E18164}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMediPlan.BackEnd", "OneMediPlan.BackEnd\OneMediPlan.BackEnd.csproj", "{13276EB5-DFE7-48F0-9F69-F4C137516667}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		OneMediPlan\OneMediPlan.projitems*{17493038-ceef-4995-b64b-b98e53cf0a5a}*SharedItemsImports = 4
@@ -126,24 +124,6 @@ Global
 		{BDF078B5-1204-4DE2-903B-E84A36E18164}.Release|iPhone.Build.0 = Release|Any CPU
 		{BDF078B5-1204-4DE2-903B-E84A36E18164}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{BDF078B5-1204-4DE2-903B-E84A36E18164}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{13276EB5-DFE7-48F0-9F69-F4C137516667}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{13276EB5-DFE7-48F0-9F69-F4C137516667}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{13276EB5-DFE7-48F0-9F69-F4C137516667}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{13276EB5-DFE7-48F0-9F69-F4C137516667}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{13276EB5-DFE7-48F0-9F69-F4C137516667}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{13276EB5-DFE7-48F0-9F69-F4C137516667}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{13276EB5-DFE7-48F0-9F69-F4C137516667}.Default|Any CPU.ActiveCfg = Debug|Any CPU
-		{13276EB5-DFE7-48F0-9F69-F4C137516667}.Default|Any CPU.Build.0 = Debug|Any CPU
-		{13276EB5-DFE7-48F0-9F69-F4C137516667}.Default|iPhone.ActiveCfg = Debug|Any CPU
-		{13276EB5-DFE7-48F0-9F69-F4C137516667}.Default|iPhone.Build.0 = Debug|Any CPU
-		{13276EB5-DFE7-48F0-9F69-F4C137516667}.Default|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{13276EB5-DFE7-48F0-9F69-F4C137516667}.Default|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{13276EB5-DFE7-48F0-9F69-F4C137516667}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{13276EB5-DFE7-48F0-9F69-F4C137516667}.Release|Any CPU.Build.0 = Release|Any CPU
-		{13276EB5-DFE7-48F0-9F69-F4C137516667}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{13276EB5-DFE7-48F0-9F69-F4C137516667}.Release|iPhone.Build.0 = Release|Any CPU
-		{13276EB5-DFE7-48F0-9F69-F4C137516667}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{13276EB5-DFE7-48F0-9F69-F4C137516667}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

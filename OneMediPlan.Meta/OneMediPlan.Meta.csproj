@@ -10,9 +10,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />
-    <Folder Include="Locales\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="I18NPortable" Version="0.6.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Locales\de.txt" />
+    <None Remove="Locales\en.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Locales\de.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

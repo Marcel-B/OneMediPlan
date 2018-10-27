@@ -133,7 +133,7 @@ namespace com.b_velop.OneMediPlan.iOS
             var medi = ViewModel.Medis[row];
             var action = UIContextualAction.FromContextualActionStyle(
                 UIContextualActionStyle.Normal,
-                NSBundle.MainBundle.GetLocalizedString(Strings.STOCK),
+                Strings.STOCK,
                 (ReadLaterAction, view, success) =>
                 {
                     //var editStockDialog = UIAlertController.Create("HeyHo", "Let's go", UIAlertControllerStyle.Alert);
@@ -157,7 +157,7 @@ namespace com.b_velop.OneMediPlan.iOS
                             var stock = editStockDialog.GetTextField(0).Text;
                             if (double.TryParse(stock, out var newStock))
                             {
-                                medi.Stock = newStock;
+                                medi.Stock = ++newStock;
                                 success(true);
                                 await UpdateList(medi);
                             }
@@ -194,7 +194,7 @@ namespace com.b_velop.OneMediPlan.iOS
             var medi = ViewModel.Medis[indexPath.Row];
             AppStore.Instance.CurrentMedi = medi;
 
-            var waring = NSBundle.MainBundle.GetLocalizedString(Strings.WARNING);
+            var waring = Strings.WARNING;
             var cancel = NSBundle.MainBundle.GetLocalizedString(Strings.CANCEL);
             var noLeft = NSBundle.MainBundle.GetLocalizedString(Strings.NO_JOKER_LEFT);
             var notEnough = NSBundle.MainBundle.GetLocalizedString(Strings.NOT_ENOUGH_JOKER_LEFT);

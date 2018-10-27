@@ -1,49 +1,69 @@
-﻿namespace com.b_velop.OneMediPlan.Meta
+﻿using System.Reflection;
+using I18NPortable;
+using com.b_velop.OneMediPlan.Meta.Interfaces;
+using System.Security.Cryptography;
+
+namespace com.b_velop.OneMediPlan.Meta
 {
-    public static class Strings
+    public class Strings
     {
-        public const string _AFTER = "after";
-        public const string APP_TITLE = "One MediPlan";
-        public const string APPOINTMENTS = "Appointments";
+        public ILogger Logger { get; set; }
+        //public II18N DataStrings { get; set; }
 
-        public const string CANCEL = "Cancel";
-        public const string CURRENT_MEDI = "CurrentMedi";
+        public Strings(ILogger logger)
+        {
+            Logger = logger;
+            //DataStrings = I18N.Current
+                  //.SetNotFoundSymbol("!!") // Optional: when a key is not found, it will appear as $key$ (defaults to "$")
+                  //.SetFallbackLocale("de") // Optional but recommended: locale to load in case the system locale is not supported
+                  //.SetThrowWhenKeyNotFound(true) // Optional: Throw an exception when keys are not found (recommended only for debugging)
+                  //.SetLogger(text => Logger.Log(text.Substring(7), typeof(I18N).Name)) // action to output traces
+                  //.SetResourcesFolder("Locales") // Optional: The directory containing the resource files (defaults to "Locales")
+                  //.Init(GetType().GetTypeInfo().Assembly); // assembly where locales live
+        }
 
-        public const string DATE_CELL = "DateCell";
-        public const string DAYS = "Day(s)";
-        public const string DEPENDS = "Depends";
-        public const string DOSAGE = "Dosage";
+        public static string _AFTER = "after";
+        public static string APP_TITLE = "One MediPlan";
+        public static string APPOINTMENTS = "Appointments";
 
-        public const string EDIT = "Edit";
+        public static string CANCEL = "Cancel".Translate();
+        public static string CURRENT_MEDI = "CurrentMedi";
 
-        public const string HOURS = "Hour(s)";
+        public static string DATE_CELL = "DateCell";
+        public static string DAYS = "Day(s)";
+        public static string DEPENDS = "Depends";
+        public static string DOSAGE = "Dosage";
 
-        public const string INTERVALL_TYPE = "IntervallType";
+        public static string EDIT = "Edit".Translate();
 
-        public const string LABEL_TEXT = "LabelText";
+        public static string HOURS = "Hour(s)";
 
-        public const string MINUTES = "Minute(s)";
-        public const string MONTHS = "Month(s)";
+        public static string INTERVALL_TYPE = "IntervallType";
 
-        public const string NAME = "Name";
-        public const string NEW = "New";
-        public const string NEW_MEDI = "NewMedi";
-        public const string NO_JOKER_LEFT = "NoJokerLeft";
-        public const string NOT_ENOUGH_JOKER_LEFT = "NotEnoughJokerLeft";
+        public static string LABEL_TEXT = "LabelText";
+
+        public static string MINUTES = "Minute(s)";
+        public static string MONTHS = "Month(s)";
+
+        public static string NAME = "Name";
+        public static string NEW = "New";
+        public static string NEW_MEDI = "NewMedi";
+        public static string NO_JOKER_LEFT = "NoJokerLeft";
+        public static string NOT_ENOUGH_JOKER_LEFT = "NotEnoughJokerLeft";
         //public const string DATE_FORMAT = "DateFormat";
         //public const string TIME_FORMAT = "TimeFormat";
 
-        public const string SAVE = "Save";
-      
-        public const string SETTINGS = "Settings";
-        public const string STOCK = "Stock";
-        public const string STOCK_MINIMUM = "StockMinimum";
+        public static string SAVE = "Save";
 
-        public const string TAKE_LAST_JOKER_UNITS = "TakeLastJokerUnits";
-        public const string TODAY = "Today";
+        public static string SETTINGS = "Settings";
+        public static string STOCK = "Stock".Translate();
+        public static string STOCK_MINIMUM = "StockMinimum";
 
-        public const string WARNING = "Waring";
-        public const string WEEKDAYS = "Weekdays";
-        public const string WEEKS = "Week(s)";
+        public static string TAKE_LAST_JOKER_UNITS = "TakeLastJokerUnits";
+        public static string TODAY = "Today";
+
+        public static string WARNING = "Warning".Translate();
+        public static string WEEKDAYS = "Weekdays";
+        public static string WEEKS = "Week(s)";
     }
 }

@@ -14,6 +14,10 @@ using com.b_velop.OneMediPlan.Services;
 using System.Security.Policy;
 using com.b_velop.OneMediPlan.Domain.MockStores;
 using System.Collections.Generic;
+using com.b_velop.OneMediPlan.Meta;
+using CarPlay;
+using I18NPortable;
+using System.Reflection;
 
 namespace com.b_velop.OneMediPlan
 {
@@ -38,13 +42,22 @@ namespace com.b_velop.OneMediPlan
 
     public class App
     {
-        public static string URL = "https://marcelbenders.de";
+        public static string URL = "https://womo.marcelbenders.de";
         public static StandardKernel Container { get; set; }
-        public static bool UseMockDataStore = true;
+        public static bool UseMockDataStore = false;
         public static Action<Medi> SetNotification { get; set; }
 
         public static void Initialize()
         {
+            var Logger = new AppLogger();
+            I18N.Current
+               .SetNotFoundSymbol("!!") // Optional: when a key is not found, it will appear as $key$ (defaults to "$")
+               .SetFallbackLocale("de") // Optional but recommended: locale to load in case the system locale is not supported
+               .SetThrowWhenKeyNotFound(true) // Optional: Throw an exception when keys are not found (recommended only for debugging)
+               .SetLogger(text => Logger.Log(text.Substring(7), typeof(I18N).Name)) // action to output traces
+               .SetResourcesFolder("Locales") // Optional: The directory containing the resource files (defaults to "Locales")
+               .Init(typeof(App).GetTypeInfo().Assembly); // assembl
+
             Container = new StandardKernel();
             Container.Bind<ILogger>().To<AppLogger>();
             Container.Bind<MainViewModel>().ToSelf().InSingletonScope();

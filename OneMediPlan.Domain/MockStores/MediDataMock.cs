@@ -5,12 +5,15 @@ using com.b_velop.OneMediPlan.Domain.Services;
 using com.b_velop.OneMediPlan.Meta.Interfaces;
 using System.Linq;
 using com.b_velop.OneMediPlan.Domain.Enums;
+using System.Diagnostics;
 
 namespace com.b_velop.OneMediPlan.Domain.MockStores
 {
     public class MediDataMock : IDataStore<Medi>
     {
         public static Guid USER_ID = Guid.NewGuid();
+        public static Guid MediAppointmentId = Guid.NewGuid();
+
         public List<Medi> Medis { get; set; }
         private ILogger _logger;
 
@@ -44,6 +47,16 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
                     Dosage = 1,
                     IntervallType = IntervallType.Weekdays,
                     WeekdaysFk = WeekdaysDataMock.WeekdaysId,
+                },
+                new Medi{
+                    Id = MediAppointmentId,
+                    UserFk = USER_ID,
+                    Name = "appointments",
+                    Created = DateTimeOffset.Now,
+                    Stock = 11,
+                    MinimumStock = 4,
+                    Dosage = 2,
+                    IntervallType = IntervallType.DailyAppointment,
                 }
             };
         }

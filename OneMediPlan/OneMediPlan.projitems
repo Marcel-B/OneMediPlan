@@ -33,12 +33,22 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\IntervallViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StartViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\WeekdayViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\DailyAppointment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Hour.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Minute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MediSave.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AppStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AppUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AppLogger.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Locales\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Locales\de.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Locales\en.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

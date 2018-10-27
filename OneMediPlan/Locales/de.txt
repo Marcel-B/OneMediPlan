@@ -1,0 +1,7 @@
+﻿Cancel = Abbruch
+
+Edit = Bearbeiten
+
+Stock = Vorrat
+
+Warning = Achtung

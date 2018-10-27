@@ -12,7 +12,7 @@ namespace com.b_velop.OneMediPlan.Domain.Stores
         {
         }
 
-        protected override string Route => throw new NotImplementedException();
+        protected override string Route => "";
 
         protected override string RouteSpecial => throw new NotImplementedException();
 

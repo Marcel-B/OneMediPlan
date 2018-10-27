@@ -1,0 +1,7 @@
+﻿Cancel = Cancel
+
+Edit = Edit
+
+Stock = Stock
+
+Warning = Warning
