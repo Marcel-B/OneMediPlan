@@ -6,7 +6,9 @@ using Android.Widget;
 using Android.Support.V4.Widget;
 using Android.App;
 using Android.Content;
+using com.b_velop.OneMediPlan;
 using com.b_velop.OneMediPlan.ViewModels;
+using Ninject;
 
 namespace OneMediPlan.Droid
 {
@@ -30,9 +32,8 @@ namespace OneMediPlan.Droid
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            ViewModel = new MainViewModel();
-
-            View view = inflater.Inflate(Resource.Layout.fragment_browse, container, false);
+            ViewModel = App.Container.Get<MainViewModel>();
+            var view = inflater.Inflate(Resource.Layout.fragment_browse, container, false);
             var recyclerView =
                 view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
 
@@ -89,15 +90,15 @@ namespace OneMediPlan.Droid
 
     class BrowseItemsAdapter : BaseRecycleViewAdapter
     {
-        MainViewModel viewModel;
+        public MainViewModel ViewModel { get; set; }
         Activity activity;
 
         public BrowseItemsAdapter(Activity activity, MainViewModel viewModel)
         {
-            this.viewModel = viewModel;
+            this.ViewModel = viewModel;
             this.activity = activity;
 
-            this.viewModel.Medis.CollectionChanged += (sender, args) =>
+            this.ViewModel.Medis.CollectionChanged += (sender, args) =>
             {
                 this.activity.RunOnUiThread(NotifyDataSetChanged);
             };
@@ -118,7 +119,7 @@ namespace OneMediPlan.Droid
         // Replace the contents of a view (invoked by the layout manager)
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            var item = viewModel.Medis[position];
+            var item = ViewModel.Medis[position];
 
             // Replace the contents of the view with that element
             var myHolder = holder as MyViewHolder;
@@ -126,7 +127,7 @@ namespace OneMediPlan.Droid
             myHolder.DetailTextView.Text = item.Description;
         }
 
-        public override int ItemCount => viewModel.Medis.Count;
+        public override int ItemCount => ViewModel.Medis.Count;
     }
 
     public class MyViewHolder : RecyclerView.ViewHolder

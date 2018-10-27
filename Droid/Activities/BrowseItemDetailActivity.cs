@@ -23,7 +23,7 @@ namespace OneMediPlan.Droid
             var data = Intent.GetStringExtra("data");
 
             //var item = Newtonsoft.Json.JsonConvert.DeserializeObject<Medi>(data);
-            //viewModel = new MediDetailViewModel(item);
+            //ViewModel = new MediDetailViewModel(item);
 
             //FindViewById<TextView>(Resource.Id.description).Text = item.Name;
 

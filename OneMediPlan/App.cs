@@ -1,23 +1,21 @@
-﻿using Ninject;
-using System;
-using System.Threading.Tasks;
-using System.Linq;
-
-using com.b_velop.OneMediPlan.Models;
-using com.b_velop.OneMediPlan.ViewModels;
-using com.b_velop.OneMediPlan.Helpers;
-using com.b_velop.OneMediPlan.Domain.Services;
-using com.b_velop.OneMediPlan.Domain;
-using com.b_velop.OneMediPlan.Domain.Stores;
-using com.b_velop.OneMediPlan.Meta.Interfaces;
-using com.b_velop.OneMediPlan.Services;
-using System.Security.Policy;
-using com.b_velop.OneMediPlan.Domain.MockStores;
+﻿using System;
 using System.Collections.Generic;
-using com.b_velop.OneMediPlan.Meta;
-using CarPlay;
-using I18NPortable;
+using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
+
+using com.b_velop.OneMediPlan.Domain;
+using com.b_velop.OneMediPlan.Domain.MockStores;
+using com.b_velop.OneMediPlan.Domain.Services;
+using com.b_velop.OneMediPlan.Domain.Stores;
+using com.b_velop.OneMediPlan.Helpers;
+using com.b_velop.OneMediPlan.Meta.Interfaces;
+using com.b_velop.OneMediPlan.Models;
+using com.b_velop.OneMediPlan.Services;
+using com.b_velop.OneMediPlan.ViewModels;
+
+using I18NPortable;
+using Ninject;
 
 namespace com.b_velop.OneMediPlan
 {
@@ -44,7 +42,13 @@ namespace com.b_velop.OneMediPlan
     {
         public static string URL = "https://womo.marcelbenders.de";
         public static StandardKernel Container { get; set; }
+
+#if DEBUG
+        public static bool UseMockDataStore = true;
+#else
         public static bool UseMockDataStore = false;
+#endif
+
         public static Action<Medi> SetNotification { get; set; }
 
         public static void Initialize()

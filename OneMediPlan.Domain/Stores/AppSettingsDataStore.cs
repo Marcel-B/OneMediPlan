@@ -12,9 +12,9 @@ namespace com.b_velop.OneMediPlan.Domain.Stores
         {
         }
 
-        protected override string Route => "";
+        protected override string Route => "api/appsettings/";
 
-        protected override string RouteSpecial => throw new NotImplementedException();
+        protected override string RouteSpecial => "api/appsettings/byuser/";
 
         public override Task<IEnumerable<AppSettings>> GetItemsByFkAsync(Guid fk)
         {

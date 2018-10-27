@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 using com.b_velop.OneMediPlan.Domain.Enums;
 
@@ -10,6 +11,8 @@ namespace com.b_velop.OneMediPlan.Domain
         public string Name { get; set; }
 
         public Guid UserFk { get; set; }
+
+        [NotMapped]
         public Guid WeekdaysFk { get; set; }
 
         public Guid DependsOn { get; set; }

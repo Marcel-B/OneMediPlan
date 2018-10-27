@@ -6,6 +6,7 @@ using com.b_velop.OneMediPlan.Domain.Services;
 using com.b_velop.OneMediPlan.Meta.Interfaces;
 using System.Collections;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace com.b_velop.OneMediPlan.Domain.MockStores
 {
@@ -16,16 +17,26 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
         public DailyAppointmentDataMock(ILogger logger)
         {
             _logger = logger;
-            DailyAppointments = new List<DailyAppointment>{
-                new DailyAppointment{
-                     Id = DailyAppId,
-                     Hour = 15,
+            DailyAppointments = new List<DailyAppointment>();
+            try
+            {
+
+
+                var da = new DailyAppointment
+                {
+                    Id = DailyAppointmentDataMock.DailyAppId,
+                    Hour = 15,
                     Minute = 22,
                     Created = DateTimeOffset.Now,
                     LastEdit = DateTimeOffset.Now,
                     MediFk = MediDataMock.MediAppointmentId
-                }
-            };
+                };
+                DailyAppointments.Add(da);
+            }
+            catch (Exception ex)
+            {
+                _logger.Log("Eror in DailyAppointmentDataMock", GetType(), ex);
+            }
         }
         ILogger _logger;
         public IList<DailyAppointment> DailyAppointments { get; set; }
