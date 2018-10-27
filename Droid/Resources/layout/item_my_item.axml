@@ -27,7 +27,7 @@
             android:layout_margin="12dp" />
         
         <TextView 
-            android:id="@android:id/text1" 
+            android:id="@+id/textViewMediName" 
             android:layout_width="match_parent" 
             android:layout_height="wrap_content" 
             android:paddingTop="@dimen/small_margin"
@@ -40,7 +40,7 @@
             android:layout_toEndOf="@id/item_count" />
         
         <TextView 
-            android:id="@android:id/text2" 
+            android:id="@+id/textViewMediDescription" 
             android:layout_width="match_parent" 
             android:layout_height="wrap_content" 
             android:layout_toEndOf="@id/item_count"

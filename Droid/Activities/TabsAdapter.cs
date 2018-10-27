@@ -15,7 +15,7 @@ namespace com.b_velop.OneMediPlan.Droid
         {
             titles = new []
             {
-                "Medis",
+                Strings.MEDIS,
                 Strings.SETTINGS,
             };
                 //context.Resources.GetTextArray(Resource.Array.sections);

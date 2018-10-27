@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
+
 using com.b_velop.OneMediPlan.ViewModels;
 using OneMediPlan.Droid;
 
@@ -8,14 +9,15 @@ namespace com.b_velop.OneMediPlan.Droid
 {
     [Activity(Label = "Details", ParentActivity = typeof(MainActivity))]
     [MetaData("android.support.PARENT_ACTIVITY", Value = ".MainActivity")]
-    public class BrowseItemDetailActivity : BaseActivity
+    public class MediDetailActivity : BaseActivity
     {
         /// <summary>
         /// Specify the layout to inflace
         /// </summary>
         protected override int LayoutResource => Resource.Layout.activity_item_details;
 
-        MediDetailViewModel viewModel;
+        public MediDetailViewModel ViewModel { get; set; 
+        }
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

@@ -10,6 +10,7 @@ using Android.Widget;
 using com.b_velop.OneMediPlan.ViewModels;
 using Ninject;
 using OneMediPlan.Droid;
+using com.b_velop.OneMediPlan.Helpers;
 
 namespace com.b_velop.OneMediPlan.Droid
 {
@@ -71,7 +72,7 @@ namespace com.b_velop.OneMediPlan.Droid
         void Adapter_ItemClick(object sender, RecyclerClickEventArgs e)
         {
             var item = ViewModel.Medis[e.Position];
-            var intent = new Intent(Activity, typeof(BrowseItemDetailActivity));
+            var intent = new Intent(Activity, typeof(MediDetailActivity));
 
             intent.PutExtra("data", Newtonsoft.Json.JsonConvert.SerializeObject(item));
             Activity.StartActivity(intent);
@@ -89,7 +90,7 @@ namespace com.b_velop.OneMediPlan.Droid
         }
     }
 
-    class BrowseItemsAdapter : BaseRecycleViewAdapter
+    public class BrowseItemsAdapter : BaseRecycleViewAdapter
     {
         public MainViewModel ViewModel { get; set; }
         Activity activity;
@@ -124,8 +125,12 @@ namespace com.b_velop.OneMediPlan.Droid
 
             // Replace the contents of the view with that element
             var myHolder = holder as MyViewHolder;
-            myHolder.TextView.Text = item.Name;
-            myHolder.DetailTextView.Text = item.Description;
+            myHolder.Name.Text = item.Name;
+            myHolder.Stock.Text = item.Stock.ToString();
+            myHolder.NextDate.Text = item.GetNextDate();
+            myHolder.LastDate.Text = item.GetLastDate();
+            myHolder.Dosage.Text = item.GetDosage();
+
         }
 
         public override int ItemCount => ViewModel.Medis.Count;
@@ -133,16 +138,29 @@ namespace com.b_velop.OneMediPlan.Droid
 
     public class MyViewHolder : RecyclerView.ViewHolder
     {
-        public TextView TextView { get; set; }
-        public TextView DetailTextView { get; set; }
+        public TextView Name { get; set; }
+        public TextView Stock { get; set; }
+        public TextView Dosage { get; set; }
+        public TextView LastDate { get; set; }
+        public TextView NextDate { get; set; }
 
-        public MyViewHolder(View itemView, Action<RecyclerClickEventArgs> clickListener,
+
+        public MyViewHolder(View itemView,
+                            Action<RecyclerClickEventArgs> clickListener,
                             Action<RecyclerClickEventArgs> longClickListener) : base(itemView)
         {
-            TextView = itemView.FindViewById<TextView>(Android.Resource.Id.Text1);
-            DetailTextView = itemView.FindViewById<TextView>(Android.Resource.Id.Text2);
+            Name = itemView.FindViewById<TextView>(Resource.Id.textViewMediName);
+            Stock = itemView.FindViewById<TextView>(Resource.Id.textViewMediStock);
+            Dosage = itemView.FindViewById<TextView>(Resource.Id.textViewMediDosage);
+            LastDate = itemView.FindViewById<TextView>(Resource.Id.textViewMediLastDate);
+            NextDate = itemView.FindViewById<TextView>(Resource.Id.textViewMediNextDate);
             itemView.Click += (sender, e) => clickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
-            itemView.LongClick += (sender, e) => longClickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
+            itemView.LongClick += (sender, e) =>
+                longClickListener(new RecyclerClickEventArgs
+                {
+                    View = itemView,
+                    Position = AdapterPosition
+                });
         }
     }
 }

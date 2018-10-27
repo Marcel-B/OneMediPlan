@@ -11,11 +11,9 @@ namespace com.b_velop.OneMediPlan.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
             var newIntent = new Intent(this, typeof(MainActivity));
             newIntent.AddFlags(ActivityFlags.ClearTop);
             newIntent.AddFlags(ActivityFlags.SingleTop);
-
             StartActivity(newIntent);
             Finish();
         }
