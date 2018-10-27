@@ -2,6 +2,10 @@
 
 Edit = Edit
 
+Medis = Medis
+
+Save = Save
+Settings = Settings
 Stock = Stock
 
 Warning = Warning

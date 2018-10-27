@@ -2,6 +2,10 @@
 
 Edit = Bearbeiten
 
+Medis = Medis
+
+Save = Speichern
+Settings = Einstellungen
 Stock = Vorrat
 
 Warning = Achtung

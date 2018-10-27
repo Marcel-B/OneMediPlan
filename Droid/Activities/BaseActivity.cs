@@ -1,8 +1,9 @@
 ﻿using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
+using OneMediPlan.Droid;
 
-namespace OneMediPlan.Droid
+namespace com.b_velop.OneMediPlan.Droid
 {
     public class BaseActivity : AppCompatActivity
     {
@@ -16,7 +17,6 @@ namespace OneMediPlan.Droid
                 SetSupportActionBar(Toolbar);
                 SupportActionBar.SetDisplayHomeAsUpEnabled(true);
                 SupportActionBar.SetHomeButtonEnabled(true);
-
             }
         }
 

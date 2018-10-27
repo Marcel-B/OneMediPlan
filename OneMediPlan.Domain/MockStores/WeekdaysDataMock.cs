@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+
 using com.b_velop.OneMediPlan.Domain.Services;
 using com.b_velop.OneMediPlan.Meta.Interfaces;
-using System.Collections;
-using System.Linq;
 
 namespace com.b_velop.OneMediPlan.Domain.MockStores
 {
@@ -14,8 +14,10 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
         public WeekdaysDataMock(ILogger logger)
         {
             _logger = logger;
-            Weekdays = new List<Weekdays>{
-                new Weekdays{
+            Weekdays = new List<Weekdays>
+            {
+                new Weekdays
+                {
                     Id = WeekdaysId,
                     Sunday = false,
                     Monday = true,
@@ -24,26 +26,50 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
                     Thursday = true,
                     Friday = false,
                     Saturday = false
+                },
+                new Weekdays
+                {
+                    Id = Guid.NewGuid(),
+                    Sunday = false,
+                    Monday = true,
+                    Tuesday = false,
+                    Wednesday = false,
+                    Thursday = false,
+                    Friday = false,
+                    Saturday = false
+                }
+            };
         }
-    };
-        }
+
         ILogger _logger;
         public IList<Weekdays> Weekdays { get; set; }
 
-        public Task<Weekdays> AddItemAsync(Weekdays item)
+        public async Task<Weekdays> AddItemAsync(Weekdays item)
         {
-            throw new NotImplementedException();
+            return await Task.Run(() =>
+            {
+                Weekdays.Add(item);
+                return item;
+            });
         }
 
-        public Task<bool> DeleteItemAsync(Guid id)
+        public async Task<bool> DeleteItemAsync(Guid id)
         {
-            throw new NotImplementedException();
+            _logger.Log($"Delete weekdays '{id}'", GetType());
+            return await Task.Run(() =>
+            {
+                var wd = Weekdays.SingleOrDefault(w => w.Id == id);
+                if (wd != null)
+                {
+                    Weekdays.Remove(wd);
+                    return true;
+                }
+                return false;
+            });
         }
 
         public Task<Weekdays> GetByName(string name)
-        {
-            throw new NotImplementedException();
-        }
+            => throw new NotImplementedException();
 
         public async Task<Weekdays> GetItemAsync(Guid id)
         {
@@ -51,19 +77,30 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
             return await Task.Run(() => Weekdays.SingleOrDefault(w => w.Id == id));
         }
 
-        public Task<IEnumerable<Weekdays>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Weekdays>> GetItemsAsync(bool forceRefresh = false)
         {
-            throw new NotImplementedException();
-        }
+            _logger.Log($"Get all weekdays", GetType());
+            return await Task.Run(() => Weekdays);
+        } 
 
-        public Task<IEnumerable<Weekdays>> GetItemsByFkAsync(Guid fk)
+        public async Task<IEnumerable<Weekdays>> GetItemsByFkAsync(Guid fk)
         {
-            throw new NotImplementedException();
-        }
+            _logger.Log($"Get weekdays with medi key '{fk}'", GetType());
+            return await Task.Run(() => Weekdays.Where(w => w.MediFk == fk));
+        } 
 
-        public Task<Weekdays> UpdateItemAsync(Weekdays item)
+        public async Task<Weekdays> UpdateItemAsync(Weekdays item)
         {
-            throw new NotImplementedException();
-        }
+            _logger.Log($"Update weekdays '{item.Id}'", GetType());
+            return await Task.Run(() =>
+            {
+                var wd = Weekdays.SingleOrDefault(w => w.Id == item.Id);
+                if (wd != null)
+                    Weekdays.Remove(wd);
+                Weekdays.Add(wd);
+                return item;
+            });
+
+        } 
     }
 }

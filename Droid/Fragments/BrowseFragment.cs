@@ -1,16 +1,17 @@
 ﻿using System;
+using Android.App;
+using Android.Content;
 using Android.OS;
+using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-using Android.Support.V4.Widget;
-using Android.App;
-using Android.Content;
-using com.b_velop.OneMediPlan;
+
 using com.b_velop.OneMediPlan.ViewModels;
 using Ninject;
+using OneMediPlan.Droid;
 
-namespace OneMediPlan.Droid
+namespace com.b_velop.OneMediPlan.Droid
 {
     public class BrowseFragment : Android.Support.V4.App.Fragment, IFragmentVisible
     {

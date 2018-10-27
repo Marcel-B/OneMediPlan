@@ -42,6 +42,7 @@ namespace com.b_velop.OneMediPlan.Meta
 
         public static string LABEL_TEXT = "LabelText";
 
+        public static string MEDIS = "Medis".Translate();
         public static string MINUTES = "Minute(s)";
         public static string MONTHS = "Month(s)";
 
@@ -53,9 +54,9 @@ namespace com.b_velop.OneMediPlan.Meta
         //public const string DATE_FORMAT = "DateFormat";
         //public const string TIME_FORMAT = "TimeFormat";
 
-        public static string SAVE = "Save";
+        public static string SAVE = "Save".Translate();
 
-        public static string SETTINGS = "Settings";
+        public static string SETTINGS = "Settings".Translate();
         public static string STOCK = "Stock".Translate();
         public static string STOCK_MINIMUM = "StockMinimum";
 

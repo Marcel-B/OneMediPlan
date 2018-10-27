@@ -18,26 +18,18 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
         {
             _logger = logger;
             DailyAppointments = new List<DailyAppointment>();
-            try
+            var da = new DailyAppointment
             {
-
-
-                var da = new DailyAppointment
-                {
-                    Id = DailyAppointmentDataMock.DailyAppId,
-                    Hour = 15,
-                    Minute = 22,
-                    Created = DateTimeOffset.Now,
-                    LastEdit = DateTimeOffset.Now,
-                    MediFk = MediDataMock.MediAppointmentId
-                };
-                DailyAppointments.Add(da);
-            }
-            catch (Exception ex)
-            {
-                _logger.Log("Eror in DailyAppointmentDataMock", GetType(), ex);
-            }
+                Id = DailyAppId,
+                Hour = 15,
+                Minute = 22,
+                Created = DateTimeOffset.Now,
+                LastEdit = DateTimeOffset.Now,
+                MediFk = MediDataMock.MediAppointmentId
+            };
+            DailyAppointments.Add(da);
         }
+
         ILogger _logger;
         public IList<DailyAppointment> DailyAppointments { get; set; }
 

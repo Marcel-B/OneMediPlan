@@ -4,6 +4,7 @@ using System;
 using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Services;
 using com.b_velop.OneMediPlan.Domain;
+using com.b_velop.OneMediPlan.Meta;
 
 namespace com.b_velop.OneMediPlan.ViewModels
 {
@@ -17,6 +18,10 @@ namespace com.b_velop.OneMediPlan.ViewModels
             set => SetProperty(ref _mediSettings, value);
         }
 
+        public int Hour { get; set; }
+        public int Minute { get; set; }
+
+
         public ICommand SaveSettingsCommand { get; }
 
         public void LoadSettings()
@@ -27,7 +32,7 @@ namespace com.b_velop.OneMediPlan.ViewModels
 
         public AppSettingsViewModel()
         {
-            Title = "Einstellungen";
+            Title = Strings.SETTINGS;
             SaveSettingsCommand = new Command(async (time) =>
             {
                 if (time is DateTime currentTime)

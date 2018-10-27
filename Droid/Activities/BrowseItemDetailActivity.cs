@@ -1,10 +1,10 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Widget;
 using com.b_velop.OneMediPlan.ViewModels;
+using OneMediPlan.Droid;
 
-namespace OneMediPlan.Droid
+namespace com.b_velop.OneMediPlan.Droid
 {
     [Activity(Label = "Details", ParentActivity = typeof(MainActivity))]
     [MetaData("android.support.PARENT_ACTIVITY", Value = ".MainActivity")]

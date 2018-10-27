@@ -38,7 +38,7 @@ namespace com.b_velop.OneMediPlan.ViewModels
             NextCommand = new Command(NextCommandExecute, NextCommandCanExecute);
         }
 
-        public async Task Init()
+        public void Init()
         {
             //var store = App.Container.Get<IMediDataStore>();
             //CurrentMedi = store.GetTemporaryMedi();

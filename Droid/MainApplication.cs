@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Runtime;
 
 using Plugin.CurrentActivity;
+using com.b_velop.OneMediPlan;
 
 namespace OneMediPlan.Droid
 {
@@ -15,13 +16,14 @@ namespace OneMediPlan.Droid
         public MainApplication(IntPtr handle, JniHandleOwnership transer)
         : base(handle, transer)
         {
+            var app = new App();
+            App.Initialize();
         }
 
         public override void OnCreate()
         {
             base.OnCreate();
             RegisterActivityLifecycleCallbacks(this);
-            //App.Initialize();
         }
 
         public override void OnTerminate()
@@ -37,12 +39,10 @@ namespace OneMediPlan.Droid
 
         public void OnActivityDestroyed(Activity activity)
         {
-
         }
 
         public void OnActivityPaused(Activity activity)
         {
-
         }
 
         public void OnActivityResumed(Activity activity)
@@ -52,7 +52,6 @@ namespace OneMediPlan.Droid
 
         public void OnActivitySaveInstanceState(Activity activity, Bundle outState)
         {
-
         }
 
         public void OnActivityStarted(Activity activity)

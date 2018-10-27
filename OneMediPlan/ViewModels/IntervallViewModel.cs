@@ -66,7 +66,7 @@ namespace com.b_velop.OneMediPlan.ViewModels
         public bool ShowLable()
             => CurrentMedi.DependsOn != Guid.Empty;
 
-        public async Task Init()
+        public void Init()
         {
             //var store = App.Container.Get<IMediDataStore>();
             //CurrentMedi = store.GetTemporaryMedi();

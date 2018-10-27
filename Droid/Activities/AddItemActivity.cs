@@ -1,13 +1,13 @@
 ﻿using System;
-
 using Android.App;
 using Android.OS;
-using Android.Widget;
 using Android.Support.Design.Widget;
-using com.b_velop.OneMediPlan.ViewModels;
-using com.b_velop.OneMediPlan.Models;
+using Android.Widget;
 
-namespace OneMediPlan.Droid
+using com.b_velop.OneMediPlan.ViewModels;
+using OneMediPlan.Droid;
+
+namespace com.b_velop.OneMediPlan.Droid
 {
     [Activity(Label = "AddItemActivity")]
     public class AddItemActivity : Activity
