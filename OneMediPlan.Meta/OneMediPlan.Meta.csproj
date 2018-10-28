@@ -3,6 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>com.b_velop.OneMediPlan.Meta</RootNamespace>
+    <PackOnBuild>true</PackOnBuild>
+    <Authors>Marcel Benders</Authors>
+    <Owners>Marcel Benders</Owners>
+    <PackageReleaseNotes>nix</PackageReleaseNotes>
+    <Summary>123</Summary>
+    <Title>com.b_velop.OneMediPlan.Meta</Title>
+    <Description>Klassen für One MediPlan</Description>
+    <PackageId>OneMediPlanMeta</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +22,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="I18NPortable" Version="0.6.0" />
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Locales\de.txt" />

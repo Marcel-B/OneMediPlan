@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using Ninject;
+
 using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Domain;
@@ -29,7 +30,7 @@ namespace com.b_velop.OneMediPlan.ViewModels
             //CurrentMedi = store.GetTemporaryMedi();
         }
 
-        private async void SaveMediExecute(object obj)
+        private void SaveMediExecute(object obj)
         {
             //var store = App.Container.Get<MediDataStore>();
             //CurrentMedi.Id = Guid.NewGuid();

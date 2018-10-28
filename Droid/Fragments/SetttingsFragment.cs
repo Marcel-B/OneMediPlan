@@ -3,7 +3,6 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 
-using com.b_velop.OneMediPlan.Domain;
 using com.b_velop.OneMediPlan.Meta;
 using com.b_velop.OneMediPlan.Services;
 using com.b_velop.OneMediPlan.ViewModels;

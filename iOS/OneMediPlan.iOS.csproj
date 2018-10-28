@@ -111,6 +111,9 @@
     <Reference Include="I18NPortable">
       <HintPath>..\packages\I18NPortable.0.6.0\lib\netstandard1.1\I18NPortable.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Essentials">
+      <HintPath>..\packages\Xamarin.Essentials.0.11.0-preview\lib\xamarinios10\Xamarin.Essentials.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -280,10 +283,6 @@
     <ProjectReference Include="..\OneMediPlan.Meta\OneMediPlan.Meta.csproj">
       <Project>{BDF078B5-1204-4DE2-903B-E84A36E18164}</Project>
       <Name>OneMediPlan.Meta</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OneMediPlan.Domain\OneMediPlan.Domain.csproj">
-      <Project>{1ED7B2E9-BFDD-4483-A3DD-4C4982805D84}</Project>
-      <Name>OneMediPlan.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

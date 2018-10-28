@@ -6,8 +6,11 @@ using Android.Runtime;
 
 using Plugin.CurrentActivity;
 using com.b_velop.OneMediPlan;
+using com.b_velop.OneMediPlan.Domain;
+using Newtonsoft.Json;
+using System.IO;
 
-namespace OneMediPlan.Droid
+namespace com.b_velop.OneMediPlan.Droid
 {
     //You can specify additional application information in this attribute
     [Application]
@@ -18,6 +21,19 @@ namespace OneMediPlan.Droid
         {
             var app = new App();
             App.Initialize();
+			var medi = new Medi();
+            medi.Id = Guid.NewGuid();
+            medi.Name = "Furtz";
+
+            string json = JsonConvert.SerializeObject(medi);
+            string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            var dir = Directory.GetFiles(path);
+            string filePath = Path.Combine(path, "employee.txt");
+            using (var file = File.Open(filePath, FileMode.Create, FileAccess.Write))
+            using (var strm = new StreamWriter(file))
+            {
+                strm.Write(json);
+            }
         }
 
         public override void OnCreate()

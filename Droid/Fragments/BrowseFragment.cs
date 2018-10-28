@@ -19,7 +19,7 @@ namespace com.b_velop.OneMediPlan.Droid
         public static BrowseFragment NewInstance() =>
             new BrowseFragment { Arguments = new Bundle() };
 
-        BrowseItemsAdapter adapter;
+		public BrowseItemsAdapter adapter {get;set;}
         SwipeRefreshLayout refresher;
 
         ProgressBar progress;
@@ -126,7 +126,7 @@ namespace com.b_velop.OneMediPlan.Droid
             // Replace the contents of the view with that element
             var myHolder = holder as MyViewHolder;
             myHolder.Name.Text = item.Name;
-            myHolder.Stock.Text = item.Stock.ToString();
+			myHolder.Stock.Text = item.GetStockInfo();
             myHolder.NextDate.Text = item.GetNextDate();
             myHolder.LastDate.Text = item.GetLastDate();
             myHolder.Dosage.Text = item.GetDosage();
