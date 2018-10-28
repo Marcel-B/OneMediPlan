@@ -52,7 +52,7 @@ namespace com.b_velop.OneMediPlan.iOS
         async public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            await ViewModel.Init();
+            ViewModel.Init();
             Title = NSBundle.MainBundle.GetLocalizedString(Strings.DEPENDS);
         }
 

@@ -57,7 +57,7 @@ namespace com.b_velop.OneMediPlan.iOS
             base.ViewDidLoad();
             ButtonNext.Hidden = true;
 
-            await ViewModel.Init();
+            ViewModel.Init();
             Title = ViewModel.Title;
 
             var pickerModle = new IntervallTypeDataModel();
