@@ -52,7 +52,7 @@ namespace com.b_velop.OneMediPlan.iOS
             }
         }
 
-        public async override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
             ButtonNext.Hidden = true;
