@@ -8,6 +8,7 @@ Medis = Medis
 
 Save = Save
 Settings = Settings
+Standard Time = Standard Time
 Stock = Stock
 
 Warning = Warning

@@ -138,7 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainApplication.cs" />
-    <Compile Include="Activities\AddItemActivity.cs" />
+    <Compile Include="Activities\AddNewMediActivity.cs" />
     <Compile Include="Activities\BaseActivity.cs" />
     <Compile Include="Activities\MediDetailActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />

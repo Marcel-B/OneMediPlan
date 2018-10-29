@@ -2718,9 +2718,6 @@ namespace OneMediPlan.Droid
 			// aapt resource value: 0x7f0800c9
 			public const int menuEditAdd = 2131230921;
 			
-			// aapt resource value: 0x7f0800ca
-			public const int menuEditRemove = 2131230922;
-			
 			// aapt resource value: 0x7f0800c6
 			public const int message = 2131230918;
 			
@@ -2934,9 +2931,6 @@ namespace OneMediPlan.Droid
 			// aapt resource value: 0x7f080069
 			public const int textSpacerNoTitle = 2131230825;
 			
-			// aapt resource value: 0x7f0800c2
-			public const int textView1 = 2131230914;
-			
 			// aapt resource value: 0x7f0800ae
 			public const int textViewMediDescription = 2131230894;
 			
@@ -2954,6 +2948,9 @@ namespace OneMediPlan.Droid
 			
 			// aapt resource value: 0x7f0800ab
 			public const int textViewMediStock = 2131230891;
+			
+			// aapt resource value: 0x7f0800c2
+			public const int textViewStandardTime = 2131230914;
 			
 			// aapt resource value: 0x7f0800a4
 			public const int text_input_password_toggle = 2131230884;

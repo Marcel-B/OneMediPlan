@@ -4,8 +4,8 @@
         android:id="@+id/menuEditAdd" 
         android:showAsAction="ifRoom" 
         android:title="Add" />
-    <item 
+<!--    <item 
         android:id="@+id/menuEditRemove" 
         android:showAsAction="ifRoom" 
-        android:title="Remove" />
+        android:title="Remove" />-->
 </menu>

@@ -89,7 +89,7 @@ namespace com.b_velop.OneMediPlan.iOS
                 case IntervallType.Depend:
                     cell.ImageColor = UIColor.FromRGB(248, 194, 145);
                     break;
-                case IntervallType.IfNedded:
+                case IntervallType.IfNeeded:
                     cell.ImageColor = UIColor.FromRGB(184, 233, 148);
                     break;
                 case IntervallType.Intervall:

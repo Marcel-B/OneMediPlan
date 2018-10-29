@@ -13,40 +13,27 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:paddingBottom="66dp">
+            
             <TextView
-                android:id="@+id/textView1"
-                android:text="@string/settings"
-                android:paddingTop="@dimen/small_margin"
-                android:paddingLeft="@dimen/small_margin"
-                android:paddingRight="@dimen/small_margin"
-                style="?android:textAppearanceLarge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
+                android:id="@+id/textViewStandardTime"
                 android:text="@string/default_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@android:id/text1"
                 android:padding="@dimen/small_margin"
                 android:ellipsize="end"
                 android:maxLines="4"
                 style="?android:textAppearanceSmall" />
-        <!--<TextView
-          android:text="@string/app_description"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:padding="@dimen/small_margin"
-          android:ellipsize="end"
-          android:maxLines="4"
-          style="?android:textAppearanceMedium" />-->
+
             <TimePicker
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/timePickerStdTime" />
+            
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
+            
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

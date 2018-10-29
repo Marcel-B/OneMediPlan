@@ -23,6 +23,32 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
             Name = "John Doe"
         };
 
+
+        public static Medi ON_DEMAND = new Medi
+        {
+            Id = Guid.NewGuid(),
+            Name = "On Demand",
+            User = USER,
+            Created = DateTimeOffset.Now,
+            Stock = 11,
+            MinimumStock = 1,
+            Dosage = 5,
+            IntervallType = IntervallType.IfNeeded
+        };
+
+        public static Medi AFTER_ON_DEMAND = new Medi
+        {
+            Id = Guid.NewGuid(),
+            Name = "After on Demand",
+            User = USER,
+            Created = DateTimeOffset.Now,
+            IntervallType = IntervallType.Depend,
+            DependsOn = ON_DEMAND.Id,
+            Dosage = 1,
+            Stock = 33,
+            MinimumStock = 2
+        };
+
         public static Medi MON_N_THUE = new Medi
         {
             Id = Guid.NewGuid(),
@@ -41,6 +67,40 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
             Id = Guid.NewGuid(),
             User = USER,
             Name = "7 Tage",
+            Created = DateTimeOffset.Now.AddDays(-2),
+            LastEdit = DateTimeOffset.Now,
+            Stock = 22,
+            MinimumStock = 2,
+            NextDate = DateTimeOffset.Now,
+            //NextDate = DateTimeOffset.Now.AddDays(1),
+            Dosage = 1,
+            IntervallTime = IntervallTime.Day,
+            PureIntervall = 7,
+            IntervallType = IntervallType.Intervall
+        };
+
+        public static Medi SEVEN_DAYS_1 = new Medi
+        {
+            Id = Guid.NewGuid(),
+            User = USER,
+            Name = "7 Tage 1",
+            Created = DateTimeOffset.Now.AddDays(-2),
+            LastEdit = DateTimeOffset.Now,
+            Stock = 22,
+            MinimumStock = 2,
+            NextDate = DateTimeOffset.Now,
+            //NextDate = DateTimeOffset.Now.AddDays(1),
+            Dosage = 1,
+            IntervallTime = IntervallTime.Day,
+            PureIntervall = 7,
+            IntervallType = IntervallType.Intervall
+        };
+
+        public static Medi SEVEN_DAYS_2 = new Medi
+        {
+            Id = Guid.NewGuid(),
+            User = USER,
+            Name = "7 Tage 2",
             Created = DateTimeOffset.Now.AddDays(-2),
             LastEdit = DateTimeOffset.Now,
             Stock = 22,
@@ -74,15 +134,19 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
             _logger = logger;
             Medis = new List<Medi>
             {
-               SEVEN_DAYS,
-               MON_N_THUE,
-               APPOINTMENTS
+                SEVEN_DAYS,
+                MON_N_THUE,
+                APPOINTMENTS,
+                ON_DEMAND,
+                SEVEN_DAYS_1,
+                SEVEN_DAYS_2,
+                AFTER_ON_DEMAND,
             };
         }
 
-        public Task<Medi> AddItemAsync(Medi item)
+        public async Task<Medi> AddItemAsync(Medi item)
         {
-            throw new NotImplementedException();
+            return await Task.Run(() => { Medis.Add(item); return item; });
         }
 
         public Task<bool> DeleteItemAsync(Guid id)

@@ -95,7 +95,7 @@ namespace com.b_velop.OneMediPlan.Helpers
 
         public static string GetNextDate(this Medi medi)
         {
-            if (medi.IntervallType == IntervallType.IfNedded)
+            if (medi.IntervallType == IntervallType.IfNeeded)
                 return "-";
             if (medi.NextDate == DateTimeOffset.MinValue)
                 return "-";
@@ -133,6 +133,6 @@ namespace com.b_velop.OneMediPlan.Helpers
         }
 
         public static string GetDosage(this Medi medi)
-            => medi.IntervallType == IntervallType.IfNedded ? "-" : medi.Dosage.ToString("F1");
+            => medi.IntervallType == IntervallType.IfNeeded ? "-" : medi.Dosage.ToString("F1");
     }
 }
