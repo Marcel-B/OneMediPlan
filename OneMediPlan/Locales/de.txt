@@ -1,10 +1,12 @@
 ﻿Cancel = Abbruch
 
-Edit = Bearbeiten
+Delete = löschen
+
+Edit = bearbeiten
 
 Medis = Medis
 
-Save = Speichern
+Save = speichern
 Settings = Einstellungen
 Stock = Vorrat
 

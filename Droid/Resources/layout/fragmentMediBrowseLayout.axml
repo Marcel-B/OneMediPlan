@@ -10,13 +10,10 @@
         android:layout_height="fill_parent" 
         android:id="@+id/refresher">
         
-        <android.support.v7.widget.RecyclerView 
-            android:id="@+id/recyclerView" 
-            android:scrollbars="vertical" 
-            android:layout_width="fill_parent" 
-            android:layout_height="fill_parent" 
-            app:layoutManager="GridLayoutManager" 
-            android:paddingTop="12dp" />
+    <FrameLayout 
+        android:id="@+id/contentMedisFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
         
     </android.support.v4.widget.SwipeRefreshLayout>
     

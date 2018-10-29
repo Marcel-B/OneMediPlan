@@ -29,16 +29,14 @@ namespace com.b_velop.OneMediPlan.Droid
             new SettingsFragment { Arguments = new Bundle() };
 
         public AppSettingsViewModel ViewModel { get; set; }
+        public Button SaveSettings { get; set; }
+        public TimePicker Time { get; set; }
 
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             ViewModel = App.Container.Get<AppSettingsViewModel>();
         }
-
-        public Button SaveSettings { get; set; }
-        public TimePicker Time { get; set; }
-
         private void GetViews(View view)
         {
             SaveSettings = view.FindViewById<Button>(Resource.Id.buttonSaveSettings);
@@ -63,15 +61,12 @@ namespace com.b_velop.OneMediPlan.Droid
             base.OnStart();
             SaveSettings.Click += SaveSettingsButtonn_Click;
         }
-
         public override void OnStop()
         {
             base.OnStop();
             SaveSettings.Click -= SaveSettingsButtonn_Click;
         }
-
         public void BecameVisible(){}
-
         void SaveSettingsButtonn_Click(object sender, System.EventArgs e)
         {
             ViewModel.Hour = Time.Hour;

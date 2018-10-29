@@ -1,12 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace com.b_velop.OneMediPlan.Domain
+﻿namespace com.b_velop.OneMediPlan.Domain
 {
     public class Weekdays : Item
     {
-        [NotMapped]
-        public Guid MediFk { get; set; }
+        public Medi Medi { get; set; }
 
         public bool Monday { get; set; }
         public bool Tuesday { get; set; }

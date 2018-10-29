@@ -13,21 +13,23 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
     public class DailyAppointmentDataMock : IDataStore<DailyAppointment>
     {
         public static Guid DailyAppId = Guid.NewGuid();
-
+        public static DailyAppointment DAILY_ONE = new DailyAppointment
+        {
+            Id = DailyAppId,
+            Hour = 15,
+            Minute = 22,
+            Created = DateTimeOffset.Now,
+            LastEdit = DateTimeOffset.Now,
+            Medi = MediDataMock.APPOINTMENTS
+        };
         public DailyAppointmentDataMock(ILogger logger)
         {
             _logger = logger;
-            DailyAppointments = new List<DailyAppointment>();
-            var da = new DailyAppointment
+            DAILY_ONE.Medi = MediDataMock.APPOINTMENTS;
+            DailyAppointments = new List<DailyAppointment>
             {
-                Id = DailyAppId,
-                Hour = 15,
-                Minute = 22,
-                Created = DateTimeOffset.Now,
-                LastEdit = DateTimeOffset.Now,
-                MediFk = MediDataMock.MediAppointmentId
+                DAILY_ONE
             };
-            DailyAppointments.Add(da);
         }
 
         ILogger _logger;
@@ -61,7 +63,8 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
         public async Task<IEnumerable<DailyAppointment>> GetItemsByFkAsync(Guid fk)
         {
             _logger.Log($"Now searching for appointments with MediFk '{fk}'", GetType());
-            return await Task.Run(() => DailyAppointments.Where(da => da.MediFk == fk));
+            return await Task.Run(() =>
+                                  DailyAppointments.Where(da => da.Medi.Id == fk));
         }
 
         public Task<DailyAppointment> UpdateItemAsync(DailyAppointment item)

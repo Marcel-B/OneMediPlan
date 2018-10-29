@@ -1,5 +1,7 @@
 ﻿Cancel = Cancel
 
+Delete = delete
+
 Edit = Edit
 
 Medis = Medis

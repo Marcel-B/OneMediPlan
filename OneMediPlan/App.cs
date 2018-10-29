@@ -107,10 +107,10 @@ namespace com.b_velop.OneMediPlan
 
             if (UseMockDataStore)
             {
-                Container.Bind<IDataStore<Medi>>().To<MediDataMock>();
-                Container.Bind<IDataStore<Weekdays>>().To<WeekdaysDataMock>();
-                Container.Bind<IDataStore<AppSettings>>().To<AppSettingsDataMock>();
-                Container.Bind<IDataStore<DailyAppointment>>().To<DailyAppointmentDataMock>();
+                Container.Bind<IDataStore<Medi>>().To<MediDataMock>().InSingletonScope();
+                Container.Bind<IDataStore<Weekdays>>().To<WeekdaysDataMock>().InSingletonScope();
+                Container.Bind<IDataStore<AppSettings>>().To<AppSettingsDataMock>().InSingletonScope();
+                Container.Bind<IDataStore<DailyAppointment>>().To<DailyAppointmentDataMock>().InSingletonScope();
             }
             else
             {
@@ -140,12 +140,13 @@ namespace com.b_velop.OneMediPlan
             foreach (var medi in medis)
             {
                 var dailyAppointments = await dailyStore.GetItemsByFkAsync(medi.Id);
-                if (medi.WeekdaysFk != Guid.Empty)
+                if (medi.Weekdays != null)
                 {
-                    var weekdays = await weekdaysStore.GetItemAsync(medi.WeekdaysFk);
+                    var weekdays = await weekdaysStore.GetItemAsync(medi.Weekdays.Id);
                     medi.Weekdays = weekdays;
                 }
-                medi.DailyAppointments = dailyAppointments.ToList();
+                if (dailyAppointments != null)
+                    medi.DailyAppointments = dailyAppointments.ToList();
                 appUser.Medis.Add(medi);
             }
         }

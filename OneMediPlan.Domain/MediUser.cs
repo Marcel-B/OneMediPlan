@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 namespace com.b_velop.OneMediPlan.Domain
 {
     public class MediUser : Item
@@ -11,7 +10,7 @@ namespace com.b_velop.OneMediPlan.Domain
         public string Birthdate { get; set; }
         public byte[] Hash { get; set; }
         public byte[] Salt { get; set; }
-        public IList<Medi> Medis { get; set; }
 
+        public IList<Medi> Medis { get; set; }
     }
 }

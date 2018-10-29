@@ -31,6 +31,7 @@ namespace com.b_velop.OneMediPlan.Meta
 
         public static string DATE_CELL = "DateCell";
         public static string DAYS = "Day(s)";
+        public static string DELETE = "Delete".Translate();
         public static string DEPENDS = "Depends";
         public static string DOSAGE = "Dosage";
 
