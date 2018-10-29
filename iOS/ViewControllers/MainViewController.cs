@@ -6,13 +6,13 @@ using Ninject;
 using Ninject.Parameters;
 using UIKit;
 
-using com.b_velop.OneMediPlan.Domain;
-using com.b_velop.OneMediPlan.Domain.Enums;
 using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.iOS.CustomCells;
 using com.b_velop.OneMediPlan.Meta;
 using com.b_velop.OneMediPlan.ViewModels;
 using com.b_velop.OneMediPlan.Services;
+using com.b_velop.OneMediPlan.Domain;
+using com.b_velop.OneMediPlan.Domain.Enums;
 
 namespace com.b_velop.OneMediPlan.iOS
 {

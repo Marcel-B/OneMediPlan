@@ -284,6 +284,10 @@
       <Project>{BDF078B5-1204-4DE2-903B-E84A36E18164}</Project>
       <Name>OneMediPlan.Meta</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OneMediPlan.Domain\OneMediPlan.Domain.csproj">
+      <Project>{AA71A7AA-5E6A-488E-984D-427B0069DE7B}</Project>
+      <Name>OneMediPlan.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

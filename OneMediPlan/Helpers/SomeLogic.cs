@@ -3,7 +3,6 @@ using System.Linq;
 using System;
 using System.Collections.Generic;
 
-using com.b_velop.OneMediPlan.Models;
 using com.b_velop.OneMediPlan.Domain.Services;
 using com.b_velop.OneMediPlan.Domain;
 using com.b_velop.OneMediPlan.Domain.Enums;

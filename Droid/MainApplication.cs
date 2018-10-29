@@ -9,6 +9,10 @@ using com.b_velop.OneMediPlan;
 using com.b_velop.OneMediPlan.Domain;
 using Newtonsoft.Json;
 using System.IO;
+using com.b_velop.OneMediPlan.Services;
+using com.b_velop.OneMediPlan.Meta.Interfaces;
+using Ninject;
+using Android.Views.InputMethods;
 
 namespace com.b_velop.OneMediPlan.Droid
 {
@@ -21,21 +25,14 @@ namespace com.b_velop.OneMediPlan.Droid
         {
             var app = new App();
             App.Initialize();
-			var medi = new Medi();
-            medi.Id = Guid.NewGuid();
-            medi.Name = "Furtz";
-
-            string json = JsonConvert.SerializeObject(medi);
-            string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-            var dir = Directory.GetFiles(path);
-            string filePath = Path.Combine(path, "employee.txt");
-            using (var file = File.Open(filePath, FileMode.Create, FileAccess.Write))
-            using (var strm = new StreamWriter(file))
-            {
-                strm.Write(json);
-            }
+            App.Container.Bind<Action<Medi>>().ToMethod(context => MainApplication.SetNotification).InSingletonScope();
         }
-
+        public static void SetNotification(Medi medi)
+        {
+            // TODO - Notification handling for Android
+            var logger = App.Container.Get<ILogger>();
+            logger.Log($"Notification for '{medi.Name}' has to be set.", typeof(MainApplication));
+        }
         public override void OnCreate()
         {
             base.OnCreate();

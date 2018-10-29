@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using com.b_velop.OneMediPlan.Services;
 using com.b_velop.OneMediPlan.ViewModels;
 
 using I18NPortable;
+using Newtonsoft.Json;
 using Ninject;
 
 namespace com.b_velop.OneMediPlan
@@ -61,6 +63,29 @@ namespace com.b_velop.OneMediPlan
                .SetLogger(text => Logger.Log(text.Substring(7), typeof(I18N).Name)) // action to output traces
                .SetResourcesFolder("Locales") // Optional: The directory containing the resource files (defaults to "Locales")
                .Init(typeof(App).GetTypeInfo().Assembly); // assembl
+
+            try
+            {
+
+
+                var medi = new Medi();
+                medi.Id = Guid.NewGuid();
+                medi.Name = "Furtz";
+
+                var json = JsonConvert.SerializeObject(medi);
+                var path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+                var dir = Directory.GetFiles(path);
+                var filePath = Path.Combine(path, "medi.json");
+                using (var file = File.Open(filePath, FileMode.Create, FileAccess.Write))
+                using (var strm = new StreamWriter(file))
+                {
+                    strm.Write(json);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"Error occured while writing to device", typeof(App), ex);
+            }
 
             Container = new StandardKernel();
             Container.Bind<ILogger>().To<AppLogger>();

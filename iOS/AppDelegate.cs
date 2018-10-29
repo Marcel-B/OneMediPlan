@@ -1,8 +1,7 @@
 ﻿using Foundation;
 using UIKit;
-using com.b_velop.OneMediPlan.Models;
-using com.b_velop.OneMediPlan.Domain;
 using com.b_velop.OneMediPlan.iOS.Helper;
+using com.b_velop.OneMediPlan.Domain;
 
 namespace com.b_velop.OneMediPlan.iOS
 {

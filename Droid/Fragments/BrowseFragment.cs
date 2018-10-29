@@ -11,6 +11,10 @@ using com.b_velop.OneMediPlan.ViewModels;
 using Ninject;
 using OneMediPlan.Droid;
 using com.b_velop.OneMediPlan.Helpers;
+using com.b_velop.OneMediPlan.Services;
+using com.b_velop.OneMediPlan.Meta;
+using System.Threading.Tasks;
+using com.b_velop.OneMediPlan.Domain;
 
 namespace com.b_velop.OneMediPlan.Droid
 {
@@ -19,10 +23,10 @@ namespace com.b_velop.OneMediPlan.Droid
         public static BrowseFragment NewInstance() =>
             new BrowseFragment { Arguments = new Bundle() };
 
-		public BrowseItemsAdapter adapter {get;set;}
-        SwipeRefreshLayout refresher;
+        public BrowseItemsAdapter Adapter {get;set;}
+        public SwipeRefreshLayout Refresher { get; set; }
+        public ProgressBar Progress { get; set; }
 
-        ProgressBar progress;
         public static MainViewModel ViewModel { get; set; }
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -40,13 +44,13 @@ namespace com.b_velop.OneMediPlan.Droid
                 view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
 
             recyclerView.HasFixedSize = true;
-            recyclerView.SetAdapter(adapter = new BrowseItemsAdapter(Activity, ViewModel));
+            recyclerView.SetAdapter(Adapter = new BrowseItemsAdapter(Activity, ViewModel));
 
-            refresher = view.FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
-            refresher.SetColorSchemeColors(Resource.Color.accent);
+            Refresher = view.FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
+            Refresher.SetColorSchemeColors(Resource.Color.accent);
 
-            progress = view.FindViewById<ProgressBar>(Resource.Id.progressbar_loading);
-            progress.Visibility = ViewStates.Gone;
+            Progress = view.FindViewById<ProgressBar>(Resource.Id.progressbar_loading);
+            Progress.Visibility = ViewStates.Gone;
 
             return view;
         }
@@ -55,8 +59,8 @@ namespace com.b_velop.OneMediPlan.Droid
         {
             base.OnStart();
 
-            refresher.Refresh += Refresher_Refresh;
-            adapter.ItemClick += Adapter_ItemClick;
+            Refresher.Refresh += Refresher_Refresh;
+            Adapter.ItemClick += Adapter_ItemClick;
 
             if (ViewModel.Medis.Count == 0)
                 ViewModel.LoadItemsCommand.Execute(null);
@@ -65,23 +69,73 @@ namespace com.b_velop.OneMediPlan.Droid
         public override void OnStop()
         {
             base.OnStop();
-            refresher.Refresh -= Refresher_Refresh;
-            adapter.ItemClick -= Adapter_ItemClick;
+            Refresher.Refresh -= Refresher_Refresh;
+            Adapter.ItemClick -= Adapter_ItemClick;
         }
 
-        void Adapter_ItemClick(object sender, RecyclerClickEventArgs e)
+        private async void  Adapter_ItemClick(object sender, RecyclerClickEventArgs e)
         {
-            var item = ViewModel.Medis[e.Position];
-            var intent = new Intent(Activity, typeof(MediDetailActivity));
+            var medi = ViewModel.Medis[e.Position];
+            AppStore.Instance.CurrentMedi = medi;
 
-            intent.PutExtra("data", Newtonsoft.Json.JsonConvert.SerializeObject(item));
-            Activity.StartActivity(intent);
+            var waring = Strings.WARNING;
+            var cancel = Strings.CANCEL;
+            //var noLeft = NSBundle.MainBundle.GetLocalizedString(Strings.NO_JOKER_LEFT);
+            //var notEnough = NSBundle.MainBundle.GetLocalizedString(Strings.NOT_ENOUGH_JOKER_LEFT);
+            //var takeLast = NSBundle.MainBundle.GetLocalizedString(Strings.TAKE_LAST_JOKER_UNITS);
+
+            if (medi.Stock <= 0)
+            {
+                //Create Alert
+                //var okAlertController = UIAlertController.Create(waring, string.Format(noLeft, medi.Name), UIAlertControllerStyle.Alert);
+
+                //Add Action
+                //okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+
+                // Present Alert
+                //ParentController.PresentViewController(okAlertController, true, null);
+                Toast.MakeText(Context, $"No more {medi.Name} left.", ToastLength.Long);
+                return;
+            }
+            else if (medi.Stock - medi.Dosage < 0)
+            {
+                //Create Alert
+                //var okCancelAlertController = UIAlertController.Create(waring, string.Format(notEnough, medi.Name), UIAlertControllerStyle.Alert);
+
+                //Add Actions
+                //okCancelAlertController.AddAction(UIAlertAction.Create(string.Format(takeLast, medi.Name), UIAlertActionStyle.Default, async alert =>
+                //{
+                //    await UpdateList(medi);
+                //}));
+
+                //okCancelAlertController.AddAction(UIAlertAction.Create(cancel, UIAlertActionStyle.Cancel, null));
+
+                // Present Alert
+                //ParentController.PresentViewController(okCancelAlertController, true, null);
+                Toast.MakeText(Context, $"No more {medi.Name} left.", ToastLength.Long);
+                return;
+            }
+            await UpdateList(medi);
+
+            //var intent = new Intent(Activity, typeof(MediDetailActivity));
+
+            //intent.PutExtra("data", Newtonsoft.Json.JsonConvert.SerializeObject(item));
+            //Activity.StartActivity(intent);
         }
+
+        public async Task UpdateList(Medi medi)
+        {
+            var s = App.Container.Get<ISomeLogic>();
+            await s.HandleIntoke(medi);
+            ViewModel.LoadItemsCommand.Execute(this);
+            return;
+        }
+
 
         void Refresher_Refresh(object sender, EventArgs e)
         {
             ViewModel.LoadItemsCommand.Execute(null);
-            refresher.Refreshing = false;
+            Refresher.Refreshing = false;
         }
 
         public void BecameVisible()
