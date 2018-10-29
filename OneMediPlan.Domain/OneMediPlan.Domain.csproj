@@ -8,6 +8,7 @@
     <Description>Domain Für one </Description>
     <PackageId>OneMediPlanDomain</PackageId>
     <PackageVersion>1.0.0</PackageVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

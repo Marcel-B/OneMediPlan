@@ -6,12 +6,14 @@
     <PackOnBuild>true</PackOnBuild>
     <Authors>Marcel Benders</Authors>
     <Owners>Marcel Benders</Owners>
-    <PackageReleaseNotes>nix</PackageReleaseNotes>
+    <PackageReleaseNotes>nix
+</PackageReleaseNotes>
     <Summary>123</Summary>
     <Title>com.b_velop.OneMediPlan.Meta</Title>
     <Description>Klassen für One MediPlan</Description>
     <PackageId>OneMediPlanMeta</PackageId>
     <PackageVersion>1.0.0</PackageVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
