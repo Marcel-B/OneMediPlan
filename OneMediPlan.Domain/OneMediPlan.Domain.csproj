@@ -9,6 +9,8 @@
     <PackageId>OneMediPlanDomain</PackageId>
     <PackageVersion>1.0.0</PackageVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
+    <PackageReleaseNotes>User changed</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

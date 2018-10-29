@@ -12,7 +12,7 @@ namespace com.b_velop.OneMediPlan.Services
 
         protected AppStore() { }
 
-        public User User { get; set; }
+        public MediUser User { get; set; }
         public Medi CurrentMedi { get; set; }
         public AppSettings AppSettings { get; set; }
     }

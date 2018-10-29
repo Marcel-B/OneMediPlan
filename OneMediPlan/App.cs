@@ -119,7 +119,7 @@ namespace com.b_velop.OneMediPlan
                 Container.Bind<IDataStore<AppSettings>>().To<AppSettingsDataStore>().WithConstructorArgument("backendUrl", App.URL);
                 Container.Bind<IDataStore<DailyAppointment>>().To<DailyAppointmentDataStore>().WithConstructorArgument("backendUrl", App.URL);
             }
-            AppStore.Instance.User = new User
+            AppStore.Instance.User = new MediUser
             {
                 Id = MediDataMock.USER_ID,
                 Created = DateTimeOffset.Now,

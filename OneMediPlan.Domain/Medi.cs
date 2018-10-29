@@ -10,6 +10,7 @@ namespace com.b_velop.OneMediPlan.Domain
     {
         public string Name { get; set; }
 
+        [NotMapped]
         public Guid UserFk { get; set; }
 
         [NotMapped]
