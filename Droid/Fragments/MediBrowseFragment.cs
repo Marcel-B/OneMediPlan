@@ -1,29 +1,26 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-
+using com.b_velop.OneMediPlan.Helpers;
+using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.Services;
 using com.b_velop.OneMediPlan.ViewModels;
 using Ninject;
 using OneMediPlan.Droid;
-using com.b_velop.OneMediPlan.Helpers;
-using com.b_velop.OneMediPlan.Services;
-using com.b_velop.OneMediPlan.Meta;
-using System.Threading.Tasks;
-using com.b_velop.OneMediPlan.Domain;
 
 namespace com.b_velop.OneMediPlan.Droid
 {
-    public class BrowseFragment : Android.Support.V4.App.Fragment, IFragmentVisible
+    public class MediBrowseFragment : Android.Support.V4.App.Fragment, IFragmentVisible
     {
-        public static BrowseFragment NewInstance() =>
-            new BrowseFragment { Arguments = new Bundle() };
+        public static MediBrowseFragment NewInstance() =>
+            new MediBrowseFragment { Arguments = new Bundle() };
 
-        public BrowseItemsAdapter Adapter {get;set;}
+        public BrowseItemsAdapter Adapter { get; set; }
         public SwipeRefreshLayout Refresher { get; set; }
         public ProgressBar Progress { get; set; }
 
@@ -39,7 +36,7 @@ namespace com.b_velop.OneMediPlan.Droid
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             ViewModel = App.Container.Get<MainViewModel>();
-            var view = inflater.Inflate(Resource.Layout.fragment_browse, container, false);
+            var view = inflater.Inflate(Resource.Layout.fragmentMediBrowseLayout, container, false);
             var recyclerView =
                 view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
 
@@ -61,19 +58,22 @@ namespace com.b_velop.OneMediPlan.Droid
 
             Refresher.Refresh += Refresher_Refresh;
             Adapter.ItemClick += Adapter_ItemClick;
+            Adapter.ItemLongClick += Adapter_ItemLongClick;
 
             if (ViewModel.Medis.Count == 0)
                 ViewModel.LoadItemsCommand.Execute(null);
         }
+
 
         public override void OnStop()
         {
             base.OnStop();
             Refresher.Refresh -= Refresher_Refresh;
             Adapter.ItemClick -= Adapter_ItemClick;
+            Adapter.ItemLongClick -= Adapter_ItemLongClick;
         }
 
-        private async void  Adapter_ItemClick(object sender, RecyclerClickEventArgs e)
+        private async void Adapter_ItemClick(object sender, RecyclerClickEventArgs e)
         {
             var medi = ViewModel.Medis[e.Position];
             AppStore.Instance.CurrentMedi = medi;
@@ -115,22 +115,25 @@ namespace com.b_velop.OneMediPlan.Droid
                 Toast.MakeText(Context, $"No more {medi.Name} left.", ToastLength.Long);
                 return;
             }
-            await UpdateList(medi);
 
+            await Task.Run( async () => 
+            {
+                var s = App.Container.Get<ISomeLogic>();
+                await s.HandleIntoke(medi);
+                ViewModel.LoadItemsCommand.Execute(this);
+                return;
+            });
             //var intent = new Intent(Activity, typeof(MediDetailActivity));
-
             //intent.PutExtra("data", Newtonsoft.Json.JsonConvert.SerializeObject(item));
             //Activity.StartActivity(intent);
         }
 
-        public async Task UpdateList(Medi medi)
-        {
-            var s = App.Container.Get<ISomeLogic>();
-            await s.HandleIntoke(medi);
-            ViewModel.LoadItemsCommand.Execute(this);
-            return;
-        }
 
+        void Adapter_ItemLongClick(object sender, RecyclerClickEventArgs e)
+        {
+            // TODO - Edit / Delete / Stock menu open
+
+        }
 
         void Refresher_Refresh(object sender, EventArgs e)
         {
@@ -168,7 +171,7 @@ namespace com.b_velop.OneMediPlan.Droid
             var id = Resource.Layout.item_browse;
             itemView = LayoutInflater.From(parent.Context).Inflate(id, parent, false);
 
-            var vh = new MyViewHolder(itemView, OnClick, OnLongClick);
+            var vh = new MediViewHolder(itemView, OnClick, OnLongClick);
             return vh;
         }
 
@@ -178,9 +181,9 @@ namespace com.b_velop.OneMediPlan.Droid
             var item = ViewModel.Medis[position];
 
             // Replace the contents of the view with that element
-            var myHolder = holder as MyViewHolder;
+            var myHolder = holder as MediViewHolder;
             myHolder.Name.Text = item.Name;
-			myHolder.Stock.Text = item.GetStockInfo();
+            myHolder.Stock.Text = item.GetStockInfo();
             myHolder.NextDate.Text = item.GetNextDate();
             myHolder.LastDate.Text = item.GetLastDate();
             myHolder.Dosage.Text = item.GetDosage();
@@ -190,7 +193,7 @@ namespace com.b_velop.OneMediPlan.Droid
         public override int ItemCount => ViewModel.Medis.Count;
     }
 
-    public class MyViewHolder : RecyclerView.ViewHolder
+    public class MediViewHolder : RecyclerView.ViewHolder
     {
         public TextView Name { get; set; }
         public TextView Stock { get; set; }
@@ -199,7 +202,7 @@ namespace com.b_velop.OneMediPlan.Droid
         public TextView NextDate { get; set; }
 
 
-        public MyViewHolder(View itemView,
+        public MediViewHolder(View itemView,
                             Action<RecyclerClickEventArgs> clickListener,
                             Action<RecyclerClickEventArgs> longClickListener) : base(itemView)
         {
@@ -208,7 +211,14 @@ namespace com.b_velop.OneMediPlan.Droid
             Dosage = itemView.FindViewById<TextView>(Resource.Id.textViewMediDosage);
             LastDate = itemView.FindViewById<TextView>(Resource.Id.textViewMediLastDate);
             NextDate = itemView.FindViewById<TextView>(Resource.Id.textViewMediNextDate);
-            itemView.Click += (sender, e) => clickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
+           
+            itemView.Click += (sender, e) =>
+                clickListener(new RecyclerClickEventArgs
+                {
+                    View = itemView,
+                    Position = AdapterPosition
+                });
+
             itemView.LongClick += (sender, e) =>
                 longClickListener(new RecyclerClickEventArgs
                 {

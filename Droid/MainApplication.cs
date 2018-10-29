@@ -1,18 +1,11 @@
 ﻿using System;
-
 using Android.App;
 using Android.OS;
 using Android.Runtime;
-
-using Plugin.CurrentActivity;
-using com.b_velop.OneMediPlan;
 using com.b_velop.OneMediPlan.Domain;
-using Newtonsoft.Json;
-using System.IO;
-using com.b_velop.OneMediPlan.Services;
 using com.b_velop.OneMediPlan.Meta.Interfaces;
 using Ninject;
-using Android.Views.InputMethods;
+using Plugin.CurrentActivity;
 
 namespace com.b_velop.OneMediPlan.Droid
 {

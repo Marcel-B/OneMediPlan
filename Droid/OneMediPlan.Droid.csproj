@@ -144,7 +144,7 @@
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Fragments\SetttingsFragment.cs" />
-    <Compile Include="Fragments\BrowseFragment.cs" />
+    <Compile Include="Fragments\MediBrowseFragment.cs" />
     <Compile Include="Fragments\IFragmentVisible.cs" />
     <Compile Include="Helpers\BaseRecycleViewAdapter.cs" />
     <Compile Include="Helpers\RecyclerClickEvent.cs" />
@@ -173,7 +173,7 @@
     <AndroidResource Include="Resources\layout\activity_main.axml" />
     <AndroidResource Include="Resources\layout\activity_myitem_details.axml" />
     <AndroidResource Include="Resources\layout\settingsLayout.axml" />
-    <AndroidResource Include="Resources\layout\fragment_browse.axml" />
+    <AndroidResource Include="Resources\layout\fragmentMediBrowseLayout.axml" />
     <AndroidResource Include="Resources\layout\fragment_myitems.axml" />
     <AndroidResource Include="Resources\layout\item_browse.axml" />
     <AndroidResource Include="Resources\layout\item_my_item.axml" />

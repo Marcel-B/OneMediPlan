@@ -29,7 +29,7 @@ namespace com.b_velop.OneMediPlan.Droid
             switch (position)
             {
                 case 0: 
-                    return BrowseFragment.NewInstance();
+                    return MediBrowseFragment.NewInstance();
                 case 1: 
                     return SettingsFragment.NewInstance();
             }

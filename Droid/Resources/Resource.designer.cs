@@ -3222,10 +3222,10 @@ namespace OneMediPlan.Droid
 			public const int design_text_input_password_icon = 2130968619;
 			
 			// aapt resource value: 0x7f04002c
-			public const int fragment_browse = 2130968620;
+			public const int fragment_myitems = 2130968620;
 			
 			// aapt resource value: 0x7f04002d
-			public const int fragment_myitems = 2130968621;
+			public const int fragmentMediBrowseLayout = 2130968621;
 			
 			// aapt resource value: 0x7f04002e
 			public const int item_browse = 2130968622;
