@@ -10,7 +10,7 @@ namespace com.b_velop.OneMediPlan.Domain
 
         // ForaignKeys --
         public MediUser User { get; set; }
-        public Weekdays Weekdays { get; set; }
+        //public Weekdays Weekdays { get; set; }
         public IList<DailyAppointment> DailyAppointments { get; set; }
         // --------------
 

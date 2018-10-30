@@ -14,6 +14,7 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
         public static Weekdays MON_THUE = new Weekdays
         {
             Id = WeekdaysId,
+            Medi = MediDataMock.MON_N_THUE,
             Sunday = false,
             Monday = true,
             Tuesday = false,

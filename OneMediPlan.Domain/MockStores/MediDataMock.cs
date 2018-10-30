@@ -61,7 +61,6 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
             MinimumStock = 2,
             Dosage = 1,
             IntervallType = IntervallType.Weekdays,
-            Weekdays = WeekdaysDataMock.MON_THUE,
         };
 
         public static Medi SEVEN_DAYS = new Medi

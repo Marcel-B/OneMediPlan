@@ -7,11 +7,11 @@
     <Authors>Marcel Benders</Authors>
     <Description>Domain Für one </Description>
     <PackageId>OneMediPlanDomain</PackageId>
-    <PackageVersion>1.0.1</PackageVersion>
+    <PackageVersion>1.0.2</PackageVersion>
     <PackageOutputPath>..\..\..\packages</PackageOutputPath>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1</Version>
-    <PackageReleaseNotes>User changed</PackageReleaseNotes>
+    <Version>1.0.2</Version>
+    <PackageReleaseNotes>Bugfix Relations Weekdays -&gt; Medi</PackageReleaseNotes>
     <Copyright>2018 b-velop</Copyright>
     <PackageProjectUrl>https://marcelbenders.de</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Marcel-B/OneMediPlan</RepositoryUrl>
