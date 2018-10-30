@@ -3,19 +3,17 @@ using Android.App;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Widget;
-
-using com.b_velop.OneMediPlan.ViewModels;
-using OneMediPlan.Droid;
-using Ninject;
+using com.b_velop.OneMediPlan.Droid.Activities;
 using com.b_velop.OneMediPlan.Meta;
-using OneMediPlan.Droid.Activities;
+using com.b_velop.OneMediPlan.ViewModels;
+using Ninject;
 
 namespace com.b_velop.OneMediPlan.Droid
 {
     [Activity(Label = "AddNewMediActivity")]
-    public class AddNewMediActivity : Activity
+    public class AddNewMediActivity : BaseActivity
     {
-        //public FloatingActionButton SaveButton { get; set; }
+        protected override int LayoutResource => Resource.Layout.fragmentNameAndStockLayout;
         public FloatingActionButton Next { get; set; }
         public EditText Name { get; set; }
         public EditText Stock { get; set; }
@@ -28,13 +26,12 @@ namespace com.b_velop.OneMediPlan.Droid
             base.OnCreate(savedInstanceState);
 
             ViewModel = App.Container.Get<NewMediViewModel>();
-            SetContentView(Resource.Layout.fragmentNameAndStockLayout);
             IntervallType = FindViewById<Spinner>(Resource.Id.spinnerIntervallType);
             Next = FindViewById<FloatingActionButton>(Resource.Id.buttonNewMediNextButton);
             Name = FindViewById<EditText>(Resource.Id.editTextNewMediName);
             Stock = FindViewById<EditText>(Resource.Id.editTextNewMediStock);
             StockMinimum = FindViewById<EditText>(Resource.Id.editTextNewMediNewMediStockMinimum);
-            //Next.Text = Strings.NEXT;
+
             Next.Click += (sender, e) =>
             {
                 ViewModel.SaveNameCommand.Execute(null);
@@ -71,12 +68,6 @@ namespace com.b_velop.OneMediPlan.Droid
                     Android.Resource.Layout.SimpleSpinnerItem, arraySpinner);
 
             IntervallType.Adapter = adapter;
-            //SaveButton = FindViewById<FloatingActionButton>(Resource.Id.save_button);
         }
-
-        //void SaveButton_Click(object sender, EventArgs e)
-        //{
-        //    Finish();
-        //}
     }
 }

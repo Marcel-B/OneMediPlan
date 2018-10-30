@@ -15,7 +15,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textEditRawIntervall"
+        android:id="@+id/editTextRawIntervall"
         android:hint="intervall"
         android:numeric="decimal"
         android:inputType="numberDecimal" />
@@ -42,10 +42,17 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textEditDosage"
+        android:id="@+id/editTextDosage"
         android:hint="Dosage"
         android:numeric="decimal"
         android:inputType="numberDecimal" />
+    <TextView
+        android:text="units"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:id="@+id/textViewUnits" />
     
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatButtonNextIntervall"

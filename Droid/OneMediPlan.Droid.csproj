@@ -6,7 +6,7 @@
     <ProjectGuid>{17493038-CEEF-4995-B64B-B98E53CF0A5A}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>OneMediPlan.Droid</RootNamespace>
+    <RootNamespace>com.b_velop.OneMediPlan.Droid</RootNamespace>
     <AssemblyName>OneMediPlan.Droid</AssemblyName>
     <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
@@ -153,6 +153,7 @@
     <Compile Include="Activities\TabsAdapter.cs" />
     <Compile Include="Fragments\OutterMediBrowserFragment.cs" />
     <Compile Include="Activities\SetIntervallActivity.cs" />
+    <Compile Include="Activities\SetStartTimeActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AboutAssets.txt" />
@@ -196,6 +197,7 @@
     <AndroidResource Include="Resources\layout\fragmentMediItemLayout.axml" />
     <AndroidResource Include="Resources\layout\fragmentNameAndStockLayout.axml" />
     <AndroidResource Include="Resources\layout\activitySetIntervallLayout.axml" />
+    <AndroidResource Include="Resources\layout\activitySetStartTimeLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OneMediPlan.Meta\OneMediPlan.Meta.csproj">
