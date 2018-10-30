@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -8,6 +8,7 @@
     <Description>Domain Für one </Description>
     <PackageId>OneMediPlanDomain</PackageId>
     <PackageVersion>1.0.0</PackageVersion>
+    <PackageOutputPath>..\..\..\packages</PackageOutputPath>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>1.0.1</Version>
     <PackageReleaseNotes>User changed</PackageReleaseNotes>
@@ -31,4 +32,7 @@
   <ItemGroup>
     <ProjectReference Include="..\OneMediPlan.Meta\OneMediPlan.Meta.csproj" />
   </ItemGroup>
+  <!--<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="echo now copy files&#xD;&#xA;copy $(ProjectDir)bin\Debug\*.nupkg ..\..\..\packages\ /b/v/y&#xD;&#xA;" />
+  </Target>-->
 </Project>
