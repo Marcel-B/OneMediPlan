@@ -23,7 +23,6 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
             Name = "John Doe"
         };
 
-
         public static Medi ON_DEMAND = new Medi
         {
             Id = Guid.NewGuid(),

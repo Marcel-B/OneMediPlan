@@ -11,10 +11,10 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
     public class WeekdaysDataMock : IDataStore<Weekdays>
     {
         public static Guid WeekdaysId = Guid.NewGuid();
+
         public static Weekdays MON_THUE = new Weekdays
         {
             Id = WeekdaysId,
-            Medi = MediDataMock.MON_N_THUE,
             Sunday = false,
             Monday = true,
             Tuesday = false,
@@ -27,6 +27,7 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
         public WeekdaysDataMock(ILogger logger)
         {
             _logger = logger;
+            MON_THUE.Medi = MediDataMock.MON_N_THUE;
             Weekdays = new List<Weekdays>
             {
                 MON_THUE,
@@ -84,13 +85,18 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
         {
             _logger.Log($"Get all weekdays", GetType());
             return await Task.Run(() => Weekdays);
-        } 
+        }
 
         public async Task<IEnumerable<Weekdays>> GetItemsByFkAsync(Guid fk)
         {
             _logger.Log($"Get weekdays with medi key '{fk}'", GetType());
-            return await Task.Run(() => Weekdays.Where(w => w.Medi.Id == fk));
-        } 
+            return await Task.Run(() => Weekdays.Where(w =>
+             {
+                 if (w.Medi != null)
+                     return w.Medi.Id == fk;
+                 return false;
+             }));
+        }
 
         public async Task<Weekdays> UpdateItemAsync(Weekdays item)
         {
@@ -104,6 +110,6 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
                 return item;
             });
 
-        } 
+        }
     }
 }

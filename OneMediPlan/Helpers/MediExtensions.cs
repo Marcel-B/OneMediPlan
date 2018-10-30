@@ -28,7 +28,7 @@ namespace com.b_velop.OneMediPlan.Helpers
         {
             var d = new bool[7];
             d[0] = days.Sunday;
-            d[1] = days.Monday  ;
+            d[1] = days.Monday;
             d[2] = days.Tuesday;
             d[3] = days.Wednesday;
             d[4] = days.Thursday;
@@ -38,7 +38,9 @@ namespace com.b_velop.OneMediPlan.Helpers
         }
         public static void CalculateNewWeekdayIntervall(this Medi medi)
         {
-            var days = medi.Weekdays.AsArray();
+            var currentWeekday = AppStore.Instance.Weekdays[medi.Id];
+
+            var days = currentWeekday.AsArray();
             var now = DateTimeOffset.Now;
             var today = (int)now.DayOfWeek;
             int diffDay = 0;
@@ -62,7 +64,7 @@ namespace com.b_velop.OneMediPlan.Helpers
                 }
             }
             if (diffDay == 0)
-            diffDay = 7;
+                diffDay = 7;
 
             medi.PureIntervall = diffDay;
         }

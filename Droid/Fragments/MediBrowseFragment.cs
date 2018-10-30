@@ -7,7 +7,7 @@ using Android.Runtime;
 using Android.Text;
 using Android.Views;
 using Android.Widget;
-using com.b_velop.OneMediPlan.Domain;
+
 using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Meta;
 using com.b_velop.OneMediPlan.Meta.Interfaces;

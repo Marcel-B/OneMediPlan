@@ -140,11 +140,9 @@ namespace com.b_velop.OneMediPlan
             foreach (var medi in medis)
             {
                 var dailyAppointments = await dailyStore.GetItemsByFkAsync(medi.Id);
-                if (medi.Weekdays != null)
-                {
-                    var weekdays = await weekdaysStore.GetItemAsync(medi.Weekdays.Id);
-                    medi.Weekdays = weekdays;
-                }
+                var weekdays = (await weekdaysStore.GetItemsByFkAsync(medi.Id)).ToList();
+                if (weekdays.Count > 0)
+                    AppStore.Instance.Weekdays[medi.Id] = weekdays.First();
                 if (dailyAppointments != null)
                     medi.DailyAppointments = dailyAppointments.ToList();
                 appUser.Medis.Add(medi);
