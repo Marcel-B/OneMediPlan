@@ -1,19 +1,25 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>com.b_velop.OneMediPlan.Meta</RootNamespace>
+    <PackageOutputPath>..\..\..\packages</PackageOutputPath>
     <PackOnBuild>true</PackOnBuild>
     <Authors>Marcel Benders</Authors>
     <Owners>Marcel Benders</Owners>
-    <PackageReleaseNotes>nix
-</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      nix
+    </PackageReleaseNotes>
     <Summary>123</Summary>
     <Title>com.b_velop.OneMediPlan.Meta</Title>
     <Description>Klassen für One MediPlan</Description>
     <PackageId>OneMediPlanMeta</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
+    <Copyright>2018 b-velop</Copyright>
+    <PackageProjectUrl>https://marcel.benders.de</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Marcel-B/OneMediPlan</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
