@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Android.App;
+using Android.Content;
 using Android.OS;
-using Android.Support.V4.Widget;
-using Android.Support.V7.Widget;
+using Android.Runtime;
+using Android.Text;
 using Android.Views;
 using Android.Widget;
-
+using com.b_velop.OneMediPlan.Domain;
 using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.Meta.Interfaces;
 using com.b_velop.OneMediPlan.Services;
 using com.b_velop.OneMediPlan.ViewModels;
 using Ninject;
 using OneMediPlan.Droid;
-using com.b_velop.OneMediPlan.Meta.Interfaces;
-using Android.Content;
-using Android.Runtime;
 
 namespace com.b_velop.OneMediPlan.Droid
 {
@@ -24,17 +23,21 @@ namespace com.b_velop.OneMediPlan.Droid
         public static MediBrowseFragment NewInstance() =>
             new MediBrowseFragment { Arguments = new Bundle() };
 
-        public BrowseItemsAdapter Adapter { get; set; }
+        protected MediBrowseFragment()
+        {
+            _logger = App.Container.Get<ILogger>();
+            ViewModel = App.Container.Get<MainViewModel>();
+        }
 
         private ILogger _logger;
+
+        public BrowseItemsAdapter Adapter { get; set; }
         public static MainViewModel ViewModel { get; set; }
 
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            ViewModel = App.Container.Get<MainViewModel>();
             ListAdapter = new BrowseItemsAdapter(Context, Activity, ViewModel);
-            _logger = App.Container.Get<ILogger>();
         }
 
         public override void OnStart()
@@ -72,10 +75,11 @@ namespace com.b_velop.OneMediPlan.Droid
             {
                 case 0: // Edit
                     _logger.Log($"Edit Medi '{ViewModel.Medis[info.Position]}'", GetType());
-                        //Activity.StartActivity(typeof());
+                    //Activity.StartActivity(typeof());
                     break;
                 case 1: // Fill Stock
                     _logger.Log($"Edit stock from Medi'{ViewModel.Medis[info.Position]}'", GetType());
+                    ShowAlertWindow();
                     break;
                 case 2: // Delete selected
                     _logger.Log($"Delete Medi '{ViewModel.Medis[info.Position]}'", GetType());
@@ -89,9 +93,34 @@ namespace com.b_velop.OneMediPlan.Droid
         public override void OnStop()
         {
             base.OnStop();
-            //Refresher.Refresh -= Refresher_Refresh;
-            //Adapter.ItemClick -= Adapter_ItemClick;
-            //Adapter.ItemLongClick -= Adapter_ItemLongClick;
+        }
+
+        private void ShowAlertWindow()
+        {
+            var medi = AppStore.Instance.CurrentMedi;
+            AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
+            builder.SetTitle("Neuen Vorrat eingeben");
+
+            TextView label = new TextView(Activity);
+            label.Text = $"Neuen Vorrat für '{medi.Name}' eingeben";
+            // Set up the input
+            EditText input = new EditText(Activity);
+            input.Text = medi.Stock.ToString();
+            // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+            input.InputType = InputTypes.ClassNumber;// | InputTypes.TextVariationPassword;
+            builder.SetView(input);
+            //builder.SetView(label);
+
+            builder.SetPositiveButton("Ok", (sender, e) =>
+            {
+                Toast.MakeText(Context, $"Ok '{input.Text}'", ToastLength.Long).Show();
+            });
+
+            builder.SetNegativeButton(Strings.CANCEL, (sender, e) =>
+            {
+                Toast.MakeText(Context, "Cancel Button pressed", ToastLength.Long).Show();
+            });
+            builder.Show();
         }
 
         public async override void OnListItemClick(ListView l, View v, int position, long id)
@@ -101,6 +130,8 @@ namespace com.b_velop.OneMediPlan.Droid
 
             var waring = Strings.WARNING;
             var cancel = Strings.CANCEL;
+
+
             //var noLeft = NSBundle.MainBundle.GetLocalizedString(Strings.NO_JOKER_LEFT);
             //var notEnough = NSBundle.MainBundle.GetLocalizedString(Strings.NOT_ENOUGH_JOKER_LEFT);
             //var takeLast = NSBundle.MainBundle.GetLocalizedString(Strings.TAKE_LAST_JOKER_UNITS);
@@ -149,7 +180,7 @@ namespace com.b_velop.OneMediPlan.Droid
             //Activity.StartActivity(intent);
         }
 
-    
+
 
         public void BecameVisible()
         {
@@ -170,32 +201,6 @@ namespace com.b_velop.OneMediPlan.Droid
             this.ViewModel.Medis.CollectionChanged += (sender, args) =>
                 this.activity.RunOnUiThread(NotifyDataSetChanged);
         }
-
-        // Create new views (invoked by the layout manager)
-        //public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
-        //{
-        //    //Setup your layout here
-        //    View itemView = null;
-        //    var id = Resource.Layout.fragmentMediItemLayout;
-        //    itemView = LayoutInflater.From(parent.Context).Inflate(id, parent, false);
-
-        //    var viewHolder = new MediViewHolder(itemView, OnClick, OnLongClick);
-        //    return viewHolder;
-        //}
-
-        // Replace the contents of a view (invoked by the layout manager)
-        //public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
-        //{
-        //    var item = ViewModel.Medis[position];
-
-        //    // Replace the contents of the view with that element
-        //    var myHolder = holder as MediViewHolder;
-        //    myHolder.Name.Text = item.Name;
-        //    myHolder.Stock.Text = item.GetStockInfo();
-        //    myHolder.NextDate.Text = item.GetNextDate();
-        //    myHolder.LastDate.Text = item.GetLastDate();
-        //    myHolder.Dosage.Text = item.GetDosage();
-        //}
 
         public override Java.Lang.Object GetItem(int position)
             => position;

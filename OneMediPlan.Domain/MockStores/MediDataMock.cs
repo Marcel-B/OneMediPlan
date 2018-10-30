@@ -15,7 +15,7 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
         public static Guid MediAppointmentId = Guid.NewGuid();
 
         public List<Medi> Medis { get; set; }
-        private ILogger _logger;
+        private readonly  ILogger _logger;
 
         public static MediUser USER = new MediUser
         {
@@ -33,7 +33,7 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
             Stock = 11,
             MinimumStock = 1,
             Dosage = 5,
-            IntervallType = IntervallType.IfNeeded
+            IntervallType = IntervallType.IfNeeded,
         };
 
         public static Medi AFTER_ON_DEMAND = new Medi
@@ -46,7 +46,9 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
             DependsOn = ON_DEMAND.Id,
             Dosage = 1,
             Stock = 33,
-            MinimumStock = 2
+            MinimumStock = 2,
+            IntervallTime = IntervallTime.Day,
+            PureIntervall = 1
         };
 
         public static Medi MON_N_THUE = new Medi
