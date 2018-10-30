@@ -7,6 +7,7 @@ namespace com.b_velop.OneMediPlan.Droid
 {
     public class BaseActivity : AppCompatActivity
     {
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

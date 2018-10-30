@@ -152,6 +152,7 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Activities\TabsAdapter.cs" />
     <Compile Include="Fragments\OutterMediBrowserFragment.cs" />
+    <Compile Include="Activities\SetIntervallActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AboutAssets.txt" />
@@ -193,6 +194,8 @@
     <AndroidResource Include="Resources\values-v19\styles.xml" />
     <AndroidResource Include="Resources\values-v21\styles.xml" />
     <AndroidResource Include="Resources\layout\fragmentMediItemLayout.axml" />
+    <AndroidResource Include="Resources\layout\fragmentNameAndStockLayout.axml" />
+    <AndroidResource Include="Resources\layout\activitySetIntervallLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OneMediPlan.Meta\OneMediPlan.Meta.csproj">

@@ -29,16 +29,19 @@ namespace com.b_velop.OneMediPlan.Meta
         public static string CANCEL = "Cancel".Translate();
         public static string CURRENT_MEDI = "CurrentMedi";
 
+        public static string DAILY_APPOINTMENTS = "Daily Appointments".Translate();
         public static string DATE_CELL = "DateCell";
         public static string DAYS = "Day(s)";
         public static string DELETE = "Delete".Translate();
-        public static string DEPENDS = "Depends";
+        public static string DEPENDS = "Depends".Translate();
         public static string DOSAGE = "Dosage";
 
         public static string EDIT = "Edit".Translate();
 
         public static string HOURS = "Hour(s)";
 
+        public static string IF_NEEDED = "If Needed".Translate();
+        public static string INTERVALL = "Intervall".Translate();
         public static string INTERVALL_TYPE = "IntervallType";
 
         public static string LABEL_TEXT = "LabelText";
@@ -50,6 +53,7 @@ namespace com.b_velop.OneMediPlan.Meta
         public static string NAME = "Name";
         public static string NEW = "New";
         public static string NEW_MEDI = "NewMedi";
+        public static string NEXT = "Next".Translate();
         public static string NO_JOKER_LEFT = "NoJokerLeft";
         public static string NOT_ENOUGH_JOKER_LEFT = "NotEnoughJokerLeft";
         //public const string DATE_FORMAT = "DateFormat";
@@ -65,7 +69,7 @@ namespace com.b_velop.OneMediPlan.Meta
         public static string TODAY = "Today";
 
         public static string WARNING = "Warning".Translate();
-        public static string WEEKDAYS = "Weekdays";
+        public static string WEEKDAYS = "Weekdays".Translate();
         public static string WEEKS = "Week(s)";
     }
 }

@@ -7,15 +7,20 @@ using Android.Widget;
 using com.b_velop.OneMediPlan.ViewModels;
 using OneMediPlan.Droid;
 using Ninject;
+using com.b_velop.OneMediPlan.Meta;
+using OneMediPlan.Droid.Activities;
 
 namespace com.b_velop.OneMediPlan.Droid
 {
     [Activity(Label = "AddNewMediActivity")]
     public class AddNewMediActivity : Activity
     {
-        FloatingActionButton saveButton;
-        EditText title, description;
-
+        //public FloatingActionButton SaveButton { get; set; }
+        public FloatingActionButton Next { get; set; }
+        public EditText Name { get; set; }
+        public EditText Stock { get; set; }
+        public EditText StockMinimum { get; set; }
+        public Spinner IntervallType { get; set; }
         public NewMediViewModel ViewModel { get; set; }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -23,26 +28,55 @@ namespace com.b_velop.OneMediPlan.Droid
             base.OnCreate(savedInstanceState);
 
             ViewModel = App.Container.Get<NewMediViewModel>();
+            SetContentView(Resource.Layout.fragmentNameAndStockLayout);
+            IntervallType = FindViewById<Spinner>(Resource.Id.spinnerIntervallType);
+            Next = FindViewById<FloatingActionButton>(Resource.Id.buttonNewMediNextButton);
+            Name = FindViewById<EditText>(Resource.Id.editTextNewMediName);
+            Stock = FindViewById<EditText>(Resource.Id.editTextNewMediStock);
+            StockMinimum = FindViewById<EditText>(Resource.Id.editTextNewMediNewMediStockMinimum);
+            //Next.Text = Strings.NEXT;
+            Next.Click += (sender, e) =>
+            {
+                ViewModel.SaveNameCommand.Execute(null);
+                StartActivity(typeof(SetIntervallActivity));
+            };
+            IntervallType.ItemSelected += (sender, e) =>
+            {
+                ViewModel.IntervallType = e.Position;
+                Next.Enabled = ViewModel.SaveNameCommand.CanExecute(null);
+            };
+            Name.TextChanged += (sender, e) =>
+            {
+                ViewModel.Name = e.Text.ToString();
+                Next.Enabled = ViewModel.SaveNameCommand.CanExecute(null);
+            };
+            Stock.TextChanged += (sender, e) =>
+            {
+                ViewModel.Stock = e.Text.ToString();
+                Next.Enabled = ViewModel.SaveNameCommand.CanExecute(null);
+            };
+            StockMinimum.TextChanged += (sender, e) =>
+            {
+                ViewModel.StockMinimum = e.Text.ToString();
+                Next.Enabled = ViewModel.SaveNameCommand.CanExecute(null);
+            };
+            var arraySpinner = new[]{
+                Strings.INTERVALL,
+                Strings.WEEKDAYS,
+                Strings.DEPENDS,
+                Strings.IF_NEEDED,
+                Strings.DAILY_APPOINTMENTS
+            };
+            var adapter = new ArrayAdapter<String>(this,
+                    Android.Resource.Layout.SimpleSpinnerItem, arraySpinner);
 
-            // Create your application here
-            SetContentView(Resource.Layout.activity_add_item);
-            saveButton = FindViewById<FloatingActionButton>(Resource.Id.save_button);
-            title = FindViewById<EditText>(Resource.Id.txtTitle);
-            description = FindViewById<EditText>(Resource.Id.txtDesc);
-
-            saveButton.Click += SaveButton_Click;
+            IntervallType.Adapter = adapter;
+            //SaveButton = FindViewById<FloatingActionButton>(Resource.Id.save_button);
         }
 
-        void SaveButton_Click(object sender, EventArgs e)
-        {
-            //var item = new Medi
-            //{
-            //    Name = title.Text,
-            //    Description = description.Text
-            //};
-            //ViewModel.AddItemCommand.Execute(item);
-
-            Finish();
-        }
+        //void SaveButton_Click(object sender, EventArgs e)
+        //{
+        //    Finish();
+        //}
     }
 }

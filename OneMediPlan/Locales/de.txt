@@ -1,10 +1,17 @@
 ﻿Cancel = Abbruch
 
+Daily Appointments = mehrmals täglich
 Delete = löschen
+Depends = abhängig
 
 Edit = bearbeiten
 
+If Needed = bei Bedarf
+Intervall = Intervall
+
 Medis = Medis
+
+Next = weiter
 
 Save = speichern
 Settings = Einstellungen
@@ -12,3 +19,4 @@ Standard Time = Standardzeit
 Stock = Vorrat
 
 Warning = Achtung
+Weekdays = Wochentage

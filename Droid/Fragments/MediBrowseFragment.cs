@@ -30,7 +30,6 @@ namespace com.b_velop.OneMediPlan.Droid
         }
 
         private ILogger _logger;
-
         public BrowseItemsAdapter Adapter { get; set; }
         public static MainViewModel ViewModel { get; set; }
 

@@ -1,10 +1,17 @@
 ﻿Cancel = Cancel
 
+Daily Appointments = Daily Appointments
 Delete = delete
+Depends = depends
 
 Edit = Edit
 
+If Needed = If Needed
+Intervall = Intervall
+
 Medis = Medis
+
+Next = next
 
 Save = Save
 Settings = Settings
@@ -12,3 +19,4 @@ Standard Time = Standard Time
 Stock = Stock
 
 Warning = Warning
+Weekdays = Weekdays

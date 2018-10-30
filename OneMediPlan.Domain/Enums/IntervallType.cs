@@ -1,5 +1,4 @@
-﻿using System;
-namespace com.b_velop.OneMediPlan.Domain.Enums
+﻿namespace com.b_velop.OneMediPlan.Domain.Enums
 {
     public enum IntervallType
     {
