@@ -6,22 +6,23 @@ using Android.Widget;
 
 using com.b_velop.OneMediPlan.ViewModels;
 using OneMediPlan.Droid;
+using Ninject;
 
 namespace com.b_velop.OneMediPlan.Droid
 {
-    [Activity(Label = "AddItemActivity")]
-    public class AddItemActivity : Activity
+    [Activity(Label = "AddNewMediActivity")]
+    public class AddNewMediActivity : Activity
     {
         FloatingActionButton saveButton;
         EditText title, description;
 
-        public MainViewModel ViewModel { get; set; }
+        public NewMediViewModel ViewModel { get; set; }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            ViewModel = MediBrowseFragment.ViewModel;
+            ViewModel = App.Container.Get<NewMediViewModel>();
 
             // Create your application here
             SetContentView(Resource.Layout.activity_add_item);

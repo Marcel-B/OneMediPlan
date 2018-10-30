@@ -8,11 +8,70 @@ using com.b_velop.OneMediPlan.Services;
 using com.b_velop.OneMediPlan.ViewModels;
 using Ninject;
 using OneMediPlan.Droid;
+using com.b_velop.OneMediPlan.Meta.Interfaces;
 
 namespace com.b_velop.OneMediPlan.Droid
 {
     public class SettingsFragment : Android.Support.V4.App.Fragment, IFragmentVisible
     {
+        public static SettingsFragment NewInstance()
+           => new SettingsFragment { Arguments = new Bundle() };
+
+        protected SettingsFragment()
+        {
+            _logger = App.Container.Get<ILogger>();
+            ViewModel = App.Container.Get<AppSettingsViewModel>();
+        }
+
+        private readonly ILogger _logger;
+        public AppSettingsViewModel ViewModel { get; set; }
+        public Button SaveSettings { get; set; }
+        public TimePicker Time { get; set; }
+        public TextView StandardTime { get; set; }
+
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+        }
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+            => inflater.Inflate(Resource.Layout.settingsLayout, container, false);
+
+        public override void OnStart()
+        {
+            base.OnStart();
+            GetViews();
+            Localize();
+            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+            SaveSettings.Click += SaveSettingsButtonn_Click;
+            Time.TimeChanged += Time_TimeChanged;
+        }
+
+        public override void OnStop()
+        {
+            base.OnStop();
+            ViewModel.PropertyChanged -= ViewModel_PropertyChanged;
+            SaveSettings.Click -= SaveSettingsButtonn_Click;
+            Time.TimeChanged -= Time_TimeChanged;
+        }
+
+        public void BecameVisible() 
+        {
+        }
+
+        private void GetViews()
+        {
+            SaveSettings = View.FindViewById<Button>(Resource.Id.buttonSaveSettings);
+            Time = View.FindViewById<TimePicker>(Resource.Id.timePickerStdTime);
+            StandardTime = View.FindViewById<TextView>(Resource.Id.textViewStandardTime);
+        }
+
+        private void Localize()
+        {
+            StandardTime.Text = Strings.STANDARD_TIME;
+            SaveSettings.Text = Strings.SAVE;
+        }
+
         void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (sender is AppSettingsViewModel viewModel)
@@ -25,59 +84,16 @@ namespace com.b_velop.OneMediPlan.Droid
             }
         }
 
-        public static SettingsFragment NewInstance() =>
-            new SettingsFragment { Arguments = new Bundle() };
-
-        public AppSettingsViewModel ViewModel { get; set; }
-
-        public override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
-            ViewModel = App.Container.Get<AppSettingsViewModel>();
-        }
-
-        public Button SaveSettings { get; set; }
-        public TimePicker Time { get; set; }
-
-        private void GetViews(View view)
-        {
-            SaveSettings = view.FindViewById<Button>(Resource.Id.buttonSaveSettings);
-            Time = view.FindViewById<TimePicker>(Resource.Id.timePickerStdTime);
-        }
-        private void Localize()
-        {
-            SaveSettings.Text = Strings.SAVE;
-        }
-
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            var view = inflater.Inflate(Resource.Layout.settingsLayout, container, false);
-            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
-            GetViews(view);
-            Localize();
-            return view;
-        }
-
-        public override void OnStart()
-        {
-            base.OnStart();
-            SaveSettings.Click += SaveSettingsButtonn_Click;
-        }
-
-        public override void OnStop()
-        {
-            base.OnStop();
-            SaveSettings.Click -= SaveSettingsButtonn_Click;
-        }
-
-        public void BecameVisible(){}
-
         void SaveSettingsButtonn_Click(object sender, System.EventArgs e)
         {
-            ViewModel.Hour = Time.Hour;
-            ViewModel.Minute = Time.Hour;
             ViewModel.SaveSettingsCommand.Execute(null);
             Toast.MakeText(Context, $"Saved Settings", ToastLength.Long).Show();
+        }
+
+        void Time_TimeChanged(object sender, TimePicker.TimeChangedEventArgs e)
+        {
+            ViewModel.Hour = e.HourOfDay;
+            ViewModel.Minute = e.Minute;
         }
     }
 }

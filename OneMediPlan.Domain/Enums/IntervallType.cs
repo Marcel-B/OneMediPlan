@@ -7,7 +7,7 @@ namespace com.b_velop.OneMediPlan.Domain.Enums
         Intervall = 0,
         Weekdays = 1,
         Depend = 2,
-        IfNedded = 3,
+        IfNeeded = 3,
         DailyAppointment = 4,
     }
 }

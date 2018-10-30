@@ -28,7 +28,7 @@ namespace com.b_velop.OneMediPlan.iOS
                     intervallType = IntervallType.Weekdays;
                     break;
                 case 4:
-                    intervallType = IntervallType.IfNedded;
+                    intervallType = IntervallType.IfNeeded;
                     break;
                 case 5:
                     intervallType = IntervallType.DailyAppointment;

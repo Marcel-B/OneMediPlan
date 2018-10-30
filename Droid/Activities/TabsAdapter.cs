@@ -2,6 +2,7 @@
 using Android.Support.V4.App;
 
 using com.b_velop.OneMediPlan.Meta;
+using OneMediPlan.Droid.Fragments;
 
 namespace com.b_velop.OneMediPlan.Droid
 {
@@ -13,12 +14,12 @@ namespace com.b_velop.OneMediPlan.Droid
 
         public TabsAdapter(Context context, Android.Support.V4.App.FragmentManager fm) : base(fm)
         {
-            titles = new []
+            titles = new[]
             {
                 Strings.MEDIS,
                 Strings.SETTINGS,
             };
-                //context.Resources.GetTextArray(Resource.Array.sections);
+            //context.Resources.GetTextArray(Resource.Array.sections);
         }
 
         public override Java.Lang.ICharSequence GetPageTitleFormatted(int position) =>
@@ -28,9 +29,9 @@ namespace com.b_velop.OneMediPlan.Droid
         {
             switch (position)
             {
-                case 0: 
-                    return MediBrowseFragment.NewInstance();
-                case 1: 
+                case 0:
+                    return OutterMediBrowserFragment.NewInstance();
+                case 1:
                     return SettingsFragment.NewInstance();
             }
             return null;

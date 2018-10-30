@@ -138,7 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainApplication.cs" />
-    <Compile Include="Activities\AddItemActivity.cs" />
+    <Compile Include="Activities\AddNewMediActivity.cs" />
     <Compile Include="Activities\BaseActivity.cs" />
     <Compile Include="Activities\MediDetailActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
@@ -151,6 +151,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Activities\TabsAdapter.cs" />
+    <Compile Include="Fragments\OutterMediBrowserFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AboutAssets.txt" />
@@ -175,7 +176,6 @@
     <AndroidResource Include="Resources\layout\settingsLayout.axml" />
     <AndroidResource Include="Resources\layout\fragmentMediBrowseLayout.axml" />
     <AndroidResource Include="Resources\layout\fragment_myitems.axml" />
-    <AndroidResource Include="Resources\layout\item_browse.axml" />
     <AndroidResource Include="Resources\layout\item_my_item.axml" />
     <AndroidResource Include="Resources\layout\tabs.axml" />
     <AndroidResource Include="Resources\layout\toolbar.axml" />
@@ -192,6 +192,7 @@
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\values-v19\styles.xml" />
     <AndroidResource Include="Resources\values-v21\styles.xml" />
+    <AndroidResource Include="Resources\layout\fragmentMediItemLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OneMediPlan.Meta\OneMediPlan.Meta.csproj">

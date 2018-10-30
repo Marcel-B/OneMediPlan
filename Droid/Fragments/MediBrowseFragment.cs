@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Android.App;
+using Android.Content;
 using Android.OS;
-using Android.Support.V4.Widget;
-using Android.Support.V7.Widget;
+using Android.Runtime;
+using Android.Text;
 using Android.Views;
 using Android.Widget;
+using com.b_velop.OneMediPlan.Domain;
 using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.Meta.Interfaces;
 using com.b_velop.OneMediPlan.Services;
 using com.b_velop.OneMediPlan.ViewModels;
 using Ninject;
@@ -15,71 +18,120 @@ using OneMediPlan.Droid;
 
 namespace com.b_velop.OneMediPlan.Droid
 {
-    public class MediBrowseFragment : Android.Support.V4.App.Fragment, IFragmentVisible
+    public class MediBrowseFragment : Android.Support.V4.App.ListFragment, IFragmentVisible
     {
         public static MediBrowseFragment NewInstance() =>
             new MediBrowseFragment { Arguments = new Bundle() };
 
-        public BrowseItemsAdapter Adapter { get; set; }
-        public SwipeRefreshLayout Refresher { get; set; }
-        public ProgressBar Progress { get; set; }
+        protected MediBrowseFragment()
+        {
+            _logger = App.Container.Get<ILogger>();
+            ViewModel = App.Container.Get<MainViewModel>();
+        }
 
+        private ILogger _logger;
+
+        public BrowseItemsAdapter Adapter { get; set; }
         public static MainViewModel ViewModel { get; set; }
 
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-            // Create your fragment here
-        }
-
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            ViewModel = App.Container.Get<MainViewModel>();
-            var view = inflater.Inflate(Resource.Layout.fragmentMediBrowseLayout, container, false);
-            var recyclerView =
-                view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
-
-            recyclerView.HasFixedSize = true;
-            recyclerView.SetAdapter(Adapter = new BrowseItemsAdapter(Activity, ViewModel));
-
-            Refresher = view.FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
-            Refresher.SetColorSchemeColors(Resource.Color.accent);
-
-            Progress = view.FindViewById<ProgressBar>(Resource.Id.progressbar_loading);
-            Progress.Visibility = ViewStates.Gone;
-
-            return view;
+            ListAdapter = new BrowseItemsAdapter(Context, Activity, ViewModel);
         }
 
         public override void OnStart()
         {
             base.OnStart();
-
-            Refresher.Refresh += Refresher_Refresh;
-            Adapter.ItemClick += Adapter_ItemClick;
-            Adapter.ItemLongClick += Adapter_ItemLongClick;
-
-            if (ViewModel.Medis.Count == 0)
-                ViewModel.LoadItemsCommand.Execute(null);
+            //if (ViewModel.Medis.Count == 0)
+            ViewModel.LoadItemsCommand.Execute(null);
         }
 
+        public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
+        {
+            base.OnCreateContextMenu(menu, v, menuInfo);
+            if (v == ListView)
+            {
+                var info = (AdapterView.AdapterContextMenuInfo)menuInfo;
+                menu.SetHeaderTitle(ViewModel.Medis[info.Position].Name);
+                menu.Add(Menu.None, 0, 0, Strings.EDIT);
+                menu.Add(Menu.None, 1, 1, Strings.STOCK);
+                menu.Add(Menu.None, 2, 2, Strings.DELETE);
+            }
+            _logger.Log("Context menu method here", GetType());
+        }
+
+        public override void OnActivityCreated(Bundle savedInstanceState)
+        {
+            base.OnActivityCreated(savedInstanceState);
+            RegisterForContextMenu(ListView);
+        }
+        public override bool OnContextItemSelected(IMenuItem item)
+        {
+            var info = (AdapterView.AdapterContextMenuInfo)item.MenuInfo;
+            var menuItemIndex = item.ItemId;
+            AppStore.Instance.CurrentMedi = ViewModel.Medis[info.Position];
+            switch (menuItemIndex)
+            {
+                case 0: // Edit
+                    _logger.Log($"Edit Medi '{ViewModel.Medis[info.Position]}'", GetType());
+                    //Activity.StartActivity(typeof());
+                    break;
+                case 1: // Fill Stock
+                    _logger.Log($"Edit stock from Medi'{ViewModel.Medis[info.Position]}'", GetType());
+                    ShowAlertWindow();
+                    break;
+                case 2: // Delete selected
+                    _logger.Log($"Delete Medi '{ViewModel.Medis[info.Position]}'", GetType());
+                    //Task.Run(() => ViewModel.DeleteMedi(info.Position));
+                    break;
+            }
+            Toast.MakeText(Activity, $"Selected '{menuItemIndex}'", ToastLength.Short).Show();
+            return true;
+        }
 
         public override void OnStop()
         {
             base.OnStop();
-            Refresher.Refresh -= Refresher_Refresh;
-            Adapter.ItemClick -= Adapter_ItemClick;
-            Adapter.ItemLongClick -= Adapter_ItemLongClick;
         }
 
-        private async void Adapter_ItemClick(object sender, RecyclerClickEventArgs e)
+        private void ShowAlertWindow()
         {
-            var medi = ViewModel.Medis[e.Position];
+            var medi = AppStore.Instance.CurrentMedi;
+            AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
+            builder.SetTitle("Neuen Vorrat eingeben");
+
+            TextView label = new TextView(Activity);
+            label.Text = $"Neuen Vorrat für '{medi.Name}' eingeben";
+            // Set up the input
+            EditText input = new EditText(Activity);
+            input.Text = medi.Stock.ToString();
+            // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+            input.InputType = InputTypes.ClassNumber;// | InputTypes.TextVariationPassword;
+            builder.SetView(input);
+            //builder.SetView(label);
+
+            builder.SetPositiveButton("Ok", (sender, e) =>
+            {
+                Toast.MakeText(Context, $"Ok '{input.Text}'", ToastLength.Long).Show();
+            });
+
+            builder.SetNegativeButton(Strings.CANCEL, (sender, e) =>
+            {
+                Toast.MakeText(Context, "Cancel Button pressed", ToastLength.Long).Show();
+            });
+            builder.Show();
+        }
+
+        public async override void OnListItemClick(ListView l, View v, int position, long id)
+        {
+            var medi = ViewModel.Medis[position];
             AppStore.Instance.CurrentMedi = medi;
 
             var waring = Strings.WARNING;
             var cancel = Strings.CANCEL;
+
+
             //var noLeft = NSBundle.MainBundle.GetLocalizedString(Strings.NO_JOKER_LEFT);
             //var notEnough = NSBundle.MainBundle.GetLocalizedString(Strings.NOT_ENOUGH_JOKER_LEFT);
             //var takeLast = NSBundle.MainBundle.GetLocalizedString(Strings.TAKE_LAST_JOKER_UNITS);
@@ -94,7 +146,7 @@ namespace com.b_velop.OneMediPlan.Droid
 
                 // Present Alert
                 //ParentController.PresentViewController(okAlertController, true, null);
-                Toast.MakeText(Context, $"No more {medi.Name} left.", ToastLength.Long);
+                Toast.MakeText(Context, $"No more '{medi.Name}' left.", ToastLength.Long).Show();
                 return;
             }
             else if (medi.Stock - medi.Dosage < 0)
@@ -112,119 +164,86 @@ namespace com.b_velop.OneMediPlan.Droid
 
                 // Present Alert
                 //ParentController.PresentViewController(okCancelAlertController, true, null);
-                Toast.MakeText(Context, $"No more {medi.Name} left.", ToastLength.Long);
+                Toast.MakeText(Context, $"No more '{medi.Name}' left.", ToastLength.Long);
                 return;
             }
 
-            await Task.Run( async () => 
-            {
-                var s = App.Container.Get<ISomeLogic>();
-                await s.HandleIntoke(medi);
-                ViewModel.LoadItemsCommand.Execute(this);
-                return;
-            });
+            await Task.Run(async () =>
+           {
+               var s = App.Container.Get<ISomeLogic>();
+               await s.HandleIntoke(medi);
+               ViewModel.LoadItemsCommand.Execute(this);
+               return;
+           });
             //var intent = new Intent(Activity, typeof(MediDetailActivity));
             //intent.PutExtra("data", Newtonsoft.Json.JsonConvert.SerializeObject(item));
             //Activity.StartActivity(intent);
         }
 
 
-        void Adapter_ItemLongClick(object sender, RecyclerClickEventArgs e)
-        {
-            // TODO - Edit / Delete / Stock menu open
-
-        }
-
-        void Refresher_Refresh(object sender, EventArgs e)
-        {
-            ViewModel.LoadItemsCommand.Execute(null);
-            Refresher.Refreshing = false;
-        }
 
         public void BecameVisible()
         {
-
         }
     }
 
-    public class BrowseItemsAdapter : BaseRecycleViewAdapter
+    public class BrowseItemsAdapter : BaseAdapter// BaseRecycleViewAdapter
     {
         public MainViewModel ViewModel { get; set; }
-        Activity activity;
+        public Activity activity;
+        public Context Context;
 
-        public BrowseItemsAdapter(Activity activity, MainViewModel viewModel)
+        public BrowseItemsAdapter(Context content, Activity activity, MainViewModel viewModel)
         {
+            this.Context = content;
             this.ViewModel = viewModel;
             this.activity = activity;
-
             this.ViewModel.Medis.CollectionChanged += (sender, args) =>
-            {
                 this.activity.RunOnUiThread(NotifyDataSetChanged);
-            };
         }
 
-        // Create new views (invoked by the layout manager)
-        public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
-        {
-            //Setup your layout here
-            View itemView = null;
-            var id = Resource.Layout.item_browse;
-            itemView = LayoutInflater.From(parent.Context).Inflate(id, parent, false);
+        public override Java.Lang.Object GetItem(int position)
+            => position;
 
-            var vh = new MediViewHolder(itemView, OnClick, OnLongClick);
-            return vh;
-        }
+        public override long GetItemId(int position)
+            => position;
 
-        // Replace the contents of a view (invoked by the layout manager)
-        public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
+        public override View GetView(int position, View convertView, ViewGroup parent)
         {
             var item = ViewModel.Medis[position];
-
-            // Replace the contents of the view with that element
-            var myHolder = holder as MediViewHolder;
-            myHolder.Name.Text = item.Name;
-            myHolder.Stock.Text = item.GetStockInfo();
-            myHolder.NextDate.Text = item.GetNextDate();
-            myHolder.LastDate.Text = item.GetLastDate();
-            myHolder.Dosage.Text = item.GetDosage();
-
+            var view = convertView;
+            MediViewHolder holder = null;
+            if (view != null)
+                holder = view.Tag as MediViewHolder;
+            if (holder == null)
+            {
+                holder = new MediViewHolder();
+                var inflater = Context.GetSystemService(Context.LayoutInflaterService)
+                              .JavaCast<LayoutInflater>();
+                view = inflater.Inflate(Resource.Layout.fragmentMediItemLayout, parent, false);
+                holder.Name = view.FindViewById<TextView>(Resource.Id.textViewMediName);
+                holder.Stock = view.FindViewById<TextView>(Resource.Id.textViewMediStock);
+                holder.Dosage = view.FindViewById<TextView>(Resource.Id.textViewMediDosage);
+                holder.LastDate = view.FindViewById<TextView>(Resource.Id.textViewMediLastDate);
+                holder.NextDate = view.FindViewById<TextView>(Resource.Id.textViewMediNextDate);
+                view.Tag = holder;
+            }
+            holder.Name.Text = item.Name;
+            holder.Stock.Text = item.GetStockInfo();
+            holder.NextDate.Text = item.GetNextDate();
+            holder.LastDate.Text = item.GetLastDate();
+            holder.Dosage.Text = item.GetDosage();
+            return view;
         }
-
-        public override int ItemCount => ViewModel.Medis.Count;
+        public override int Count => ViewModel.Medis.Count;
     }
 
-    public class MediViewHolder : RecyclerView.ViewHolder
+    public class MediViewHolder : Java.Lang.Object
     {
         public TextView Name { get; set; }
         public TextView Stock { get; set; }
         public TextView Dosage { get; set; }
         public TextView LastDate { get; set; }
         public TextView NextDate { get; set; }
-
-
-        public MediViewHolder(View itemView,
-                            Action<RecyclerClickEventArgs> clickListener,
-                            Action<RecyclerClickEventArgs> longClickListener) : base(itemView)
-        {
-            Name = itemView.FindViewById<TextView>(Resource.Id.textViewMediName);
-            Stock = itemView.FindViewById<TextView>(Resource.Id.textViewMediStock);
-            Dosage = itemView.FindViewById<TextView>(Resource.Id.textViewMediDosage);
-            LastDate = itemView.FindViewById<TextView>(Resource.Id.textViewMediLastDate);
-            NextDate = itemView.FindViewById<TextView>(Resource.Id.textViewMediNextDate);
-           
-            itemView.Click += (sender, e) =>
-                clickListener(new RecyclerClickEventArgs
-                {
-                    View = itemView,
-                    Position = AdapterPosition
-                });
-
-            itemView.LongClick += (sender, e) =>
-                longClickListener(new RecyclerClickEventArgs
-                {
-                    View = itemView,
-                    Position = AdapterPosition
-                });
-        }
     }
 }
