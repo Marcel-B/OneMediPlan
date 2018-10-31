@@ -30,14 +30,6 @@ namespace com.b_velop.OneMediPlan.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIPickerView PickerIntervallType { get; set; }
 
-        [Action ("ButtonNextTouched:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        partial void ButtonNextTouched (UIKit.UIButton sender);
-
-        [Action ("TextFieldIntervallChanged:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        partial void TextFieldIntervallChanged (UIKit.UITextField sender);
-
         void ReleaseDesignerOutlets ()
         {
             if (ButtonNext != null) {

@@ -217,10 +217,7 @@
                                 <rect key="frame" x="20" y="90" width="374" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="TextFieldEditingBegin:" destination="2248" eventType="editingDidBegin" id="51388"/>
-                                    <action selector="TextFieldEditingChanged:" destination="2248" eventType="editingChanged" id="52160"/>
-                                </connections>
+                                <connections/>
                             </textField>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6739">
                                 <rect key="frame" x="20" y="177" width="374" height="31"/>
@@ -228,8 +225,7 @@
                                     <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="ButtonNext_TouchUpInside:" destination="2248" eventType="touchUpInside" id="49072"/>
-                                    <segue destination="7323" kind="show" id="7520"/>
+                                    <segue id="78077" destination="16030" kind="show"/>
                                 </connections>
                                 <constraints>
                                     <constraint id="77222" firstAttribute="height" constant="31"/>
@@ -279,91 +275,6 @@
             <point key="canvasLocation" x="2725" y="-781"/>
         </scene>
         <!--Vorrat-->
-        <scene sceneID="7322">
-            <objects>
-                <viewController id="7323" customClass="MediStockViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7320"/>
-                        <viewControllerLayoutGuide type="bottom" id="7321"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7324">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vorrat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10847">
-                                <rect key="frame" x="20" y="142" width="374" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="13824"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="28"/>
-                                <color key="textColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="highlightedColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="momentan" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="10903">
-                                <rect key="frame" x="20" y="187" width="179" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                <connections>
-                                    <action selector="TextViewStockChanged:" destination="7323" eventType="editingChanged" id="52933"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="minimum" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="10958">
-                                <rect key="frame" x="212" y="187" width="182" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="14104"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                <connections>
-                                    <action selector="TextViewStockMinimumChanged:" destination="7323" eventType="editingChanged" id="53705"/>
-                                </connections>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13146">
-                                <rect key="frame" x="20" y="225" width="374" height="30"/>
-                                <state key="normal" title="Weiter">
-                                    <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="ButtonNext_TouchUpInside:" destination="7323" eventType="touchUpInside" id="73388"/>
-                                    <segue destination="16030" kind="show" id="16103"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.87450980392156863" green="0.97647058823529409" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="10847" firstAttribute="centerX" secondItem="7324" secondAttribute="centerX" id="13686"/>
-                            <constraint firstItem="10847" firstAttribute="leading" secondItem="7324" secondAttribute="leadingMargin" id="13714"/>
-                            <constraint firstItem="10847" firstAttribute="trailing" secondItem="7324" secondAttribute="trailingMargin" id="13742"/>
-                            <constraint firstItem="10903" firstAttribute="top" secondItem="10847" secondAttribute="bottom" constant="8" id="13880"/>
-                            <constraint firstItem="10958" firstAttribute="top" secondItem="10847" secondAttribute="bottom" constant="8" id="13908"/>
-                            <constraint firstItem="10903" firstAttribute="leading" secondItem="13146" secondAttribute="leading" id="13936"/>
-                            <constraint firstItem="10903" firstAttribute="width" secondItem="10958" secondAttribute="width" constant="-3" id="13964"/>
-                            <constraint firstItem="10903" firstAttribute="leading" secondItem="7324" secondAttribute="leadingMargin" id="13992"/>
-                            <constraint firstItem="10958" firstAttribute="trailing" secondItem="7324" secondAttribute="trailingMargin" id="14020"/>
-                            <constraint firstItem="10958" firstAttribute="top" secondItem="10847" secondAttribute="bottom" constant="8" id="14048"/>
-                            <constraint firstItem="10903" firstAttribute="height" secondItem="10958" secondAttribute="height" id="14076"/>
-                            <constraint firstItem="13146" firstAttribute="centerX" secondItem="10903" secondAttribute="trailing" constant="8" id="14132"/>
-                            <constraint firstItem="13146" firstAttribute="leading" secondItem="7324" secondAttribute="leadingMargin" id="14651"/>
-                            <constraint firstItem="13146" firstAttribute="top" secondItem="10903" secondAttribute="bottom" constant="8" id="14679"/>
-                            <constraint firstItem="13146" firstAttribute="trailing" secondItem="7324" secondAttribute="trailingMargin" id="14707"/>
-                            <constraint firstItem="13146" firstAttribute="centerX" secondItem="7324" secondAttribute="centerX" id="14735"/>
-                            <constraint firstItem="13146" firstAttribute="centerX" secondItem="10903" secondAttribute="trailing" constant="8" id="15379"/>
-                            <constraint firstItem="10847" firstAttribute="top" secondItem="7320" secondAttribute="bottom" constant="20" id="19154"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Vorrat" id="16884"/>
-                    <connections>
-                        <outlet property="ButtonNext" destination="13146" id="name-outlet-13146"/>
-                        <outlet property="LabelCurrentStock" destination="10903" id="name-outlet-10903"/>
-                        <outlet property="LabelMinimumStock" destination="10958" id="name-outlet-10958"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7325" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3237" y="-790"/>
-        </scene>
         <!--Intervalltyp-->
         <scene sceneID="16029">
             <objects>
@@ -503,9 +414,7 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                <connections>
-                                    <action selector="TextFieldIntervallChanged:" destination="16947" eventType="editingChanged" id="59123"/>
-                                </connections>
+                                <connections/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29748">
                                 <rect key="frame" x="20" y="321" width="240" height="37"/>
@@ -522,7 +431,6 @@
                                     <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="ButtonNextTouched:" destination="16947" eventType="touchUpInside" id="59897"/>
                                     <segue destination="17910" kind="show" id="35200"/>
                                 </connections>
                             </button>

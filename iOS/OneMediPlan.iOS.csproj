@@ -256,10 +256,6 @@
     <Compile Include="ViewControllers\SaveMediViewController.designer.cs">
       <DependentUpon>SaveMediViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\DosageViewController.cs" />
-    <Compile Include="ViewControllers\DosageViewController.designer.cs">
-      <DependentUpon>DosageViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Helper\IosExtensions.cs" />
     <Compile Include="ViewControllers\DailyViewController.cs" />
     <Compile Include="ViewControllers\DailyViewController.designer.cs">

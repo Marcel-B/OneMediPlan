@@ -1,17 +1,29 @@
-using Foundation;
 using System;
-using UIKit;
-using Ninject;
-using com.b_velop.OneMediPlan.Models;
-using com.b_velop.OneMediPlan.ViewModels;
-using com.b_velop.OneMediPlan.Meta;
-using com.b_velop.OneMediPlan.Domain.Enums;
 using com.b_velop.OneMediPlan.Domain;
+using com.b_velop.OneMediPlan.Domain.Enums;
+using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.ViewModels;
+using Foundation;
+using Ninject;
+using UIKit;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class IntervallTypeViewController : UIViewController
     {
+        public IntervallTypeViewController(IntPtr handle) : base(handle)
+        {
+            ViewModel = App.Container.Get<NewMediViewModel>();
+        }
+
+        public NewMediViewModel ViewModel { get; set; }
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            Title = Strings.INTERVALL_TYPE;
+        }
+
         partial void SetIntervallTouched(UIButton sender)
         {
             var t = sender.Tag;
@@ -36,23 +48,7 @@ namespace com.b_velop.OneMediPlan.iOS
                 default:
                     break;
             }
-            ViewModel.SelectIntervallCommand.Execute(intervallType);
-        }
-
-        public Medi CurrentMedi { get; set; }
-        public IntervallTypeViewModel ViewModel;
-
-        public IntervallTypeViewController(IntPtr handle) : base(handle)
-        {
-
-            ViewModel = App.Container.Get<IntervallTypeViewModel>();
-        }
-
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-            ViewModel.Init();
-            Title = NSBundle.MainBundle.GetLocalizedString(Strings.INTERVALL_TYPE);
+            ViewModel.IntervallType = intervallType;
         }
     }
 }

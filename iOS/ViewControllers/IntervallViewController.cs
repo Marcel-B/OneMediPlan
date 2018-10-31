@@ -12,28 +12,13 @@ namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class IntervallViewController : UIViewController
     {
-        public IntervallViewModel ViewModel { get; set; }
-
-        partial void ButtonNextTouched(UIButton sender)
-            => ViewModel.NextCommand.Execute(null);
-
-        partial void TextFieldIntervallChanged(UITextField sender)
-        {
-            ButtonNext.Hidden = !ViewModel.NextCommand.CanExecute(sender.Text);
-        }
-
         public IntervallViewController(IntPtr handle) : base(handle)
         {
-            var list = new List<string>
-            {
-                NSBundle.MainBundle.GetLocalizedString(Strings.MINUTES),
-                NSBundle.MainBundle.GetLocalizedString(Strings.HOURS),
-                NSBundle.MainBundle.GetLocalizedString(Strings.DAYS),
-                NSBundle.MainBundle.GetLocalizedString(Strings.WEEKS)
-            };
-            ViewModel = App.Container.Get<IntervallViewModel>(new ConstructorArgument("intervallTypes", list));
-            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+            ViewModel = App.Container.Get<NewMediViewModel>();
         }
+
+        public NewMediViewModel ViewModel { get; set; }
+
 
         private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -57,11 +42,17 @@ namespace com.b_velop.OneMediPlan.iOS
             base.ViewDidLoad();
             ButtonNext.Hidden = true;
 
-            ViewModel.Init();
             Title = ViewModel.Title;
 
             var pickerModle = new IntervallTypeDataModel();
-            pickerModle.Items.AddRange(ViewModel.IntervallTypes.ToList());
+            var list = new List<string>
+            {
+                Strings.MINUTES,
+                Strings.HOURS,
+                Strings.DAYS,
+                Strings.WEEKS
+            };
+            pickerModle.Items.AddRange(list);
             PickerIntervallType.Model = pickerModle;
 
             pickerModle.ValueChanged += (object sender, EventArgs e) =>
