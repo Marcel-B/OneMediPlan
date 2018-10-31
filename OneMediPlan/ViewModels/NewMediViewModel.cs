@@ -37,10 +37,38 @@ namespace com.b_velop.OneMediPlan.ViewModels
         }
 
         IntervallType _intervallType;
-        public int IntervallType
+        public IntervallType IntervallType
         {
-            get => (int)_intervallType;
-            set => SetProperty(ref _intervallType, (IntervallType)value);
+            get => _intervallType;
+            set => SetProperty(ref _intervallType, value);
+        }
+
+        private IntervallTime _intervallTime;
+        public IntervallTime IntervallTime
+        {
+            get => _intervallTime;
+            set => SetProperty(ref _intervallTime, value);
+        }
+
+        private string _dosage;
+        public string Dosage
+        {
+            get => _dosage;
+            set => SetProperty(ref _dosage, value);
+        }
+
+        private string _intervall;
+        public string Intervall
+        {
+            get => _intervall;
+            set => SetProperty(ref _intervall, value);
+        }
+
+        private int _dependsOnIdx;
+        public int DependsOnIdx
+        {
+            get => _dependsOnIdx;
+            set => SetProperty(ref _dependsOnIdx, value);
         }
 
         public NewMediViewModel()

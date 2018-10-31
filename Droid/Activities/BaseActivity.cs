@@ -1,11 +1,12 @@
 ﻿using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
-using OneMediPlan.Droid;
+using System;
+using Java.Lang;
 
 namespace com.b_velop.OneMediPlan.Droid
 {
-    public class BaseActivity : AppCompatActivity
+    public abstract class BaseActivity : AppCompatActivity
     {
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -20,6 +21,30 @@ namespace com.b_velop.OneMediPlan.Droid
                 SupportActionBar.SetHomeButtonEnabled(true);
             }
         }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            Init();
+        }
+        protected override void OnStop()
+        {
+            base.OnStop();
+            DestroyEvents();
+        }
+        public void Init()
+        {
+            GetViews();
+            InitViews();
+            Localize();
+            SetEvents();
+        }
+
+        public virtual void GetViews() { }
+        public virtual void InitViews() { }
+        public virtual void Localize() { }
+        public virtual void SetEvents() { }
+        public virtual void DestroyEvents() { }
 
         public Toolbar Toolbar
         {

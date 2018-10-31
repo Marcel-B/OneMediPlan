@@ -1,65 +1,109 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" 
+<android.support.design.widget.CoordinatorLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:app="http://schemas.android.com/apk/res-auto" 
+    android:id="@+id/main_content" 
     android:layout_width="match_parent" 
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" 
+    android:fitsSystemWindows="true">
     
-    <TextView
-        android:text="Every"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewEvery" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextRawIntervall"
-        android:hint="intervall"
-        android:numeric="decimal"
-        android:inputType="numberDecimal" />
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnerIntervallTime" />
-    <TextView
-        android:text="after"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewAfter" />
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnerDependsOnMedi" />
-    <TextView
-        android:text="take"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewTake" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextDosage"
-        android:hint="Dosage"
-        android:numeric="decimal"
-        android:inputType="numberDecimal" />
-    <TextView
-        android:text="units"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="right"
-        android:id="@+id/textViewUnits" />
+    <android.support.design.widget.AppBarLayout 
+        xmlns:android="http://schemas.android.com/apk/res/android" 
+        android:id="@+id/appbar" 
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content" 
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:fitsSystemWindows="true">
+        
+        <android.support.design.widget.CollapsingToolbarLayout 
+            android:id="@+id/collapsing_toolbar" 
+            android:layout_width="match_parent" 
+            android:layout_height="match_parent" 
+            app:layout_scrollFlags="scroll|exitUntilCollapsed" 
+            android:fitsSystemWindows="true" 
+            app:contentScrim="?attr/colorPrimary" 
+            app:expandedTitleMarginStart="48dp" 
+            app:expandedTitleMarginEnd="64dp">
+            
+            <android.support.v7.widget.Toolbar 
+                android:id="@+id/toolbar" 
+                android:layout_width="match_parent" 
+                android:layout_height="?attr/actionBarSize" 
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" 
+                app:layout_collapseMode="pin" />
+            
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
     
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatButtonNextIntervall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_send"
-        app:elevation="4dp"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="@dimen/fab_margin" />
-</LinearLayout>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        
+        <LinearLayout 
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:orientation="vertical" 
+            android:layout_width="match_parent" 
+            android:layout_height="match_parent">
+            
+            <TextView
+                android:text="Every"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewEvery" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextRawIntervall"
+                android:hint="intervall"
+                android:numeric="decimal"
+                android:inputType="numberDecimal" />
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerIntervallTime" />
+            <TextView
+                android:text="after"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewAfter" />
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerDependsOnMedi" />
+            <TextView
+                android:text="take"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewTake" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextDosage"
+                android:hint="Dosage"
+                android:numeric="decimal"
+                android:inputType="numberDecimal" />
+            <TextView
+                android:text="units"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:id="@+id/textViewUnits" />
+    
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/floatButtonNextIntervall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_send"
+                app:elevation="4dp"
+                android:layout_gravity="bottom|right"
+                android:layout_margin="@dimen/fab_margin" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

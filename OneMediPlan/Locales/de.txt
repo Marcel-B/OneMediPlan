@@ -1,15 +1,24 @@
-﻿Cancel = Abbruch
+﻿After = nach
+
+Cancel = Abbruch
 
 Daily Appointments = mehrmals täglich
+Day(s) = Tag(e)
 Delete = löschen
 Depends = abhängig
 
 Edit = bearbeiten
+Enter Name = Name eingeben
+Every = Alle
+
+Hour(s) = Stunde(n)
 
 If Needed = bei Bedarf
 Intervall = Intervall
 
 Medis = Medis
+Minute(s) = Minute(n)
+Month(s) = Monat(e)
 
 Next = weiter
 
@@ -17,6 +26,12 @@ Save = speichern
 Settings = Einstellungen
 Standard Time = Standardzeit
 Stock = Vorrat
+Stock Minimum = Minimum Vorrat
+
+Take = nimm
+
+Units = Einheiten
 
 Warning = Achtung
 Weekdays = Wochentage
+Week(s) = Woche(n)

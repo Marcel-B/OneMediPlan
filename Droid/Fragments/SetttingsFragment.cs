@@ -1,14 +1,11 @@
-﻿using System;
-using Android.OS;
+﻿using Android.OS;
 using Android.Views;
 using Android.Widget;
 
 using com.b_velop.OneMediPlan.Meta;
-using com.b_velop.OneMediPlan.Services;
+using com.b_velop.OneMediPlan.Meta.Interfaces;
 using com.b_velop.OneMediPlan.ViewModels;
 using Ninject;
-using OneMediPlan.Droid;
-using com.b_velop.OneMediPlan.Meta.Interfaces;
 
 namespace com.b_velop.OneMediPlan.Droid
 {

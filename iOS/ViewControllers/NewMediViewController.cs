@@ -18,7 +18,7 @@ namespace com.b_velop.OneMediPlan.iOS
             {
                 if (e.PropertyName.Equals(Strings.CURRENT_MEDI))
                 {
-                    TextFieldName.Text = viewModel.CurrentMedi.Name;
+                    TextFieldName.Text = viewModel.Name;
                 }
                 else if (e.PropertyName.Equals(Strings.NAME))
                 {
@@ -53,7 +53,6 @@ namespace com.b_velop.OneMediPlan.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            ViewModel.Init();
             Title = NSBundle.MainBundle.GetLocalizedString(Strings.NEW_MEDI);
         }
     }

@@ -20,7 +20,15 @@ namespace com.b_velop.OneMediPlan.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField TextFieldMinimumStock { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField TextFieldName { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField TextFieldStock { get; set; }
 
         [Action ("ButtonNext_TouchUpInside:")]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -41,9 +49,19 @@ namespace com.b_velop.OneMediPlan.iOS
                 ButtonNext = null;
             }
 
+            if (TextFieldMinimumStock != null) {
+                TextFieldMinimumStock.Dispose ();
+                TextFieldMinimumStock = null;
+            }
+
             if (TextFieldName != null) {
                 TextFieldName.Dispose ();
                 TextFieldName = null;
+            }
+
+            if (TextFieldStock != null) {
+                TextFieldStock.Dispose ();
+                TextFieldStock = null;
             }
         }
     }

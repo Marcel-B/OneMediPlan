@@ -46,8 +46,8 @@ namespace com.b_velop.OneMediPlan.iOS
                 }
                 else if (e.PropertyName.Equals(NSBundle.MainBundle.GetLocalizedString(Strings.LABEL_TEXT)))
                 {
-                    LabelDependencyInfo.Text = 
-                        $"{NSBundle.MainBundle.GetLocalizedString(Strings._AFTER)} '{viewModel.LabelText}'.";
+                    LabelDependencyInfo.Text = Strings.AFTER;
+                        //$"{NSBundle.MainBundle.GetLocalizedString(Strings._AFTER)} '{viewModel.LabelText}'.";
                 }
             }
         }

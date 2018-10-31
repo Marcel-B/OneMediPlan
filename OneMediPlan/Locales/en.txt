@@ -1,15 +1,24 @@
-﻿Cancel = Cancel
+﻿After = after
+
+Cancel = Cancel
 
 Daily Appointments = Daily Appointments
+Day(s) = Day(s)
 Delete = delete
 Depends = depends
 
 Edit = Edit
+Enter Name = Enter name
+Every = Every
+
+Hour(s) = Hour(s)
 
 If Needed = If Needed
 Intervall = Intervall
 
 Medis = Medis
+Minute(s) = Minute(s)
+Month(s) = Month(s)
 
 Next = next
 
@@ -17,6 +26,12 @@ Save = Save
 Settings = Settings
 Standard Time = Standard Time
 Stock = Stock
+Stock Minimum = minimum stock
+
+Take = take
+
+Units = units
 
 Warning = Warning
 Weekdays = Weekdays
+Week(s) = Week(s)

@@ -214,7 +214,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Medi name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2329">
-                                <rect key="frame" x="22" y="187" width="372" height="30"/>
+                                <rect key="frame" x="20" y="90" width="374" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -222,20 +222,8 @@
                                     <action selector="TextFieldEditingChanged:" destination="2248" eventType="editingChanged" id="52160"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gib einen Namen ein" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2344">
-                                <rect key="frame" x="20" y="142" width="374" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="4908"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="28"/>
-                                <color key="textColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="highlightedColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
-                            </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6739">
-                                <rect key="frame" x="20" y="225" width="374" height="39"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="6994"/>
-                                </constraints>
+                                <rect key="frame" x="20" y="177" width="374" height="31"/>
                                 <state key="normal" title="Weiter">
                                     <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -243,29 +231,47 @@
                                     <action selector="ButtonNext_TouchUpInside:" destination="2248" eventType="touchUpInside" id="49072"/>
                                     <segue destination="7323" kind="show" id="7520"/>
                                 </connections>
+                                <constraints>
+                                    <constraint id="77222" firstAttribute="height" constant="31"/>
+                                </constraints>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" id="75761" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" spacing="5" distribution="fillEqually">
+                                <rect key="frame" x="20" y="128" width="98" height="30"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="75760" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Stock">
+                                        <rect key="frame" x="0.0" y="0.0" width="46.5" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="75759" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Minimum Stock">
+                                        <rect key="frame" x="51.5" y="0.0" width="46.5" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.87450980392156863" green="0.97647058823529409" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="2344" firstAttribute="trailing" secondItem="2249" secondAttribute="trailingMargin" id="4479"/>
-                            <constraint firstItem="2344" firstAttribute="trailing" secondItem="2249" secondAttribute="trailingMargin" id="4505"/>
-                            <constraint firstItem="2344" firstAttribute="leading" secondItem="2249" secondAttribute="leadingMargin" id="4531"/>
-                            <constraint firstItem="2344" firstAttribute="centerX" secondItem="2249" secondAttribute="centerX" id="4757"/>
-                            <constraint firstItem="2344" firstAttribute="top" secondItem="2245" secondAttribute="bottom" constant="20" id="4934"/>
-                            <constraint firstItem="2329" firstAttribute="width" secondItem="2344" secondAttribute="width" constant="-2" id="5335"/>
-                            <constraint firstItem="2329" firstAttribute="top" secondItem="2344" secondAttribute="bottom" constant="8" id="5361"/>
-                            <constraint firstItem="2329" firstAttribute="leading" secondItem="2249" secondAttribute="leadingMargin" constant="2" id="5387"/>
-                            <constraint firstItem="6739" firstAttribute="centerX" secondItem="2249" secondAttribute="centerX" id="6890"/>
-                            <constraint firstItem="6739" firstAttribute="leading" secondItem="2249" secondAttribute="leadingMargin" id="6916"/>
-                            <constraint firstItem="6739" firstAttribute="trailing" secondItem="2249" secondAttribute="trailingMargin" id="6942"/>
-                            <constraint firstItem="6739" firstAttribute="top" secondItem="2329" secondAttribute="bottom" constant="8" id="6968"/>
+                            <constraint id="75762" firstAttribute="trailingMargin" secondItem="75761" secondAttribute="trailing"/>
+                            <constraint id="75763" firstItem="75761" firstAttribute="leading" secondItem="2249" secondAttribute="leadingMargin"/>
+                            <constraint id="75764" firstItem="2329" firstAttribute="top" secondItem="2245" secondAttribute="bottom" constant="20"/>
+                            <constraint id="75766" firstItem="2329" firstAttribute="leading" secondItem="2249" secondAttribute="leadingMargin"/>
+                            <constraint id="75767" firstItem="2329" firstAttribute="trailing" secondItem="2249" secondAttribute="trailingMargin"/>
+                            <constraint id="75768" firstItem="75761" firstAttribute="top" secondItem="2329" secondAttribute="bottom" constant="8"/>
+                            <constraint id="77219" firstItem="6739" firstAttribute="top" secondItem="75761" secondAttribute="bottom" constant="19"/>
+                            <constraint id="77220" firstItem="6739" firstAttribute="leading" secondItem="2249" secondAttribute="leadingMargin"/>
+                            <constraint id="77221" firstItem="6739" firstAttribute="trailing" secondItem="2249" secondAttribute="trailingMargin"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Name" id="16482"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationItem key="navigationItem" title="Name" id="16482" largeTitleDisplayMode="never"/>
                     <connections>
                         <outlet property="ButtonNext" destination="6739" id="name-outlet-6739"/>
                         <outlet property="TextFieldName" destination="2329" id="name-outlet-2329"/>
+                        <outlet property="TextFieldStock" destination="75760" id="name-outlet-75760"/>
+                        <outlet property="TextFieldMinimumStock" destination="75759" id="name-outlet-75759"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2250" userLabel="First Responder" sceneMemberID="firstResponder"/>

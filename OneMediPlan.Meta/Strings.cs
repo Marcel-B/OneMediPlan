@@ -22,7 +22,7 @@ namespace com.b_velop.OneMediPlan.Meta
                   //.Init(GetType().GetTypeInfo().Assembly); // assembly where locales live
         }
 
-        public static string _AFTER = "after";
+        public static string AFTER = "After".Translate();
         public static string APP_TITLE = "One MediPlan";
         public static string APPOINTMENTS = "Appointments";
 
@@ -31,14 +31,16 @@ namespace com.b_velop.OneMediPlan.Meta
 
         public static string DAILY_APPOINTMENTS = "Daily Appointments".Translate();
         public static string DATE_CELL = "DateCell";
-        public static string DAYS = "Day(s)";
+        public static string DAYS = "Day(s)".Translate();
         public static string DELETE = "Delete".Translate();
         public static string DEPENDS = "Depends".Translate();
         public static string DOSAGE = "Dosage";
 
         public static string EDIT = "Edit".Translate();
+        public static string ENTER_NAME = "Enter Name".Translate();
+        public static string EVERY = "Every".Translate();
 
-        public static string HOURS = "Hour(s)";
+        public static string HOURS = "Hour(s)".Translate();
 
         public static string IF_NEEDED = "If Needed".Translate();
         public static string INTERVALL = "Intervall".Translate();
@@ -47,8 +49,8 @@ namespace com.b_velop.OneMediPlan.Meta
         public static string LABEL_TEXT = "LabelText";
 
         public static string MEDIS = "Medis".Translate();
-        public static string MINUTES = "Minute(s)";
-        public static string MONTHS = "Month(s)";
+        public static string MINUTES = "Minute(s)".Translate();
+        public static string MONTHS = "Month(s)".Translate();
 
         public static string NAME = "Name";
         public static string NEW = "New";
@@ -63,13 +65,16 @@ namespace com.b_velop.OneMediPlan.Meta
         public static string SETTINGS = "Settings".Translate();
         public static string STANDARD_TIME = "Standard Time".Translate();
         public static string STOCK = "Stock".Translate();
-        public static string STOCK_MINIMUM = "StockMinimum";
+        public static string STOCK_MINIMUM = "Stock Minimum".Translate();
 
+        public static string TAKE = "Take".Translate();
         public static string TAKE_LAST_JOKER_UNITS = "TakeLastJokerUnits";
         public static string TODAY = "Today";
 
+        public static string UNITS = "Units".Translate();
+
         public static string WARNING = "Warning".Translate();
         public static string WEEKDAYS = "Weekdays".Translate();
-        public static string WEEKS = "Week(s)";
+        public static string WEEKS = "Week(s)".Translate();
     }
 }
