@@ -244,10 +244,6 @@
     <Compile Include="ViewControllers\WeekdayViewController.designer.cs">
       <DependentUpon>WeekdayViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\DependencyViewController.cs" />
-    <Compile Include="ViewControllers\DependencyViewController.designer.cs">
-      <DependentUpon>DependencyViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\IntervallTypeViewController.cs" />
     <Compile Include="ViewControllers\IntervallTypeViewController.designer.cs">
       <DependentUpon>IntervallTypeViewController.cs</DependentUpon>
@@ -261,12 +257,22 @@
     <Compile Include="ViewControllers\DailyViewController.designer.cs">
       <DependentUpon>DailyViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomCells\IntervallView.cs" />
+    <Compile Include="CustomCells\IntervallView.designer.cs">
+      <DependentUpon>IntervallView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomCells\DependsView.cs" />
+    <Compile Include="CustomCells\DependsView.designer.cs">
+      <DependentUpon>DependsView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <None Include="packages.config" />
     <InterfaceDefinition Include="CustomCells\MyMediTableViewCell.xib" />
+    <InterfaceDefinition Include="CustomCells\IntervallView.xib" />
+    <InterfaceDefinition Include="CustomCells\DependsView.xib" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />

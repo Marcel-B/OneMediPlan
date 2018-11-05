@@ -7,28 +7,17 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
+using System.ComponentModel;
 using UIKit;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
-    [Register ("SetIntervallViewController")]
-    partial class IntervallViewController
+    [Register ("DependsView")]
+    partial class DependsView
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton ButtonNext { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextField Intervall { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel LabelAfter { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel LabelEvery { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -40,10 +29,6 @@ namespace com.b_velop.OneMediPlan.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIPickerView PickerIntervallType { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIPickerView PickerViewMedis { get; set; }
 
         [Outlet]
@@ -52,24 +37,9 @@ namespace com.b_velop.OneMediPlan.iOS
 
         void ReleaseDesignerOutlets ()
         {
-            if (ButtonNext != null) {
-                ButtonNext.Dispose ();
-                ButtonNext = null;
-            }
-
-            if (Intervall != null) {
-                Intervall.Dispose ();
-                Intervall = null;
-            }
-
             if (LabelAfter != null) {
                 LabelAfter.Dispose ();
                 LabelAfter = null;
-            }
-
-            if (LabelEvery != null) {
-                LabelEvery.Dispose ();
-                LabelEvery = null;
             }
 
             if (LabelTake != null) {
@@ -80,11 +50,6 @@ namespace com.b_velop.OneMediPlan.iOS
             if (LabelUnits != null) {
                 LabelUnits.Dispose ();
                 LabelUnits = null;
-            }
-
-            if (PickerIntervallType != null) {
-                PickerIntervallType.Dispose ();
-                PickerIntervallType = null;
             }
 
             if (PickerViewMedis != null) {

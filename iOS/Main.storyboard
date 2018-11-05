@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -103,11 +103,12 @@
                 <navigationController title="Browse" automaticallyAdjustsScrollViewInsets="NO" id="IVu-6x-Ha6" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" id="acW-dT-cKf"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="U58-7W-wiN">
                         <rect key="frame" x="0.0" y="20" width="414" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" colorSpace="calibratedRGB" red="0.13333333333333333" green="0.65098039215686276" blue="0.70196078431372544" alpha="1"/>
+                        <color key="barTintColor" red="0.13333333333333333" green="0.65098039215686276" blue="0.70196078431372544" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="19"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -121,7 +122,6 @@
                     <connections>
                         <segue destination="75" kind="relationship" relationship="rootViewController" id="105"/>
                     </connections>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ic3-tP-dXf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -133,6 +133,7 @@
                 <navigationController title="About" automaticallyAdjustsScrollViewInsets="NO" id="uSp-bD-Qry" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Einstellungen" id="cPa-gy-q4n"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dDs-el-YGI">
                         <rect key="frame" x="0.0" y="20" width="414" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -146,7 +147,6 @@
                     <connections>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="jMW-O1-ib0"/>
                     </connections>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fyu-rb-jDK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -200,7 +200,6 @@
             </objects>
             <point key="canvasLocation" x="1555" y="-389"/>
         </scene>
-        <!--Title-->
         <!--New Medi-->
         <scene sceneID="2247">
             <objects>
@@ -217,30 +216,29 @@
                                 <rect key="frame" x="20" y="90" width="374" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections/>
                             </textField>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6739">
                                 <rect key="frame" x="20" y="177" width="374" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="77222"/>
+                                </constraints>
                                 <state key="normal" title="Weiter">
                                     <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue id="78077" destination="16030" kind="show"/>
+                                    <segue destination="16030" kind="show" id="78077"/>
                                 </connections>
-                                <constraints>
-                                    <constraint id="77222" firstAttribute="height" constant="31"/>
-                                </constraints>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" id="75761" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" spacing="5" distribution="fillEqually">
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="75761">
                                 <rect key="frame" x="20" y="128" width="98" height="30"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="75760" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Stock">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Stock" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="75760">
                                         <rect key="frame" x="0.0" y="0.0" width="46.5" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="75759" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Minimum Stock">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Minimum Stock" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="75759">
                                         <rect key="frame" x="51.5" y="0.0" width="46.5" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -251,30 +249,29 @@
                         </subviews>
                         <color key="backgroundColor" red="0.87450980392156863" green="0.97647058823529409" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint id="75762" firstAttribute="trailingMargin" secondItem="75761" secondAttribute="trailing"/>
-                            <constraint id="75763" firstItem="75761" firstAttribute="leading" secondItem="2249" secondAttribute="leadingMargin"/>
-                            <constraint id="75764" firstItem="2329" firstAttribute="top" secondItem="2245" secondAttribute="bottom" constant="20"/>
-                            <constraint id="75766" firstItem="2329" firstAttribute="leading" secondItem="2249" secondAttribute="leadingMargin"/>
-                            <constraint id="75767" firstItem="2329" firstAttribute="trailing" secondItem="2249" secondAttribute="trailingMargin"/>
-                            <constraint id="75768" firstItem="75761" firstAttribute="top" secondItem="2329" secondAttribute="bottom" constant="8"/>
-                            <constraint id="77219" firstItem="6739" firstAttribute="top" secondItem="75761" secondAttribute="bottom" constant="19"/>
-                            <constraint id="77220" firstItem="6739" firstAttribute="leading" secondItem="2249" secondAttribute="leadingMargin"/>
-                            <constraint id="77221" firstItem="6739" firstAttribute="trailing" secondItem="2249" secondAttribute="trailingMargin"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="75761" secondAttribute="trailing" id="75762"/>
+                            <constraint firstItem="75761" firstAttribute="leading" secondItem="2249" secondAttribute="leadingMargin" id="75763"/>
+                            <constraint firstItem="2329" firstAttribute="top" secondItem="2245" secondAttribute="bottom" constant="20" id="75764"/>
+                            <constraint firstItem="2329" firstAttribute="leading" secondItem="2249" secondAttribute="leadingMargin" id="75766"/>
+                            <constraint firstItem="2329" firstAttribute="trailing" secondItem="2249" secondAttribute="trailingMargin" id="75767"/>
+                            <constraint firstItem="75761" firstAttribute="top" secondItem="2329" secondAttribute="bottom" constant="8" id="75768"/>
+                            <constraint firstItem="6739" firstAttribute="top" secondItem="75761" secondAttribute="bottom" constant="19" id="77219"/>
+                            <constraint firstItem="6739" firstAttribute="leading" secondItem="2249" secondAttribute="leadingMargin" id="77220"/>
+                            <constraint firstItem="6739" firstAttribute="trailing" secondItem="2249" secondAttribute="trailingMargin" id="77221"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Name" id="16482" largeTitleDisplayMode="never"/>
+                    <navigationItem key="navigationItem" title="Name" largeTitleDisplayMode="never" id="16482"/>
                     <connections>
                         <outlet property="ButtonNext" destination="6739" id="name-outlet-6739"/>
+                        <outlet property="TextFieldMinimumStock" destination="75759" id="name-outlet-75759"/>
                         <outlet property="TextFieldName" destination="2329" id="name-outlet-2329"/>
                         <outlet property="TextFieldStock" destination="75760" id="name-outlet-75760"/>
-                        <outlet property="TextFieldMinimumStock" destination="75759" id="name-outlet-75759"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2250" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2725" y="-781"/>
         </scene>
-        <!--Vorrat-->
         <!--Intervalltyp-->
         <scene sceneID="16029">
             <objects>
@@ -308,7 +305,7 @@
                                 </state>
                                 <connections>
                                     <action selector="SetIntervallTouched:" destination="16030" eventType="touchUpInside" id="57575"/>
-                                    <segue destination="17342" kind="show" id="17376"/>
+                                    <segue id="137185" destination="16947" kind="show"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="16942">
@@ -395,38 +392,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="18618">
-                                <rect key="frame" x="20" y="225" width="374" height="88"/>
+                                <rect key="frame" x="103" y="129" width="291" height="88"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="88" id="39705"/>
+                                    <constraint id="128787" firstAttribute="height" constant="88"/>
                                 </constraints>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intervall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18619">
-                                <rect key="frame" x="20" y="142" width="374" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="19161"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="28"/>
-                                <color key="textColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Anzahl" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="18620">
-                                <rect key="frame" x="20" y="187" width="374" height="30"/>
+                                <rect key="frame" x="15" y="158" width="80" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                <connections/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29748">
-                                <rect key="frame" x="20" y="321" width="240" height="37"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="28"/>
-                                <color key="textColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34304">
-                                <rect key="frame" x="268" y="324" width="126" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="126" id="40203"/>
+                                    <constraint id="128675" firstAttribute="width" constant="80"/>
                                 </constraints>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34304">
+                                <rect key="frame" x="15" y="359" width="379" height="30"/>
                                 <state key="normal" title="Weiter">
                                     <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -434,37 +415,83 @@
                                     <segue destination="17910" kind="show" id="35200"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="after" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="122869" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                <rect key="frame" x="15" y="258" width="80" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" id="123712" translatesAutoresizingMaskIntoConstraints="NO" alignment="center" spacing="8">
+                                <rect key="frame" x="20" y="321" width="374" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="take" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="122897" translatesAutoresizingMaskIntoConstraints="NO">
+                                        <rect key="frame" x="0.0" y="5" width="33" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="123414" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Dosage">
+                                        <rect key="frame" x="41" y="0.0" width="288" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="123251" translatesAutoresizingMaskIntoConstraints="NO" text="units">
+                                        <rect key="frame" x="337" y="5" width="37" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <pickerView contentMode="scaleToFill" id="123740" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="103" y="225" width="291" height="88"/>
+                                <constraints>
+                                    <constraint id="129223" firstAttribute="height" constant="88"/>
+                                </constraints>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Every" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="135670" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="15" y="129" width="80" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.87450980392156863" green="0.97647058823529409" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="18619" firstAttribute="top" secondItem="16944" secondAttribute="bottom" constant="20" id="19157"/>
-                            <constraint firstItem="18619" firstAttribute="leading" secondItem="16948" secondAttribute="leadingMargin" id="19158"/>
-                            <constraint firstItem="18619" firstAttribute="trailing" secondItem="16948" secondAttribute="trailingMargin" id="19159"/>
-                            <constraint firstItem="18619" firstAttribute="centerX" secondItem="16948" secondAttribute="centerX" id="19160"/>
-                            <constraint firstItem="18620" firstAttribute="top" secondItem="18619" secondAttribute="bottom" constant="8" id="19162"/>
-                            <constraint firstItem="18620" firstAttribute="leading" secondItem="16948" secondAttribute="leadingMargin" id="19163"/>
-                            <constraint firstItem="18620" firstAttribute="width" secondItem="18619" secondAttribute="width" id="19164"/>
-                            <constraint firstItem="18618" firstAttribute="width" secondItem="18619" secondAttribute="width" id="19165"/>
-                            <constraint firstItem="18618" firstAttribute="leading" secondItem="16948" secondAttribute="leadingMargin" id="19166"/>
-                            <constraint firstItem="18618" firstAttribute="top" secondItem="18620" secondAttribute="bottom" constant="8" id="19168"/>
-                            <constraint firstItem="29748" firstAttribute="leading" secondItem="16948" secondAttribute="leadingMargin" id="29750"/>
-                            <constraint firstItem="29748" firstAttribute="height" secondItem="18619" secondAttribute="height" id="29752"/>
-                            <constraint firstItem="34304" firstAttribute="trailing" secondItem="16948" secondAttribute="trailingMargin" id="34873"/>
-                            <constraint firstItem="18618" firstAttribute="top" secondItem="18620" secondAttribute="bottom" constant="8" id="39675"/>
-                            <constraint firstItem="34304" firstAttribute="top" secondItem="18618" secondAttribute="bottom" constant="11" id="40233"/>
-                            <constraint firstItem="34304" firstAttribute="trailing" secondItem="16948" secondAttribute="trailingMargin" id="40263"/>
-                            <constraint firstItem="34304" firstAttribute="leading" secondItem="29748" secondAttribute="trailing" constant="8" id="40322"/>
-                            <constraint firstItem="34304" firstAttribute="leading" secondItem="29748" secondAttribute="trailing" constant="8" id="40381"/>
-                            <constraint firstItem="29748" firstAttribute="leading" secondItem="16948" secondAttribute="leadingMargin" id="40411"/>
-                            <constraint firstItem="29748" firstAttribute="top" secondItem="18618" secondAttribute="bottom" constant="8" id="40441"/>
+                            <constraint id="128619" firstAttribute="leadingMargin" secondItem="18620" secondAttribute="leading" constant="5"/>
+                            <constraint id="128703" firstItem="18618" firstAttribute="leading" secondItem="18620" secondAttribute="trailing" constant="8"/>
+                            <constraint id="128731" firstItem="18618" firstAttribute="top" secondItem="16944" secondAttribute="bottom" constant="7"/>
+                            <constraint id="128759" firstItem="18618" firstAttribute="trailing" secondItem="16948" secondAttribute="trailingMargin"/>
+                            <constraint id="129004" firstAttribute="leadingMargin" secondItem="122869" secondAttribute="leading" constant="5"/>
+                            <constraint id="129060" firstItem="122869" firstAttribute="width" secondItem="18620" secondAttribute="width"/>
+                            <constraint id="129251" firstItem="123740" firstAttribute="top" secondItem="18618" secondAttribute="bottom" constant="8"/>
+                            <constraint id="129279" firstItem="123740" firstAttribute="leading" secondItem="122869" secondAttribute="trailing" constant="8"/>
+                            <constraint id="129307" firstItem="123740" firstAttribute="trailing" secondItem="16948" secondAttribute="trailingMargin"/>
+                            <constraint id="129416" firstItem="123712" firstAttribute="leading" secondItem="16948" secondAttribute="leadingMargin"/>
+                            <constraint id="129444" firstItem="123712" firstAttribute="top" secondItem="123740" secondAttribute="bottom" constant="8"/>
+                            <constraint id="129472" firstAttribute="trailingMargin" secondItem="123712" secondAttribute="trailing"/>
+                            <constraint id="130207" firstItem="34304" firstAttribute="trailing" secondItem="16948" secondAttribute="trailingMargin"/>
+                            <constraint id="130235" firstAttribute="leadingMargin" secondItem="34304" secondAttribute="leading" constant="5"/>
+                            <constraint id="130263" firstItem="34304" firstAttribute="top" secondItem="123712" secondAttribute="bottom" constant="8"/>
+                            <constraint id="135642" firstItem="18620" firstAttribute="centerY" secondItem="18618" secondAttribute="centerY"/>
+                            <constraint id="135725" firstAttribute="leadingMargin" secondItem="135670" secondAttribute="leading" constant="5"/>
+                            <constraint id="135753" firstItem="135670" firstAttribute="top" secondItem="16944" secondAttribute="bottom" constant="7"/>
+                            <constraint id="135862" firstItem="135670" firstAttribute="width" secondItem="18620" secondAttribute="width"/>
+                            <constraint id="140530" firstItem="122869" firstAttribute="centerY" secondItem="123740" secondAttribute="centerY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Intervall" id="17905"/>
                     <connections>
                         <outlet property="ButtonNext" destination="34304" id="name-outlet-34304"/>
-                        <outlet property="LabelDependencyInfo" destination="29748" id="name-outlet-29748"/>
-                        <outlet property="LabelIntervallCount" destination="18620" id="name-outlet-18620"/>
+                        <outlet property="Intervall" destination="18620" id="name-outlet-18620"/>
                         <outlet property="PickerIntervallType" destination="18618" id="name-outlet-18618"/>
+                        <outlet property="LabelAfter" destination="122869" id="name-outlet-122869"/>
+                        <outlet property="LabelTake" destination="122897" id="name-outlet-122897"/>
+                        <outlet property="TextFieldDosage" destination="123414" id="name-outlet-123414"/>
+                        <outlet property="LabelUnits" destination="123251" id="name-outlet-123251"/>
+                        <outlet property="PickerViewMedis" destination="123740" id="name-outlet-123740"/>
+                        <outlet property="LabelEvery" destination="135670" id="name-outlet-135670"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16949" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -472,67 +499,6 @@
             <point key="canvasLocation" x="5049" y="665"/>
         </scene>
         <!--Abhängig-->
-        <scene sceneID="17341">
-            <objects>
-                <viewController id="17342" customClass="SetDependencyViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="17339"/>
-                        <viewControllerLayoutGuide type="bottom" id="17340"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="17343">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17478">
-                                <rect key="frame" x="20" y="187" width="374" height="162"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="162" id="29099"/>
-                                </constraints>
-                            </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wähle Medikament" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="19146">
-                                <rect key="frame" x="20" y="142" width="374" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="29093"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="28"/>
-                                <color key="textColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35489">
-                                <rect key="frame" x="20" y="357" width="374" height="30"/>
-                                <state key="normal" title="Weiter">
-                                    <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="UIButton35489_TouchUpInside:" destination="17342" eventType="touchUpInside" id="65002"/>
-                                    <segue destination="16947" kind="show" id="36566"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.87450980392156863" green="0.97647058823529409" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="19146" firstAttribute="centerX" secondItem="17343" secondAttribute="centerX" id="29090"/>
-                            <constraint firstItem="19146" firstAttribute="leading" secondItem="17343" secondAttribute="leadingMargin" id="29091"/>
-                            <constraint firstItem="19146" firstAttribute="top" secondItem="17339" secondAttribute="bottom" constant="20" id="29092"/>
-                            <constraint firstItem="19146" firstAttribute="trailing" secondItem="17343" secondAttribute="trailingMargin" id="29094"/>
-                            <constraint firstItem="17478" firstAttribute="centerX" secondItem="17343" secondAttribute="centerX" id="29095"/>
-                            <constraint firstItem="17478" firstAttribute="leading" secondItem="17343" secondAttribute="leadingMargin" id="29096"/>
-                            <constraint firstItem="17478" firstAttribute="trailing" secondItem="17343" secondAttribute="trailingMargin" id="29097"/>
-                            <constraint firstItem="17478" firstAttribute="top" secondItem="19146" secondAttribute="bottom" constant="8" id="29098"/>
-                            <constraint firstItem="35489" firstAttribute="trailing" secondItem="17343" secondAttribute="trailingMargin" id="41997"/>
-                            <constraint firstItem="35489" firstAttribute="leading" secondItem="17343" secondAttribute="leadingMargin" id="42027"/>
-                            <constraint firstItem="35489" firstAttribute="top" secondItem="17478" secondAttribute="bottom" constant="8" id="42057"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Abhängig" id="17906"/>
-                    <connections>
-                        <outlet property="PickerDependency" destination="17478" id="name-outlet-17478"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="17344" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4393" y="673"/>
-        </scene>
         <!--Save Medi View Controller-->
         <scene sceneID="17380">
             <objects>

@@ -7,6 +7,8 @@ using Foundation;
 using Ninject.Parameters;
 using com.b_velop.OneMediPlan.Meta;
 using com.b_velop.OneMediPlan.ViewModels;
+using com.b_velop.OneMediPlan.Services;
+using com.b_velop.OneMediPlan.Domain.Enums;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
@@ -27,12 +29,12 @@ namespace com.b_velop.OneMediPlan.iOS
                 if (e.PropertyName.Equals(Strings.CURRENT_MEDI))
                 {
                     var noParent = viewModel.CurrentMedi.DependsOn == Guid.Empty;
-                    LabelDependencyInfo.Hidden = noParent;
+                    //LabelDependencyInfo.Hidden = noParent;
                 }
                 else if (e.PropertyName.Equals(NSBundle.MainBundle.GetLocalizedString(Strings.LABEL_TEXT)))
                 {
-                    LabelDependencyInfo.Text = Strings.AFTER;
-                        //$"{NSBundle.MainBundle.GetLocalizedString(Strings._AFTER)} '{viewModel.LabelText}'.";
+                    //LabelDependencyInfo.Text = Strings.AFTER;
+                    //$"{NSBundle.MainBundle.GetLocalizedString(Strings._AFTER)} '{viewModel.LabelText}'.";
                 }
             }
         }
@@ -40,11 +42,26 @@ namespace com.b_velop.OneMediPlan.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            ButtonNext.Hidden = true;
+            if (ViewModel.IntervallType != Domain.Enums.IntervallType.Depend)
+            {
+                PickerViewMedis.Hidden = true;
+                LabelAfter.Hidden = true;
+            }
+            LabelUnits.Text = ViewModel.Name;
+            //DependsViewM.Dosage = "2";
+            //.RegisterNibForCellReuse(MyMediTableViewCell.Nib, MyMediTableViewCell.Key);
+
+
+            ButtonNext.Hidden = false;
 
             Title = ViewModel.Title;
 
-            var pickerModle = new IntervallTypeDataModel();
+            var mediModel = new StringTypeDataModel();
+            var medis = AppStore.Instance.User.Medis;
+
+            var mediNames = medis.Select(m => m.Name);
+
+            var intervallModel = new StringTypeDataModel();
             var list = new List<string>
             {
                 Strings.MINUTES,
@@ -52,20 +69,31 @@ namespace com.b_velop.OneMediPlan.iOS
                 Strings.DAYS,
                 Strings.WEEKS
             };
-            pickerModle.Items.AddRange(list);
-            PickerIntervallType.Model = pickerModle;
+            mediModel.Items.AddRange(mediNames);
+            intervallModel.Items.AddRange(list);
 
-            pickerModle.ValueChanged += (object sender, EventArgs e) =>
+            PickerIntervallType.Model = intervallModel;
+            PickerViewMedis.Model = mediModel;
+
+            mediModel.ValueChanged += (sender, e) =>
             {
-                if (sender is IntervallTypeDataModel intervallTypeDataModel)
+                if (sender is StringTypeDataModel mediNameModel)
+                {
+                    var idx = mediModel.SelectedIndex;
+                    var name = mediModel.Items[idx];
+                }
+            };
+            intervallModel.ValueChanged += (object sender, EventArgs e) =>
+            {
+                if (sender is StringTypeDataModel intervallTypeDataModel)
                 {
                     var idx = intervallTypeDataModel.SelectedIndex;
-                    //ViewModel.IntervallTime = (IntervallTime)idx;
+                    ViewModel.IntervallTime = (IntervallTime)idx;
                 }
             };
         }
 
-        internal class IntervallTypeDataModel : UIPickerViewModel
+        internal class StringTypeDataModel : UIPickerViewModel
         {
             public event EventHandler<EventArgs> ValueChanged;
 
@@ -85,7 +113,7 @@ namespace com.b_velop.OneMediPlan.iOS
             int selectedIndex = 0;
             public int SelectedIndex { get => selectedIndex; }
 
-            public IntervallTypeDataModel()
+            public StringTypeDataModel()
             {
                 Items = new List<string>();
             }
