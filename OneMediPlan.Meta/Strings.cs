@@ -34,7 +34,7 @@ namespace com.b_velop.OneMediPlan.Meta
         public static string DAYS = "Day(s)".Translate();
         public static string DELETE = "Delete".Translate();
         public static string DEPENDS = "Depends".Translate();
-        public static string DOSAGE = "Dosage";
+        public static string DOSAGE = "Dosage".Translate();
 
         public static string EDIT = "Edit".Translate();
         public static string ENTER_NAME = "Enter Name".Translate();

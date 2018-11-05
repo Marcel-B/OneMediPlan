@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Ninject;
 using Foundation;
-using Ninject.Parameters;
 using com.b_velop.OneMediPlan.Meta;
 using com.b_velop.OneMediPlan.ViewModels;
 using com.b_velop.OneMediPlan.Services;
@@ -14,13 +13,16 @@ namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class IntervallViewController : UIViewController
     {
+
+
         public IntervallViewController(IntPtr handle) : base(handle)
         {
             ViewModel = App.Container.Get<NewMediViewModel>();
         }
 
         public NewMediViewModel ViewModel { get; set; }
-
+        internal StringTypeDataModel MediModel { get; set; }
+        internal StringTypeDataModel IntervallModel { get; set; }
 
         private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -42,26 +44,33 @@ namespace com.b_velop.OneMediPlan.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            // Set if no debendence to other medi
             if (ViewModel.IntervallType != Domain.Enums.IntervallType.Depend)
             {
                 PickerViewMedis.Hidden = true;
                 LabelAfter.Hidden = true;
+                DependsSpace.Constant = 0.0f;
             }
+
             LabelUnits.Text = ViewModel.Name;
-            //DependsViewM.Dosage = "2";
-            //.RegisterNibForCellReuse(MyMediTableViewCell.Nib, MyMediTableViewCell.Key);
+            LabelAfter.Text = Strings.AFTER;
+            LabelEvery.Text = Strings.EVERY;
+            LabelTake.Text = Strings.TAKE;
 
+            TextFieldDosage.Placeholder = Strings.DOSAGE;
+            TextFieldIntervall.Placeholder = Strings.INTERVALL;
 
-            ButtonNext.Hidden = false;
+            ButtonNext.Hidden = true;
 
             Title = ViewModel.Title;
 
-            var mediModel = new StringTypeDataModel();
+            MediModel = new StringTypeDataModel();
             var medis = AppStore.Instance.User.Medis;
 
             var mediNames = medis.Select(m => m.Name);
 
-            var intervallModel = new StringTypeDataModel();
+            IntervallModel = new StringTypeDataModel();
             var list = new List<string>
             {
                 Strings.MINUTES,
@@ -69,29 +78,61 @@ namespace com.b_velop.OneMediPlan.iOS
                 Strings.DAYS,
                 Strings.WEEKS
             };
-            mediModel.Items.AddRange(mediNames);
-            intervallModel.Items.AddRange(list);
+            MediModel.Items.AddRange(mediNames);
+            IntervallModel.Items.AddRange(list);
 
-            PickerIntervallType.Model = intervallModel;
-            PickerViewMedis.Model = mediModel;
+            PickerIntervallType.Model = IntervallModel;
+            PickerViewMedis.Model = MediModel;
 
-            mediModel.ValueChanged += (sender, e) =>
+            TextFieldDosage.AllEditingEvents += TextFieldDosage_AllEditingEvents;
+            TextFieldIntervall.AllEditingEvents += TextFieldIntervall_AllEditingEvents;
+            MediModel.ValueChanged += MediModel_ValueChanged;
+            IntervallModel.ValueChanged += IntervallModel_ValueChanged;
+
+        }
+
+        public override void ViewWillUnload()
+        {
+            base.ViewWillUnload();
+            TextFieldDosage.AllEditingEvents -= TextFieldDosage_AllEditingEvents;
+            TextFieldIntervall.AllEditingEvents -= TextFieldIntervall_AllEditingEvents;
+            MediModel.ValueChanged -= MediModel_ValueChanged;
+            IntervallModel.ValueChanged -= IntervallModel_ValueChanged;
+        }
+
+        void TextFieldDosage_AllEditingEvents(object sender, EventArgs e)
+        {
+            if (sender is UITextView dosage)
             {
-                if (sender is StringTypeDataModel mediNameModel)
-                {
-                    var idx = mediModel.SelectedIndex;
-                    var name = mediModel.Items[idx];
-                }
-            };
-            intervallModel.ValueChanged += (object sender, EventArgs e) =>
-            {
-                if (sender is StringTypeDataModel intervallTypeDataModel)
-                {
-                    var idx = intervallTypeDataModel.SelectedIndex;
-                    ViewModel.IntervallTime = (IntervallTime)idx;
-                }
+                ViewModel.Dosage = dosage.Text;
             };
         }
+
+        void TextFieldIntervall_AllEditingEvents(object sender, EventArgs e)
+        {
+            if (sender is UITextView intervall)
+            {
+                ViewModel.Intervall = intervall.Text;
+            }
+        }
+
+        void MediModel_ValueChanged(object sender, EventArgs e)
+        {
+            if (sender is StringTypeDataModel mediModel)
+            {
+                ViewModel.DependsOnIdx = mediModel.SelectedIndex;
+            }
+        }
+
+        void IntervallModel_ValueChanged(object sender, EventArgs e)
+        {
+            if (sender is StringTypeDataModel intervallTypeDataModel)
+            {
+                var idx = intervallTypeDataModel.SelectedIndex;
+                ViewModel.IntervallTime = (IntervallTime)idx;
+            }
+        }
+
 
         internal class StringTypeDataModel : UIPickerViewModel
         {

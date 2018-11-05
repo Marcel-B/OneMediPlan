@@ -20,7 +20,7 @@ namespace com.b_velop.OneMediPlan.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextField Intervall { get; set; }
+        UIKit.NSLayoutConstraint DependsSpace { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -48,7 +48,15 @@ namespace com.b_velop.OneMediPlan.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIStackView StackView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField TextFieldDosage { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField TextFieldIntervall { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
@@ -57,9 +65,9 @@ namespace com.b_velop.OneMediPlan.iOS
                 ButtonNext = null;
             }
 
-            if (Intervall != null) {
-                Intervall.Dispose ();
-                Intervall = null;
+            if (DependsSpace != null) {
+                DependsSpace.Dispose ();
+                DependsSpace = null;
             }
 
             if (LabelAfter != null) {
@@ -92,9 +100,19 @@ namespace com.b_velop.OneMediPlan.iOS
                 PickerViewMedis = null;
             }
 
+            if (StackView != null) {
+                StackView.Dispose ();
+                StackView = null;
+            }
+
             if (TextFieldDosage != null) {
                 TextFieldDosage.Dispose ();
                 TextFieldDosage = null;
+            }
+
+            if (TextFieldIntervall != null) {
+                TextFieldIntervall.Dispose ();
+                TextFieldIntervall = null;
             }
         }
     }

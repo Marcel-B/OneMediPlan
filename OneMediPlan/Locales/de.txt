@@ -6,6 +6,7 @@ Daily Appointments = mehrmals täglich
 Day(s) = Tag(e)
 Delete = löschen
 Depends = abhängig
+Dosage = Dosis
 
 Edit = bearbeiten
 Enter Name = Name eingeben

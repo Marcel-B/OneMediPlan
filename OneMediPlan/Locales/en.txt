@@ -6,6 +6,7 @@ Daily Appointments = Daily Appointments
 Day(s) = Day(s)
 Delete = delete
 Depends = depends
+Dosage = Dosage
 
 Edit = Edit
 Enter Name = Enter name

@@ -434,7 +434,7 @@
                                         <rect key="frame" x="41" y="0.0" width="288" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="123251" translatesAutoresizingMaskIntoConstraints="NO" text="units">
                                         <rect key="frame" x="337" y="5" width="37" height="20.5"/>
@@ -468,8 +468,6 @@
                             <constraint id="129251" firstItem="123740" firstAttribute="top" secondItem="18618" secondAttribute="bottom" constant="8"/>
                             <constraint id="129279" firstItem="123740" firstAttribute="leading" secondItem="122869" secondAttribute="trailing" constant="8"/>
                             <constraint id="129307" firstItem="123740" firstAttribute="trailing" secondItem="16948" secondAttribute="trailingMargin"/>
-                            <constraint id="129416" firstItem="123712" firstAttribute="leading" secondItem="16948" secondAttribute="leadingMargin"/>
-                            <constraint id="129444" firstItem="123712" firstAttribute="top" secondItem="123740" secondAttribute="bottom" constant="8"/>
                             <constraint id="129472" firstAttribute="trailingMargin" secondItem="123712" secondAttribute="trailing"/>
                             <constraint id="130207" firstItem="34304" firstAttribute="trailing" secondItem="16948" secondAttribute="trailingMargin"/>
                             <constraint id="130235" firstAttribute="leadingMargin" secondItem="34304" secondAttribute="leading" constant="5"/>
@@ -479,12 +477,15 @@
                             <constraint id="135753" firstItem="135670" firstAttribute="top" secondItem="16944" secondAttribute="bottom" constant="7"/>
                             <constraint id="135862" firstItem="135670" firstAttribute="width" secondItem="18620" secondAttribute="width"/>
                             <constraint id="140530" firstItem="122869" firstAttribute="centerY" secondItem="123740" secondAttribute="centerY"/>
+                            <constraint id="142655" firstItem="123712" firstAttribute="top" secondItem="123740" secondAttribute="top" constant="96"/>
+                            <constraint id="151173" firstItem="123712" firstAttribute="leading" secondItem="34304" secondAttribute="leading" constant="5"/>
+                            <constraint id="151228" firstItem="123712" firstAttribute="trailing" secondItem="16948" secondAttribute="trailingMargin"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Intervall" id="17905"/>
                     <connections>
                         <outlet property="ButtonNext" destination="34304" id="name-outlet-34304"/>
-                        <outlet property="Intervall" destination="18620" id="name-outlet-18620"/>
+                        <outlet property="TextFieldIntervall" destination="18620" id="name-outlet-18620"/>
                         <outlet property="PickerIntervallType" destination="18618" id="name-outlet-18618"/>
                         <outlet property="LabelAfter" destination="122869" id="name-outlet-122869"/>
                         <outlet property="LabelTake" destination="122897" id="name-outlet-122897"/>
@@ -492,6 +493,8 @@
                         <outlet property="LabelUnits" destination="123251" id="name-outlet-123251"/>
                         <outlet property="PickerViewMedis" destination="123740" id="name-outlet-123740"/>
                         <outlet property="LabelEvery" destination="135670" id="name-outlet-135670"/>
+                        <outlet property="DependsSpace" destination="142655" id="name-outlet-142655"/>
+                        <outlet property="StackView" destination="123712" id="name-outlet-123712"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16949" userLabel="First Responder" sceneMemberID="firstResponder"/>

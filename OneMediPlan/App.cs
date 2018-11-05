@@ -42,7 +42,7 @@ namespace com.b_velop.OneMediPlan
 
     public class App
     {
-        public static string URL = "https://womo.marcelbenders.de";
+        public static string URL = "https://app.marcelbenders.de";
         public static StandardKernel Container { get; set; }
 
 #if DEBUG

@@ -5,7 +5,6 @@ using com.b_velop.OneMediPlan.Domain.Services;
 using com.b_velop.OneMediPlan.Meta.Interfaces;
 using System.Linq;
 using com.b_velop.OneMediPlan.Domain.Enums;
-using System.Diagnostics;
 
 namespace com.b_velop.OneMediPlan.Domain.MockStores
 {
@@ -66,7 +65,7 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
         {
             Id = Guid.NewGuid(),
             User = USER,
-            Name = "7 Tage",
+            Name = "Enbrel",
             Created = DateTimeOffset.Now.AddDays(-2),
             LastEdit = DateTimeOffset.Now,
             Stock = 22,
@@ -83,7 +82,7 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
         {
             Id = Guid.NewGuid(),
             User = USER,
-            Name = "7 Tage 1",
+            Name = "Metex",
             Created = DateTimeOffset.Now.AddDays(-2),
             LastEdit = DateTimeOffset.Now,
             Stock = 22,
@@ -100,7 +99,7 @@ namespace com.b_velop.OneMediPlan.Domain.MockStores
         {
             Id = Guid.NewGuid(),
             User = USER,
-            Name = "7 Tage 2",
+            Name = "7 Tage",
             Created = DateTimeOffset.Now.AddDays(-2),
             LastEdit = DateTimeOffset.Now,
             Stock = 22,
