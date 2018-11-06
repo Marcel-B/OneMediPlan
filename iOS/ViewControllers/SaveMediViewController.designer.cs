@@ -30,10 +30,6 @@ namespace com.b_velop.OneMediPlan.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel LabelName { get; set; }
 
-        [Action ("UIButton18059_TouchUpInside:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        partial void UIButton18059_TouchUpInside (UIKit.UIButton sender);
-
         void ReleaseDesignerOutlets ()
         {
             if (ButtonSave != null) {

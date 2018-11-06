@@ -236,9 +236,9 @@
     <Compile Include="ViewControllers\IntervallViewController.designer.cs">
       <DependentUpon>IntervallViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\StartViewController.cs" />
+    <Compile Include="ViewControllers\SetStartViewController.cs" />
     <Compile Include="ViewControllers\StartViewController.designer.cs">
-      <DependentUpon>StartViewController.cs</DependentUpon>
+      <DependentUpon>SetStartViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewControllers\WeekdayViewController.cs" />
     <Compile Include="ViewControllers\WeekdayViewController.designer.cs">

@@ -25,12 +25,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ISomeLogic.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MediSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StockViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SaveMediViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DailyViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DependencyViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DosageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\IntervallTypeViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\IntervallViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StartViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\WeekdayViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Hour.cs" />

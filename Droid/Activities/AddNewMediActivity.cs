@@ -29,6 +29,7 @@ namespace com.b_velop.OneMediPlan.Droid
         {
             base.OnCreate(savedInstanceState);
             ViewModel = App.Container.Get<NewMediViewModel>();
+            ViewModel.CurrentViewType = NewMediViewModel.ViewType.NameAndStock;
         }
 
         public override void GetViews()
@@ -82,7 +83,7 @@ namespace com.b_velop.OneMediPlan.Droid
 
         void Next_Click(object sender, EventArgs e)
         {
-            ViewModel.SaveNameCommand.Execute(null);
+            //ViewModel.SaveNameCommand.Execute(null);
             StartActivity(typeof(SetIntervallActivity));
         }
 

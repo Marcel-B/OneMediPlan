@@ -1,32 +1,42 @@
 using System;
-using UIKit;
-using Ninject;
-using Foundation;
-using com.b_velop.OneMediPlan.ViewModels;
 using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.ViewModels;
+using Ninject;
+using UIKit;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class SaveMediViewController : UIViewController
     {
-       public SaveMediViewModel ViewModel { get; set; }
-
-        partial void UIButton18059_TouchUpInside(UIButton sender)
-        {
-            ViewModel.SaveMediCommand.Execute(null);
-            NavigationController.PopToRootViewController(true);
-        }
+        public NewMediViewModel ViewModel { get; set; }
 
         public SaveMediViewController(IntPtr handle) : base(handle)
         {
-            ViewModel = App.Container.Get<SaveMediViewModel>();
+            ViewModel = App.Container.Get<NewMediViewModel>();
         }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            ViewModel.Init();
-            Title = NSBundle.MainBundle.GetLocalizedString(Strings.SAVE);
+            Title = Strings.SAVE;
+        }
+
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+            ButtonSave.TouchUpInside += ButtonSave_TouchUpInside;
+        }
+
+        public override void ViewDidDisappear(bool animated)
+        {
+            base.ViewDidDisappear(animated);
+            ButtonSave.TouchUpInside -= ButtonSave_TouchUpInside;
+        }
+
+        void ButtonSave_TouchUpInside(object sender, EventArgs e)
+        {
+            ViewModel.SaveNameCommand.Execute(null);
+            NavigationController.PopToRootViewController(true);
         }
     }
 }

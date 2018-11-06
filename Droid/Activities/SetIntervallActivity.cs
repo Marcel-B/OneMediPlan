@@ -37,6 +37,9 @@ namespace com.b_velop.OneMediPlan.Droid.Activities
         {
             base.OnCreate(savedInstanceState);
             ViewModel = App.Container.Get<NewMediViewModel>();
+            ViewModel.CurrentViewType = NewMediViewModel.ViewType.Intervall;
+            ViewModel.Intervall = string.Empty;
+            ViewModel.Dosage = string.Empty;
         }
 
         public override void GetViews()
@@ -52,6 +55,7 @@ namespace com.b_velop.OneMediPlan.Droid.Activities
             Units = FindViewById<TextView>(Resource.Id.textViewUnits);
             Every = FindViewById<TextView>(Resource.Id.textViewEvery);
         }
+
         public override void InitViews()
         {
             base.InitViews();
@@ -73,6 +77,7 @@ namespace com.b_velop.OneMediPlan.Droid.Activities
 
             DependsOn.Adapter = adapter;
         }
+
         public override void Localize()
         {
             Units.Text = Strings.UNITS;
@@ -80,6 +85,7 @@ namespace com.b_velop.OneMediPlan.Droid.Activities
             Take.Text = Strings.TAKE;
             Every.Text = Strings.EVERY;
         }
+
         public override void SetEvents()
         {
             Dosage.TextChanged += (sender, e) =>
@@ -104,6 +110,7 @@ namespace com.b_velop.OneMediPlan.Droid.Activities
                 StartActivity(typeof(SetStartTimeActivity));
             };
         }
+
         public override void DestroyEvents()
         {
         }

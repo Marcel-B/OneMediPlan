@@ -412,7 +412,7 @@
                                     <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="17910" kind="show" id="35200"/>
+                                    <segue id="159197" destination="18545" kind="show"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="after" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="122869" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
@@ -523,9 +523,7 @@
                                 <state key="normal" title="speichern">
                                     <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="UIButton18059_TouchUpInside:" destination="17381" eventType="touchUpInside" id="30420"/>
-                                </connections>
+                                <connections/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MediName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43608">
                                 <rect key="frame" x="20" y="142" width="374" height="37"/>
@@ -687,7 +685,6 @@
                                 </state>
                                 <connections>
                                     <action selector="ButtonWeiter_TouchUpInside:" destination="17432" eventType="touchUpInside" id="74184"/>
-                                    <segue destination="17910" kind="show" id="32398"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -750,79 +747,6 @@
             <point key="canvasLocation" x="4485" y="-1215"/>
         </scene>
         <!--Dosis-->
-        <scene sceneID="17909">
-            <objects>
-                <viewController id="17910" customClass="SetDosageViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="17907"/>
-                        <viewControllerLayoutGuide type="bottom" id="17908"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="17911">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dosis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18060">
-                                <rect key="frame" x="20" y="142" width="374" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="24034"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="28"/>
-                                <color key="textColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="18071">
-                                <rect key="frame" x="20" y="187" width="374" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                <connections>
-                                    <action selector="TextFieldDosageChanged:" destination="17910" eventType="editingChanged" id="60673"/>
-                                </connections>
-                            </textField>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32548">
-                                <rect key="frame" x="20" y="238" width="374" height="30"/>
-                                <state key="normal" title="Weiter">
-                                    <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="ButtonNext_TouchUpInside:" destination="17910" eventType="touchUpInside" id="61209"/>
-                                    <segue destination="18545" kind="show" id="32869"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.87450980392156863" green="0.97647058823529409" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="18060" firstAttribute="leading" secondItem="17911" secondAttribute="leadingMargin" id="18061"/>
-                            <constraint firstItem="18060" firstAttribute="trailing" secondItem="17911" secondAttribute="trailingMargin" id="18062"/>
-                            <constraint firstItem="18060" firstAttribute="centerX" secondItem="17911" secondAttribute="centerX" id="18063"/>
-                            <constraint firstItem="18060" firstAttribute="centerX" secondItem="17911" secondAttribute="centerX" id="18067"/>
-                            <constraint firstItem="18060" firstAttribute="leading" secondItem="17911" secondAttribute="leadingMargin" id="18068"/>
-                            <constraint firstItem="18060" firstAttribute="trailing" secondItem="17911" secondAttribute="trailingMargin" id="18069"/>
-                            <constraint firstItem="18071" firstAttribute="centerX" secondItem="17911" secondAttribute="centerX" id="18072"/>
-                            <constraint firstItem="18071" firstAttribute="width" secondItem="18060" secondAttribute="width" id="18073"/>
-                            <constraint firstItem="18071" firstAttribute="leading" secondItem="17911" secondAttribute="leadingMargin" id="18074"/>
-                            <constraint firstItem="18071" firstAttribute="leading" secondItem="17911" secondAttribute="leadingMargin" id="18075"/>
-                            <constraint firstItem="18071" firstAttribute="top" secondItem="18060" secondAttribute="bottom" constant="8" id="18076"/>
-                            <constraint firstItem="18060" firstAttribute="top" secondItem="17907" secondAttribute="bottom" constant="20" id="24033"/>
-                            <constraint firstItem="18071" firstAttribute="trailing" secondItem="17911" secondAttribute="trailingMargin" id="24035"/>
-                            <constraint firstItem="18071" firstAttribute="leading" secondItem="17911" secondAttribute="leadingMargin" id="24036"/>
-                            <constraint firstItem="18071" firstAttribute="top" secondItem="18060" secondAttribute="bottom" constant="8" id="24037"/>
-                            <constraint firstItem="32548" firstAttribute="trailing" secondItem="17911" secondAttribute="trailingMargin" id="32723"/>
-                            <constraint firstItem="32548" firstAttribute="leading" secondItem="17911" secondAttribute="leadingMargin" id="32753"/>
-                            <constraint firstItem="32548" firstAttribute="top" secondItem="18071" secondAttribute="bottom" constant="21" id="32783"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Dosis" id="18023"/>
-                    <connections>
-                        <outlet property="ButtonNext" destination="32548" id="name-outlet-32548"/>
-                        <outlet property="LabelDosage" destination="18071" id="name-outlet-18071"/>
-                        <outlet property="TextFieldDosage" destination="18073" id="name-outlet-18073"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="17912" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5873" y="-1256"/>
-        </scene>
         <!--Start-->
         <scene sceneID="18544">
             <objects>
@@ -843,9 +767,7 @@
                                 <date key="date" timeIntervalSinceReferenceDate="332704801.65417802">
                                     <!--2011-07-18 18:00:01 +0000-->
                                 </date>
-                                <connections>
-                                    <action selector="StartPickerValueChanged:" destination="18545" eventType="valueChanged" id="74980"/>
-                                </connections>
+                                <connections/>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Startzeit wählen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24028">
                                 <rect key="frame" x="20" y="142" width="374" height="37"/>
@@ -862,8 +784,7 @@
                                     <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="ButtonNext_TouchUpInside:" destination="18545" eventType="touchUpInside" id="61942"/>
-                                    <segue destination="17381" kind="show" identifier="ToSaveMediViewController" id="33263"/>
+                                    <segue id="160835" destination="17381" kind="show"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -911,7 +832,6 @@
                                 </state>
                                 <connections>
                                     <action selector="ButtonNext_TouchUpInside:" destination="42783" eventType="touchUpInside" id="65784"/>
-                                    <segue destination="17910" kind="show" id="71222"/>
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="44368">

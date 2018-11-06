@@ -26,25 +26,30 @@ namespace com.b_velop.OneMediPlan.iOS
 
         private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (sender is IntervallViewModel viewModel)
-            {
-                if (e.PropertyName.Equals(Strings.CURRENT_MEDI))
-                {
-                    var noParent = viewModel.CurrentMedi.DependsOn == Guid.Empty;
-                    //LabelDependencyInfo.Hidden = noParent;
-                }
-                else if (e.PropertyName.Equals(NSBundle.MainBundle.GetLocalizedString(Strings.LABEL_TEXT)))
-                {
-                    //LabelDependencyInfo.Text = Strings.AFTER;
-                    //$"{NSBundle.MainBundle.GetLocalizedString(Strings._AFTER)} '{viewModel.LabelText}'.";
-                }
-            }
+            //if (sender is IntervallViewModel viewModel)
+            //{
+            //    if (e.PropertyName.Equals(Strings.CURRENT_MEDI))
+            //    {
+            //        var noParent = viewModel.CurrentMedi.DependsOn == Guid.Empty;
+            //        //LabelDependencyInfo.Hidden = noParent;
+            //    }
+            //    else if (e.PropertyName.Equals(NSBundle.MainBundle.GetLocalizedString(Strings.LABEL_TEXT)))
+            //    {
+            //        //LabelDependencyInfo.Text = Strings.AFTER;
+            //        //$"{NSBundle.MainBundle.GetLocalizedString(Strings._AFTER)} '{viewModel.LabelText}'.";
+            //    }
+            //}
         }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
+            // Reset ViewModel Values
+            ViewModel.Dosage = string.Empty;
+            ViewModel.Intervall = string.Empty;
+
+            ViewModel.CurrentViewType = NewMediViewModel.ViewType.Intervall;
             // Set if no debendence to other medi
             if (ViewModel.IntervallType != Domain.Enums.IntervallType.Depend)
             {
@@ -83,17 +88,20 @@ namespace com.b_velop.OneMediPlan.iOS
 
             PickerIntervallType.Model = IntervallModel;
             PickerViewMedis.Model = MediModel;
+        }
 
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
             TextFieldDosage.AllEditingEvents += TextFieldDosage_AllEditingEvents;
             TextFieldIntervall.AllEditingEvents += TextFieldIntervall_AllEditingEvents;
             MediModel.ValueChanged += MediModel_ValueChanged;
             IntervallModel.ValueChanged += IntervallModel_ValueChanged;
-
         }
 
-        public override void ViewWillUnload()
+        public override void ViewDidDisappear(bool animated)
         {
-            base.ViewWillUnload();
+            base.ViewDidDisappear(animated);
             TextFieldDosage.AllEditingEvents -= TextFieldDosage_AllEditingEvents;
             TextFieldIntervall.AllEditingEvents -= TextFieldIntervall_AllEditingEvents;
             MediModel.ValueChanged -= MediModel_ValueChanged;
@@ -102,34 +110,38 @@ namespace com.b_velop.OneMediPlan.iOS
 
         void TextFieldDosage_AllEditingEvents(object sender, EventArgs e)
         {
-            if (sender is UITextView dosage)
+            if (sender is UITextField dosage)
             {
                 ViewModel.Dosage = dosage.Text;
-            };
+                ButtonNext.Hidden = !ViewModel.SaveNameCommand.CanExecute(null);
+            }
         }
 
         void TextFieldIntervall_AllEditingEvents(object sender, EventArgs e)
         {
-            if (sender is UITextView intervall)
+            if (sender is UITextField intervall)
             {
                 ViewModel.Intervall = intervall.Text;
+                ButtonNext.Hidden = !ViewModel.SaveNameCommand.CanExecute(null);
             }
         }
 
         void MediModel_ValueChanged(object sender, EventArgs e)
         {
-            if (sender is StringTypeDataModel mediModel)
+            if (sender is UIPickerView mediModel)
             {
-                ViewModel.DependsOnIdx = mediModel.SelectedIndex;
+                ViewModel.DependsOnIdx = (int)mediModel.SelectedRowInComponent(0);
+                ButtonNext.Hidden = !ViewModel.SaveNameCommand.CanExecute(null);
             }
         }
 
         void IntervallModel_ValueChanged(object sender, EventArgs e)
         {
-            if (sender is StringTypeDataModel intervallTypeDataModel)
+            if (sender is UIPickerView intervallTypeDataModel)
             {
-                var idx = intervallTypeDataModel.SelectedIndex;
+                var idx = (int)intervallTypeDataModel.SelectedRowInComponent(0); ;
                 ViewModel.IntervallTime = (IntervallTime)idx;
+                ButtonNext.Hidden = !ViewModel.SaveNameCommand.CanExecute(null);
             }
         }
 

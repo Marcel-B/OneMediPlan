@@ -13,7 +13,13 @@ namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class NewMediViewModel : BaseViewModel
     {
+        public enum ViewType
+        {
+            NameAndStock,
+            Intervall
+        }
         public ICommand SaveNameCommand { get; }
+        public ViewType CurrentViewType { get; set; }
 
         string _name;
         public string Name
@@ -71,6 +77,13 @@ namespace com.b_velop.OneMediPlan.ViewModels
             set => SetProperty(ref _dependsOnIdx, value);
         }
 
+        private DateTimeOffset _firstApplication;
+        public DateTimeOffset FirstApplication
+        {
+            get => _firstApplication;
+            set => SetProperty(ref _firstApplication, value);
+        }
+
         public NewMediViewModel()
         {
             Title = Strings.NEW;
@@ -80,9 +93,23 @@ namespace com.b_velop.OneMediPlan.ViewModels
         }
 
         private bool CanExecuteSaveName(object obj)
-            => !string.IsNullOrWhiteSpace(Name) &&
-                  !string.IsNullOrWhiteSpace(Stock) &&
-                  !string.IsNullOrWhiteSpace(StockMinimum);
+        {
+            if (CurrentViewType == ViewType.NameAndStock)
+            {
+                return
+                    !string.IsNullOrWhiteSpace(Name) &&
+                    !string.IsNullOrWhiteSpace(Stock) &&
+                    !string.IsNullOrWhiteSpace(StockMinimum);
+            }
+            if (CurrentViewType == ViewType.Intervall)
+            {
+                return
+                    !string.IsNullOrWhiteSpace(Dosage) &&
+                    !string.IsNullOrWhiteSpace(Intervall);
+            }
+            return false;
+        }
+
 
         private async void SaveNameExecute(object obj)
         {
@@ -96,6 +123,9 @@ namespace com.b_velop.OneMediPlan.ViewModels
                 Name = Name,
                 Stock = double.Parse(Stock),
                 MinimumStock = double.Parse(StockMinimum),
+                NextDate = (IntervallType != IntervallType.IfNeeded && IntervallType != IntervallType.Depend) ? FirstApplication : DateTimeOffset.MinValue,
+                PureIntervall = int.Parse(Intervall),
+                Dosage = double.Parse(Dosage)
             };
             AppStore.Instance.User.Medis.Add(medi);
             await store.AddItemAsync(medi);

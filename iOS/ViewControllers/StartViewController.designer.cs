@@ -12,7 +12,7 @@ using UIKit;
 namespace com.b_velop.OneMediPlan.iOS
 {
     [Register ("SetStartViewController")]
-    partial class StartViewController
+    partial class SetStartViewController
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -21,14 +21,6 @@ namespace com.b_velop.OneMediPlan.iOS
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIDatePicker PickerStartTime { get; set; }
-
-        [Action ("ButtonNext_TouchUpInside:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        partial void ButtonNext_TouchUpInside (UIKit.UIButton sender);
-
-        [Action ("StartPickerValueChanged:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        partial void StartPickerValueChanged (UIKit.UIDatePicker sender);
 
         void ReleaseDesignerOutlets ()
         {

@@ -4,6 +4,7 @@ using Ninject;
 
 using com.b_velop.OneMediPlan.ViewModels;
 using com.b_velop.OneMediPlan.Meta;
+using static com.b_velop.OneMediPlan.ViewModels.NewMediViewModel;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
@@ -19,6 +20,7 @@ namespace com.b_velop.OneMediPlan.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            ViewModel.CurrentViewType = ViewType.NameAndStock;
             Title = Strings.NEW_MEDI;
             TextFieldName.Placeholder = Strings.NAME;
             TextFieldStock.Placeholder = Strings.STOCK;
