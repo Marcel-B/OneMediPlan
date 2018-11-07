@@ -38,12 +38,12 @@ namespace com.b_velop.OneMediPlan.iOS
             source.ParentController = this;
             TableView.Source = source;
             Title = ViewModel.Title;
-            ViewModel.LoadItemsCommand.Execute(null);
         }
 
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
+            ViewModel.LoadItemsCommand.Execute(null);
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)

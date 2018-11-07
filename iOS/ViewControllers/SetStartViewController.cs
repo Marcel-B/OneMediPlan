@@ -46,9 +46,7 @@ namespace com.b_velop.OneMediPlan.iOS
 
         void ButtonNext_TouchUpInside(object sender, EventArgs e)
         {
-            ViewModel.SaveNameCommand.Execute(null);
         }
-
 
         void SetProperty(string propertyName, StartViewModel viewModel)
         {
