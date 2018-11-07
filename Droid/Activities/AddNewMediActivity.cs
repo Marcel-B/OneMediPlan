@@ -44,6 +44,7 @@ namespace com.b_velop.OneMediPlan.Droid
         public override void InitViews()
         {
             base.InitViews();
+            ViewModel.CurrentViewType = NewMediViewModel.ViewType.NameAndStock;
             var arraySpinner = new[]{
                 Strings.INTERVALL,
                 Strings.WEEKDAYS,
@@ -54,12 +55,25 @@ namespace com.b_velop.OneMediPlan.Droid
             var adapter = new ArrayAdapter<String>(this,
                     Android.Resource.Layout.SimpleSpinnerItem, arraySpinner);
             IntervallType.Adapter = adapter;
+
+            ViewModel.Stock = Stock.Text;
+            ViewModel.StockMinimum = StockMinimum.Text;
+            ViewModel.Name = Name.Text;
+            SetButtonState(false);
+        }
+
+        private void SetButtonState(bool isActive){
+            Next.Enabled = isActive;
+            if (isActive)
+                Next.SetBackgroundColor(Android.Graphics.Color.AliceBlue);
+            else
+                Next.SetBackgroundColor(Android.Graphics.Color.Red);
         }
 
         public override void Localize()
         {
             Name.Hint = Strings.ENTER_NAME;
-            StockMinimum.Hint = Strings.STOCK_MINIMUM;
+            StockMinimum.Hint = Strings.MINIMUM_STOCK_WARNING;
             Stock.Hint = Strings.STOCK;
         }
 
@@ -83,32 +97,36 @@ namespace com.b_velop.OneMediPlan.Droid
 
         void Next_Click(object sender, EventArgs e)
         {
-            //ViewModel.SaveNameCommand.Execute(null);
             StartActivity(typeof(SetIntervallActivity));
         }
 
         void IntervallType_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             ViewModel.IntervallType = (IntervallType)e.Position;
-            Next.Enabled = ViewModel.SaveNameCommand.CanExecute(null);
+            SetButtonState();
         }
 
         void Name_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
         {
             ViewModel.Name = e.Text.ToString();
-            Next.Enabled = ViewModel.SaveNameCommand.CanExecute(null);
+            SetButtonState();
         }
 
         void Stock_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
         {
             ViewModel.Stock = e.Text.ToString();
-            Next.Enabled = ViewModel.SaveNameCommand.CanExecute(null);
+            SetButtonState();
         }
 
         void StockMinimum_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
         {
             ViewModel.StockMinimum = e.Text.ToString();
-            Next.Enabled = ViewModel.SaveNameCommand.CanExecute(null);
+            SetButtonState();
+        }
+
+        private void SetButtonState()
+        {
+            SetButtonState(ViewModel.SaveNameCommand.CanExecute(null));
         }
     }
 }

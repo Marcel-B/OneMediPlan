@@ -110,9 +110,9 @@ namespace com.b_velop.OneMediPlan.ViewModels
             return false;
         }
 
-
         private async void SaveNameExecute(object obj)
         {
+            var data = AppStore.Instance.User;
             var store = App.Container.Get<IDataStore<Medi>>();
             var medi = new Medi
             {
@@ -120,6 +120,8 @@ namespace com.b_velop.OneMediPlan.ViewModels
                 Created = DateTimeOffset.Now,
                 LastEdit = DateTimeOffset.Now,
                 IntervallType = _intervallType,
+                IntervallTime = IntervallTime,
+                User = data,
                 Name = Name,
                 Stock = double.Parse(Stock),
                 MinimumStock = double.Parse(StockMinimum),

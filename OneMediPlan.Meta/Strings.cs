@@ -49,6 +49,7 @@ namespace com.b_velop.OneMediPlan.Meta
         public static string LABEL_TEXT = "LabelText";
 
         public static string MEDIS = "Medis".Translate();
+        public static string MINIMUM_STOCK_WARNING = "Minimum Stock Warning".Translate();
         public static string MINUTES = "Minute(s)".Translate();
         public static string MONTHS = "Month(s)".Translate();
 

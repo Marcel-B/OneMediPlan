@@ -18,6 +18,7 @@ If Needed = bei Bedarf
 Intervall = Intervall
 
 Medis = Medis
+Minimum Stock Warning = Minimum Vorrat Warnung
 Minute(s) = Minute(n)
 Month(s) = Monat(e)
 

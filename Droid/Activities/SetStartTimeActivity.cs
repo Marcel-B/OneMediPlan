@@ -1,11 +1,11 @@
 ﻿
 using Android.App;
 using Android.OS;
-
-using com.b_velop.OneMediPlan.ViewModels;
-using Ninject;
 using Android.Support.Design.Widget;
 using Android.Widget;
+using com.b_velop.OneMediPlan.ViewModels;
+using Ninject;
+using System;
 
 namespace com.b_velop.OneMediPlan.Droid.Activities
 {
@@ -24,13 +24,11 @@ namespace com.b_velop.OneMediPlan.Droid.Activities
             base.OnCreate(savedInstanceState);
             ViewModel = App.Container.Get<NewMediViewModel>();
         }
-
         public override void GetViews()
         {
             base.GetViews();
             Save = FindViewById<FloatingActionButton>(Resource.Id.floatButtonSaveMedi);
             StartTime = FindViewById<TimePicker>(Resource.Id.timePickerStartTime);
-
         }
         public override void Localize()
         {
@@ -40,16 +38,22 @@ namespace com.b_velop.OneMediPlan.Droid.Activities
         {
             base.SetEvents();
             Save.Click += Save_Click;
-
+        }
+        public override void InitViews()
+        {
+            base.InitViews();
+            var now = DateTimeOffset.Now;
+            StartTime.Hour = now.Hour;
+            StartTime.Minute = now.Minute;
         }
         public override void DestroyEvents()
         {
             base.DestroyEvents();
             Save.Click -= Save_Click;
         }
-
         void Save_Click(object sender, System.EventArgs e)
         {
+            ViewModel.SaveNameCommand.Execute(null);
             StartActivity(typeof(MainActivity));
         }
     }

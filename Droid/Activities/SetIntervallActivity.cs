@@ -76,6 +76,22 @@ namespace com.b_velop.OneMediPlan.Droid.Activities
                     Android.Resource.Layout.SimpleSpinnerItem, arraySpinnerDependsOn);
 
             DependsOn.Adapter = adapter;
+
+
+
+            if (ViewModel.CurrentViewType == NewMediViewModel.ViewType.Intervall &&
+                ViewModel.IntervallType != IntervallType.Depend)
+            {
+                DependsOn.Visibility = Android.Views.ViewStates.Invisible;
+                After.Visibility = Android.Views.ViewStates.Invisible;
+            }
+            else
+            {
+                DependsOn.Visibility = Android.Views.ViewStates.Visible;
+                After.Visibility = Android.Views.ViewStates.Visible;
+            }
+
+            Next.Enabled = false;
         }
 
         public override void Localize()
@@ -88,31 +104,52 @@ namespace com.b_velop.OneMediPlan.Droid.Activities
 
         public override void SetEvents()
         {
-            Dosage.TextChanged += (sender, e) =>
-            {
-                ViewModel.Dosage = e.Text.ToString();
-            };
-            Intervall.TextChanged += (sender, e) =>
-            {
-                ViewModel.Intervall = e.Text.ToString();
-            };
-            DependsOn.ItemSelected += (sender, e) =>
-            {
-                ViewModel.DependsOnIdx = e.Position;
-            };
-            TimeType.ItemSelected += (sender, e) =>
-            {
-                ViewModel.IntervallTime = (IntervallTime)e.Position;
-            };
-
-            Next.Click += (sender, e) =>
-            {
-                StartActivity(typeof(SetStartTimeActivity));
-            };
+            Dosage.TextChanged += Dosage_TextChanged;
+            Intervall.TextChanged += Intervall_TextChanged;
+            DependsOn.ItemSelected += DependsOn_ItemSelected;
+            TimeType.ItemSelected += TimeType_ItemSelected;
+            Next.Click += Next_Click;
         }
 
         public override void DestroyEvents()
         {
+            Dosage.TextChanged -= Dosage_TextChanged;
+            Intervall.TextChanged -= Intervall_TextChanged;
+            DependsOn.ItemSelected -= DependsOn_ItemSelected;
+            TimeType.ItemSelected -= TimeType_ItemSelected;
+            Next.Click -= Next_Click;
+        }
+
+        void Dosage_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            ViewModel.Dosage = e.Text.ToString();
+            SetButtonState();
+        }
+
+        void Intervall_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            ViewModel.Intervall = e.Text.ToString();
+            SetButtonState();
+        }
+
+        void DependsOn_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            ViewModel.DependsOnIdx = e.Position;
+            SetButtonState();
+        }
+
+        void TimeType_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            ViewModel.IntervallTime = (IntervallTime)e.Position;
+            SetButtonState();
+        }
+
+        void Next_Click(object sender, EventArgs e)
+            => StartActivity(typeof(SetStartTimeActivity));
+
+        private void SetButtonState()
+        {
+            Next.Enabled = ViewModel.SaveNameCommand.CanExecute(null);
         }
     }
 }

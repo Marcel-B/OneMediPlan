@@ -45,56 +45,79 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:orientation="vertical" 
             android:layout_width="match_parent" 
+            android:layout_margin="8dp"
             android:layout_height="match_parent">
+            <GridLayout
+                android:columnCount="4"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Every"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:id="@+id/textViewEvery" />
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editTextRawIntervall"
+                    android:layout_column="1"
+                    android:hint="intervall"
+                    android:numeric="decimal"
+                    android:inputType="numberDecimal" />
+                <Spinner
+                    android:layout_height="wrap_content"
+                    android:layout_columnSpan="2"
+                    android:layout_column="2"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="right"
+                    android:id="@+id/spinnerIntervallTime" />
+            </GridLayout>       
+     
+            <GridLayout
+                android:columnCount="4"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="after"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_gravity="fill_horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_columnSpan="2"
+                    android:layout_column="0"
+                    android:id="@+id/textViewAfter" />
+                <Spinner
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_column="2"
+                    android:layout_columnSpan="2"
+                    android:id="@+id/spinnerDependsOnMedi" />
+            </GridLayout>
             
-            <TextView
-                android:text="Every"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+            <GridLayout
+                android:columnCount="3"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textViewEvery" />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/editTextRawIntervall"
-                android:hint="intervall"
-                android:numeric="decimal"
-                android:inputType="numberDecimal" />
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinnerIntervallTime" />
-            <TextView
-                android:text="after"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textViewAfter" />
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinnerDependsOnMedi" />
-            <TextView
-                android:text="take"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textViewTake" />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/editTextDosage"
-                android:hint="Dosage"
-                android:numeric="decimal"
-                android:inputType="numberDecimal" />
-            <TextView
-                android:text="units"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:id="@+id/textViewUnits" />
-    
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="take"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewTake" />
+                <EditText
+                    android:id="@+id/editTextDosage"
+                    android:layout_columnWeight="2"
+                    android:hint="Dosage"
+                    android:numeric="decimal"
+                    android:inputType="numberDecimal" />
+                <TextView
+                    android:text="units"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:id="@+id/textViewUnits" />
+                </GridLayout>
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/floatButtonNextIntervall"
                 android:layout_width="wrap_content"
