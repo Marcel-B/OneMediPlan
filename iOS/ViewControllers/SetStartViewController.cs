@@ -23,6 +23,7 @@ namespace com.b_velop.OneMediPlan.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            ButtonNext.TouchUpInside += ButtonNext_TouchUpInside;
             PickerStartTime.ValueChanged += PickerStartTime_ValueChanged;
             PickerStartTime.Date = DateTime.Now.ToNSDate();
             ViewModel.FirstApplication = PickerStartTime.Date.ToDateTime();
@@ -31,6 +32,7 @@ namespace com.b_velop.OneMediPlan.iOS
         public override void ViewDidUnload()
         {
             base.ViewDidUnload();
+            ButtonNext.TouchUpInside -= ButtonNext_TouchUpInside;
             PickerStartTime.ValueChanged -= PickerStartTime_ValueChanged;
         }
 
@@ -41,6 +43,12 @@ namespace com.b_velop.OneMediPlan.iOS
                 ViewModel.FirstApplication = picker.Date.ToDateTime();
             }
         }
+
+        void ButtonNext_TouchUpInside(object sender, EventArgs e)
+        {
+            ViewModel.SaveNameCommand.Execute(null);
+        }
+
 
         void SetProperty(string propertyName, StartViewModel viewModel)
         {
