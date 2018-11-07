@@ -374,6 +374,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Intervalltyp" id="17903"/>
+                    <connections>
+                        <outlet property="Depends" destination="16941" id="name-outlet-16941"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16032" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

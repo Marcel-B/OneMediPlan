@@ -8,13 +8,12 @@ using com.b_velop.OneMediPlan.Meta;
 using com.b_velop.OneMediPlan.ViewModels;
 using com.b_velop.OneMediPlan.Services;
 using com.b_velop.OneMediPlan.Domain.Enums;
+using com.b_velop.OneMediPlan.Domain;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class IntervallViewController : UIViewController
     {
-
-
         public IntervallViewController(IntPtr handle) : base(handle)
         {
             ViewModel = App.Container.Get<NewMediViewModel>();
@@ -72,8 +71,10 @@ namespace com.b_velop.OneMediPlan.iOS
 
             MediModel = new StringTypeDataModel();
             var medis = AppStore.Instance.User.Medis;
+            IEnumerable<string> mediNames = new string[0];
 
-            var mediNames = medis.Select(m => m.Name);
+            if(medis != null)
+                mediNames = medis.Select(m => m.Name);
 
             IntervallModel = new StringTypeDataModel();
             var list = new List<string>

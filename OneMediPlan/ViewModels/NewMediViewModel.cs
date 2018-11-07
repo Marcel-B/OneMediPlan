@@ -8,6 +8,7 @@ using com.b_velop.OneMediPlan.Helpers;
 using com.b_velop.OneMediPlan.Meta;
 using com.b_velop.OneMediPlan.Services;
 using Ninject;
+using System.Collections.Generic;
 
 namespace com.b_velop.OneMediPlan.ViewModels
 {
@@ -129,6 +130,8 @@ namespace com.b_velop.OneMediPlan.ViewModels
                 PureIntervall = int.Parse(Intervall),
                 Dosage = double.Parse(Dosage)
             };
+            if (AppStore.Instance.User.Medis == null)
+                AppStore.Instance.User.Medis = new List<Medi>();
             AppStore.Instance.User.Medis.Add(medi);
             await store.AddItemAsync(medi);
         }

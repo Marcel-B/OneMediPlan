@@ -6,6 +6,7 @@ using com.b_velop.OneMediPlan.ViewModels;
 using Foundation;
 using Ninject;
 using UIKit;
+using com.b_velop.OneMediPlan.Services;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
@@ -22,6 +23,10 @@ namespace com.b_velop.OneMediPlan.iOS
         {
             base.ViewDidLoad();
             Title = Strings.INTERVALL_TYPE;
+            if (AppStore.Instance.User.Medis == null ||
+               AppStore.Instance.User.Medis.Count == 0)
+                Depends.Enabled = false;
+            else Depends.Enabled = true;
         }
 
         partial void SetIntervallTouched(UIButton sender)

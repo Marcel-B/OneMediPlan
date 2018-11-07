@@ -228,10 +228,6 @@
     <Compile Include="CustomCells\MyMediTableViewCell.designer.cs">
       <DependentUpon>MyMediTableViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\StockViewController.cs" />
-    <Compile Include="ViewControllers\StockViewController.designer.cs">
-      <DependentUpon>StockViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\IntervallViewController.cs" />
     <Compile Include="ViewControllers\IntervallViewController.designer.cs">
       <DependentUpon>IntervallViewController.cs</DependentUpon>

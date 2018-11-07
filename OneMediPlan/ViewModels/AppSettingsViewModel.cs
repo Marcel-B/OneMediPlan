@@ -21,14 +21,20 @@ namespace com.b_velop.OneMediPlan.ViewModels
         public int Hour { get; set; }
         public int Minute { get; set; }
 
-
         public ICommand SaveSettingsCommand { get; }
 
         public void LoadSettings()
         {
-            CurrentSettings = AppStore.Instance.AppSettings;
+            CurrentSettings = AppStore.Instance.AppSettings ?? new AppSettings
+            {
+                Id = Guid.NewGuid(),
+                Hour = 12,
+                Minute = 30,
+                Created = DateTimeOffset.Now,
+                LastEdit = DateTimeOffset.Now,
+                User = AppStore.Instance.User
+            };
         }
-
 
         public AppSettingsViewModel()
         {

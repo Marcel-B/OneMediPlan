@@ -2,6 +2,8 @@
 using UIKit;
 using com.b_velop.OneMediPlan.iOS.Helper;
 using com.b_velop.OneMediPlan.Domain;
+using com.b_velop.OneMediPlan.Domain.Stores;
+using com.b_velop.OneMediPlan.Services;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
@@ -32,8 +34,6 @@ namespace com.b_velop.OneMediPlan.iOS
         {
             // Localization:
             // https://docs.microsoft.com/de-de/xamarin/ios/app-fundamentals/localization/
-            var nn = NSBundle.MainBundle.PreferredLocalizations.Length;
-            var lang = NSBundle.MainBundle.PreferredLocalizations[0];
             App.SetNotification = SetNotification;
             var notificationSettings =
                 UIUserNotificationSettings
@@ -50,8 +50,15 @@ namespace com.b_velop.OneMediPlan.iOS
             // Games should use this method to pause the game.
         }
 
-        public override void DidEnterBackground(UIApplication application)
+        public override async void DidEnterBackground(UIApplication application)
         {
+            var st = new LocalDataStore();
+            var inst = AppStore.Instance;
+            if (inst.User == null) return;
+            var user = inst.User;
+            var ll = await st.PersistToDevice(user, "user.json");
+            var llwd = await st.PersistToDevice(AppStore.Instance.Weekdays, "weekdays.json");
+            var ass = await st.PersistToDevice(AppStore.Instance.AppSettings, "settings.json");
             // Use this method to release shared resources, save user data, invalidate timers and store the application state.
             // If your application supports background exection this method is called instead of WillTerminate when the user quits.
         }
@@ -66,7 +73,6 @@ namespace com.b_velop.OneMediPlan.iOS
         {
             // Restart any tasks that were paused (or not yet started) while the application was inactive. 
             // If the application was previously in the background, optionally refresh the user interface.
-
         }
 
         public override void WillTerminate(UIApplication application)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using com.b_velop.OneMediPlan.Domain.Enums;
+using Newtonsoft.Json;
 
 namespace com.b_velop.OneMediPlan.Domain
 {
@@ -9,6 +10,7 @@ namespace com.b_velop.OneMediPlan.Domain
     {
 
         // ForaignKeys --
+        [JsonIgnoreAttribute]
         public MediUser User { get; set; }
         //public Weekdays Weekdays { get; set; }
         public IList<DailyAppointment> DailyAppointments { get; set; }

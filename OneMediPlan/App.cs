@@ -93,11 +93,7 @@ namespace com.b_velop.OneMediPlan
             Container.Bind<AppSettingsViewModel>().ToSelf().InSingletonScope();
             Container.Bind<MediDetailViewModel>().ToSelf().InSingletonScope();
             Container.Bind<NewMediViewModel>().ToSelf().InSingletonScope();
-            Container.Bind<StockViewModel>().ToSelf().InSingletonScope();
-            Container.Bind<IntervallTypeViewModel>().ToSelf().InSingletonScope();
             Container.Bind<DependencyViewModel>().ToSelf().InSingletonScope();
-            Container.Bind<DosageViewModel>().ToSelf().InSingletonScope();
-            Container.Bind<WeekdayViewModel>().ToSelf().InSingletonScope();
             Container.Bind<DailyViewModel>().ToSelf().InSingletonScope();
             Container.Bind<StartViewModel>().ToSelf().InSingletonScope();
             Container.Bind<Medi>().ToSelf().InSingletonScope(); // Temp Medi
@@ -129,45 +125,65 @@ namespace com.b_velop.OneMediPlan
         }
         public static async Task FetchDataByUser()
         {
-            var appUser = AppStore.Instance.User;
-            var mediStore = Container.Get<IDataStore<Medi>>();
-            var dailyStore = Container.Get<IDataStore<DailyAppointment>>();
-            var weekdaysStore = Container.Get<IDataStore<Weekdays>>();
-
-            var medis = await mediStore.GetItemsByFkAsync(appUser.Id);
-            foreach (var medi in medis)
+            var localDataStore = new LocalDataStore();
+            var user = await localDataStore.LoadFromDevice<MediUser>("user.json");
+            if (user == null)
             {
-                var dailyAppointments = await dailyStore.GetItemsByFkAsync(medi.Id);
-                var weekdays = (await weekdaysStore.GetItemsByFkAsync(medi.Id)).ToList();
-                if (weekdays.Count > 0)
-                    AppStore.Instance.Weekdays[medi.Id] = weekdays.First();
-                if (dailyAppointments != null)
-                    medi.DailyAppointments = dailyAppointments.ToList();
-                appUser.Medis.Add(medi);
+                user = new MediUser
+                {
+                    Id = Guid.NewGuid(),
+                    Created = DateTimeOffset.Now,
+                    LastEdit = DateTimeOffset.Now,
+                    Name = Environment.UserName,
+                };
             }
+            var weekdays = await localDataStore.LoadFromDevice<Dictionary<Guid, Weekdays>>("weekdays.json");
+
+            AppStore.Instance.User = user;
+            AppStore.Instance.Weekdays = weekdays;
+
+            //var appUser = AppStore.Instance.User;
+            //var mediStore = Container.Get<IDataStore<Medi>>();
+            //var dailyStore = Container.Get<IDataStore<DailyAppointment>>();
+            //var weekdaysStore = Container.Get<IDataStore<Weekdays>>();
+
+            //var medis = await mediStore.GetItemsByFkAsync(appUser.Id);
+            //foreach (var medi in medis)
+            //{
+            //    var dailyAppointments = await dailyStore.GetItemsByFkAsync(medi.Id);
+            //    var weekdays = (await weekdaysStore.GetItemsByFkAsync(medi.Id)).ToList();
+            //    if (weekdays.Count > 0)
+            //        AppStore.Instance.Weekdays[medi.Id] = weekdays.First();
+            //    if (dailyAppointments != null)
+            //        medi.DailyAppointments = dailyAppointments.ToList();
+            //    appUser.Medis.Add(medi);
+            //}
         }
 
         public static async Task SetSettings()
         {
-            var appSettingsStore = Container.Get<IDataStore<AppSettings>>();
-            var appSettings = (await appSettingsStore.GetItemsAsync()).ToArray();
-            AppSettings settings = null;
-            if (appSettings == null || appSettings.Length == 0)
-            {
-                settings = new AppSettings
-                {
-                    Hour = 12,
-                    Minute = 15,
-                    Created = DateTimeOffset.Now,
-                    Id = Guid.NewGuid()
-                };
-                await appSettingsStore.AddItemAsync(settings);
-            }
-            else
-            {
-                settings = appSettings[0];
-            }
-            AppStore.Instance.AppSettings = settings;
+            var localDataStore = new LocalDataStore();
+            var appSettings = await localDataStore.LoadFromDevice<AppSettings>("settings.json");
+            AppStore.Instance.AppSettings = appSettings;
+            //var appSettingsStore = Container.Get<IDataStore<AppSettings>>();
+            //var appSettings = (await appSettingsStore.GetItemsAsync()).ToArray();
+            //AppSettings settings = null;
+            //if (appSettings == null || appSettings.Length == 0)
+            //{
+            //    settings = new AppSettings
+            //    {
+            //        Hour = 12,
+            //        Minute = 15,
+            //        Created = DateTimeOffset.Now,
+            //        Id = Guid.NewGuid()
+            //    };
+            //    await appSettingsStore.AddItemAsync(settings);
+            //}
+            //else
+            //{
+            //    settings = appSettings[0];
+            //}
+            //AppStore.Instance.AppSettings = settings;
         }
     }
 }
