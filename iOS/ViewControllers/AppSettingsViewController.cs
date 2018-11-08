@@ -6,10 +6,11 @@ using com.b_velop.OneMediPlan.ViewModels;
 using Foundation;
 using Ninject;
 using UIKit;
+using com.b_velop.OneMediPlan.iOS.ViewControllers;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
-    public partial class AppSettingsViewController : UIViewController
+    public partial class AppSettingsViewController : BaseViewController
     {
         partial void ButtonSave_TouchUpInside(UIButton sender)
         {

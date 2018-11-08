@@ -1,14 +1,12 @@
 using System;
-using UIKit;
-using Ninject;
-using Foundation;
-
+using com.b_velop.OneMediPlan.iOS.ViewControllers;
 using com.b_velop.OneMediPlan.ViewModels;
-using com.b_velop.OneMediPlan.Meta;
+using Ninject;
+using UIKit;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
-    public partial class WeekdayViewController : UIViewController
+    public partial class WeekdayViewController : BaseViewController
     {
         public NewMediViewModel ViewModel { get; set; }
 

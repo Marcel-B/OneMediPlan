@@ -7,10 +7,11 @@ using Foundation;
 using Ninject;
 using UIKit;
 using com.b_velop.OneMediPlan.Services;
+using com.b_velop.OneMediPlan.iOS.ViewControllers;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
-    public partial class IntervallTypeViewController : UIViewController
+    public partial class IntervallTypeViewController : BaseViewController
     {
         public IntervallTypeViewController(IntPtr handle) : base(handle)
         {

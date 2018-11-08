@@ -64,29 +64,6 @@ namespace com.b_velop.OneMediPlan
                .SetResourcesFolder("Locales") // Optional: The directory containing the resource files (defaults to "Locales")
                .Init(typeof(App).GetTypeInfo().Assembly); // assembl
 
-            try
-            {
-
-
-                var medi = new Medi();
-                medi.Id = Guid.NewGuid();
-                medi.Name = "Furtz";
-
-                var json = JsonConvert.SerializeObject(medi);
-                var path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-                var dir = Directory.GetFiles(path);
-                var filePath = Path.Combine(path, "medi.json");
-                using (var file = File.Open(filePath, FileMode.Create, FileAccess.Write))
-                using (var strm = new StreamWriter(file))
-                {
-                    strm.Write(json);
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Log($"Error occured while writing to device", typeof(App), ex);
-            }
-
             Container = new StandardKernel();
             Container.Bind<ILogger>().To<AppLogger>();
             Container.Bind<MainViewModel>().ToSelf().InSingletonScope();
@@ -113,15 +90,15 @@ namespace com.b_velop.OneMediPlan
                 Container.Bind<IDataStore<AppSettings>>().To<AppSettingsDataStore>().WithConstructorArgument("backendUrl", App.URL);
                 Container.Bind<IDataStore<DailyAppointment>>().To<DailyAppointmentDataStore>().WithConstructorArgument("backendUrl", App.URL);
             }
-            AppStore.Instance.User = new MediUser
-            {
-                Id = MediDataMock.USER_ID,
-                Created = DateTimeOffset.Now,
-                Medis = new List<Medi>()
-            };
+
+            //AppStore.Instance.User = new MediUser
+            //{
+            //    Id = MediDataMock.USER_ID,
+            //    Created = DateTimeOffset.Now,
+            //    Medis = new List<Medi>()
+            //};
 
             Task.Run(() => FetchDataByUser());
-            Task.Run(() => SetSettings());
         }
         public static async Task FetchDataByUser()
         {
@@ -137,11 +114,14 @@ namespace com.b_velop.OneMediPlan
                     Name = Environment.UserName,
                 };
             }
-            var weekdays = await localDataStore.LoadFromDevice<Dictionary<Guid, Weekdays>>("weekdays.json");
-
             AppStore.Instance.User = user;
-            AppStore.Instance.Weekdays = weekdays;
+            await SetSettings();
 
+            var weekdays = await localDataStore.LoadFromDevice<Dictionary<Guid, Weekdays>>("weekdays.json");
+            AppStore.Instance.Weekdays = weekdays;
+        }
+
+        //public static async Task FetchFromCloud(){
             //var appUser = AppStore.Instance.User;
             //var mediStore = Container.Get<IDataStore<Medi>>();
             //var dailyStore = Container.Get<IDataStore<DailyAppointment>>();
@@ -158,32 +138,24 @@ namespace com.b_velop.OneMediPlan
             //        medi.DailyAppointments = dailyAppointments.ToList();
             //    appUser.Medis.Add(medi);
             //}
-        }
-
+        //}
+      
         public static async Task SetSettings()
         {
             var localDataStore = new LocalDataStore();
             var appSettings = await localDataStore.LoadFromDevice<AppSettings>("settings.json");
+            if (appSettings == null)
+                appSettings = new AppSettings
+                {
+                    Id = Guid.NewGuid(),
+                    Created = DateTimeOffset.Now,
+                    LastEdit = DateTimeOffset.Now,
+                    Description = "nothing",
+                    Hour = 12,
+                    Minute = 30,
+                    User = AppStore.Instance.User
+                };
             AppStore.Instance.AppSettings = appSettings;
-            //var appSettingsStore = Container.Get<IDataStore<AppSettings>>();
-            //var appSettings = (await appSettingsStore.GetItemsAsync()).ToArray();
-            //AppSettings settings = null;
-            //if (appSettings == null || appSettings.Length == 0)
-            //{
-            //    settings = new AppSettings
-            //    {
-            //        Hour = 12,
-            //        Minute = 15,
-            //        Created = DateTimeOffset.Now,
-            //        Id = Guid.NewGuid()
-            //    };
-            //    await appSettingsStore.AddItemAsync(settings);
-            //}
-            //else
-            //{
-            //    settings = appSettings[0];
-            //}
-            //AppStore.Instance.AppSettings = settings;
         }
     }
 }

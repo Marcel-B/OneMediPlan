@@ -261,6 +261,7 @@
     <Compile Include="CustomCells\DependsView.designer.cs">
       <DependentUpon>DependsView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewControllers\BaseViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />

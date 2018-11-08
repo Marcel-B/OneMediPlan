@@ -1,18 +1,18 @@
 using System;
-using UIKit;
 using System.Collections.Generic;
 using System.Linq;
-using Ninject;
-using Foundation;
-using com.b_velop.OneMediPlan.Meta;
-using com.b_velop.OneMediPlan.ViewModels;
-using com.b_velop.OneMediPlan.Services;
 using com.b_velop.OneMediPlan.Domain.Enums;
-using com.b_velop.OneMediPlan.Domain;
+using com.b_velop.OneMediPlan.iOS.ViewControllers;
+using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.Services;
+using com.b_velop.OneMediPlan.ViewModels;
+using Foundation;
+using Ninject;
+using UIKit;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
-    public partial class IntervallViewController : UIViewController
+    public partial class IntervallViewController : BaseViewController
     {
         public IntervallViewController(IntPtr handle) : base(handle)
         {
@@ -23,23 +23,6 @@ namespace com.b_velop.OneMediPlan.iOS
         internal StringTypeDataModel MediModel { get; set; }
         internal StringTypeDataModel IntervallModel { get; set; }
 
-        private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            //if (sender is IntervallViewModel viewModel)
-            //{
-            //    if (e.PropertyName.Equals(Strings.CURRENT_MEDI))
-            //    {
-            //        var noParent = viewModel.CurrentMedi.DependsOn == Guid.Empty;
-            //        //LabelDependencyInfo.Hidden = noParent;
-            //    }
-            //    else if (e.PropertyName.Equals(NSBundle.MainBundle.GetLocalizedString(Strings.LABEL_TEXT)))
-            //    {
-            //        //LabelDependencyInfo.Text = Strings.AFTER;
-            //        //$"{NSBundle.MainBundle.GetLocalizedString(Strings._AFTER)} '{viewModel.LabelText}'.";
-            //    }
-            //}
-        }
-
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -47,8 +30,8 @@ namespace com.b_velop.OneMediPlan.iOS
             // Reset ViewModel Values
             ViewModel.Dosage = string.Empty;
             ViewModel.Intervall = string.Empty;
-
             ViewModel.CurrentViewType = NewMediViewModel.ViewType.Intervall;
+
             // Set if no debendence to other medi
             if (ViewModel.IntervallType != Domain.Enums.IntervallType.Depend)
             {
@@ -94,6 +77,7 @@ namespace com.b_velop.OneMediPlan.iOS
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
+            ButtonNext.TouchUpInside += ButtonNext_TouchUpInside;
             TextFieldDosage.AllEditingEvents += TextFieldDosage_AllEditingEvents;
             TextFieldIntervall.AllEditingEvents += TextFieldIntervall_AllEditingEvents;
             MediModel.ValueChanged += MediModel_ValueChanged;
@@ -103,10 +87,19 @@ namespace com.b_velop.OneMediPlan.iOS
         public override void ViewDidDisappear(bool animated)
         {
             base.ViewDidDisappear(animated);
+            ButtonNext.TouchUpInside -= ButtonNext_TouchUpInside;
             TextFieldDosage.AllEditingEvents -= TextFieldDosage_AllEditingEvents;
             TextFieldIntervall.AllEditingEvents -= TextFieldIntervall_AllEditingEvents;
             MediModel.ValueChanged -= MediModel_ValueChanged;
             IntervallModel.ValueChanged -= IntervallModel_ValueChanged;
+        }
+
+        void ButtonNext_TouchUpInside(object sender, EventArgs e)
+        {
+            var destination = ViewModel.IntervallType == IntervallType.Intervall 
+                                       ? "FromIntervallToStarttime" 
+                                       : "FromIntervallToSave";
+            PerformSegue(destination, this);
         }
 
         void TextFieldDosage_AllEditingEvents(object sender, EventArgs e)
@@ -146,6 +139,8 @@ namespace com.b_velop.OneMediPlan.iOS
             }
         }
 
+        public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
+            => ViewModel.IntervallType == IntervallType.Intervall;
 
         internal class StringTypeDataModel : UIPickerViewModel
         {

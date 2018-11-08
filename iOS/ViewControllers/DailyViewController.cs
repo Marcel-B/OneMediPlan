@@ -1,17 +1,23 @@
-using Foundation;
 using System;
 using System.Collections.Generic;
-using UIKit;
-using Ninject;
-using com.b_velop.OneMediPlan.ViewModels;
-using com.b_velop.OneMediPlan.Models;
-using com.b_velop.OneMediPlan.Meta;
 using com.b_velop.OneMediPlan.iOS.Helper;
+using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.Models;
+using com.b_velop.OneMediPlan.ViewModels;
+using Foundation;
+using Ninject;
+using UIKit;
+using com.b_velop.OneMediPlan.iOS.ViewControllers;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
-    public partial class DailyViewController : UIViewController
+    public partial class DailyViewController : BaseViewController
     {
+        public DailyViewController(IntPtr handle) : base(handle)
+        {
+            ViewModel = App.Container.Get<DailyViewModel>();
+        }
+
         public DailyViewModel ViewModel { get; set; }
 
         partial void ButtonNext_TouchUpInside(UIButton sender)
@@ -37,10 +43,7 @@ namespace com.b_velop.OneMediPlan.iOS
             }
         }
 
-        public DailyViewController(IntPtr handle) : base(handle)
-        {
-            ViewModel = App.Container.Get<DailyViewModel>();
-        }
+     
 
         public override void ViewDidLoad()
         {

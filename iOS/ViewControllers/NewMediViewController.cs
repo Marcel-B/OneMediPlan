@@ -1,14 +1,14 @@
 ﻿using System;
-using UIKit;
-using Ninject;
-
-using com.b_velop.OneMediPlan.ViewModels;
+using com.b_velop.OneMediPlan.iOS.ViewControllers;
 using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.ViewModels;
+using Ninject;
+using UIKit;
 using static com.b_velop.OneMediPlan.ViewModels.NewMediViewModel;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
-    public partial class NewMediViewController : UIViewController
+    public partial class NewMediViewController : BaseViewController
     {
         public NewMediViewModel ViewModel { get; set; }
 
@@ -25,15 +25,19 @@ namespace com.b_velop.OneMediPlan.iOS
             TextFieldName.Placeholder = Strings.NAME;
             TextFieldStock.Placeholder = Strings.STOCK;
             TextFieldMinimumStock.Placeholder = Strings.STOCK_MINIMUM;
+        }
 
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
             TextFieldName.AllEditingEvents += TextFieldName_AllEditingEvents;
             TextFieldStock.AllEditingEvents += TextFieldStock_AllEditingEvents;
             TextFieldMinimumStock.AllEditingEvents += TextFieldMinimumStock_AllEditingEvents;
         }
 
-        public override void ViewDidUnload()
+        public override void ViewDidDisappear(bool animated)
         {
-            base.ViewDidUnload();
+            base.ViewDidDisappear(animated);
             TextFieldName.AllEditingEvents -= TextFieldName_AllEditingEvents;
             TextFieldStock.AllEditingEvents -= TextFieldStock_AllEditingEvents;
             TextFieldMinimumStock.AllEditingEvents -= TextFieldMinimumStock_AllEditingEvents;

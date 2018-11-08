@@ -198,7 +198,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="81" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1555" y="-389"/>
+            <point key="canvasLocation" x="1284" y="-782"/>
         </scene>
         <!--New Medi-->
         <scene sceneID="2247">
@@ -236,13 +236,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="46.5" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Minimum Stock" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="75759">
                                         <rect key="frame" x="51.5" y="0.0" width="46.5" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                 </subviews>
                             </stackView>
@@ -270,7 +270,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2250" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2725" y="-781"/>
+            <point key="canvasLocation" x="1878" y="-788"/>
         </scene>
         <!--Intervalltyp-->
         <scene sceneID="16029">
@@ -380,7 +380,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16032" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3752" y="-783"/>
+            <point key="canvasLocation" x="2445" y="-796"/>
         </scene>
         <!--Intervall-->
         <scene sceneID="16946">
@@ -414,9 +414,6 @@
                                 <state key="normal" title="Weiter">
                                     <color key="titleColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <connections>
-                                    <segue id="159197" destination="18545" kind="show"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="after" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="122869" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
                                 <rect key="frame" x="15" y="258" width="80" height="21"/>
@@ -498,11 +495,13 @@
                         <outlet property="LabelEvery" destination="135670" id="name-outlet-135670"/>
                         <outlet property="DependsSpace" destination="142655" id="name-outlet-142655"/>
                         <outlet property="StackView" destination="123712" id="name-outlet-123712"/>
+                        <segue id="161572" destination="18545" kind="show" identifier="FromIntervallToStarttime"/>
+                        <segue id="161614" destination="17381" kind="show" identifier="FromIntervallToSave"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16949" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5049" y="665"/>
+            <point key="canvasLocation" x="3258" y="539"/>
         </scene>
         <!--Abhängig-->
         <!--Save Medi View Controller-->
@@ -579,7 +578,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17383" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6690" y="-343"/>
+            <point key="canvasLocation" x="4596" y="-554"/>
         </scene>
         <!--Wochentage-->
         <scene sceneID="17431">
@@ -747,7 +746,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17434" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4485" y="-1215"/>
+            <point key="canvasLocation" x="3376" y="-1480"/>
         </scene>
         <!--Dosis-->
         <!--Start-->
@@ -814,7 +813,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="18547" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6429" y="-1275"/>
+            <point key="canvasLocation" x="3959" y="-272"/>
         </scene>
         <!--Set Daily View Controller-->
         <scene sceneID="42782">
@@ -898,7 +897,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42785" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5140" y="-195"/>
+            <point key="canvasLocation" x="3350" y="-358"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>

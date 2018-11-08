@@ -1,12 +1,12 @@
 using System;
+using com.b_velop.OneMediPlan.iOS.ViewControllers;
 using com.b_velop.OneMediPlan.Meta;
 using com.b_velop.OneMediPlan.ViewModels;
 using Ninject;
-using UIKit;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
-    public partial class SaveMediViewController : UIViewController
+    public partial class SaveMediViewController : BaseViewController
     {
         public NewMediViewModel ViewModel { get; set; }
 

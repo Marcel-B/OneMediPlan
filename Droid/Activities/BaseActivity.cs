@@ -1,8 +1,6 @@
 ﻿using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
-using System;
-using Java.Lang;
 
 namespace com.b_velop.OneMediPlan.Droid
 {
