@@ -101,7 +101,7 @@
         <scene sceneID="hTF-aU-mbW">
             <objects>
                 <navigationController title="Browse" automaticallyAdjustsScrollViewInsets="NO" id="IVu-6x-Ha6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" id="acW-dT-cKf" selectedImage="Pills" image="Pills"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="U58-7W-wiN">
@@ -131,7 +131,7 @@
         <scene sceneID="4YN-yV-spV">
             <objects>
                 <navigationController title="About" automaticallyAdjustsScrollViewInsets="NO" id="uSp-bD-Qry" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Einstellungen" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" id="cPa-gy-q4n" image="Settings"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dDs-el-YGI">
@@ -901,4 +901,8 @@
         </scene>
     </scenes>
     <color key="tintColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
+    <resources>
+        <image name="Pills" width="24" height="24"/>
+        <image name="Settings" width="24" height="24"/>
+    </resources>
 </document>

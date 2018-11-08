@@ -10,6 +10,7 @@ using com.b_velop.OneMediPlan.ViewModels;
 using Ninject;
 using com.b_velop.OneMediPlan.Meta;
 using com.b_velop.OneMediPlan.Domain.Enums;
+using System.Collections.Generic;
 
 namespace com.b_velop.OneMediPlan.Droid.Activities
 {
@@ -71,14 +72,17 @@ namespace com.b_velop.OneMediPlan.Droid.Activities
                     Android.Resource.Layout.SimpleSpinnerItem, arraySpinnerTimeType);
 
             TimeType.Adapter = adapterTimeType;
+            string[] arraySpinnerDependsOn;
 
-            var arraySpinnerDependsOn = AppStore.Instance.User.Medis.Select(m => m.Name).ToArray();
+            if (AppStore.Instance.User.Medis != null)
+                arraySpinnerDependsOn = AppStore.Instance.User.Medis.Select(m => m.Name).ToArray();
+            else
+                arraySpinnerDependsOn = new string[0];
+
             var adapter = new ArrayAdapter<String>(this,
                     Android.Resource.Layout.SimpleSpinnerItem, arraySpinnerDependsOn);
 
             DependsOn.Adapter = adapter;
-
-
 
             if (ViewModel.CurrentViewType == NewMediViewModel.ViewType.Intervall &&
                 ViewModel.IntervallType != IntervallType.Depend)

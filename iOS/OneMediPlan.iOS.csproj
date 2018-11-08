@@ -200,6 +200,14 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-216.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Pills.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Pills.imageset\pills.png" />
+    <ImageAsset Include="Assets.xcassets\Pills.imageset\pills%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Pills.imageset\pills%403x.png" />
+    <ImageAsset Include="Assets.xcassets\Settings.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Settings.imageset\settings.png" />
+    <ImageAsset Include="Assets.xcassets\Settings.imageset\settings%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Settings.imageset\settings%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewControllers\DetailViewControllers\BrowseItemDetailViewController.cs" />
@@ -277,6 +285,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helper\" />
+    <Folder Include="Assets.xcassets\Pills.imageset\" />
+    <Folder Include="Assets.xcassets\Settings.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OneMediPlan.Meta\OneMediPlan.Meta.csproj">
