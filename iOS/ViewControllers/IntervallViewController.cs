@@ -122,18 +122,18 @@ namespace com.b_velop.OneMediPlan.iOS
 
         void MediModel_ValueChanged(object sender, EventArgs e)
         {
-            if (sender is UIPickerView mediModel)
+            if (sender is StringTypeDataModel mediModel)
             {
-                ViewModel.DependsOnIdx = (int)mediModel.SelectedRowInComponent(0);
+                ViewModel.DependsOnIdx = mediModel.SelectedIndex;
                 ButtonNext.Hidden = !ViewModel.SaveNameCommand.CanExecute(null);
             }
         }
 
         void IntervallModel_ValueChanged(object sender, EventArgs e)
         {
-            if (sender is UIPickerView intervallTypeDataModel)
+            if (sender is StringTypeDataModel intervallTypeDataModel)
             {
-                var idx = (int)intervallTypeDataModel.SelectedRowInComponent(0); ;
+                var idx = (int)intervallTypeDataModel.SelectedIndex; 
                 ViewModel.IntervallTime = (IntervallTime)idx;
                 ButtonNext.Hidden = !ViewModel.SaveNameCommand.CanExecute(null);
             }

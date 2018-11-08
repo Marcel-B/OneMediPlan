@@ -1,13 +1,11 @@
 using System;
-using com.b_velop.OneMediPlan.Domain;
 using com.b_velop.OneMediPlan.Domain.Enums;
+using com.b_velop.OneMediPlan.iOS.ViewControllers;
 using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.Services;
 using com.b_velop.OneMediPlan.ViewModels;
-using Foundation;
 using Ninject;
 using UIKit;
-using com.b_velop.OneMediPlan.Services;
-using com.b_velop.OneMediPlan.iOS.ViewControllers;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
@@ -30,6 +28,11 @@ namespace com.b_velop.OneMediPlan.iOS
             else Depends.Enabled = true;
         }
 
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+            ViewModel.DependsOnIdx = -1;
+        }
         partial void SetIntervallTouched(UIButton sender)
         {
             var t = sender.Tag;

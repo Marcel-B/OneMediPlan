@@ -4,6 +4,7 @@ using com.b_velop.OneMediPlan.iOS.Helper;
 using com.b_velop.OneMediPlan.Domain;
 using com.b_velop.OneMediPlan.Domain.Stores;
 using com.b_velop.OneMediPlan.Services;
+using com.b_velop.OneMediPlan.Helpers;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
@@ -19,13 +20,15 @@ namespace com.b_velop.OneMediPlan.iOS
         {
             var newTime = medi.NextDate.DateTime.ToNSDate();
 
-            var notification = new UILocalNotification();
-            notification.FireDate = newTime;
-            //notification.FireDate = NSDate.FromTimeIntervalSinceNow(15);
-            notification.AlertTitle = $"{medi.Name}"; // required for Apple Watch notifications
-            notification.AlertAction = $"View Alert for {medi.Name}";
-            notification.AlertBody = $"Zeit für {medi.Dosage} Einheit(en)!";
-            notification.SoundName = UILocalNotification.DefaultSoundName;
+            var notification = new UILocalNotification
+            {
+                FireDate = newTime,
+                //notification.FireDate = NSDate.FromTimeIntervalSinceNow(15);
+                AlertTitle = $"{medi.Name}", // required for Apple Watch notifications
+                AlertAction = $"View Alert for {medi.Name}",
+                AlertBody = $"Zeit für {medi.Dosage} Einheit(en)!",
+                SoundName = UILocalNotification.DefaultSoundName
+            };
 
             UIApplication.SharedApplication.ScheduleLocalNotification(notification);
         }
@@ -52,13 +55,7 @@ namespace com.b_velop.OneMediPlan.iOS
 
         public override async void DidEnterBackground(UIApplication application)
         {
-            var st = new LocalDataStore();
-            var inst = AppStore.Instance;
-            if (inst.User == null) return;
-            var user = inst.User;
-            var ll = await st.PersistToDevice(user, "user.json");
-            var llwd = await st.PersistToDevice(AppStore.Instance.Weekdays, "weekdays.json");
-            var ass = await st.PersistToDevice(AppStore.Instance.AppSettings, "settings.json");
+            await LocalIO.SaveDataAsync();
             // Use this method to release shared resources, save user data, invalidate timers and store the application state.
             // If your application supports background exection this method is called instead of WillTerminate when the user quits.
         }

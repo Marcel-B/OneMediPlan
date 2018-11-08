@@ -59,6 +59,7 @@ namespace com.b_velop.OneMediPlan.Droid.Activities
         public override void InitViews()
         {
             base.InitViews();
+            ViewModel.DependsOnIdx = -1;
             var arraySpinnerTimeType = new[]{
                 Strings.MINUTES,
                 Strings.HOURS,

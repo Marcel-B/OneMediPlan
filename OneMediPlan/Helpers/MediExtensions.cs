@@ -104,8 +104,8 @@ namespace com.b_velop.OneMediPlan.Helpers
 
             var span = medi.NextDate - DateTimeOffset.Now;
             var today = DateTimeOffset.Now.DayOfWeek;
+            Today = today.ToString();
             var next = medi.NextDate.DayOfWeek;
-
             if (span.Days == 0 && today == next)
             {
                 return medi.MinutesToNext() <= 1440

@@ -9,6 +9,7 @@ using com.b_velop.OneMediPlan.Meta;
 using com.b_velop.OneMediPlan.Services;
 using Ninject;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace com.b_velop.OneMediPlan.ViewModels
 {
@@ -115,6 +116,12 @@ namespace com.b_velop.OneMediPlan.ViewModels
         {
             var data = AppStore.Instance.User;
             var store = App.Container.Get<IDataStore<Medi>>();
+            var depId = Guid.Empty;
+            if (DependsOnIdx >= 0)
+            {
+                depId = data.Medis[DependsOnIdx].Id;
+            }
+
             var medi = new Medi
             {
                 Id = Guid.NewGuid(),
@@ -124,6 +131,7 @@ namespace com.b_velop.OneMediPlan.ViewModels
                 IntervallTime = IntervallTime,
                 User = data,
                 Name = Name,
+                DependsOn = depId,
                 Stock = double.Parse(Stock),
                 MinimumStock = double.Parse(StockMinimum),
                 NextDate = (IntervallType != IntervallType.IfNeeded && IntervallType != IntervallType.Depend) ? FirstApplication : DateTimeOffset.MinValue,

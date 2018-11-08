@@ -33,6 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\AppStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AppUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AppLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\LocalIO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Locales\" />
