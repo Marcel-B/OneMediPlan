@@ -6,6 +6,7 @@ using com.b_velop.OneMediPlan.Domain;
 using com.b_velop.OneMediPlan.Meta.Interfaces;
 using Ninject;
 using Plugin.CurrentActivity;
+using com.b_velop.OneMediPlan.Helpers;
 
 namespace com.b_velop.OneMediPlan.Droid
 {
@@ -32,9 +33,10 @@ namespace com.b_velop.OneMediPlan.Droid
             RegisterActivityLifecycleCallbacks(this);
         }
 
-        public override void OnTerminate()
+        public override async void OnTerminate()
         {
             base.OnTerminate();
+            await LocalIO.SaveDataAsync();
             UnregisterActivityLifecycleCallbacks(this);
         }
 

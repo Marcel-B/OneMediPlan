@@ -112,13 +112,15 @@ namespace com.b_velop.OneMediPlan
                     Created = DateTimeOffset.Now,
                     LastEdit = DateTimeOffset.Now,
                     Name = Environment.UserName,
+                    Medis = new  List<Medi>()
                 };
             }
             AppStore.Instance.User = user;
             await SetSettings();
 
             var weekdays = await localDataStore.LoadFromDevice<Dictionary<Guid, Weekdays>>("weekdays.json");
-            AppStore.Instance.Weekdays = weekdays;
+
+            AppStore.Instance.Weekdays = weekdays ?? new Dictionary<Guid, Weekdays>();
         }
 
         //public static async Task FetchFromCloud(){

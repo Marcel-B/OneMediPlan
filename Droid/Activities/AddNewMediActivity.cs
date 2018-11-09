@@ -2,6 +2,7 @@
 using Android.App;
 using Android.OS;
 using Android.Support.Design.Widget;
+using Android.Views;
 using Android.Widget;
 
 using com.b_velop.OneMediPlan.Domain.Enums;
@@ -30,7 +31,23 @@ namespace com.b_velop.OneMediPlan.Droid
             base.OnCreate(savedInstanceState);
             ViewModel = App.Container.Get<NewMediViewModel>();
             ViewModel.CurrentViewType = NewMediViewModel.ViewType.NameAndStock;
+
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetHomeButtonEnabled(true);
         }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            int id = item.ItemId;
+            if (id == Resource.Id.home)
+            {
+                OnBackPressed(); 
+                return true;
+            }
+            return base.OnOptionsItemSelected(item);
+        }
+
+   
 
         public override void GetViews()
         {
@@ -98,6 +115,7 @@ namespace com.b_velop.OneMediPlan.Droid
         void Next_Click(object sender, EventArgs e)
         {
             StartActivity(typeof(SetIntervallActivity));
+            Finish();
         }
 
         void IntervallType_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)

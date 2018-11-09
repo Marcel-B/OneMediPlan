@@ -117,7 +117,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:id="@+id/textViewUnits" />
-                </GridLayout>
+            </GridLayout>
+            
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/floatButtonNextIntervall"
                 android:layout_width="wrap_content"
@@ -127,6 +128,6 @@
                 android:layout_gravity="bottom|right"
                 android:layout_margin="@dimen/fab_margin" />
         </LinearLayout>
+        
     </android.support.v4.widget.NestedScrollView>
-
 </android.support.design.widget.CoordinatorLayout>

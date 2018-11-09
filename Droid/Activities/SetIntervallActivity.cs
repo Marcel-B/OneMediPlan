@@ -101,7 +101,7 @@ namespace com.b_velop.OneMediPlan.Droid.Activities
 
         public override void Localize()
         {
-            Units.Text = Strings.UNITS;
+            Units.Text = ViewModel.Name;
             After.Text = Strings.AFTER;
             Take.Text = Strings.TAKE;
             Every.Text = Strings.EVERY;
@@ -150,7 +150,10 @@ namespace com.b_velop.OneMediPlan.Droid.Activities
         }
 
         void Next_Click(object sender, EventArgs e)
-            => StartActivity(typeof(SetStartTimeActivity));
+        {
+            StartActivity(typeof(SetStartTimeActivity));
+            Finish();
+        } 
 
         private void SetButtonState()
         {

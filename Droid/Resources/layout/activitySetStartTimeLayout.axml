@@ -56,6 +56,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/timePickerStartTime" />
+            <DatePicker
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/timePickerStartDate" />
             
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/floatButtonSaveMedi"

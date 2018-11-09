@@ -54,10 +54,10 @@ namespace com.b_velop.OneMediPlan.iOS
 
             MediModel = new StringTypeDataModel();
             var medis = AppStore.Instance.User.Medis;
-            IEnumerable<string> mediNames = new string[0];
+            //IEnumerable<string> mediNames = new string[0];
 
-            if(medis != null)
-                mediNames = medis.Select(m => m.Name);
+            //if(medis != null)
+            var mediNames = medis.Select(m => m.Name);
 
             IntervallModel = new StringTypeDataModel();
             var list = new List<string>
@@ -72,6 +72,7 @@ namespace com.b_velop.OneMediPlan.iOS
 
             PickerIntervallType.Model = IntervallModel;
             PickerViewMedis.Model = MediModel;
+
         }
 
         public override void ViewDidAppear(bool animated)
@@ -82,6 +83,11 @@ namespace com.b_velop.OneMediPlan.iOS
             TextFieldIntervall.AllEditingEvents += TextFieldIntervall_AllEditingEvents;
             MediModel.ValueChanged += MediModel_ValueChanged;
             IntervallModel.ValueChanged += IntervallModel_ValueChanged;
+            if (ViewModel.IntervallType == IntervallType.Depend)
+            {
+                ViewModel.DependsOnIdx = 0;
+                PickerViewMedis.Select(0, 0, true);
+            }
         }
 
         public override void ViewDidDisappear(bool animated)

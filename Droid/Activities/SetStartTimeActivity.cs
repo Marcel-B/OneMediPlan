@@ -6,6 +6,7 @@ using Android.Widget;
 using com.b_velop.OneMediPlan.ViewModels;
 using Ninject;
 using System;
+using com.b_velop.OneMediPlan.Services;
 
 namespace com.b_velop.OneMediPlan.Droid.Activities
 {
@@ -42,7 +43,7 @@ namespace com.b_velop.OneMediPlan.Droid.Activities
         public override void InitViews()
         {
             base.InitViews();
-            var now = DateTimeOffset.Now;
+            var now = AppStore.Instance.AppSettings;
             StartTime.Hour = now.Hour;
             StartTime.Minute = now.Minute;
         }
@@ -54,6 +55,7 @@ namespace com.b_velop.OneMediPlan.Droid.Activities
         void Save_Click(object sender, System.EventArgs e)
         {
             ViewModel.SaveNameCommand.Execute(null);
+            Finish();
             StartActivity(typeof(MainActivity));
         }
     }
