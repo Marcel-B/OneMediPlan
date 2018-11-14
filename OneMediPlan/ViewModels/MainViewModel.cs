@@ -7,15 +7,17 @@ using com.b_velop.OneMediPlan.Services;
 using com.b_velop.OneMediPlan.Domain;
 using com.b_velop.OneMediPlan.Meta.Interfaces;
 using com.b_velop.OneMediPlan.Meta;
+using com.b_velop.OneMediPlan.Redux.States;
 
 namespace com.b_velop.OneMediPlan.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
         public ObservableCollection<Medi> Medis { get; set; }
-        private ILogger _logger;
+        private readonly ILogger _logger;
         public Command LoadItemsCommand { get; set; }
         public Command AddItemCommand { get; set; }
+        public ApplicationState ApplicationState;
 
         public MainViewModel(ILogger logger)
         {
@@ -24,6 +26,7 @@ namespace com.b_velop.OneMediPlan.ViewModels
             Medis = new ObservableCollection<Medi>();
             LoadItemsCommand = new Command(() => ExecuteLoadMedisCommand());
             AddItemCommand = new Command<Medi>((Medi item) => AddItem(item));
+  
         }
 
         public Medi RemoveMedi(int index)
@@ -49,6 +52,7 @@ namespace com.b_velop.OneMediPlan.ViewModels
             {
                 var medis = AppStore.Instance.User.Medis.ToList();
                 medis.Sort();
+
                 Medis.Clear();
                 foreach (var medi in medis)
                 {

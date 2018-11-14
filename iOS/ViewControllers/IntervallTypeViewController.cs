@@ -22,10 +22,8 @@ namespace com.b_velop.OneMediPlan.iOS
         {
             base.ViewDidLoad();
             Title = Strings.INTERVALL_TYPE;
-            if (AppStore.Instance.User.Medis == null ||
-               AppStore.Instance.User.Medis.Count == 0)
-                Depends.Enabled = false;
-            else Depends.Enabled = true;
+            var medis = App.Store.GetState().Medis;
+            Depends.Enabled = medis.Length > 0;
         }
 
         public override void ViewDidAppear(bool animated)

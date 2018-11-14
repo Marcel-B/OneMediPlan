@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+using System.Collections.Immutable;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -16,8 +15,11 @@ using com.b_velop.OneMediPlan.Services;
 using com.b_velop.OneMediPlan.ViewModels;
 
 using I18NPortable;
-using Newtonsoft.Json;
 using Ninject;
+using Redux;
+using com.b_velop.OneMediPlan.Redux.Actions;
+using com.b_velop.OneMediPlan.Redux.States;
+using com.b_velop.OneMediPlan.Redux;
 
 namespace com.b_velop.OneMediPlan
 {
@@ -40,8 +42,35 @@ namespace com.b_velop.OneMediPlan
     }
 
 
-    public class App
+    public static class App
     {
+
+
+        /// <summary>
+        /// The Store<TState> is the class that bring actions and reducer 
+        /// together.The store has the following responsibilities:
+
+        /// * Holds application state of type TState.
+        /// * Allows state to be updated via Dispatch(IAction action).
+        /// * Registers listeners via Subscribe(IObserver observer). 
+        ///   The Store<TState> class implements IObservable so 
+        ///   ReactiveExtensions is a usefull tool to observe 
+        ///   state changes.
+
+        /// It’s important to note that you’ll only have a single store in a 
+        /// Redux application.In the examples, I keep it as a static property 
+        /// on the application class.
+
+        /// The Store constructor take an initial state, of type TState, 
+        /// and a reducer.
+
+        /// This is the main entry point of the application.
+        /// </summary>
+        public static IStore<ApplicationState> Store { get; private set; }
+
+        /// <summary>
+        /// Main url for app API
+        /// </summary>
         public static string URL = "https://app.marcelbenders.de";
         public static StandardKernel Container { get; set; }
 
@@ -51,6 +80,10 @@ namespace com.b_velop.OneMediPlan
         public static bool UseMockDataStore = false;
 #endif
 
+        /// <summary>
+        /// Generic Action which is used to set a notification on device
+        /// </summary>
+        /// <value>The set notification.</value>
         public static Action<Medi> SetNotification { get; set; }
 
         public static void Initialize()
@@ -91,6 +124,16 @@ namespace com.b_velop.OneMediPlan
                 Container.Bind<IDataStore<DailyAppointment>>().To<DailyAppointmentDataStore>().WithConstructorArgument("backendUrl", App.URL);
             }
 
+            var initialState = new ApplicationState
+            {
+                AppSettings = ImmutableArray<AppSettings>.Empty,
+                Users = ImmutableArray<MediUser>.Empty,
+                Weekdays = ImmutableArray<Weekdays>.Empty,
+                Medis = ImmutableArray<Medi>.Empty,
+            };
+            Store = new Store<ApplicationState>(Reducers.ReduceApplication, initialState);
+
+
             //AppStore.Instance.User = new MediUser
             //{
             //    Id = MediDataMock.USER_ID,
@@ -100,9 +143,14 @@ namespace com.b_velop.OneMediPlan
 
             Task.Run(() => FetchDataByUser());
         }
+
+
         public static async Task FetchDataByUser()
         {
+            // Load data from device
             var localDataStore = new LocalDataStore();
+
+            // First load user data, if not exists create a new user
             var user = await localDataStore.LoadFromDevice<MediUser>("user.json");
             if (user == null)
             {
@@ -112,36 +160,96 @@ namespace com.b_velop.OneMediPlan
                     Created = DateTimeOffset.Now,
                     LastEdit = DateTimeOffset.Now,
                     Name = Environment.UserName,
-                    Medis = new  List<Medi>()
+                    Medis = new List<Medi>()
                 };
             }
-            AppStore.Instance.User = user;
+
+            App.Store.Dispatch(new AddUserAction
+            {
+                Id = user.Id,
+                Created = user.Created,
+                LastEdit = user.LastEdit,
+                Email = user.Email,
+                Birthday = user.Birthdate,
+                Username = user.Username,
+                Name = user.Name,
+                Surename = user.Surename
+            });
+
+            //AppStore.Instance.User = user;
+
+            // Get medis from user and put it into redux-store
+            foreach (var medi in user.Medis)
+            {
+                App.Store.Dispatch(new AddMediAction
+                {
+                    Id = medi.Id,
+                    User = medi.User,
+                    Name = medi.Name,
+                    Dosage = medi.Dosage,
+                    Stock = medi.Stock,
+                    Created = medi.Created,
+                    DailyAppointments = medi.DailyAppointments,
+                    DependsOn = medi.DependsOn,
+                    Description = medi.Description,
+                    LastEdit = medi.LastEdit,
+                    DosageType = medi.DosageType,
+                    IntervallTime = medi.IntervallTime,
+                    MinimumStock = medi.MinimumStock,
+                    IntervallType = medi.IntervallType,
+                    PureIntervall = medi.PureIntervall,
+                    NextDate = medi.NextDate,
+                    LastDate = medi.LastDate,
+                    LastRefill = medi.LastRefill
+                });
+            }
+
             await SetSettings();
 
+            // Load Weekdays from Device
             var weekdays = await localDataStore.LoadFromDevice<Dictionary<Guid, Weekdays>>("weekdays.json");
 
-            AppStore.Instance.Weekdays = weekdays ?? new Dictionary<Guid, Weekdays>();
+            foreach (var wd in weekdays.Values)
+            {
+                App.Store.Dispatch(new AddWeekdaysAction
+                {
+                    Id = wd.Id,
+                    Created = wd.Created,
+                    LastEdit = wd.LastEdit,
+                    Medi = wd.Medi,
+                    Monday = wd.Monday,
+                    Tuesday = wd.Tuesday,
+                    Wednesday = wd.Wednesday,
+                    Thursday = wd.Thursday,
+                    Friday = wd.Friday,
+                    Saturday = wd.Saturday,
+                    Sunday = wd.Sunday
+                });
+            }
+
+
+            //AppStore.Instance.Weekdays = weekdays ?? new Dictionary<Guid, Weekdays>();
         }
 
         //public static async Task FetchFromCloud(){
-            //var appUser = AppStore.Instance.User;
-            //var mediStore = Container.Get<IDataStore<Medi>>();
-            //var dailyStore = Container.Get<IDataStore<DailyAppointment>>();
-            //var weekdaysStore = Container.Get<IDataStore<Weekdays>>();
+        //var appUser = AppStore.Instance.User;
+        //var mediStore = Container.Get<IDataStore<Medi>>();
+        //var dailyStore = Container.Get<IDataStore<DailyAppointment>>();
+        //var weekdaysStore = Container.Get<IDataStore<Weekdays>>();
 
-            //var medis = await mediStore.GetItemsByFkAsync(appUser.Id);
-            //foreach (var medi in medis)
-            //{
-            //    var dailyAppointments = await dailyStore.GetItemsByFkAsync(medi.Id);
-            //    var weekdays = (await weekdaysStore.GetItemsByFkAsync(medi.Id)).ToList();
-            //    if (weekdays.Count > 0)
-            //        AppStore.Instance.Weekdays[medi.Id] = weekdays.First();
-            //    if (dailyAppointments != null)
-            //        medi.DailyAppointments = dailyAppointments.ToList();
-            //    appUser.Medis.Add(medi);
-            //}
+        //var medis = await mediStore.GetItemsByFkAsync(appUser.Id);
+        //foreach (var medi in medis)
+        //{
+        //    var dailyAppointments = await dailyStore.GetItemsByFkAsync(medi.Id);
+        //    var weekdays = (await weekdaysStore.GetItemsByFkAsync(medi.Id)).ToList();
+        //    if (weekdays.Count > 0)
+        //        AppStore.Instance.Weekdays[medi.Id] = weekdays.First();
+        //    if (dailyAppointments != null)
+        //        medi.DailyAppointments = dailyAppointments.ToList();
+        //    appUser.Medis.Add(medi);
         //}
-      
+        //}
+
         public static async Task SetSettings()
         {
             var localDataStore = new LocalDataStore();

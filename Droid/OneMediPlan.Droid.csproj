@@ -135,6 +135,18 @@
     </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors" />
+    <Reference Include="System.Reactive">
+      <HintPath>..\packages\System.Reactive.4.1.2\lib\netstandard2.0\System.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\packages\System.Reactive.Linq.4.1.2\lib\netstandard2.0\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Redux">
+      <HintPath>..\packages\Redux.NET.2.0.0\lib\netstandard1.1\Redux.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable">
+      <HintPath>..\packages\System.Collections.Immutable.1.5.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainApplication.cs" />

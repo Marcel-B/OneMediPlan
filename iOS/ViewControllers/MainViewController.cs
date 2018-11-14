@@ -13,23 +13,32 @@ using com.b_velop.OneMediPlan.ViewModels;
 using com.b_velop.OneMediPlan.Services;
 using com.b_velop.OneMediPlan.Domain;
 using com.b_velop.OneMediPlan.Domain.Enums;
+using com.b_velop.OneMediPlan.Meta.Interfaces;
+using Redux;
+using com.b_velop.OneMediPlan.Redux.States;
+using com.b_velop.OneMediPlan.Redux.Actions;
 
 namespace com.b_velop.OneMediPlan.iOS
 {
     public partial class MainViewController : UITableViewController
     {
-        public MainViewModel ViewModel { get; set; }
 
         public MainViewController(IntPtr handle) : base(handle)
         {
             ViewModel = App.Container.Get<MainViewModel>();
-            ViewModel.Medis.CollectionChanged -= Items_CollectionChanged;
-            ViewModel.Medis.CollectionChanged += Items_CollectionChanged;
+            Logger = App.Container.Get<ILogger>();
+
         }
+        public ApplicationState ApplicationState { get; set; }
+        public MainViewModel ViewModel { get; set; }
+        protected ILogger Logger { get; set; }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            //ViewModel.Medis.CollectionChanged -= Items_CollectionChanged;
+            //ViewModel.Medis.CollectionChanged += Items_CollectionChanged;
 
             TableView.RegisterNibForCellReuse(MyMediTableViewCell.Nib, MyMediTableViewCell.Key);
             TableView.RowHeight = 100;
@@ -38,6 +47,19 @@ namespace com.b_velop.OneMediPlan.iOS
             source.ParentController = this;
             TableView.Source = source;
             Title = ViewModel.Title;
+            App.Store.Subscribe(
+             state =>
+             {
+                 source.State = state;
+                 try
+                 {
+                     InvokeOnMainThread(() => TableView.ReloadData());
+                 }
+                 catch (Exception ex)
+                 {
+                     Logger.Log("Error while reloading data", GetType(), ex);
+                 }
+             });
         }
 
         public override void ViewDidAppear(bool animated)
@@ -59,7 +81,14 @@ namespace com.b_velop.OneMediPlan.iOS
 
         void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            InvokeOnMainThread(() => TableView.ReloadData());
+            try
+            {
+                InvokeOnMainThread(() => TableView.ReloadData());
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"Error occured while reloading data", GetType(), ex);
+            }
         }
     }
 
@@ -67,6 +96,7 @@ namespace com.b_velop.OneMediPlan.iOS
     {
         public MainViewModel ViewModel { get; set; }
         public MainViewController ParentController { get; set; }
+        public ApplicationState State { get; set; }
 
         public MedisDataSource(MainViewModel viewModel)
         {
@@ -76,7 +106,8 @@ namespace com.b_velop.OneMediPlan.iOS
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             var cell = tableView.DequeueReusableCell(MyMediTableViewCell.Key, indexPath) as MyMediTableViewCell;
-            var medi = ViewModel.Medis[indexPath.Row];
+            //var medi = ViewModel.Medis[indexPath.Row];
+            var medi = State.Medis[indexPath.Row];
             cell.Background = UIColor.FromRGB(223, 249, 251);
             cell.Name = medi.Name;
             cell.Next = medi.GetNextDate();
@@ -138,7 +169,7 @@ namespace com.b_velop.OneMediPlan.iOS
                 {
                     //var editStockDialog = UIAlertController.Create("HeyHo", "Let's go", UIAlertControllerStyle.Alert);
                     //editStockDialog.ShowViewController(editStockDialog, this);
-                // TODO - Deprecated, implement with "UIAlertController.Create"
+                    // TODO - Deprecated, implement with "UIAlertController.Create"
                     var editStockDialog = new UIAlertView
                     {
                         Title = NSBundle.MainBundle.GetLocalizedString(Strings.STOCK),
@@ -190,8 +221,10 @@ namespace com.b_velop.OneMediPlan.iOS
 
         public async override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
+
             tableView.DeselectRow(indexPath, true);
             var medi = ViewModel.Medis[indexPath.Row];
+
             AppStore.Instance.CurrentMedi = medi;
 
             var waring = Strings.WARNING;
@@ -229,6 +262,16 @@ namespace com.b_velop.OneMediPlan.iOS
                 ParentController.PresentViewController(okCancelAlertController, true, null);
                 return;
             }
+            App.Store.Dispatch(new UpdateMediStockAction
+            {
+                Id = medi.Id,
+                Stock = medi.Stock
+            });
+            App.Store.Dispatch(new UpdateMediIntokeAction
+            {
+                Id = medi.Id,
+                NextDate = medi.NextDate
+            });
             await UpdateList(medi);
         }
 
@@ -241,6 +284,6 @@ namespace com.b_velop.OneMediPlan.iOS
         }
 
         public override nint RowsInSection(UITableView tableview, nint section)
-            => ViewModel.Medis.Count;
+            => State.Medis.Length;
     }
 }

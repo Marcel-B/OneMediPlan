@@ -1,7 +1,7 @@
 ﻿using System;
-
-using com.b_velop.OneMediPlan.Domain;
 using System.Collections.Generic;
+using System.Collections.Immutable;
+using com.b_velop.OneMediPlan.Domain;
 
 namespace com.b_velop.OneMediPlan.Services
 {
@@ -9,7 +9,6 @@ namespace com.b_velop.OneMediPlan.Services
     {
         static readonly Lazy<AppStore> instance = new Lazy<AppStore>(() => new AppStore());
         public static AppStore Instance => instance.Value;
-
         protected AppStore() { Weekdays = new Dictionary<Guid, Weekdays>(); }
 
         public MediUser User { get; set; }

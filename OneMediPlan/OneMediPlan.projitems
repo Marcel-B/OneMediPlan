@@ -34,9 +34,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\AppUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AppLogger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\LocalIO.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Redux\Actions\Actions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Redux\Reducers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Redux\States\ApplicationState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Locales\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Redux\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Redux\Actions\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Redux\States\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Locales\de.txt">

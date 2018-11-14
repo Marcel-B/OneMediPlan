@@ -53,7 +53,7 @@ namespace com.b_velop.OneMediPlan.iOS
             Title = ViewModel.Title;
 
             MediModel = new StringTypeDataModel();
-            var medis = AppStore.Instance.User.Medis;
+            var medis = App.Store.GetState().Medis;
             //IEnumerable<string> mediNames = new string[0];
 
             //if(medis != null)

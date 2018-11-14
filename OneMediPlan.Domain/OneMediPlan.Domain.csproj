@@ -29,6 +29,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Class1.cs" />
+    <Compile Remove="AddMediAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -42,6 +43,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Redux.NET" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OneMediPlan.Meta\OneMediPlan.Meta.csproj" />
